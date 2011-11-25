@@ -1,0 +1,163 @@
+\documentclass[10pt]{report}
+ 
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{eurosym}
+\usepackage{fixltx2e}
+\usepackage{fullpage}
+
+\title{Description Du projet 2011 du club robotique de la MJC d'Ermont}
+\author{Arthur \bsc{Toussaint}, Lucas \bsc{Pluvinage}, Francois \bsc{Lesecq},\\ Rémi \bsc{Dupré} et Pierre \bsc{Chabaud} \bsc{Tuteur} : Anthelme \bsc{Bernard-Brunel}}
+\date{11 Octobre 2011}
+
+\addtolength{\textwidth}{0.5cm}
+\begin{document}
+\maketitle
+
+
+\chapter{Description}
+\section{Introduction}
+
+Le projet 2011 est celui d'un ballon expérimental, qui a pour but d'étudier et de comprendre les phénomènes et les conditions présentes dans la haute atmosphère (stratosphère).
+La chaîne de vol (l'ensemble des éléments rattachés au ballon) est composée : 
+\begin{itemize}
+	\item d'un ballon gonflé à l'hélium
+	\item d'un réflecteur radar, permettant au ballon d'être vu par les avions et par les aéroports.
+	\item d'un parachute
+	\item d'une nacelle, contenant les diverses expériences
+\end{itemize}
+Ce projet a  été choisi a l'unanimité par les membres du club, car il embarque des éléments robotisés (capteurs, actionneurs mécaniques, ...) et aussi parce que la partie de la transmission de signal à longue distance, avec de nombreuses interférences (orage notamment), était un défi intéressant à relever.
+
+\section{Contenu de la nacelle}
+
+Dans la nacelle, nous avons prévu d'intégrer divers capteurs et éléments mécaniques, à savoir :\\
+
+\begin{itemize}
+	\item Un micro-contrôleur, pour faire communiquer les différents capteurs avec l'émetteur kiwi
+	\item Un capteur de pression, intérieur et extérieur afin de voir l'évolution de l'altitude du ballon et de connaître la différence de pression entre l'intérieur et l'extérieur du ballon
+	\item Un capteur de température intérieure et extérieure, pour connaître la température régnant en altitude, ainsi que le degré d'isolation de la nacelle
+	\item Un capteur d'humidité, qui permettra de connaître le taux d'hygrométrie en fonction de l'altitude
+	\item Un accéléromètre et/ou gyroscope, afin de connaître les mouvements de la nacelle, et l'intensité de la gravité
+	\item Un lanceur d'avion en papier qui permettra d'étudier la trajectoire de l'avion en papier lancé en altitude, et de la comparer à celle observée sur terre
+	\item Des caméras (idéalement, une visant l’horizon, et l'autre orientée vers le sol, mais à défaut, une unique camera inclinée à 45\degres en direction du sol) permettant d'avoir des images de la courbure de la terre, ou une vue aérienne de cette dernière. Ces caméras permettront aussi de visualiser le début de la course de l'avion de papier.
+	\item Un récepteur GPS, pour suivre le périple du ballon sur une carte, afin de le trouver plus facilement, mais aussi pour en déduire les vents en altitude
+	\item Des capteurs de gaz, afin d'étudier la composition de l'air
+	\item Un enregistreur audio, permettant d'écouter les bruits qui peuvent se produire en altitude\\
+\end{itemize}
+
+Cette liste peut être modifiée à tout moment, en fonction du budget alloué, du poids des différents composants, ou de la faisabilité de l'implémentation de ces derniers.
+	
+\section{Description du vol théorique du ballon}
+
+Le vol se déroulerait en 5 grandes étapes :
+
+\begin{enumerate}
+	\item Préparation de la chaîne de vol
+		\begin{itemize}
+		\item Compte a rebours démarrant à H-100 minutes
+		\item Gonflage du ballon par un aérotechnicien
+		\item Construction et mise sous tension des éléments de la nacelle
+		\item Mise en place et test de la station de télémesure
+		\item Lâcher de la chaîne de vol, élément par élément
+		\end{itemize}
+	\item Ascension
+		\begin{itemize}
+		\item Montée du ballon jusqu'à 30 000 mètres environ
+		\item Réception des données par la station de télémesure
+		\end{itemize}
+	\item Apogée
+		\begin{itemize}
+		\item Éclatement du ballon
+		\item Largage de l'avion en papier
+		\item Déploiement du parachute
+		\end{itemize}
+	\item Descente
+		\begin{itemize}
+		\item Descente sous contrôle du parachute
+		\item Réception des données par la station de télémesure
+		\item Détection par les avions et les aéroports du réflecteur radar
+		\item Atterrissage en douceur
+		\end{itemize}
+	\item Récupération
+		\begin{itemize}
+		\item Estimation du lieu de chute grâce à la balise GPS
+		\item Récupération du ballon, avec l'autorisation du propriétaire du terrain d'atterrissage
+		\end{itemize}
+\end{enumerate}
+
+\chapter{Avancement du projet}
+
+\section{Preparation}
+\subsection{Site web}
+
+	\begin{itemize}
+	\item Adresse : \url{www.robotique-mjc.tk}
+	\item Tableau comportant des informations concernant les différents composants (prix, vendeur, poids...) de la nacelle
+	\item Messagerie instantanée
+	\item Compte utilisateur pour chaque membre
+	\end{itemize}
+
+\subsection{Choix des composants}
+
+	\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	Nom Composant & Adresse Dataheet & Type de liaison & Poids & Prix \\
+	\hline
+	Microcontroleur & \href{}{Arduino} & n.c & & \euro \\
+	\hline
+	Température & \href{http://www.farnell.com/datasheets/31654.pdf}{Farnell} & Analogique & 4 g & 5 \euro \\
+	\hline
+	Hygrométrie & \href{http://www.farnell.com/datasheets/85556.pdf}{Farnell} & Analogique & 20 g & 14.98 \euro \\
+	\hline
+	Caméra & \href{http://www.flycamone.com/acme2010/upload/FCOe_page_E.jpg}{ACME} & Direct MicroSD & 17 g & 29.9 \euro \\
+	\hline
+	Altimètre & \href{http://www.freescale.com/files/sensors/doc/data_sheet/MPX2200.pdf}{Farnell} & 		Analogique & 10 g & 8.25 \euro\\
+	\hline
+	GPS & \href{a}{Datasheet} & I\up{2}C-SPI & a & a \euro\\
+	\hline
+	Acceléromètre & \href{http://www.sparkfun.com/datasheets/Sensors/Accelerometer/ADXL345.pdf}{Datasheet} & I\up{2}C-SPI & 0.2 g & 25.16 \euro\\
+	\hline
+	Gyroscope & \href{http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/CD00265057.pdf}{Ebay} & I\up{2}C-SPI & n.c & 22.90 \euro\\
+	\hline
+	CO\textsubscript{2} & \href{a}{GoTronic} & Analogique & n.c & 8.5 \euro\\
+	\hline
+	CH\textsubscript{4}(Méthane) & \href{http://www.electronique-diffusion.fr/Doc_Mesure/rehs135.pdf}{GoTronic} & Analogique & n.c & 8.8 \euro\\
+	\hline
+	\end{tabular}
+	
+\newpage
+	
+\subsection{Priorités}
+	\begin{itemize}
+		\item[1 - ]Microcontrôleur
+		\item[2 - ]Kiwi
+		\item[3 - ]Capteurs Analogiques (Altimètre, Hygromètre, CO\textsubscript{2}, CH\textsubscript{4}, Thermomètre)
+		\item[4 - ]1\up{ère} Caméra
+		\item[5 - ]GPS
+		\item[6 - ]Gyroscope
+		\item[7 - ]Accéléromètre
+		\item[8 - ]2\up{ème} Caméra
+	\end{itemize}
+	
+\subsection{contraintes}
+	\begin{itemize}
+		\item Capteur de pression extérieur : le capteur est protégé du froid à l'intérieur de la nacelle mais \textbf{un tube} lui permettra de mesurer la pression extérieure
+		\item Température intérieure : quelle température mesurer (air ambiant, pile, microcontroleur, ...) ?
+		\item Température extérieure : éviter la température due au soleil, où placer le capteur et comment le protéger ?
+		\item Hygrométrie : à placer a l’extérieur et a côté du capteur de température, car la mesure dépend de la température
+		\item GPS : pas de métal au dessus, ni de couverture de survie, antenne orientée vers le haut
+		\item Gyroscope : à placer dans le bas de la nacelle
+		\item Kiwi : antenne orientée vers le bas
+		\item \textbf{faire attention à la loi de Murphy}(surtout pour la programmation)
+		\item Batterie de secours : en fonction du poids disponible
+	\end{itemize}
+
+\section{Réalisation}
+Réalisation non commencée
+\chapter{Annexe}
+\section{Shéma}
+
+\end{document}
