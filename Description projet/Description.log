@@ -1,7 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2011.10.12)  25 NOV 2011 17:56
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2011.10.12)  26 NOV 2011 07:33
 entering extended mode
-**H:/Robotique/Description*projet/Description.tex
-("H:/Robotique/Description projet/Description.tex"
+**C:/Users/TOUSSAINT/Desktop/Robotique-MJC-2011/Description*projet/Description.
+tex
+
+("C:/Users/TOUSSAINT/Desktop/Robotique-MJC-2011/Description projet/Description.
+tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -204,7 +207,8 @@ LaTeX Info: Redefining \em on input line 420.
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip44
 )
-("H:\Robotique\Description projet\Description.aux")
+("C:\Users\TOUSSAINT\Desktop\Robotique-MJC-2011\Description projet\Description.
+aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
@@ -224,8 +228,7 @@ LaTeX Info: Redefining \dots on input line 17.
 LaTeX Info: Redefining \up on input line 17.
 \AtBeginShipoutBox=\box27
 Package hyperref Info: Link coloring OFF on input line 17.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
@@ -237,8 +240,10 @@ LaTeX Info: Redefining \ref on input line 17.
 LaTeX Info: Redefining \pageref on input line 17.
 LaTeX Info: Redefining \nameref on input line 17.
 
-("H:\Robotique\Description projet\Description.out")
-("H:\Robotique\Description projet\Description.out")
+("C:\Users\TOUSSAINT\Desktop\Robotique-MJC-2011\Description projet\Description.
+out")
+("C:\Users\TOUSSAINT\Desktop\Robotique-MJC-2011\Description projet\Description.
+out")
 \@outlinefile=\write3
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 19.
@@ -303,31 +308,18 @@ LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <6.49994> not available
 
 [3
 
-]
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.150 		\item Hygrométrie : à placer a l’
-                                         extérieur et a côté du capteur de t...
-
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
-
-[4]
+] [4]
 Chapitre 3.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 163.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 164.
 [5
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 163.
- ("H:\Robotique\Description projet\Description.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 163.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 163.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 164.
+
+("C:\Users\TOUSSAINT\Desktop\Robotique-MJC-2011\Description projet\Description.
+aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 164.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 164.
 Package rerunfilecheck Info: File `Description.out' has not changed.
 (rerunfilecheck)             Checksum: 14D92FDC40CEC943689DAB513AF7F3B4;805.
 
@@ -338,12 +330,12 @@ LaTeX Font Warning: Size substitutions with differences
  ) 
 Here is how much of TeX's memory you used:
  5183 strings out of 494045
- 75862 string characters out of 3148374
+ 76225 string characters out of 3148374
  158458 words of memory out of 3000000
  8417 multiletter control sequences out of 15000+200000
  16729 words of font info for 38 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 29i,10n,28p,410b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,10n,28p,443b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-super-t1.enc}<C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/eurosym/feymr10.pfb><C:/Program Files/
 MiKTeX 2.9/fonts/type1/public/cm-super/sfbx1000.pfb><C:/Program Files/MiKTeX 2.
@@ -357,9 +349,9 @@ er/sfbx2488.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfcc12
 KTeX 2.9/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/cm-super/sfrm1728.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/public/cm-super/sftt1000.pfb>
-Output written on Description.pdf (6 pages, 223777 bytes).
+Output written on Description.pdf (6 pages, 223607 bytes).
 PDF statistics:
- 156 PDF objects out of 1000 (max. 8388607)
+ 155 PDF objects out of 1000 (max. 8388607)
  24 named destinations out of 1000 (max. 500000)
  105 words of extra memory for PDF output out of 10000 (max. 10000000)
 
