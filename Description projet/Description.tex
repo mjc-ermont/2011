@@ -121,12 +121,15 @@ Le vol se déroulerait en 5 grandes étapes :
 		\hline
 		Gyroscope & \href{http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/CD00265057.pdf}{Ebay} & I\up{2}C-SPI & n.c & 22.90 \euro\\
 		\hline
-		CO\textsubscript{2} & \href{a}{GoTronic} & Analogique & n.c & 8.5 \euro\\
+		CO\textsubscript{2} & \href{}{GoTronic} & Analogique & n.c & 8.5 \euro\\
 		\hline
 		CH\textsubscript{4}(Méthane) & \href{http://www.electronique-diffusion.fr/Doc_Mesure/rehs135.pdf}{GoTronic} & Analogique & n.c & 8.8 \euro\\
 		\hline
 	\end{tabular}
 	
+\subsection{Planning}
+	
+
 \newpage
 	
 \subsection{Priorités}
@@ -145,10 +148,10 @@ Le vol se déroulerait en 5 grandes étapes :
 \subsection{contraintes}
 	\begin{itemize}
 		\item Capteur de pression extérieur : le capteur est protégé du froid à l'intérieur de la nacelle mais \textbf{un tube} lui permettra de mesurer la pression extérieure
-		\item Température intérieure : quelle température mesurer (air ambiant, pile, microcontroleur, ...) ?
+		\item Température intérieure : quelle température mesurer (air ambiant, pile, microcontroleur, ...) ? Le capteur serqa protégé et isolé du reste de la nacelle.
 		\item Température extérieure : éviter la température due au soleil, où placer le capteur et comment le protéger ?
 		\item Hygrométrie : à placer a l'extérieur et a côté du capteur de température, car la mesure dépend de la température
-		\item GPS : pas de métal au dessus, ni de couverture de survie, antenne orientée vers le haut
+		\item GPS : pas de métal au dessus, ni de couverture de survie, antenne orientée vers le haut. Il faut trouver un GPS qui reçoit les données du satellite au dessus de 18 000m
 		\item Gyroscope : à placer dans le bas de la nacelle
 		\item Kiwi : antenne orientée vers le bas
 		\item \textbf{faire attention à la loi de Murphy}(surtout pour la programmation)
@@ -161,6 +164,6 @@ Réalisation non commencée
 
 \appendix
 
-\chapter{Shéma}
+\chapter{Synoptique générale}
 
 \end{document}
