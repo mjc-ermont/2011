@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Ballon expérimental" company="" webLink="" view-date="2011-10-31" view-index="1" gantt-divider-location="316" resource-divider-location="301" version="2.0">
+<project name="Ballon expérimental" company="" webLink="" view-date="2011-11-28" view-index="0" gantt-divider-location="316" resource-divider-location="301" version="2.0">
     <description/>
-    <view zooming-state="default:4" id="gantt-chart"/>
+    <view zooming-state="default:5" id="gantt-chart"/>
     <view id="resource-table">
         <field id="0" name="Nom" width="55" order="0"/>
         <field id="1" name="Rôle par défaut" width="44" order="1"/>
@@ -53,11 +53,8 @@
         <task id="10" name="Test mécanique" meeting="false" start="2012-03-31" duration="10" complete="0" priority="1" expand="true">
             <depend id="8" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="13" name="Test électronique + programmation" color="#8cb6ce" meeting="false" start="2012-03-31" duration="7" complete="0" priority="1" expand="true">
+        <task id="9" name="Test électronique" meeting="false" start="2012-03-24" duration="17" complete="0" priority="1" expand="true">
             <depend id="8" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="9" name="Test électronique" meeting="false" start="2012-03-24" duration="7" complete="0" priority="1" expand="true">
-            <depend id="13" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="2" name="Conception électronique" color="#8cb6ce" meeting="false" start="2011-12-03" duration="57" complete="0" priority="1" expand="true">
             <depend id="5" type="2" difference="0" hardness="Strong"/>
@@ -72,10 +69,10 @@
         <task id="3" name="Achat capteurs et caméra" color="#8cb6ce" meeting="false" start="2011-12-03" duration="14" complete="0" priority="1" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="11" name="Programmation" color="#8cb6ce" meeting="false" start="2012-02-18" duration="42" complete="0" thirdDate="2012-02-18" thirdDate-constraint="1" priority="1" expand="true">
-            <depend id="13" type="2" difference="0" hardness="Strong"/>
+        <task id="11" name="Programmation" color="#8cb6ce" meeting="false" start="2012-02-18" duration="35" complete="0" thirdDate="2012-02-18" thirdDate-constraint="1" priority="1" expand="true">
+            <depend id="9" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="12" name="Prog épisode 1" color="#8cb6ce" meeting="false" start="2011-12-03" duration="70" complete="0" priority="1" expand="true">
+        <task id="12" name="Programmation (Capteurs Analogiques + Trasmission)" color="#8cb6ce" meeting="false" start="2011-12-03" duration="77" complete="0" priority="1" expand="true">
             <depend id="11" type="2" difference="0" hardness="Strong"/>
         </task>
     </tasks>
