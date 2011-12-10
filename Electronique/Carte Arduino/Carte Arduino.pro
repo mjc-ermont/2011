@@ -1,4 +1,4 @@
-update=09/12/2011 16:36:41
+update=10/12/2011-14:01:22
 version=1
 last_client=kicad
 [cvpcb]
@@ -143,3 +143,5 @@ LibName29=contrib
 LibName30=valves
 [general]
 version=1
+RootSch=Carte Arduino.sch
+BoardNm=Carte Arduino.brd
