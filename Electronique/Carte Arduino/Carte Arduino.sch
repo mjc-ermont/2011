@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 10/12/2011 16:53:54
+EESchema Schematic File Version 2  date 11/12/2011 09:01:38
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -30,7 +30,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:Carte Arduino-cache
-EELAYER 23  0
+EELAYER 25  0
 EELAYER END
 $Descr A4 11700 8267
 encoding utf-8

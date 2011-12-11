@@ -1,6 +1,6 @@
-update=10/12/2011-14:01:22
+update=11/12/2011 09:08:22
 version=1
-last_client=kicad
+last_client=eeschema
 [cvpcb]
 version=1
 NetITyp=0
@@ -77,9 +77,13 @@ LibName7=display
 LibName8=valves
 LibName9=led
 LibName10=dip_sockets
+[general]
+version=1
+RootSch=Carte Arduino.sch
+BoardNm=Carte Arduino.brd
 [eeschema]
 version=1
-LibDir=
+LibDir=../Librairies kiCAD;H:/Robotique/Electronique/Librairies kiCAD
 NetFmt=1
 HPGLSpd=20
 HPGLDm=15
@@ -107,8 +111,6 @@ offY_E=0
 RptD_X=0
 RptD_Y=100
 RptLab=1
-SimCmd=
-UseNetN=0
 LabSize=60
 [eeschema/libraries]
 LibName1=power
@@ -141,7 +143,3 @@ LibName27=opto
 LibName28=atmel
 LibName29=contrib
 LibName30=valves
-[general]
-version=1
-RootSch=Carte Arduino.sch
-BoardNm=Carte Arduino.brd
