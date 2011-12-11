@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 11/12/2011 09:01:38
+EESchema Schematic File Version 2  date 11/12/2011 11:45:20
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -29,6 +29,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:Arduino
 LIBS:Carte Arduino-cache
 EELAYER 25  0
 EELAYER END
@@ -36,7 +37,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "10 dec 2011"
+Date "11 dec 2011"
 Rev ""
 Comp ""
 Comment1 ""
@@ -44,6 +45,15 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L ARDUINO_MINI U?
+U 1 1 4EE489A2
+P 6800 2000
+F 0 "U?" H 6800 2000 60  0000 C CNN
+F 1 "ARDUINO_MINI" H 6800 2000 60  0000 C CNN
+	1    6800 2000
+	1    0    0    -1  
+$EndComp
 Text Notes 1850 4200 1    60   ~ 0
 Capteur temperature exterieure
 Text Notes 2250 4200 1    60   ~ 0
