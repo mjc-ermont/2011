@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 12/12/2011 18:16:17
+EESchema Schematic File Version 2  date 12/12/2011 18:19:07
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -45,14 +45,16 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+Text Notes 8550 5750 0    60   ~ 0
+Arduino
 Wire Wire Line
-	5900 2250 6000 2250
+	7750 6550 7850 6550
 Wire Wire Line
-	7700 2050 7800 2050
+	9550 6350 9650 6350
 Wire Wire Line
-	7700 2150 7800 2150
+	9550 6450 9650 6450
 Wire Wire Line
-	6000 1600 5900 1600
+	7850 5900 7750 5900
 Wire Wire Line
 	6100 6400 6100 6500
 Wire Wire Line
@@ -118,32 +120,32 @@ Wire Wire Line
 Wire Wire Line
 	6300 6400 6300 6500
 Wire Wire Line
-	7700 2200 7800 2200
+	9550 6500 9650 6500
 Wire Wire Line
-	7700 2100 7800 2100
+	9550 6400 9650 6400
 Wire Wire Line
-	6000 2200 5900 2200
-Text Label 5900 2250 2    60   ~ 0
+	7850 6500 7750 6500
+Text Label 7750 6550 2    60   ~ 0
 Arduino - SCL
-Text Label 5900 2200 2    60   ~ 0
+Text Label 7750 6500 2    60   ~ 0
 Arduino - SDA
-Text Label 5900 1600 2    60   ~ 0
+Text Label 7750 5900 2    60   ~ 0
 Modulateur
-Text Label 7800 2050 0    60   ~ 0
+Text Label 9650 6350 0    60   ~ 0
 Arduino - Temperature interieure
-Text Label 7800 2100 0    60   ~ 0
+Text Label 9650 6400 0    60   ~ 0
 Arduino - Temperature exterieure
-Text Label 7800 2150 0    60   ~ 0
+Text Label 9650 6450 0    60   ~ 0
 Arduino - Pression interieure
-Text Label 7800 2200 0    60   ~ 0
+Text Label 9650 6500 0    60   ~ 0
 Arduino - Pression exterieure
 $Comp
 L ARDUINO_MINI U?
 U 1 1 4EE489A2
-P 6800 2000
-F 0 "U?" H 6800 2000 60  0000 C CNN
-F 1 "ARDUINO_MINI" H 6800 2000 60  0000 C CNN
-	1    6800 2000
+P 8650 6300
+F 0 "U?" H 8650 6300 60  0000 C CNN
+F 1 "ARDUINO_MINI" H 8650 6300 60  0000 C CNN
+	1    8650 6300
 	1    0    0    -1  
 $EndComp
 Text Notes 1850 4200 1    60   ~ 0
