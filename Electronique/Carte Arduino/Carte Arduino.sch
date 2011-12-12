@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 12/12/2011 20:48:11
+EESchema Schematic File Version 2  date 12/12/2011 22:18:57
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -45,34 +45,18 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-NoConn ~ 5950 6500
-NoConn ~ 5850 6500
-NoConn ~ 5750 6500
-NoConn ~ 5650 6500
-Text Label 6150 6500 3    60   ~ 0
-Arduino - SCL
-Text Label 6050 6500 3    60   ~ 0
-Arduino - SDA
-$Comp
-L +5V #PWR?
-U 1 1 4EE6592F
-P 5550 6500
-F 0 "#PWR?" H 5550 6590 20  0001 C CNN
-F 1 "+5V" H 5550 6590 30  0000 C CNN
-	1    5550 6500
-	-1   0    0    1   
-$EndComp
-$Comp
-L GND #PWR?
-U 1 1 4EE65926
-P 5450 6500
-F 0 "#PWR?" H 5450 6500 30  0001 C CNN
-F 1 "GND" H 5450 6430 30  0001 C CNN
-	1    5450 6500
-	1    0    0    -1  
-$EndComp
-Text Notes 8550 5750 0    60   ~ 0
-Arduino
+Wire Wire Line
+	5400 3950 5400 4050
+Wire Wire Line
+	5200 3950 5200 4050
+Wire Wire Line
+	5000 3950 5000 4050
+Wire Wire Line
+	4350 3950 4350 4050
+Wire Wire Line
+	4150 3950 4150 4050
+Wire Wire Line
+	3950 3950 3950 4050
 Wire Wire Line
 	7750 6550 7850 6550
 Wire Wire Line
@@ -151,6 +135,68 @@ Wire Wire Line
 	9550 6400 9650 6400
 Wire Wire Line
 	7850 6500 7750 6500
+Wire Wire Line
+	3850 3950 3850 4050
+Wire Wire Line
+	4050 3950 4050 4050
+Wire Wire Line
+	4250 3950 4250 4050
+Wire Wire Line
+	4900 3950 4900 4050
+Wire Wire Line
+	5100 3950 5100 4050
+Wire Wire Line
+	5300 3950 5300 4050
+Text Notes 4800 3350 0    60   ~ 0
+Capteur de CH4
+Text Notes 3750 3350 0    60   ~ 0
+Capteur de CO2
+$Comp
+L CONN_6 P?
+U 1 1 4EE66058
+P 5150 3600
+F 0 "P?" V 5100 3600 60  0000 C CNN
+F 1 "CONN_6" V 5200 3600 60  0000 C CNN
+	1    5150 3600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L CONN_6 P?
+U 1 1 4EE66049
+P 4100 3600
+F 0 "P?" V 4050 3600 60  0000 C CNN
+F 1 "CONN_6" V 4150 3600 60  0000 C CNN
+	1    4100 3600
+	0    -1   -1   0   
+$EndComp
+NoConn ~ 5950 6500
+NoConn ~ 5850 6500
+NoConn ~ 5750 6500
+NoConn ~ 5650 6500
+Text Label 6150 6500 3    60   ~ 0
+Arduino - SCL
+Text Label 6050 6500 3    60   ~ 0
+Arduino - SDA
+$Comp
+L +5V #PWR?
+U 1 1 4EE6592F
+P 5550 6500
+F 0 "#PWR?" H 5550 6590 20  0001 C CNN
+F 1 "+5V" H 5550 6590 30  0000 C CNN
+	1    5550 6500
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EE65926
+P 5450 6500
+F 0 "#PWR?" H 5450 6500 30  0001 C CNN
+F 1 "GND" H 5450 6430 30  0001 C CNN
+	1    5450 6500
+	1    0    0    -1  
+$EndComp
+Text Notes 8550 5750 0    60   ~ 0
+Arduino
 Text Label 7750 6550 2    60   ~ 0
 Arduino - SCL
 Text Label 7750 6500 2    60   ~ 0
