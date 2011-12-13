@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 12/12/2011 22:18:57
+EESchema Schematic File Version 2  date 13/12/2011 07:36:52
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -37,7 +37,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "12 dec 2011"
+Date "13 dec 2011"
 Rev ""
 Comp ""
 Comment1 ""
@@ -45,6 +45,16 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+NoConn ~ 5400 4050
+NoConn ~ 5300 4050
+NoConn ~ 4350 4050
+NoConn ~ 4250 4050
+Wire Wire Line
+	7850 6650 7750 6650
+Wire Wire Line
+	5200 4550 5200 4700
+Wire Wire Line
+	4150 4550 4150 4700
 Wire Wire Line
 	5400 3950 5400 4050
 Wire Wire Line
@@ -147,6 +157,88 @@ Wire Wire Line
 	5100 3950 5100 4050
 Wire Wire Line
 	5300 3950 5300 4050
+Wire Wire Line
+	7850 6600 7750 6600
+Text Label 7750 6650 2    60   ~ 0
+Arduino - CH4
+Text Label 7750 6600 2    60   ~ 0
+Arduino - CO2
+Text Label 5200 4700 3    60   ~ 0
+Arduino - CH4
+$Comp
+L R R?
+U 1 1 4EE6F1CD
+P 5200 4300
+F 0 "R?" V 5280 4300 50  0000 C CNN
+F 1 "R" V 5200 4300 50  0000 C CNN
+	1    5200 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 4EE6F1C1
+P 4150 4300
+F 0 "R?" V 4230 4300 50  0000 C CNN
+F 1 "R" V 4150 4300 50  0000 C CNN
+	1    4150 4300
+	1    0    0    -1  
+$EndComp
+Text Label 4150 4700 3    60   ~ 0
+Arduino - CO2
+$Comp
+L +5V #PWR?
+U 1 1 4EE6F1B0
+P 5100 4050
+F 0 "#PWR?" H 5100 4140 20  0001 C CNN
+F 1 "+5V" H 5100 4140 30  0000 C CNN
+	1    5100 4050
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 4EE6F1A6
+P 4050 4050
+F 0 "#PWR?" H 4050 4140 20  0001 C CNN
+F 1 "+5V" H 4050 4140 30  0000 C CNN
+	1    4050 4050
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EE6F197
+P 5000 4050
+F 0 "#PWR?" H 5000 4050 30  0001 C CNN
+F 1 "GND" H 5000 3980 30  0001 C CNN
+	1    5000 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EE6F192
+P 3950 4050
+F 0 "#PWR?" H 3950 4050 30  0001 C CNN
+F 1 "GND" H 3950 3980 30  0001 C CNN
+	1    3950 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 4EE6F18C
+P 4900 4050
+F 0 "#PWR?" H 4900 4140 20  0001 C CNN
+F 1 "+5V" H 4900 4140 30  0000 C CNN
+	1    4900 4050
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 4EE6F184
+P 3850 4050
+F 0 "#PWR?" H 3850 4140 20  0001 C CNN
+F 1 "+5V" H 3850 4140 30  0000 C CNN
+	1    3850 4050
+	-1   0    0    1   
+$EndComp
 Text Notes 4800 3350 0    60   ~ 0
 Capteur de CH4
 Text Notes 3750 3350 0    60   ~ 0
