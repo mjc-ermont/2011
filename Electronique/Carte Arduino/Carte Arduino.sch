@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 13/12/2011 07:36:52
+EESchema Schematic File Version 2  date 13/12/2011 17:36:54
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -45,10 +45,43 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-NoConn ~ 5400 4050
-NoConn ~ 5300 4050
-NoConn ~ 4350 4050
-NoConn ~ 4250 4050
+NoConn ~ 8050 3450
+NoConn ~ 7750 3450
+NoConn ~ 8350 3450
+Text Label 8250 3450 3    60   ~ 0
+Arduino - GPS CLK
+Text Label 8150 3450 3    60   ~ 0
+Arduino - GPS RX
+Text Label 7950 3450 3    60   ~ 0
+Arduino - GPS TX
+Text Notes 8050 3500 3    60   ~ 0
+Backup Power (A mettre ???)
+$Comp
+L GND #PWR?
+U 1 1 4EE77BD6
+P 8450 3450
+F 0 "#PWR?" H 8450 3450 30  0001 C CNN
+F 1 "GND" H 8450 3380 30  0001 C CNN
+	1    8450 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 4EE77BC5
+P 7850 3450
+F 0 "#PWR?" H 7850 3540 20  0001 C CNN
+F 1 "+5V" H 7850 3540 30  0000 C CNN
+	1    7850 3450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8450 3350 8450 3450
+Wire Wire Line
+	8250 3350 8250 3450
+Wire Wire Line
+	8050 3350 8050 3450
+Wire Wire Line
+	7850 3350 7850 3450
 Wire Wire Line
 	7850 6650 7750 6650
 Wire Wire Line
@@ -73,8 +106,6 @@ Wire Wire Line
 	9550 6350 9650 6350
 Wire Wire Line
 	9550 6450 9650 6450
-Wire Wire Line
-	7850 5900 7750 5900
 Wire Wire Line
 	5950 6400 5950 6500
 Wire Wire Line
@@ -159,6 +190,29 @@ Wire Wire Line
 	5300 3950 5300 4050
 Wire Wire Line
 	7850 6600 7750 6600
+Wire Wire Line
+	7750 3350 7750 3450
+Wire Wire Line
+	7950 3350 7950 3450
+Wire Wire Line
+	8150 3350 8150 3450
+Wire Wire Line
+	8350 3350 8350 3450
+Text Notes 8000 2800 0    60   ~ 0
+GPS
+$Comp
+L CONN_8 P?
+U 1 1 4EE77691
+P 8100 3000
+F 0 "P?" V 8050 3000 60  0000 C CNN
+F 1 "CONN_8" V 8150 3000 60  0000 C CNN
+	1    8100 3000
+	0    -1   -1   0   
+$EndComp
+NoConn ~ 5400 4050
+NoConn ~ 5300 4050
+NoConn ~ 4350 4050
+NoConn ~ 4250 4050
 Text Label 7750 6650 2    60   ~ 0
 Arduino - CH4
 Text Label 7750 6600 2    60   ~ 0
@@ -293,8 +347,6 @@ Text Label 7750 6550 2    60   ~ 0
 Arduino - SCL
 Text Label 7750 6500 2    60   ~ 0
 Arduino - SDA
-Text Label 7750 5900 2    60   ~ 0
-Modulateur
 Text Label 9650 6350 0    60   ~ 0
 Arduino - Temperature interieure
 Text Label 9650 6400 0    60   ~ 0
