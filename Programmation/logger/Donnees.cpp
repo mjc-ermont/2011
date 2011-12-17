@@ -39,6 +39,8 @@ void Donnees::append(double altitude, double tempout, double tempin, double temp
 
    insertRow(rowCount(), prep);
 
+   emit msg("Dernière modification effectué le " + QDateTime::currentDateTime().toString("dd/MM/yyyy-hh:mm:ss"));
+
    saveAppend();
 }
 
@@ -96,6 +98,8 @@ void Donnees::open(){
             insertRow(rowCount(), prep);
             prep.clear();
         }
+
+        emit msg(QString::number(rowCount()) + " lignes ont étés chargés depuis le fichier \"" + QApplication::applicationDirPath() + "/save.log\".");
 
         fichier.close();
     }

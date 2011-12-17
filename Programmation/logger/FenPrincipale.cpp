@@ -5,7 +5,12 @@ FenPrincipale::FenPrincipale(QWidget *parent) : QMainWindow(parent), ui(new Ui::
     ui->setupUi(this);
 
     ui->tableWindow->setWindowTitle("Historique");
+    ui->infosWindow->setWindowTitle("Tableau de bord");
+
     ui->table->setModel(historique);
+
+    connect(historique, SIGNAL(msg(QString)), ui->statusBar, SLOT(showMessage(QString)));
+
     if(QFile::exists(QApplication::applicationDirPath() + "/save.log")){
         historique->open();
     }
