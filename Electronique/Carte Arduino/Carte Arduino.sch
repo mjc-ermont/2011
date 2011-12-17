@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 13/12/2011 17:36:54
+EESchema Schematic File Version 2  date 17/12/2011 14:48:52
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -37,7 +37,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "13 dec 2011"
+Date "17 dec 2011"
 Rev ""
 Comp ""
 Comment1 ""
@@ -45,7 +45,15 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-NoConn ~ 8050 3450
+$Comp
+L +5V #PWR?
+U 1 1 4EEC9DB1
+P 8050 3450
+F 0 "#PWR?" H 8050 3540 20  0001 C CNN
+F 1 "+5V" H 8050 3540 30  0000 C CNN
+	1    8050 3450
+	-1   0    0    1   
+$EndComp
 NoConn ~ 7750 3450
 NoConn ~ 8350 3450
 Text Label 8250 3450 3    60   ~ 0
@@ -54,8 +62,6 @@ Text Label 8150 3450 3    60   ~ 0
 Arduino - GPS RX
 Text Label 7950 3450 3    60   ~ 0
 Arduino - GPS TX
-Text Notes 8050 3500 3    60   ~ 0
-Backup Power (A mettre ???)
 $Comp
 L GND #PWR?
 U 1 1 4EE77BD6
