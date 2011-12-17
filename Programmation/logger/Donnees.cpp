@@ -22,7 +22,7 @@ Donnees::Donnees(QObject *parent) : QStandardItemModel(parent){
 void Donnees::append(double altitude, double tempout, double tempin, double temphyg, double pressout, double pressin, int gpsx, int gpsy, double CO2, double CH4, double gyrx, double gyry, double gyrz){
    QList<QStandardItem *> prep;
 
-   prep << new QStandardItem(QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss"));
+   prep << new QStandardItem(QDateTime::currentDateTime().toString("dd/MM/yyyy-hh:mm:ss"));
    prep << new QStandardItem(QString::number(altitude));
    prep << new QStandardItem(QString::number(tempout));
    prep << new QStandardItem(QString::number(tempin));
@@ -42,11 +42,10 @@ void Donnees::append(double altitude, double tempout, double tempin, double temp
    saveAppend();
 }
 
-
 void Donnees::saveAppend(){
     QFile fichier(QApplication::applicationDirPath() + "/save.log");
 
-    if(!fichier.open(QIODevice::WriteOnly|QIODevice::Append)){
+    if(!fichier.open(QIODevice::WriteOnly | QIODevice::Append)){
         // N'a pas reussis a ouvrir
         emit msg("Erreur : n'as pas reussis a ouvrir le fichier de sauvegarde !");
     }
@@ -59,6 +58,44 @@ void Donnees::saveAppend(){
         }
 
         flux << endl;
+
+        fichier.close();
+    }
+}
+
+void Donnees::open(){
+    QString texte("");
+    QString done("");
+    QList<QStandardItem *> prep;
+
+    QFile fichier(QApplication::applicationDirPath() + "/save.log");
+
+    if(!fichier.open(QIODevice::ReadOnly | QIODevice::Text)){
+        // N'a pas reussis a ouvrir
+        emit msg("Erreur : n'as pas reussis a ouvrir le fichier de sauvegarde !");
+    }
+
+    else{
+        QTextStream flux(&fichier);
+
+        while(!flux.atEnd()){
+            texte = flux.readLine() + '\n';
+            texte.resize(texte.size()-1);
+
+            for(int i = 0 ; i < texte.size() ; i++){
+                if(texte[i] == ' '){
+                    prep << new QStandardItem(done);
+
+                    done = "";
+                }
+                else{
+                    done += texte[i];
+                }
+            }
+
+            insertRow(rowCount(), prep);
+            prep.clear();
+        }
 
         fichier.close();
     }

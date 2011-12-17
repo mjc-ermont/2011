@@ -11,6 +11,8 @@ class Donnees : public QStandardItemModel
         explicit Donnees(QObject *parent = 0);
         void append(double altitude, double tempout, double tempin, double temphyg, double pressout, double pressin, int gpsx, int gpsy, double CO2, double CH4, double gyrx, double gyry, double gyrz);
 
+        void open();
+
     signals:
         void msg(QString msg);
 
