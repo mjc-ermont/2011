@@ -4,26 +4,30 @@ Donnees::Donnees(QObject *parent) : QStandardItemModel(parent){
     setColumnCount(4);
     setHorizontalHeaderItem(0, new QStandardItem("Date / heure"));
     setHorizontalHeaderItem(1, new QStandardItem("Altitude (GPS)"));
-    setHorizontalHeaderItem(2, new QStandardItem("Temperature exterieure"));
-    setHorizontalHeaderItem(3, new QStandardItem("Temperature interieure"));
-    setHorizontalHeaderItem(4, new QStandardItem("Temperature (hygromètre)"));
-    setHorizontalHeaderItem(5, new QStandardItem("Pression interieure"));
-    setHorizontalHeaderItem(6, new QStandardItem("Exterieur interieure"));
-    setHorizontalHeaderItem(7, new QStandardItem("GPS - X"));
-    setHorizontalHeaderItem(8, new QStandardItem("GPS - Y"));
-    setHorizontalHeaderItem(9, new QStandardItem("CH4"));
-    setHorizontalHeaderItem(10, new QStandardItem("CO2"));
-    setHorizontalHeaderItem(11, new QStandardItem("Gyroscope - X"));
-    setHorizontalHeaderItem(12, new QStandardItem("Gyroscope - Y"));
-    setHorizontalHeaderItem(13, new QStandardItem("Gyroscope - Z"));
+    setHorizontalHeaderItem(2, new QStandardItem("Vitesse Horizontale"));
+    setHorizontalHeaderItem(3, new QStandardItem("Vitesse Verticale"));
+    setHorizontalHeaderItem(4, new QStandardItem("Temperature exterieure"));
+    setHorizontalHeaderItem(5, new QStandardItem("Temperature interieure"));
+    setHorizontalHeaderItem(6, new QStandardItem("Temperature (hygromètre)"));
+    setHorizontalHeaderItem(7, new QStandardItem("Pression interieure"));
+    setHorizontalHeaderItem(8, new QStandardItem("Exterieur interieure"));
+    setHorizontalHeaderItem(9, new QStandardItem("GPS - X"));
+    setHorizontalHeaderItem(10, new QStandardItem("GPS - Y"));
+    setHorizontalHeaderItem(11, new QStandardItem("CH4"));
+    setHorizontalHeaderItem(12, new QStandardItem("CO2"));
+    setHorizontalHeaderItem(13, new QStandardItem("Gyroscope - X"));
+    setHorizontalHeaderItem(14, new QStandardItem("Gyroscope - Y"));
+    setHorizontalHeaderItem(15, new QStandardItem("Gyroscope - Z"));
 
 }
 
-void Donnees::append(double altitude, double tempout, double tempin, double temphyg, double pressout, double pressin, int gpsx, int gpsy, double CO2, double CH4, double gyrx, double gyry, double gyrz){
+void Donnees::append(double altitude, double vith, double vitv, double tempout, double tempin, double temphyg, double pressout, double pressin, int gpsx, int gpsy, double CO2, double CH4, double gyrx, double gyry, double gyrz){
    QList<QStandardItem *> prep;
 
    prep << new QStandardItem(QDateTime::currentDateTime().toString("dd/MM/yyyy-hh:mm:ss"));
    prep << new QStandardItem(QString::number(altitude));
+   prep << new QStandardItem(QString::number(vith));
+   prep << new QStandardItem(QString::number(vitv));
    prep << new QStandardItem(QString::number(tempout));
    prep << new QStandardItem(QString::number(tempin));
    prep << new QStandardItem(QString::number(temphyg));
