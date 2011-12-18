@@ -1,7 +1,10 @@
 #include "Donnees.h"
 
 Donnees::Donnees(QObject *parent) : QStandardItemModel(parent){
-    setColumnCount(4);
+
+/*Création des colones : éviter de modifier : risque d'incoérence du programme
+**En cas de modifications, ne pas oublier de remplacer le numéro de colone*/
+
     setHorizontalHeaderItem(0, new QStandardItem("Date / heure"));
     setHorizontalHeaderItem(1, new QStandardItem("Altitude (GPS)"));
     setHorizontalHeaderItem(2, new QStandardItem("Vitesse Horizontale"));
@@ -9,15 +12,17 @@ Donnees::Donnees(QObject *parent) : QStandardItemModel(parent){
     setHorizontalHeaderItem(4, new QStandardItem("Temperature exterieure"));
     setHorizontalHeaderItem(5, new QStandardItem("Temperature interieure"));
     setHorizontalHeaderItem(6, new QStandardItem("Temperature (hygromètre)"));
-    setHorizontalHeaderItem(7, new QStandardItem("Pression interieure"));
-    setHorizontalHeaderItem(8, new QStandardItem("Exterieur interieure"));
-    setHorizontalHeaderItem(9, new QStandardItem("GPS - X"));
-    setHorizontalHeaderItem(10, new QStandardItem("GPS - Y"));
-    setHorizontalHeaderItem(11, new QStandardItem("CH4"));
-    setHorizontalHeaderItem(12, new QStandardItem("CO2"));
-    setHorizontalHeaderItem(13, new QStandardItem("Gyroscope - X"));
-    setHorizontalHeaderItem(14, new QStandardItem("Gyroscope - Y"));
-    setHorizontalHeaderItem(15, new QStandardItem("Gyroscope - Z"));
+    setHorizontalHeaderItem(7, new QStandardItem("Hygromètrie interieure"));
+    setHorizontalHeaderItem(8, new QStandardItem("Hygromètrie exterieure"));
+    setHorizontalHeaderItem(9, new QStandardItem("Pression interieure"));
+    setHorizontalHeaderItem(10, new QStandardItem("Exterieur interieure"));
+    setHorizontalHeaderItem(11, new QStandardItem("GPS - X"));
+    setHorizontalHeaderItem(12, new QStandardItem("GPS - Y"));
+    setHorizontalHeaderItem(13, new QStandardItem("CH4"));
+    setHorizontalHeaderItem(14, new QStandardItem("CO2"));
+    setHorizontalHeaderItem(15, new QStandardItem("Gyroscope - X"));
+    setHorizontalHeaderItem(16, new QStandardItem("Gyroscope - Y"));
+    setHorizontalHeaderItem(17, new QStandardItem("Gyroscope - Z"));
 
 }
 
