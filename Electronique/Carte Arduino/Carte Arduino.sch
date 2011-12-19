@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 17/12/2011 22:59:16
+EESchema Schematic File Version 2  date 19/12/2011 13:42:36
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -37,7 +37,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "17 dec 2011"
+Date "19 dec 2011"
 Rev ""
 Comp ""
 Comment1 ""
@@ -47,22 +47,44 @@ Comment4 ""
 $EndDescr
 $Comp
 L GND #PWR?
-U 1 1 4EED108C
-P 1750 6000
-F 0 "#PWR?" H 1750 6000 30  0001 C CNN
-F 1 "GND" H 1750 5930 30  0001 C CNN
-	1    1750 6000
+U 1 1 4EEF312B
+P 10000 2750
+F 0 "#PWR?" H 10000 2750 30  0001 C CNN
+F 1 "GND" H 10000 2680 30  0001 C CNN
+	1    10000 2750
 	1    0    0    -1  
 $EndComp
 $Comp
 L GND #PWR?
-U 1 1 4EED1087
-P 950 6000
-F 0 "#PWR?" H 950 6000 30  0001 C CNN
-F 1 "GND" H 950 5930 30  0001 C CNN
-	1    950  6000
+U 1 1 4EEF3129
+P 10300 2750
+F 0 "#PWR?" H 10300 2750 30  0001 C CNN
+F 1 "GND" H 10300 2680 30  0001 C CNN
+	1    10300 2750
 	1    0    0    -1  
 $EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EEF3125
+P 10650 2750
+F 0 "#PWR?" H 10650 2750 30  0001 C CNN
+F 1 "GND" H 10650 2680 30  0001 C CNN
+	1    10650 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EEF3122
+P 10950 2750
+F 0 "#PWR?" H 10950 2750 30  0001 C CNN
+F 1 "GND" H 10950 2680 30  0001 C CNN
+	1    10950 2750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10300 2650 10300 2750
+Wire Wire Line
+	10650 2650 10650 2750
 Connection ~ 1750 5300
 Wire Wire Line
 	1750 5300 1850 5300
@@ -126,17 +148,17 @@ Wire Wire Line
 Wire Wire Line
 	3950 6400 3950 6500
 Wire Wire Line
-	10450 3250 10450 3400
+	10750 3250 10750 3400
 Wire Wire Line
-	10450 2650 10450 2750
+	10750 2650 10750 2750
 Wire Wire Line
-	10650 2750 10650 2650
+	10850 2750 10850 2650
 Wire Wire Line
-	10250 2750 10250 2650
+	10200 2750 10200 2650
 Wire Wire Line
-	10050 2650 10050 2750
+	10100 2650 10100 2750
 Wire Wire Line
-	10050 3250 10050 3400
+	10100 3250 10100 3400
 Wire Wire Line
 	1750 5850 1750 6000
 Wire Wire Line
@@ -207,6 +229,46 @@ Wire Wire Line
 Wire Wire Line
 	950  5300 850  5300
 Connection ~ 950  5300
+Wire Wire Line
+	10950 2650 10950 2750
+Wire Wire Line
+	10000 2650 10000 2750
+$Comp
+L CONN_4 P?
+U 1 1 4EEF306B
+P 10800 2300
+F 0 "P?" V 10750 2300 50  0000 C CNN
+F 1 "CONN_4" V 10850 2300 50  0000 C CNN
+	1    10800 2300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L CONN_4 P?
+U 1 1 4EEF305D
+P 10150 2300
+F 0 "P?" V 10100 2300 50  0000 C CNN
+F 1 "CONN_4" V 10200 2300 50  0000 C CNN
+	1    10150 2300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EED108C
+P 1750 6000
+F 0 "#PWR?" H 1750 6000 30  0001 C CNN
+F 1 "GND" H 1750 5930 30  0001 C CNN
+	1    1750 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 4EED1087
+P 950 6000
+F 0 "#PWR?" H 950 6000 30  0001 C CNN
+F 1 "GND" H 950 5930 30  0001 C CNN
+	1    950  6000
+	1    0    0    -1  
+$EndComp
 $Comp
 L R R?
 U 1 1 4EED0E67
@@ -431,7 +493,7 @@ F 1 "ARDUINO_MINI" H 8650 6300 60  0000 C CNN
 $EndComp
 Text Notes 10200 2100 1    60   ~ 0
 Capteur temperature exterieure
-Text Notes 10600 2100 1    60   ~ 0
+Text Notes 10850 2100 1    60   ~ 0
 Capteur pression exterieure
 Text Notes 1900 4200 1    60   ~ 0
 Capteur pression interieure
@@ -521,59 +583,41 @@ $EndComp
 $Comp
 L +5V #PWR05
 U 1 1 4EE364FB
-P 10650 2750
-F 0 "#PWR05" H 10650 2840 20  0001 C CNN
-F 1 "+5V" H 10650 2840 30  0000 C CNN
-	1    10650 2750
+P 10850 2750
+F 0 "#PWR05" H 10850 2840 20  0001 C CNN
+F 1 "+5V" H 10850 2840 30  0000 C CNN
+	1    10850 2750
 	-1   0    0    1   
 $EndComp
-$Comp
-L CONN_2 P?
-U 1 1 4EE364FA
-P 10550 2300
-F 0 "P?" V 10500 2300 40  0000 C CNN
-F 1 "CONN_2" V 10600 2300 40  0000 C CNN
-	1    10550 2300
-	0    -1   -1   0   
-$EndComp
-Text Label 10450 3400 3    60   ~ 0
+Text Label 10750 3400 3    60   ~ 0
 Arduino - Pression exterieure
 $Comp
 L R R?
 U 1 1 4EE364F9
-P 10450 3000
-F 0 "R?" V 10530 3000 50  0000 C CNN
-F 1 "R" V 10450 3000 50  0000 C CNN
-	1    10450 3000
+P 10750 3000
+F 0 "R?" V 10830 3000 50  0000 C CNN
+F 1 "R" V 10750 3000 50  0000 C CNN
+	1    10750 3000
 	1    0    0    -1  
 $EndComp
 $Comp
 L R R?
 U 1 1 4EE364F8
-P 10050 3000
-F 0 "R?" V 10130 3000 50  0000 C CNN
-F 1 "R" V 10050 3000 50  0000 C CNN
-	1    10050 3000
+P 10100 3000
+F 0 "R?" V 10180 3000 50  0000 C CNN
+F 1 "R" V 10100 3000 50  0000 C CNN
+	1    10100 3000
 	1    0    0    -1  
 $EndComp
-Text Label 10050 3400 3    60   ~ 0
+Text Label 10100 3400 3    60   ~ 0
 Arduino - Pression interieure
-$Comp
-L CONN_2 P?
-U 1 1 4EE364F7
-P 10150 2300
-F 0 "P?" V 10100 2300 40  0000 C CNN
-F 1 "CONN_2" V 10200 2300 40  0000 C CNN
-	1    10150 2300
-	0    -1   -1   0   
-$EndComp
 $Comp
 L +5V #PWR06
 U 1 1 4EE364F6
-P 10250 2750
-F 0 "#PWR06" H 10250 2840 20  0001 C CNN
-F 1 "+5V" H 10250 2840 30  0000 C CNN
-	1    10250 2750
+P 10200 2750
+F 0 "#PWR06" H 10200 2840 20  0001 C CNN
+F 1 "+5V" H 10200 2840 30  0000 C CNN
+	1    10200 2750
 	-1   0    0    1   
 $EndComp
 $Comp
