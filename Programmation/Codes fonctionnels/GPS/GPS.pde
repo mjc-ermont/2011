@@ -60,9 +60,11 @@ void loop (){
   
   char rxbyte = 0;
   
-  Serial.println("Requete TAIP");
+  Serial.println("Requete TAIP PV");
   
   Serial1.print(">QPV<");
+  
+  Serial.print("Reponse : ");
   
   while (rxbyte = Serial1.read() /*!= -1*/){
     
@@ -83,5 +85,7 @@ void loop (){
     Serial.print(rxbyte);
     
   }
+  
+  Serial.println("");
   
 }
