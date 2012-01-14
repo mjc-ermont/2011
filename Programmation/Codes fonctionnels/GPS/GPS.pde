@@ -51,7 +51,7 @@ void setup (){
   Serial1.print(0x03);
   Serial.println("Byte ETX envoyé");
   
-  while (rxbyte = Serial1.read() != -1){
+  while ((rxbyte = Serial1.read()) != -1){
     Serial.print(rxbyte);
   }
 }  
@@ -66,24 +66,8 @@ void loop (){
   
   Serial.print("Reponse : ");
   
-  while (rxbyte = Serial1.read() /*!= -1*/){
-    
-    /*if (rxbyte == 'R'){
-      Serial.println("OK 1");
-    }
-    if (rxbyte == 'P'){
-      Serial.println("OK 2");
-    }
-    if (rxbyte == 'V'){
-      Serial.println("OK 3");
-    }*/
-    
-    if (rxbyte == -1){
-      break;
-    } 
-    
-    Serial.print(rxbyte);
-    
+  while ((rxbyte = Serial1.read()) != -1){    
+    Serial.print(rxbyte);    
   }
   
   Serial.println("");
