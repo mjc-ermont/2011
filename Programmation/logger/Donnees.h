@@ -17,9 +17,9 @@ class Donnees : public QStandardItemModel
         void msg(QString msg);
 
     public slots:
+        void saveAppend();
 
     private:
-        void saveAppend();
 
 };
 
