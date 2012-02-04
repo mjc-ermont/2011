@@ -76,15 +76,24 @@
            for (int j=indices[i];j<(indices[i+1]-1);j++){
              Serial.print(linea[j+1]);
            }
+           Serial.println("");
            trame.toCharArray(ttrame, 50);
            if(i == 2){
-             angle = atoi(ttrame)/10;
+             angle = atoi(ttrame, 2);
              Serial.print(angle);
+             Serial.print("°");
+             minute = atoi(ttrame[2]);
+             Serial.print(minute);
+             Serial.println("'");
            } else if (i==4) {
-             
+             angle = atoi(ttrame, 3);
+             Serial.print(angle);
+             Serial.print("'");
+             minute = atoi(ttrame[3]);
+             Serial.print(minute);
+             Serial.println("'");
            }
            trame="";
-           Serial.println("");
          }
          Serial.println("---------------");
        }
