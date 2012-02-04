@@ -11,8 +11,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        FenPrincipale.cpp
+    Line.cpp \
+    FenPrincipale.cpp
 
-HEADERS  += FenPrincipale.h
+HEADERS  += \
+    Line.h \
+    FenPrincipale.h
 
-FORMS    += FenPrincipale.ui
+FORMS    += \
+    FenPrincipale.ui
