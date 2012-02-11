@@ -12,7 +12,11 @@ FenPrincipale::FenPrincipale(QWidget *parent) : QMainWindow(parent), ui(new Ui::
 
     connect(historique, SIGNAL(msg(QString)), this, SLOT(message(QString)));
 
-    Line* n = new Line();
+    if(QFile::exists(QApplication::applicationDirPath() + "/save.log")){
+        historique->open();
+    }
+
+    /*Line* n = new Line();
 
         n->altitude = 2.2;
         n->CH4 = 3;
@@ -30,9 +34,11 @@ FenPrincipale::FenPrincipale(QWidget *parent) : QMainWindow(parent), ui(new Ui::
         n->tempin = 28;
         n->tempout = 27;
         n->vith = 100;
-        n->vitv = 101;
+        n->vitv = 101;*/
 
    historique->appendLine(n);
+
+
 }
 
 FenPrincipale::~FenPrincipale(){

@@ -13,6 +13,7 @@ class Donnees : public QStandardItemModel
         void appendLine(Line* a);
 
         bool appendInFile(Line* a);
+        void open();
 
     signals:
         void msg(QString message);

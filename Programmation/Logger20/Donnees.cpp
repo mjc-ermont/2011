@@ -47,7 +47,47 @@ bool Donnees::appendInFile(Line *a){
 
         fichier.close();
 
-        emit msg("Dernier enregistrement Ã  " + QDateTime::currentDateTime().toString("hh:mm:ss"));
+        emit msg("Dernier enregistrement à " + QDateTime::currentDateTime().toString("hh:mm:ss"));
     }
     return true;
+}
+
+void Donnees::open(){
+    QString texte("");
+    QString done("");
+    QList<QStandardItem *> prep;
+
+    QFile fichier(QApplication::applicationDirPath() + "/save.log");
+
+    if(!fichier.open(QIODevice::ReadOnly | QIODevice::Text)){
+        // N'a pas reussis a ouvrir
+        emit msg("Erreur : n'as pas reussis a ouvrir le fichier de sauvegarde !");
+    }
+
+    else{
+        QTextStream flux(&fichier);
+
+        while(!flux.atEnd()){
+            texte = flux.readLine() + '\n';
+            texte.resize(texte.size()-1);
+
+            for(int i = 0 ; i < texte.size() ; i++){
+                if(texte[i] == ' '){
+                    prep << new QStandardItem(done);
+
+                    done = "";
+                }
+                else{
+                    done += texte[i];
+                }
+            }
+
+            insertRow(rowCount(), prep);
+            prep.clear();
+        }
+
+        emit msg(QString(QString::number(rowCount()) + " lignes ont étés chargés depuis le fichier \"" + QApplication::applicationDirPath() + "/save.log\"."));
+
+        fichier.close();
+    }
 }
