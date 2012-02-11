@@ -1,7 +1,8 @@
 #ifndef FENPRINCIPALE_H
 #define FENPRINCIPALE_H
 
-#include <QMainWindow>
+#include <QtGui>
+#include "Donnees.h"
 
 namespace Ui {
     class FenPrincipale;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::FenPrincipale *ui;
+    Donnees* historique;
 };
 
 #endif // FENPRINCIPALE_H

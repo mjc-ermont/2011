@@ -1,5 +1,5 @@
 #include "Line.h"
 
-Line::Line(QObject *parent) : QObject(parent){
+Line::Line(QObject *parent) : QObject(parent), time(QDateTime::currentDateTime()){
 
 }
