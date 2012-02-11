@@ -20,19 +20,23 @@ Donnees::Donnees() : db(QSqlDatabase::addDatabase("QMYSQL")){
         setHorizontalHeaderItem(16, new QStandardItem("Gyroscope - Y"));
         setHorizontalHeaderItem(17, new QStandardItem("Gyroscope - Z"));
 
-        db.setHostName("www.kegtux.org");
-        db.setUserName("remi100756");
-        db.setPassword("mjc");
+        db.setHostName("127.0.0.1");
+        db.setUserName("root");
+        db.setPassword("");
         db.setDatabaseName("logger");
+}
+
+Donnees::~Donnees(){
+    db.close();
 }
 
 void Donnees::appendLine(Line* a){
     appendRow(a->toList());
 
-    appendInFile(a);
+    appendInFile();
 }
 
-bool Donnees::appendInFile(Line *a){
+bool Donnees::appendInFile(){
     QFile fichier(QApplication::applicationDirPath() + "/save.log");
 
     if(!fichier.open(QIODevice::WriteOnly | QIODevice::Append)){
@@ -52,7 +56,7 @@ bool Donnees::appendInFile(Line *a){
 
         fichier.close();
 
-        emit msg("Dernier enregistrement à " + QDateTime::currentDateTime().toString("hh:mm:ss"));
+        emit msg("[Sauvegarde] Dernier enregistrement à " + QDateTime::currentDateTime().toString("hh:mm:ss"));
     }
     return true;
 }
@@ -66,7 +70,7 @@ void Donnees::open(){
 
     if(!fichier.open(QIODevice::ReadOnly | QIODevice::Text)){
         // N'a pas reussis a ouvrir
-        emit msg("Erreur : n'as pas reussis a ouvrir le fichier de sauvegarde !");
+        emit msg("[Erreur] Erreur : n'as pas reussis a ouvrir le fichier de sauvegarde !");
     }
 
     else{
@@ -91,8 +95,22 @@ void Donnees::open(){
             prep.clear();
         }
 
-        emit msg(QString(QString::number(rowCount()) + " lignes ont étés chargés depuis le fichier \"" + QApplication::applicationDirPath() + "/save.log\"."));
+        emit msg(QString("[Sauvegarde] " + QString::number(rowCount()) + " lignes ont étés chargés depuis le fichier \"" + QApplication::applicationDirPath() + "/save.log\"."));
 
         fichier.close();
+    }
+}
+
+void Donnees::connect(){
+    db.close();
+
+    if(db.open())
+    {
+        emit msg("[MySQL] Vous êtes maintenant connecté à " + db.hostName());
+        db.close();
+    }
+    else
+    {
+        emit msg("[MySQL] La connexion à la base de données à échouée, désolé : " + db.lastError().text());
     }
 }
