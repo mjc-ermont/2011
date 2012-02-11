@@ -12,9 +12,9 @@
  int conta=0;
  int indices[13];
  String trame;
- char ttrame[50];
+ char atrame[50], mtrame[50];
  int angle;
- float minutes;
+ double minute;
  
  void setup() {
    pinMode(ledPin, OUTPUT);       // Initialize LED pin
@@ -74,22 +74,27 @@
              case 12 :Serial.print("Checksum: ");break;
            }
            for (int j=indices[i];j<(indices[i+1]-1);j++){
-             Serial.print(linea[j+1]);
+             trame += linea[j+1];
            }
            Serial.println("");
-           trame.toCharArray(ttrame, 50);
+           trame.toCharArray(mtrame, 50);
+           for (int i = 0 ; i<50 ; i++){
+             atrame[i] = 0;
+           }
            if(i == 2){
-             angle = atoi(ttrame, 2);
+             trame.toCharArray(atrame, 3);
+             angle = atoi(atrame);
              Serial.print(angle);
-             Serial.print("°");
-             minute = atoi(ttrame[2]);
+             Serial.print("");
+             minute = atof(&mtrame[2]);
              Serial.print(minute);
              Serial.println("'");
            } else if (i==4) {
-             angle = atoi(ttrame, 3);
+             trame.toCharArray(atrame, 4);
+             angle = atoi(atrame);
              Serial.print(angle);
-             Serial.print("'");
-             minute = atoi(ttrame[3]);
+             Serial.print("deg");
+             minute = atof(&mtrame[3]);
              Serial.print(minute);
              Serial.println("'");
            }
