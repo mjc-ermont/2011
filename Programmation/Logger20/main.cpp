@@ -1,4 +1,4 @@
-#include <QtGui/QApplication>
+#include <QtGui>
 #include "FenPrincipale.h"
 
 int main(int argc, char *argv[])

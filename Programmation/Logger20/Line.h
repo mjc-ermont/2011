@@ -9,14 +9,16 @@ class Line : public QObject
 
     public:
         explicit Line(QObject *parent = 0);
+        QList<QStandardItem *> toList() const;
 
     signals:
 
     public slots:
 
-    public:
+    private:
         QDateTime time;
 
+    public:
         double altitude;
 
         double vith;
