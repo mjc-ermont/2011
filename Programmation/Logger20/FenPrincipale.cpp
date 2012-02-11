@@ -34,9 +34,9 @@ FenPrincipale::FenPrincipale(QWidget *parent) : QMainWindow(parent), ui(new Ui::
         n->tempin = 28;
         n->tempout = 27;
         n->vith = 100;
-        n->vitv = 101;*/
+        n->vitv = 101;
 
-   historique->appendLine(n);
+   historique->appendLine(n);*/
 
 
 }

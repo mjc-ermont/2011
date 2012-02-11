@@ -1,6 +1,6 @@
 #include "Donnees.h"
 
-Donnees::Donnees(){
+Donnees::Donnees() : db(QSqlDatabase::addDatabase("QMYSQL")){
         setHorizontalHeaderItem(0, new QStandardItem("Date / heure"));
         setHorizontalHeaderItem(1, new QStandardItem("Altitude"));
         setHorizontalHeaderItem(2, new QStandardItem("Vitesse Horizontale"));
@@ -19,6 +19,11 @@ Donnees::Donnees(){
         setHorizontalHeaderItem(15, new QStandardItem("Gyroscope - X"));
         setHorizontalHeaderItem(16, new QStandardItem("Gyroscope - Y"));
         setHorizontalHeaderItem(17, new QStandardItem("Gyroscope - Z"));
+
+        db.setHostName("www.kegtux.org");
+        db.setUserName("remi100756");
+        db.setPassword("mjc");
+        db.setDatabaseName("logger");
 }
 
 void Donnees::appendLine(Line* a){
