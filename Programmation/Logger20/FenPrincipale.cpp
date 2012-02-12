@@ -1,16 +1,20 @@
 #include "FenPrincipale.h"
 #include "ui_FenPrincipale.h"
 
-FenPrincipale::FenPrincipale(QWidget *parent) : QMainWindow(parent), ui(new Ui::FenPrincipale){
-    ui->setupUi(this);
-
-    ui->tableWindow->setWindowTitle("Historique");
-    ui->infosWindow->setWindowTitle("Tableau de bord");
-
-    historique = new Donnees();
-    ui->table->setModel(historique);
+FenPrincipale::FenPrincipale(QWidget *parent) : QMainWindow(parent), ui(new Ui::FenPrincipale), historique(new Donnees()){
 
     connect(historique, SIGNAL(msg(QString)), this, SLOT(message(QString)));
+
+    //------------------------------------------------------------------------------------------------------
+
+    ui->setupUi(this);
+    ui->tableWindow->setWindowTitle("Historique");
+    ui->infosWindow->setWindowTitle("Tableau de bord");
+    ui->consoleWindow->setWindowTitle("Console");
+
+    ui->table->setModel(historique);
+
+    historique->connect();
 
     if(QFile::exists(QApplication::applicationDirPath() + "/save.log")){
         historique->open();
@@ -34,9 +38,9 @@ FenPrincipale::FenPrincipale(QWidget *parent) : QMainWindow(parent), ui(new Ui::
         n->tempin = 28;
         n->tempout = 27;
         n->vith = 100;
-        n->vitv = 101;*/
+        n->vitv = 101;
 
-   historique->appendLine(n);
+   historique->appendLine(n);*/
 
 
 }
@@ -47,4 +51,5 @@ FenPrincipale::~FenPrincipale(){
 
 void FenPrincipale::message(QString message){
     ui->statusBar->showMessage(message);
+    ui->console->appendPlainText(message);
 }
