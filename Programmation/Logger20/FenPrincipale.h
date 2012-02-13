@@ -17,6 +17,8 @@ class FenPrincipale : public QMainWindow
         explicit FenPrincipale(QWidget *parent = 0);
         ~FenPrincipale();
 
+        void append(Line *a);
+
     private:
         Ui::FenPrincipale *ui;
         Donnees* historique;

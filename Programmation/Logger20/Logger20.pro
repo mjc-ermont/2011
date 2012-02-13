@@ -23,3 +23,6 @@ HEADERS  += \
 
 FORMS    += \
     FenPrincipale.ui
+
+OTHER_FILES += \
+    DefautBDD.sql.zip

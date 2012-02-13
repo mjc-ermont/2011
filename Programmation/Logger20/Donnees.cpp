@@ -34,6 +34,7 @@ void Donnees::appendLine(Line* a){
     appendRow(a->toList());
 
     appendInFile();
+    appendInDB(a);
 }
 
 bool Donnees::appendInFile(){
@@ -113,4 +114,43 @@ void Donnees::connect(){
     {
         emit msg("[MySQL] La connexion à la base de données à échouée, désolé : " + db.lastError().text());
     }
+}
+
+bool Donnees::appendInDB(Line* a){
+    /*QSqlQuery q;
+
+    q.prepare("INSERT INTO logger VALUES('', '', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    for(int i = 2 ; i < a->toList().size() ; i++){
+        q.addBindValue(a->toList().toVector()[i]->text().toDouble());
+    }
+
+    if (q.execBatch()){
+        emit msg("Ça marche ! :)");
+    }
+    else{
+        emit msg("Ça marche pas ! :(");
+    }*/
+    db.open();
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO logger (altitude, vith, vitv, tempout, tempin, temphyg, hyg, pressout, pressin, gpsx, gpsy, gpsaltitude, CH4, CO2, GyrX, GyrY, GyrZ) "
+                  "VALUES (:altitude, :vith, :vitv, :tempout, :tempin, :temphyg, :hyg, :pressout, :pressin, :gpsx, :gpsy, :gpsaltitude, :CH4, :CO2, :GyrX, :GyrY, :GyrZ)");
+    query.bindValue(":altitude", a->altitude);
+    query.bindValue(":vith", a->vith);
+    query.bindValue(":vitv", a->vitv);
+    query.bindValue(":tempout", a->tempout);
+    query.bindValue(":tempin", a->tempin);
+    query.bindValue(":temphyg", a->temphyg);
+    query.bindValue(":hyg", a->hyg);
+    query.bindValue(":pressout", a->pressout);
+    query.bindValue(":pressin", a->pressin);
+    query.bindValue(":gpsx", a->gpsx);
+    query.bindValue(":gpsy", a->gpsy);
+    query.bindValue(":gpsaltitude", a->gpsaltitude);
+    query.bindValue(":CH4", a->CH4);
+    query.bindValue(":CO2", a->CO2);
+    query.bindValue(":GyrX", a->GyrX);
+    query.bindValue(":GyrY", a->GyrY);
+    query.bindValue(":GyrZ", a->GyrZ);
+    query.exec();
 }

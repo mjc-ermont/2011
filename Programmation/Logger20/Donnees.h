@@ -15,6 +15,7 @@ class Donnees : public QStandardItemModel
         void appendLine(Line* a);
 
         bool appendInFile();
+        bool appendInDB(Line* a);
         void open();
 
         void connect();
