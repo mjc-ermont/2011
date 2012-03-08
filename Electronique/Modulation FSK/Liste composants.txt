@@ -1,0 +1,10 @@
+Resistances :
+	- 2 x 5.1K
+	- 1 x 200
+	- 1 x 50K
+
+Condensateurs :
+	- 1 x 10µ Polarisé
+	- 2 x 1µ
+
+- XR2206
