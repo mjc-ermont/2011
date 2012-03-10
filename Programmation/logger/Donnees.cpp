@@ -50,7 +50,26 @@ void Donnees::append(double altitude, double vith, double vitv, double tempout, 
 
    emit msg("Dernière modification effectué le " + QDateTime::currentDateTime().toString("dd/MM/yyyy-hh:mm:ss"));
 
-   saveAppend();
+   //saveAppend();
+
+   QFile fichier(QApplication::applicationDirPath() + "/save.log");
+
+   if(!fichier.open(QIODevice::WriteOnly | QIODevice::Append)){
+       // N'a pas reussis a ouvrir
+       emit msg("Erreur : n'as pas reussis a ouvrir le fichier de sauvegarde !");
+   }
+   else{
+       QTextStream flux(&fichier);
+
+       for(int i = 0 ; i < columnCount() ; i++){
+           flux << item(rowCount()-1, 1)->text();
+           flux << " ";
+       }
+
+       flux << endl;
+
+       fichier.close();
+   }
 }
 
 void Donnees::saveAppend(){

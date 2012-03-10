@@ -260,6 +260,20 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="consoleWindow">
+       <property name="windowTitle">
+        <string>Sous fenêtre</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QPlainTextEdit" name="console">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>

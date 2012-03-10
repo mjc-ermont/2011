@@ -1,7 +1,9 @@
 #ifndef FENPRINCIPALE_H
 #define FENPRINCIPALE_H
 
-#include <QMainWindow>
+#include <QtGui>
+#include "Donnees.h"
+#include "Line.h"
 
 namespace Ui {
     class FenPrincipale;
@@ -11,12 +13,18 @@ class FenPrincipale : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit FenPrincipale(QWidget *parent = 0);
-    ~FenPrincipale();
+    public:
+        explicit FenPrincipale(QWidget *parent = 0);
+        ~FenPrincipale();
 
-private:
-    Ui::FenPrincipale *ui;
+        void append(Line *a);
+
+    private:
+        Ui::FenPrincipale *ui;
+        Donnees* historique;
+
+    public slots:
+        void message(QString message);
 };
 
 #endif // FENPRINCIPALE_H
