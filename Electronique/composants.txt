@@ -1,0 +1,14 @@
+Voila la liste des composants :
+
+2 x LM324
+
+Résistances:
+- 4.7k
+- 3.3k
+- 680k
+- 10k
+
+Potenciomètres:
+- 4.7k
+- 1M
+- 20k
