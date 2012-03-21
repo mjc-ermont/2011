@@ -1,0 +1,80 @@
+Cmp-Mod V01 Created by CvPcb (2011-11-27 BZR 3249)-stable date = 21/03/2012 15:54:34
+
+BeginCmp
+TimeStamp = /4F5B87DA;
+Reference = C1;
+ValeurCmp = CP;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B720F;
+Reference = C2;
+ValeurCmp = C;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B723C;
+Reference = C3;
+ValeurCmp = C;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B8873;
+Reference = C4;
+ValeurCmp = CP;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B8708;
+Reference = R1;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B870F;
+Reference = R2;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B7305;
+Reference = R3;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B7320;
+Reference = R4;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B7612;
+Reference = R5;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B867D;
+Reference = RV1;
+ValeurCmp = POT;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F5B704A;
+Reference = U1;
+ValeurCmp = XR2206;
+IdModule  = ;
+EndCmp
+
+EndListe
