@@ -1,5 +1,5 @@
-update=10/3/2012-15:13:55
-last_client=eeschema
+update=22/03/2012 21:29:56
+last_client=pcbnew
 [general]
 version=1
 RootSch=Shield FSK.sch
@@ -34,9 +34,7 @@ offY_E=0
 RptD_X=0
 RptD_Y=100
 RptLab=1
-PenMin=20
-SimCmd=
-UseNetN=0
+LabSize=60
 [eeschema/libraries]
 LibName1=power
 LibName2=C:/Documents and Settings/Robotik/Bureau/Robotique-MJC-2011/Electronique/Librairies kiCAD/xr2206
@@ -66,3 +64,40 @@ LibName25=cypress
 LibName26=siliconi
 LibName27=contrib
 LibName28=valves
+LibName29=I:/Robotique/Electronique/Librairies kiCAD/Arduino
+LibName30=I:/Robotique/Electronique/Librairies kiCAD/arduino_shieldsNCL
+[cvpcb]
+version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms
+[pcbnew]
+version=1
+PadDrlX=320
+PadDimH=600
+PadDimV=600
+BoardThickness=630
+TxtPcbV=800
+TxtPcbH=600
+TxtModV=600
+TxtModH=600
+TxtModW=120
+VEgarde=100
+DrawLar=150
+EdgeLar=150
+TxtLar=120
+MSegLar=150
+LastNetListRead=Shield FSK.net
+[pcbnew/libraries]
+LibDir=
+LibName1=sockets
+LibName2=connect
+LibName3=discret
+LibName4=pin_array
+LibName5=divers
+LibName6=libcms
+LibName7=display
+LibName8=valves
+LibName9=led
+LibName10=dip_sockets
+LibName11=I:/Robotique/Electronique/Librairies kiCAD/arduino_shields

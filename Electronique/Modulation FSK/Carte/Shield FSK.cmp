@@ -1,31 +1,31 @@
-Cmp-Mod V01 Created by CvPcb (2011-11-27 BZR 3249)-stable date = 21/03/2012 15:54:34
+Cmp-Mod V01 Created by CvPcb (2011-11-27 BZR 3249)-stable date = 22/03/2012 21:36:02
 
 BeginCmp
 TimeStamp = /4F5B87DA;
 Reference = C1;
 ValeurCmp = CP;
-IdModule  = ;
+IdModule  = CP4;
 EndCmp
 
 BeginCmp
 TimeStamp = /4F5B720F;
 Reference = C2;
 ValeurCmp = C;
-IdModule  = ;
+IdModule  = C2;
 EndCmp
 
 BeginCmp
 TimeStamp = /4F5B723C;
 Reference = C3;
 ValeurCmp = C;
-IdModule  = ;
+IdModule  = C2;
 EndCmp
 
 BeginCmp
 TimeStamp = /4F5B8873;
 Reference = C4;
 ValeurCmp = CP;
-IdModule  = ;
+IdModule  = CP4;
 EndCmp
 
 BeginCmp
@@ -71,10 +71,17 @@ IdModule  = ;
 EndCmp
 
 BeginCmp
+TimeStamp = /4F6B8878;
+Reference = SHIELD1;
+ValeurCmp = ARDUINO_SHIELD;
+IdModule  = ARDUINO_SHIELD;
+EndCmp
+
+BeginCmp
 TimeStamp = /4F5B704A;
 Reference = U1;
 ValeurCmp = XR2206;
-IdModule  = ;
+IdModule  = DIP-16__300;
 EndCmp
 
 EndListe

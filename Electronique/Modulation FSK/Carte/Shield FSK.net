@@ -1,91 +1,104 @@
-# EESchema Netlist Version 1.1 created  21/03/2012 15:54:34
+# EESchema Netlist Version 1.1 created  22/03/2012 21:36:07
 (
- ( /4F5B87DA $noname$ C1 CP
-  ( 1 N-000007 )
-  ( 2 GND )
+ ( /4F6B8878 $noname  SHIELD1 ARDUINO_SHIELD {Lib=ARDUINO_SHIELD}
+  (    0 ? )
+  (    1 /Entree_serie )
+  (    2 ? )
+  (    3 ? )
+  (    4 ? )
+  (    5 ? )
+  (   5V +5V )
+  (    6 ? )
+  (    7 ? )
+  (    8 ? )
+  (    9 ? )
+  (   10 ? )
+  (   11 ? )
+  (   12 ? )
+  (   13 ? )
+  (  3V3 ? )
+  (  AD0 ? )
+  (  AD1 ? )
+  (  AD2 ? )
+  (  AD3 ? )
+  (  AD4 ? )
+  (  AD5 ? )
+  ( AREF ? )
+  ( GND1 GND )
+  ( GND2 ? )
+  ( GND3 ? )
+  (  RST ? )
+  ( V_IN ? )
  )
- ( /4F5B720F $noname$ C2 C
-  ( 1 VCC )
-  ( 2 GND )
+ ( /4F5B8873 $noname  C4 CP {Lib=CP}
+  (    1 N-000016 )
+  (    2 GND )
  )
- ( /4F5B723C $noname$ C3 C
-  ( 1 N-000011 )
-  ( 2 N-000012 )
+ ( /4F5B87DA $noname  C1 CP {Lib=CP}
+  (    1 N-000018 )
+  (    2 GND )
  )
- ( /4F5B8873 $noname$ C4 CP
-  ( 1 N-000015 )
-  ( 2 GND )
+ ( /4F5B870F $noname  R2 R {Lib=R}
+  (    1 N-000018 )
+  (    2 GND )
  )
- ( /4F5B8708 R4 R1 R
-  ( 1 VCC )
-  ( 2 N-000007 )
+ ( /4F5B8708 $noname  R1 R {Lib=R}
+  (    1 VCC )
+  (    2 N-000018 )
  )
- ( /4F5B870F R4 R2 R
-  ( 1 N-000007 )
-  ( 2 GND )
+ ( /4F5B867D $noname  RV1 POT {Lib=POT}
+  (    1 N-000005 )
+  (    2 N-000018 )
+  (    3 N-000018 )
  )
- ( /4F5B7305 R4 R3 R
-  ( 1 N-000001 )
-  ( 2 GND )
+ ( /4F5B7612 $noname  R5 R {Lib=R}
+  (    1 N-000002 )
+  (    2 N-000022 )
  )
- ( /4F5B7320 R4 R4 R
-  ( 1 N-000002 )
-  ( 2 GND )
+ ( /4F5B7320 $noname  R4 R {Lib=R}
+  (    1 N-000023 )
+  (    2 GND )
  )
- ( /4F5B7612 R4 R5 R
-  ( 1 N-000004 )
-  ( 2 N-000009 )
+ ( /4F5B7305 $noname  R3 R {Lib=R}
+  (    1 N-000020 )
+  (    2 GND )
  )
- ( /4F5B867D $noname$ RV1 POT
-  ( 1 N-000008 )
-  ( 2 N-000007 )
-  ( 3 N-000007 )
+ ( /4F5B723C $noname  C3 C {Lib=C}
+  (    1 N-000024 )
+  (    2 N-000025 )
  )
- ( /4F5B704A $noname$ U1 XR2206
-  ( 1 GND )
-  ( 2 ? )
-  ( 3 N-000008 )
-  ( 4 VCC )
-  ( 5 N-000012 )
-  ( 6 N-000011 )
-  ( 7 N-000001 )
-  ( 8 N-000002 )
-  ( 9 ? )
-  ( 10 N-000015 )
-  ( 11 ? )
-  ( 12 GND )
-  ( 13 N-000009 )
-  ( 14 N-000004 )
-  ( 15 ? )
-  ( 16 ? )
+ ( /4F5B720F $noname  C2 C {Lib=C}
+  (    1 VCC )
+  (    2 GND )
+ )
+ ( /4F5B704A $noname  U1 XR2206 {Lib=XR2206}
+  (    1 GND )
+  (    2 ? )
+  (    3 N-000005 )
+  (    4 VCC )
+  (    5 N-000025 )
+  (    6 N-000024 )
+  (    7 N-000020 )
+  (    8 N-000023 )
+  (    9 /Entree_serie )
+  (   10 N-000016 )
+  (   11 ? )
+  (   12 GND )
+  (   13 N-000022 )
+  (   14 N-000002 )
+  (   15 ? )
+  (   16 ? )
  )
 )
 *
 { Allowed footprints by component:
-$component C1
- CP*
- SM*
-$endlist
-$component C2
- SM*
- C?
- C1-1
-$endlist
-$component C3
- SM*
- C?
- C1-1
-$endlist
 $component C4
  CP*
  SM*
 $endlist
-$component R1
- R?
- SM0603
- SM0805
- R?-*
- SM1206
+$component C1
+ CP*
+ SM*
 $endlist
 $component R2
  R?
@@ -94,14 +107,7 @@ $component R2
  R?-*
  SM1206
 $endlist
-$component R3
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R4
+$component R1
  R?
  SM0603
  SM0805
@@ -115,5 +121,79 @@ $component R5
  R?-*
  SM1206
 $endlist
+$component R4
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+ R?-*
+ SM1206
+$endlist
+$component C3
+ SM*
+ C?
+ C1-1
+$endlist
+$component C2
+ SM*
+ C?
+ C1-1
+$endlist
 $endfootprintlist
 }
+{ Pin List by Nets
+Net 2 "" ""
+ R5 1
+ U1 14
+Net 5 "" ""
+ U1 3
+ RV1 1
+Net 6 "VCC" "VCC"
+ C2 1
+ R1 1
+ U1 4
+Net 16 "" ""
+ U1 10
+ C4 1
+Net 17 "GND" "GND"
+ C2 2
+ SHIELD1 GND1
+ R2 2
+ U1 12
+ U1 1
+ C1 2
+ C4 2
+ R3 2
+ R4 2
+Net 18 "" ""
+ RV1 3
+ C1 1
+ RV1 2
+ R1 2
+ R2 1
+Net 20 "" ""
+ R3 1
+ U1 7
+Net 21 "/Entree serie" "Entree serie"
+ SHIELD1 1
+ U1 9
+Net 22 "" ""
+ R5 2
+ U1 13
+Net 23 "" ""
+ U1 8
+ R4 1
+Net 24 "" ""
+ U1 6
+ C3 1
+Net 25 "" ""
+ U1 5
+ C3 2
+}
+#End
