@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 22/03/2012 21:51:35
+EESchema Schematic File Version 2  date 23/03/2012 16:19:35
 LIBS:power
 LIBS:device
 LIBS:conn
@@ -35,7 +35,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "22 mar 2012"
+Date "23 mar 2012"
 Rev ""
 Comp ""
 Comment1 ""
@@ -43,6 +43,15 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L CONN_1 P1
+U 1 1 4F6C926A
+P 3250 3600
+F 0 "P1" H 3330 3600 40  0000 L CNN
+F 1 "CONN_1" H 3250 3655 30  0001 C CNN
+	1    3250 3600
+	-1   0    0    1   
+$EndComp
 Text Label 6500 3000 0    60   ~ 0
 Entree serie
 Wire Wire Line
@@ -126,22 +135,20 @@ Wire Wire Line
 Connection ~ 2600 4600
 Wire Wire Line
 	4500 2200 4400 2200
-Text GLabel 3400 3600 0    60   Input ~ 0
-Sortie FSK
 $Comp
-L GND #PWR01
+L GND #PWR7
 U 1 1 4F6B897D
 P 4400 2200
-F 0 "#PWR01" H 4400 2200 30  0001 C CNN
+F 0 "#PWR7" H 4400 2200 30  0001 C CNN
 F 1 "GND" H 4400 2130 30  0001 C CNN
 	1    4400 2200
 	0    1    1    0   
 $EndComp
 $Comp
-L +5V #PWR02
+L +5V #PWR6
 U 1 1 4F6B8971
 P 4400 2100
-F 0 "#PWR02" H 4400 2190 20  0001 C CNN
+F 0 "#PWR6" H 4400 2190 20  0001 C CNN
 F 1 "+5V" H 4400 2190 30  0000 C CNN
 	1    4400 2100
 	0    -1   -1   0   
@@ -174,19 +181,19 @@ F 1 "CP" H 2900 4300 50  0000 L CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR03
+L GND #PWR2
 U 1 1 4F5B8724
 P 2600 4650
-F 0 "#PWR03" H 2600 4650 30  0001 C CNN
+F 0 "#PWR2" H 2600 4650 30  0001 C CNN
 F 1 "GND" H 2600 4580 30  0001 C CNN
 	1    2600 4650
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR04
+L VCC #PWR1
 U 1 1 4F5B8719
 P 2600 3050
-F 0 "#PWR04" H 2600 3150 30  0001 C CNN
+F 0 "#PWR1" H 2600 3150 30  0001 C CNN
 F 1 "VCC" H 2600 3150 30  0000 C CNN
 	1    2600 3050
 	1    0    0    -1  
@@ -230,10 +237,10 @@ F 1 "R" V 6650 3800 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR05
+L GND #PWR10
 U 1 1 4F5B75FB
 P 7200 4000
-F 0 "#PWR05" H 7200 4000 30  0001 C CNN
+F 0 "#PWR10" H 7200 4000 30  0001 C CNN
 F 1 "GND" H 7200 3930 30  0001 C CNN
 	1    7200 4000
 	0    -1   -1   0   
@@ -242,10 +249,10 @@ NoConn ~ 6300 4000
 Text Label 6600 4200 0    60   ~ 0
 Entree serie
 $Comp
-L GND #PWR06
+L GND #PWR3
 U 1 1 4F5B733F
 P 3450 4500
-F 0 "#PWR06" H 3450 4500 30  0001 C CNN
+F 0 "#PWR3" H 3450 4500 30  0001 C CNN
 F 1 "GND" H 3450 4430 30  0001 C CNN
 	1    3450 4500
 	1    0    0    -1  
@@ -278,10 +285,10 @@ F 1 "C" H 4400 3900 50  0000 L CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR07
+L GND #PWR4
 U 1 1 4F5B7223
 P 3700 3850
-F 0 "#PWR07" H 3700 3850 30  0001 C CNN
+F 0 "#PWR4" H 3700 3850 30  0001 C CNN
 F 1 "GND" H 3700 3780 30  0001 C CNN
 	1    3700 3850
 	0    1    1    0   
@@ -296,28 +303,28 @@ F 1 "C" H 4050 3750 50  0000 L CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR08
+L GND #PWR5
 U 1 1 4F5B70E7
 P 4350 3500
-F 0 "#PWR08" H 4350 3500 30  0001 C CNN
+F 0 "#PWR5" H 4350 3500 30  0001 C CNN
 F 1 "GND" H 4350 3430 30  0001 C CNN
 	1    4350 3500
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR09
+L GND #PWR9
 U 1 1 4F5B7069
 P 6450 3900
-F 0 "#PWR09" H 6450 3900 30  0001 C CNN
+F 0 "#PWR9" H 6450 3900 30  0001 C CNN
 F 1 "GND" H 6450 3830 30  0001 C CNN
 	1    6450 3900
 	0    -1   -1   0   
 $EndComp
 $Comp
-L VCC #PWR010
+L VCC #PWR8
 U 1 1 4F5B7056
 P 4400 3800
-F 0 "#PWR010" H 4400 3900 30  0001 C CNN
+F 0 "#PWR8" H 4400 3900 30  0001 C CNN
 F 1 "VCC" H 4400 3900 30  0000 C CNN
 	1    4400 3800
 	0    -1   -1   0   
