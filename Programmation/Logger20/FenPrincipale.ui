@@ -221,7 +221,7 @@
            <item row="3" column="0">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
-              <string>Gazs</string>
+              <string>Gaz</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
@@ -255,6 +255,13 @@
              </layout>
             </widget>
            </item>
+           <item row="3" column="1">
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>Actualiser</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -284,7 +291,7 @@
      <x>0</x>
      <y>0</y>
      <width>998</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

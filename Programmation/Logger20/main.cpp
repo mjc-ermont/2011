@@ -1,18 +1,32 @@
 #include <QtGui>
+#include <QInputDialog>
 #include "FenPrincipale.h"
 #include "Line.h"
+#include "serial.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QString locale = QLocale::system().name().section('_', 0, 0);
+    /*QString locale = QLocale::system().name().section('_', 0, 0);
     QTranslator translator;
     translator.load(QString("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    a.installTranslator(&translator);
+    a.installTranslator(&translator);*/
 
-    FenPrincipale w;
+    int port = QInputDialog::getInt(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :",1);
+    Serial* com = new Serial(port);
+
+    if(!com->init()) {
+        QMessageBox::critical(NULL,"ERREUR VERY GRAVE","ERREUR DANS L'INITIALISATION DE LA COMMUNICATION SERIE.");
+        return -1;
+    }
+
+    FenPrincipale w(com);
     w.show();
+
+
+
+
 
     Line* n = new Line();
 

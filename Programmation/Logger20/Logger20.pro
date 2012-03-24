@@ -14,12 +14,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
     Line.cpp \
     FenPrincipale.cpp \
-    Donnees.cpp
+    Donnees.cpp \
+    serial.cpp \
+    LSerie/LSerie.cpp
 
 HEADERS  += \
     Line.h \
     FenPrincipale.h \
-    Donnees.h
+    Donnees.h \
+    serial.h \
+    LSerie/LSerie.h
 
 FORMS    += \
     FenPrincipale.ui

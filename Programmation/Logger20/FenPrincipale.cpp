@@ -1,11 +1,13 @@
 #include "FenPrincipale.h"
 #include "ui_FenPrincipale.h"
 
-FenPrincipale::FenPrincipale(QWidget *parent) : QMainWindow(parent), ui(new Ui::FenPrincipale), historique(new Donnees()){
+FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historique(new Donnees()){
 
     connect(historique, SIGNAL(msg(QString)), this, SLOT(message(QString)));
 
     //------------------------------------------------------------------------------------------------------
+
+    com = _com;
 
     ui->setupUi(this);
     ui->tableWindow->setWindowTitle("Historique");
@@ -33,4 +35,11 @@ void FenPrincipale::append(Line *a){
 void FenPrincipale::message(QString message){
     ui->statusBar->showMessage(message);
     ui->console->appendPlainText(message);
+}
+
+void FenPrincipale::on_pushButton_clicked()
+{
+    QString data = QString::fromStdString(com->readData());
+    if(data != "")
+        message(data);
 }
