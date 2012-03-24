@@ -1,4 +1,4 @@
-update=22/03/2012 21:29:56
+update=24/03/2012 16:07:20
 last_client=pcbnew
 [general]
 version=1
@@ -101,3 +101,4 @@ LibName8=valves
 LibName9=led
 LibName10=dip_sockets
 LibName11=I:/Robotique/Electronique/Librairies kiCAD/arduino_shields
+LibName12=F:/Robotique/Electronique/Librairies kiCAD/Potentiometres

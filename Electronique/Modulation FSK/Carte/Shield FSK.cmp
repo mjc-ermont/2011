@@ -1,38 +1,38 @@
-Cmp-Mod V01 Created by CvPcb (2011-11-27 BZR 3249)-stable date = 23/03/2012 16:11:46
+Cmp-Mod V01 Created by CvPcb (2011-11-27 BZR 3249)-stable date = 24/03/2012 16:50:48
 
 BeginCmp
-TimeStamp = /4F5B87DA;
+TimeStamp = /4F6DEA20;
 Reference = C1;
-ValeurCmp = CP;
-IdModule  = CP4;
+ValeurCmp = C;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
 TimeStamp = /4F5B720F;
 Reference = C2;
 ValeurCmp = C;
-IdModule  = C2;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
 TimeStamp = /4F5B723C;
 Reference = C3;
 ValeurCmp = C;
-IdModule  = C2;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
-TimeStamp = /4F5B8873;
+TimeStamp = /4F6DEA2A;
 Reference = C4;
-ValeurCmp = CP;
-IdModule  = CP4;
+ValeurCmp = C;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
-TimeStamp = /4F6C926A;
+TimeStamp = /4F6DEBDE;
 Reference = P1;
-ValeurCmp = CONN_1;
-IdModule  = 1pin;
+ValeurCmp = BNC;
+IdModule  = bnc-ci;
 EndCmp
 
 BeginCmp
@@ -74,7 +74,7 @@ BeginCmp
 TimeStamp = /4F5B867D;
 Reference = RV1;
 ValeurCmp = POT;
-IdModule  = ;
+IdModule  = POACAV;
 EndCmp
 
 BeginCmp
