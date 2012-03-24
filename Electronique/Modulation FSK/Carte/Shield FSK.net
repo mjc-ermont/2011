@@ -1,48 +1,49 @@
-# EESchema Netlist Version 1.1 created  23/03/2012 16:11:46
+# EESchema Netlist Version 1.1 created  24/03/2012 16:50:48
 (
- ( /4F5B87DA CP4 C1 CP
-  ( 1 N-000018 )
+ ( /4F6DEA20 C1 C1 C
+  ( 1 N-000003 )
   ( 2 GND )
  )
- ( /4F5B720F C2 C2 C
+ ( /4F5B720F C1 C2 C
   ( 1 VCC )
   ( 2 GND )
  )
- ( /4F5B723C C2 C3 C
-  ( 1 N-000024 )
-  ( 2 N-000025 )
+ ( /4F5B723C C1 C3 C
+  ( 1 N-000029 )
+  ( 2 N-000024 )
  )
- ( /4F5B8873 CP4 C4 CP
-  ( 1 N-000016 )
+ ( /4F6DEA2A C1 C4 C
+  ( 1 GND )
+  ( 2 N-000030 )
+ )
+ ( /4F6DEBDE bnc-ci P1 BNC
+  ( 1 N-000023 )
   ( 2 GND )
- )
- ( /4F6C926A 1pin P1 CONN_1
-  ( 1 N-000019 )
  )
  ( /4F5B8708 R4 R1 R
   ( 1 VCC )
-  ( 2 N-000018 )
+  ( 2 N-000003 )
  )
  ( /4F5B870F R4 R2 R
-  ( 1 N-000018 )
+  ( 1 N-000003 )
   ( 2 GND )
  )
  ( /4F5B7305 R4 R3 R
-  ( 1 N-000020 )
+  ( 1 N-000028 )
   ( 2 GND )
  )
  ( /4F5B7320 R4 R4 R
-  ( 1 N-000021 )
+  ( 1 N-000027 )
   ( 2 GND )
  )
  ( /4F5B7612 R4 R5 R
-  ( 1 N-000002 )
-  ( 2 N-000023 )
+  ( 1 N-000006 )
+  ( 2 N-000025 )
  )
- ( /4F5B867D $noname$ RV1 POT
-  ( 1 N-000005 )
-  ( 2 N-000018 )
-  ( 3 N-000018 )
+ ( /4F5B867D POACAV RV1 POT
+  ( 1 N-000002 )
+  ( 2 N-000003 )
+  ( 3 N-000003 )
  )
  ( /4F6B8878 ARDUINO_SHIELD SHIELD1 ARDUINO_SHIELD
   ( 0 ? )
@@ -76,19 +77,19 @@
  )
  ( /4F5B704A DIP-16__300 U1 XR2206
   ( 1 GND )
-  ( 2 N-000019 )
-  ( 3 N-000005 )
+  ( 2 N-000023 )
+  ( 3 N-000002 )
   ( 4 VCC )
-  ( 5 N-000025 )
-  ( 6 N-000024 )
-  ( 7 N-000020 )
-  ( 8 N-000021 )
+  ( 5 N-000024 )
+  ( 6 N-000029 )
+  ( 7 N-000028 )
+  ( 8 N-000027 )
   ( 9 /Entree_serie )
-  ( 10 N-000016 )
+  ( 10 N-000030 )
   ( 11 ? )
   ( 12 GND )
-  ( 13 N-000023 )
-  ( 14 N-000002 )
+  ( 13 N-000025 )
+  ( 14 N-000006 )
   ( 15 ? )
   ( 16 ? )
  )
@@ -96,8 +97,9 @@
 *
 { Allowed footprints by component:
 $component C1
- CP*
  SM*
+ C?
+ C1-1
 $endlist
 $component C2
  SM*
@@ -110,8 +112,9 @@ $component C3
  C1-1
 $endlist
 $component C4
- CP*
  SM*
+ C?
+ C1-1
 $endlist
 $component R1
  R?

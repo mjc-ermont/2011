@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date 23/03/2012 16:19:35
+EESchema Schematic File Version 2  date 24/03/2012 16:53:15
 LIBS:power
 LIBS:device
 LIBS:conn
@@ -26,8 +26,6 @@ LIBS:cypress
 LIBS:siliconi
 LIBS:contrib
 LIBS:valves
-LIBS:Arduino
-LIBS:arduino_shieldsNCL
 LIBS:Shield FSK-cache
 EELAYER 25  0
 EELAYER END
@@ -35,7 +33,7 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "23 mar 2012"
+Date "24 mar 2012"
 Rev ""
 Comp ""
 Comment1 ""
@@ -43,17 +41,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L CONN_1 P1
-U 1 1 4F6C926A
-P 3250 3600
-F 0 "P1" H 3330 3600 40  0000 L CNN
-F 1 "CONN_1" H 3250 3655 30  0001 C CNN
-	1    3250 3600
-	-1   0    0    1   
-$EndComp
-Text Label 6500 3000 0    60   ~ 0
-Entree serie
 Wire Wire Line
 	6400 3000 6500 3000
 Wire Wire Line
@@ -135,20 +122,60 @@ Wire Wire Line
 Connection ~ 2600 4600
 Wire Wire Line
 	4500 2200 4400 2200
+Wire Wire Line
+	3250 3300 3250 3400
 $Comp
-L GND #PWR7
+L GND #PWR3
+U 1 1 4F6DEC1B
+P 3250 3300
+F 0 "#PWR3" H 3250 3300 30  0001 C CNN
+F 1 "GND" H 3250 3230 30  0001 C CNN
+	1    3250 3300
+	-1   0    0    1   
+$EndComp
+$Comp
+L BNC P1
+U 1 1 4F6DEBDE
+P 3250 3600
+F 0 "P1" H 3260 3720 60  0000 C CNN
+F 1 "BNC" V 3360 3540 40  0000 C CNN
+	1    3250 3600
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C4
+U 1 1 4F6DEA2A
+P 6850 4000
+F 0 "C4" H 6900 4100 50  0000 L CNN
+F 1 "C" H 6900 3900 50  0000 L CNN
+	1    6850 4000
+	0    1    1    0   
+$EndComp
+$Comp
+L C C1
+U 1 1 4F6DEA20
+P 2850 4400
+F 0 "C1" H 2900 4500 50  0000 L CNN
+F 1 "C" H 2900 4300 50  0000 L CNN
+	1    2850 4400
+	1    0    0    -1  
+$EndComp
+Text Label 6500 3000 0    60   ~ 0
+Entree serie
+$Comp
+L GND #PWR8
 U 1 1 4F6B897D
 P 4400 2200
-F 0 "#PWR7" H 4400 2200 30  0001 C CNN
+F 0 "#PWR8" H 4400 2200 30  0001 C CNN
 F 1 "GND" H 4400 2130 30  0001 C CNN
 	1    4400 2200
 	0    1    1    0   
 $EndComp
 $Comp
-L +5V #PWR6
+L +5V #PWR7
 U 1 1 4F6B8971
 P 4400 2100
-F 0 "#PWR6" H 4400 2190 20  0001 C CNN
+F 0 "#PWR7" H 4400 2190 20  0001 C CNN
 F 1 "+5V" H 4400 2190 30  0000 C CNN
 	1    4400 2100
 	0    -1   -1   0   
@@ -160,24 +187,6 @@ P 5450 2300
 F 0 "SHIELD1" H 5100 3250 60  0000 C CNN
 F 1 "ARDUINO_SHIELD" H 5500 1350 60  0000 C CNN
 	1    5450 2300
-	1    0    0    -1  
-$EndComp
-$Comp
-L CP C4
-U 1 1 4F5B8873
-P 6850 4000
-F 0 "C4" H 6900 4100 50  0000 L CNN
-F 1 "CP" H 6900 3900 50  0000 L CNN
-	1    6850 4000
-	0    -1   -1   0   
-$EndComp
-$Comp
-L CP C1
-U 1 1 4F5B87DA
-P 2850 4400
-F 0 "C1" H 2900 4500 50  0000 L CNN
-F 1 "CP" H 2900 4300 50  0000 L CNN
-	1    2850 4400
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -237,10 +246,10 @@ F 1 "R" V 6650 3800 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR10
+L GND #PWR11
 U 1 1 4F5B75FB
 P 7200 4000
-F 0 "#PWR10" H 7200 4000 30  0001 C CNN
+F 0 "#PWR11" H 7200 4000 30  0001 C CNN
 F 1 "GND" H 7200 3930 30  0001 C CNN
 	1    7200 4000
 	0    -1   -1   0   
@@ -249,10 +258,10 @@ NoConn ~ 6300 4000
 Text Label 6600 4200 0    60   ~ 0
 Entree serie
 $Comp
-L GND #PWR3
+L GND #PWR4
 U 1 1 4F5B733F
 P 3450 4500
-F 0 "#PWR3" H 3450 4500 30  0001 C CNN
+F 0 "#PWR4" H 3450 4500 30  0001 C CNN
 F 1 "GND" H 3450 4430 30  0001 C CNN
 	1    3450 4500
 	1    0    0    -1  
@@ -285,10 +294,10 @@ F 1 "C" H 4400 3900 50  0000 L CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR4
+L GND #PWR5
 U 1 1 4F5B7223
 P 3700 3850
-F 0 "#PWR4" H 3700 3850 30  0001 C CNN
+F 0 "#PWR5" H 3700 3850 30  0001 C CNN
 F 1 "GND" H 3700 3780 30  0001 C CNN
 	1    3700 3850
 	0    1    1    0   
@@ -303,28 +312,28 @@ F 1 "C" H 4050 3750 50  0000 L CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR5
+L GND #PWR6
 U 1 1 4F5B70E7
 P 4350 3500
-F 0 "#PWR5" H 4350 3500 30  0001 C CNN
+F 0 "#PWR6" H 4350 3500 30  0001 C CNN
 F 1 "GND" H 4350 3430 30  0001 C CNN
 	1    4350 3500
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR9
+L GND #PWR10
 U 1 1 4F5B7069
 P 6450 3900
-F 0 "#PWR9" H 6450 3900 30  0001 C CNN
+F 0 "#PWR10" H 6450 3900 30  0001 C CNN
 F 1 "GND" H 6450 3830 30  0001 C CNN
 	1    6450 3900
 	0    -1   -1   0   
 $EndComp
 $Comp
-L VCC #PWR8
+L VCC #PWR9
 U 1 1 4F5B7056
 P 4400 3800
-F 0 "#PWR8" H 4400 3900 30  0001 C CNN
+F 0 "#PWR9" H 4400 3900 30  0001 C CNN
 F 1 "VCC" H 4400 3900 30  0000 C CNN
 	1    4400 3800
 	0    -1   -1   0   
