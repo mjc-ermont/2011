@@ -1,5 +1,5 @@
-update=24/03/2012 16:07:20
-last_client=pcbnew
+update=31/03/2012 15:15:04
+last_client=cvpcb
 [general]
 version=1
 RootSch=Shield FSK.sch
@@ -66,11 +66,6 @@ LibName27=contrib
 LibName28=valves
 LibName29=I:/Robotique/Electronique/Librairies kiCAD/Arduino
 LibName30=I:/Robotique/Electronique/Librairies kiCAD/arduino_shieldsNCL
-[cvpcb]
-version=1
-NetIExt=net
-[cvpcb/libraries]
-EquName1=devcms
 [pcbnew]
 version=1
 PadDrlX=320
@@ -89,7 +84,6 @@ TxtLar=120
 MSegLar=150
 LastNetListRead=Shield FSK.net
 [pcbnew/libraries]
-LibDir=
 LibName1=sockets
 LibName2=connect
 LibName3=discret
@@ -100,5 +94,11 @@ LibName7=display
 LibName8=valves
 LibName9=led
 LibName10=dip_sockets
-LibName11=I:/Robotique/Electronique/Librairies kiCAD/arduino_shields
-LibName12=F:/Robotique/Electronique/Librairies kiCAD/Potentiometres
+LibName11=C:/Documents and Settings/atelier du bocage/Bureau/Robotique-MJC-2011/Electronique/Librairies kiCAD/arduino_shields
+LibName12=C:/Documents and Settings/atelier du bocage/Bureau/Robotique-MJC-2011/Electronique/Librairies kiCAD/Potentiometres
+LibDir=
+[cvpcb]
+version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms

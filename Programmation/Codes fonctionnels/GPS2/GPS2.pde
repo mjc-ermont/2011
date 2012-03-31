@@ -85,7 +85,7 @@
              trame.toCharArray(atrame, 3);
              angle = atoi(atrame);
              Serial.print(angle);
-             Serial.print("");
+             Serial.print("deg");
              minute = atof(&mtrame[2]);
              Serial.print(minute);
              Serial.println("'");

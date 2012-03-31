@@ -15,6 +15,7 @@
  char atrame[50], mtrame[50];
  int angle;
  double minute;
+ int lmaxtrame;
  
  void setup() {
    pinMode(ledPin, OUTPUT);       // Initialize LED pin
@@ -84,14 +85,19 @@
            if(i == 2){
              trame.toCharArray(atrame, 3);
              angle = atoi(atrame);
-             Serial.print("#$1$"
+             Serial.print("#$01$01$");
+             lmaxtrame = 5;
+             while((lmaxtrame - strlen(atrame)) > 0){
+               Serial.print('0');
+               lmaxtrame--;
+             }
              Serial.print(angle);
-             Serial.print("&");
+             Serial.print("$@#$01$02$");
              minute = atof(&mtrame[2]);
              Serial.print(minute);
-             Serial.print("$");
+             Serial.print("$@");
              
-             Serial.print(checksum);
+             //Serial.print(checksum);
            } else if (i==4) {
              trame.toCharArray(atrame, 4);
              angle = atoi(atrame);
