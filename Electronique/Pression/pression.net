@@ -1,0 +1,144 @@
+# EESchema Netlist Version 1.1 created  31/3/2012-15:12:52
+(
+ ( 4F5B7225 $noname  POT2 20k {Lib=POT}
+  (    1 N-000012 )
+  (    2  ? )
+  (    3 Entree pression_1 )
+ )
+ ( 4F5B721F $noname  R6 10k {Lib=R}
+  (    1 N-000012 )
+  (    2  ? )
+ )
+ ( 4F5B71F2 $noname  U1 LM324 {Lib=LM324}
+  (    1 N-000004 )
+  (    2 N-000005 )
+  (    3 N-000007 )
+  (    4 +5V )
+  (    5 N-000004 )
+  (    6 N-000012 )
+  (    7 Entree pression_1 )
+  (   11 GND )
+ )
+ ( 4F5B719D $noname  POT1 1M {Lib=POT}
+  (    1 N-000005 )
+  (    2 N-000004 )
+  (    3  ? )
+ )
+ ( 4F5B711C $noname  +9V05 VCC {Lib=VCC}
+  (    1 VCC )
+ )
+ ( 4F5B7118 $noname  GND06 GND {Lib=GND}
+  (    1 GND )
+ )
+ ( 4F5B6F5B $noname  POT3 4.7k {Lib=POT}
+  (    1 GND )
+  (    2 N-000009 )
+  (    3 N-000008 )
+ )
+ ( 4F5B6F1F $noname  +9V07 VCC {Lib=VCC}
+  (    1 VCC )
+ )
+ ( 4F5B6F0A $noname  GND08 GND {Lib=GND}
+  (    1 GND )
+ )
+ ( 4F5B6EB9 $noname  R5 1.5k {Lib=R}
+  (    1 VCC )
+  (    2 N-000008 )
+ )
+ ( 4F5B6EB2 $noname  R3 680k {Lib=R}
+  (    1 N-000009 )
+  (    2 N-000007 )
+ )
+ ( 4F5B6DD4 $noname  R2 3.3k {Lib=R}
+  (    1 N-000005 )
+  (    2 N-000006 )
+ )
+ ( 4F5B6CE2 $noname  R1 4.7k {Lib=R}
+  (    1 N-000007 )
+  (    2 N-000010 )
+ )
+ ( 4F5B6C04 $noname  MPX_2200AP1 CONN_4 {Lib=CONN_4}
+  (    1 GND )
+  (    2 N-000010 )
+  (    3 VCC )
+  (    4 N-000006 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component R6
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R5
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R2
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R1
+ R?
+ SM0603
+ SM0805
+$endlist
+$endfootprintlist
+}
+{ Pin List by Nets
+Net 1 "GND"
+ U1 11
+ GND08 1
+ POT3 1
+ GND06 1
+ U1 11
+ MPX 2200AP1 1
+Net 2 "+5V"
+ U1 4
+ U1 4
+Net 3 "Entree pression_1"
+ POT2 3
+ U1 7
+Net 4 ""
+ U1 5
+ POT1 2
+ U1 1
+Net 5 ""
+ U1 2
+ R2 1
+ POT1 1
+Net 6 ""
+ MPX 2200AP1 4
+ R2 2
+Net 7 ""
+ R1 1
+ U1 3
+ R3 2
+Net 8 ""
+ POT3 3
+ R5 2
+Net 9 ""
+ R3 1
+ POT3 2
+Net 10 ""
+ R1 2
+ MPX 2200AP1 2
+Net 11 "VCC"
+ R5 1
+ +9V05 1
+ MPX 2200AP1 3
+ +9V07 1
+Net 12 ""
+ POT2 1
+ R6 1
+ U1 6
+}
+#End

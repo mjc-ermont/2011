@@ -1,0 +1,14 @@
+EESchema-DOCLIB  Version 2.0  31/3/2012-15:36:09
+#
+$CMP LM2902N
+D Quad Op amp.
+K AmpliOp
+F op_amps/lm324.pdf
+$ENDCMP
+#
+$CMP POT
+D Potentionmetre
+K R
+$ENDCMP
+#
+#End Doc Library
