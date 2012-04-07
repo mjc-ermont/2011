@@ -34,7 +34,7 @@
    } else {
      linea[conta]=byteGPS;        // If there is serial port data, it is put in the buffer
      conta++;                      
-     Serial.print(byteGPS, BYTE); 
+     //Serial.print(byteGPS, BYTE); 
      if (byteGPS==13){            // If the received byte is = to 13, end of transmission
        digitalWrite(ledPin, LOW); 
        cont=0;
@@ -55,11 +55,11 @@
              cont++;
            }
          }
-         Serial.println("");      // ... and write to the serial port
+         /*Serial.println("");      // ... and write to the serial port
          Serial.println("");
-         Serial.println("---------------");
+         Serial.println("---------------");*/
          for (int i=0;i<12;i++){
-           switch(i){
+           /*switch(i){
              case 0 :Serial.print("Time in UTC (HhMmSs): ");break;
              case 1 :Serial.print("Status (A=OK,V=KO): ");break;
              case 2 :Serial.print("Latitude: ");break;
@@ -73,43 +73,51 @@
              case 10 :Serial.print("(E/W): ");break;
              case 11 :Serial.print("Mode: ");break;
              case 12 :Serial.print("Checksum: ");break;
-           }
+           }*/
            for (int j=indices[i];j<(indices[i+1]-1);j++){
              trame += linea[j+1];
            }
-           Serial.println("");
+           //Serial.println("");
            trame.toCharArray(mtrame, 50);
            for (int i = 0 ; i<50 ; i++){
              atrame[i] = 0;
            }
            if(i == 2){
              trame.toCharArray(atrame, 3);
-             angle = atoi(atrame);
              Serial.print("#$01$01$");
-             lmaxtrame = 5;
+             lmaxtrame = 8;
              while((lmaxtrame - strlen(atrame)) > 0){
                Serial.print('0');
                lmaxtrame--;
              }
-             Serial.print(angle);
-             Serial.print("$@#$01$02$");
-             minute = atof(&mtrame[2]);
-             Serial.print(minute);
-             Serial.print("$@");
+             Serial.print(atrame);
+             Serial.print("$@\n#$01$02$");
+             lmaxtrame = 8;
+             while((lmaxtrame - strlen(&mtrame[2])) > 0){
+               Serial.print('0');
+               lmaxtrame--;
+             }
+             Serial.print(&mtrame[2]);
+             Serial.print("$@\n");
              
              //Serial.print(checksum);
            } else if (i==4) {
-             trame.toCharArray(atrame, 4);
-             angle = atoi(atrame);
-             Serial.print(angle);
-             Serial.print("deg");
-             minute = atof(&mtrame[3]);
-             Serial.print(minute);
-             Serial.println("'");
+             trame.toCharArray(atrame, 3);
+             Serial.print("#$01$03$");
+             lmaxtrame = 8;
+             while((lmaxtrame - strlen(atrame)) > 0){
+               Serial.print('0');
+               lmaxtrame--;
+             }
+             Serial.print(atrame);
+             Serial.print("$@\n#$01$04$");
+             minute = atof(&mtrame[2]);
+             Serial.print(&mtrame[2]);
+             Serial.print("$@\n");
            }
            trame="";
          }
-         Serial.println("---------------");
+         //Serial.println("---------------");
        }
        conta=0;                    // Reset the buffer
        for (int i=0;i<300;i++){    //  
