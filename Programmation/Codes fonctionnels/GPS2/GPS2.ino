@@ -2,9 +2,6 @@
  #include <ctype.h>
  #include "trame.h"
  
- int ledPin = 13;                  // LED test pin
- int rxPin = 0;                    // RX PIN 
- int txPin = 1;                    // TX TX
  int byteGPS=-1;
  char linea[300] = "";
  char comandoGPR[7] = "$GPRMC";
@@ -21,25 +18,21 @@
  int lmaxtrame;
   
  void setup() {
-   pinMode(ledPin, OUTPUT);       // Initialize LED pin
-   pinMode(rxPin, INPUT);
-   pinMode(txPin, OUTPUT);
-   Serial.begin(4800);
+   Serial.begin(9600);
+   Serial1.begin(4800);
    for (int i=0;i<300;i++){       // Initialize a buffer for received data
      linea[i]=' ';
    }   
  }
  void loop() {
-   digitalWrite(ledPin, HIGH);
-   byteGPS=Serial.read();         // Read a byte of the serial port
+   byteGPS=Serial1.read();         // Read a byte of the serial port
    if (byteGPS == -1) {           // See if the port is empty yet
      delay(100); 
    } else {
      linea[conta]=byteGPS;        // If there is serial port data, it is put in the buffer
      conta++;                      
-     //Serial.write(byteGPS); 
+     Serial.write(byteGPS); 
      if (byteGPS==13){            // If the received byte is = to 13, end of transmission
-       digitalWrite(ledPin, LOW); 
        cont=0;
        bien=0;
        for (int i=1;i<7;i++){     // Verifies if the received command starts with $GPR
@@ -111,7 +104,6 @@
              out_trame += temp_trame;
              temp_trame="";
              
-             //temp_trame += checksum);
            } else if (i==4) {
              trame.toCharArray(atrame, 3);
              temp_trame += "#$01$03$";
@@ -145,6 +137,20 @@
              out_trame += temp_trame;
              temp_trame="";
            
+           } else if (i == 6){
+             temp_trame = "#$01$05$";
+             lmaxtrame = 8;
+             while((lmaxtrame - trame.length()) > 0){
+               temp_trame += '0';
+               lmaxtrame--;
+             }
+             temp_trame += trame;
+             temp_trame += "$";
+             temp_trame.toCharArray(temp_trame_array, 50);
+             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += "$@";
+             out_trame += temp_trame;
+             temp_trame="";
            }
            
            trame="";
