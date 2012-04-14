@@ -14,7 +14,7 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
     ui->infosWindow->setWindowTitle("Tableau de bord");
     ui->consoleWindow->setWindowTitle("Console");
 
-    ui->table->setModel(historique);
+    ui->table->setModel(historique->toFen());
 
     historique->connect();
 

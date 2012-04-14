@@ -1,29 +1,20 @@
 #include "Donnees.h"
 
-Donnees::Donnees() : db(QSqlDatabase::addDatabase("QMYSQL")){
-        setHorizontalHeaderItem(0, new QStandardItem("Date / heure"));
-        setHorizontalHeaderItem(1, new QStandardItem("Altitude"));
-        setHorizontalHeaderItem(2, new QStandardItem("Vitesse Horizontale"));
-        setHorizontalHeaderItem(3, new QStandardItem("Vitesse Verticale"));
-        setHorizontalHeaderItem(4, new QStandardItem("Temperature exterieure"));
-        setHorizontalHeaderItem(5, new QStandardItem("Temperature interieure"));
-        setHorizontalHeaderItem(6, new QStandardItem("Temperature hygrometre"));
-        setHorizontalHeaderItem(7, new QStandardItem("Hygrometrie"));
-        setHorizontalHeaderItem(8, new QStandardItem("Pression exterieur"));
-        setHorizontalHeaderItem(9, new QStandardItem("Pression interieure"));
-        setHorizontalHeaderItem(10, new QStandardItem("GPS - X"));
-        setHorizontalHeaderItem(11, new QStandardItem("GPS - Y"));
-        setHorizontalHeaderItem(12, new QStandardItem("GPS - Altitude"));
-        setHorizontalHeaderItem(13, new QStandardItem("CH4"));
-        setHorizontalHeaderItem(14, new QStandardItem("CO2"));
-        setHorizontalHeaderItem(15, new QStandardItem("Gyroscope - X"));
-        setHorizontalHeaderItem(16, new QStandardItem("Gyroscope - Y"));
-        setHorizontalHeaderItem(17, new QStandardItem("Gyroscope - Z"));
+Donnees::Donnees() : db(QSqlDatabase::addDatabase("QMYSQL")), capteurs(QApplication::applicationDirPath() + "/Config/Capteurs.ini", QSettings::IniFormat){
+    fenetre = new QStandardItemModel;
 
-        db.setHostName("127.0.0.1");
-        db.setUserName("root");
-        db.setPassword("");
-        db.setDatabaseName("logger");
+
+    for(int i = 0 ; i < nbCapteurs() ; i++){
+        QString nom = capteurInfo(listCapteurs().at(i)).toString();
+        fenetre->setHorizontalHeaderItem(i, new QStandardItem(nom));
+    }
+
+    //------------------------------------------------------------------
+
+    /*db.setHostName("127.0.0.1");
+    db.setUserName("root");
+    db.setPassword("");
+    db.setDatabaseName("logger");*/
 }
 
 Donnees::~Donnees(){
@@ -31,7 +22,7 @@ Donnees::~Donnees(){
 }
 
 void Donnees::appendLine(Line* a){
-    appendRow(a->toList());
+    fenetre->appendRow(a->toList());
 
     appendInFile();
     appendInDB(a);
@@ -48,8 +39,8 @@ bool Donnees::appendInFile(){
     else{
         QTextStream flux(&fichier);
 
-        for(int i = 0 ; i < columnCount() ; i++){
-            flux << item(rowCount()-1, i)->text();
+        for(int i = 0 ; i < colonnes() ; i++){
+            flux << fenetre->item(lignes()-1, i)->text();
             flux << " ";
         }
 
@@ -92,11 +83,11 @@ void Donnees::open(){
                 }
             }
 
-            insertRow(rowCount(), prep);
+            fenetre->insertRow(lignes(), prep);
             prep.clear();
         }
 
-        emit msg(QString("[Sauvegarde] " + QString::number(rowCount()) + " lignes ont étés chargés depuis le fichier \"" + QApplication::applicationDirPath() + "/save.log\"."));
+        emit msg(QString("[Sauvegarde] " + QString::number(lignes()) + " lignes ont étés chargés depuis le fichier \"" + QApplication::applicationDirPath() + "/save.log\"."));
 
         fichier.close();
     }
@@ -153,4 +144,62 @@ bool Donnees::appendInDB(Line* a){
     query.bindValue(":GyrY", a->GyrY);
     query.bindValue(":GyrZ", a->GyrZ);
     query.exec();
+}
+
+QStandardItemModel *Donnees::toFen(){
+    return fenetre;
+}
+
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+
+/**
+* @return Nombre de colonnes
+* @author Remi
+*/
+int Donnees::colonnes() const{
+    return fenetre->columnCount();
+}
+
+/**
+* @return Nombre de colonnes
+* @author Remi
+*/
+int Donnees::lignes() const{
+    return fenetre->rowCount();
+}
+
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+//----------------------------------------------------------------
+
+/**
+* @return Nombre de capteurs enregistres
+* @author Remi
+*/
+int Donnees::nbCapteurs() const{
+    return capteurs.childGroups().size();
+}
+
+/**
+* @return Liste des noms des capteurs
+* @author Remi
+*/
+QStringList Donnees::listCapteurs() const{
+    return capteurs.childGroups();
+}
+
+/**
+* @return Une valeure du capteur
+* @arg    Nom du capteur
+* @arg    Type de valeure
+* @author Remi
+*/
+QVariant Donnees::capteurInfo(QString capteur, QString type){
+    capteurs.beginGroup(capteur);
+    QVariant retourne = capteurs.value(type);
+    capteurs.endGroup();
+
+    return retourne;
 }

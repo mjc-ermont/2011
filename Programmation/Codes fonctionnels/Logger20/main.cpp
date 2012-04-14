@@ -8,10 +8,15 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    /*QString locale = QLocale::system().name().section('_', 0, 0);
+
+    QString locale = QLocale::system().name().section('_', 0, 0);
     QTranslator translator;
     translator.load(QString("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    a.installTranslator(&translator);*/
+    a.installTranslator(&translator);
+
+
+    //------------------------------------------------------------------------------
+
 
     int port = QInputDialog::getInt(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :",1);
     Serial* com = new Serial(port);
@@ -21,12 +26,12 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+    //------------------------------------------------------------------------------
+
     FenPrincipale w(com);
     w.show();
 
-
-
-
+    //------------------------------------------------------------------------------
 
     Line* n = new Line();
 
@@ -48,7 +53,7 @@ int main(int argc, char *argv[])
         n->vith = 100;
         n->vitv = 101;
 
-   w.append(n);
+    w.append(n);
 
     return a.exec();
 }
