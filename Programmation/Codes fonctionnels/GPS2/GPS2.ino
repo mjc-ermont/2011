@@ -1,5 +1,6 @@
  #include <string.h>
  #include <ctype.h>
+ #include "trame.h"
  
  int ledPin = 13;                  // LED test pin
  int rxPin = 0;                    // RX PIN 
@@ -12,11 +13,13 @@
  int conta=0;
  int indices[13];
  String trame;
- char atrame[50], mtrame[50];
+ String temp_trame;
+ String out_trame;
+ char atrame[50], mtrame[50], temp_trame_array[50];
  int angle;
  double minute;
  int lmaxtrame;
- 
+  
  void setup() {
    pinMode(ledPin, OUTPUT);       // Initialize LED pin
    pinMode(rxPin, INPUT);
@@ -34,7 +37,7 @@
    } else {
      linea[conta]=byteGPS;        // If there is serial port data, it is put in the buffer
      conta++;                      
-     //Serial.print(byteGPS, BYTE); 
+     //Serial.write(byteGPS); 
      if (byteGPS==13){            // If the received byte is = to 13, end of transmission
        digitalWrite(ledPin, LOW); 
        cont=0;
@@ -80,38 +83,73 @@
            }
            if(i == 2){
              trame.toCharArray(atrame, 3);
-             Serial.print("#$01$01$");
+             temp_trame += "#$01$01$";
              lmaxtrame = 8;
              while((lmaxtrame - strlen(atrame)) > 0){
-               Serial.print('0');
+               temp_trame += '0';
                lmaxtrame--;
              }
-             Serial.print(atrame);
-             Serial.print("$@\n#$01$02$");
+             temp_trame += atrame;
+             temp_trame += "$";
+             temp_trame.toCharArray(temp_trame_array, 50);
+             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += "$@";
+             out_trame += temp_trame;
+             temp_trame="";
+             
+             temp_trame = "#$01$02$";
              lmaxtrame = 8;
              while((lmaxtrame - strlen(&mtrame[2])) > 0){
-               Serial.print('0');
+               temp_trame += '0';
                lmaxtrame--;
              }
-             Serial.print(&mtrame[2]);
-             Serial.print("$@\n");
+             temp_trame += &mtrame[2];
+             temp_trame += "$";
+             temp_trame.toCharArray(temp_trame_array, 50);
+             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += "$@";
+             out_trame += temp_trame;
+             temp_trame="";
              
-             //Serial.print(checksum);
+             //temp_trame += checksum);
            } else if (i==4) {
              trame.toCharArray(atrame, 3);
-             Serial.print("#$01$03$");
+             temp_trame += "#$01$03$";
              lmaxtrame = 8;
              while((lmaxtrame - strlen(atrame)) > 0){
-               Serial.print('0');
+               temp_trame += '0';
                lmaxtrame--;
              }
-             Serial.print(atrame);
-             Serial.print("$@\n#$01$04$");
+             temp_trame += atrame;
+             temp_trame += "$";
+             temp_trame.toCharArray(temp_trame_array, 50);
+             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += "$@";
+             out_trame += temp_trame;
+             temp_trame="";
+             
+             temp_trame += "#$01$04$";
+             lmaxtrame = 8;
+             
+             
+             while((lmaxtrame - strlen(&mtrame[2])) > 0){
+               temp_trame += '0';
+               lmaxtrame--;
+             }
              minute = atof(&mtrame[2]);
-             Serial.print(&mtrame[2]);
-             Serial.print("$@\n");
+             temp_trame += &mtrame[2];
+             temp_trame += "$";
+             temp_trame.toCharArray(temp_trame_array, 50);
+             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += "$@";
+             out_trame += temp_trame;
+             temp_trame="";
+           
            }
+           
            trame="";
+           Serial.println(out_trame);
+           out_trame="";
          }
 
        }
