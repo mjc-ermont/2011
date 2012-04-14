@@ -6,7 +6,7 @@ int get_checksum(char *trame){
 	
 	for (i = 0 ; i < strlen(trame) ; i++){
 		c = (unsigned char)trame[i];
-		if (c != '$' && c!=) check ^= c;
+		if (c != '$' && c!='*') check ^= c;
 	}
 	
 	return check;
