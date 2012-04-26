@@ -144,6 +144,8 @@ bool Donnees::appendInDB(Line* a){
     query.bindValue(":GyrY", a->GyrY);
     query.bindValue(":GyrZ", a->GyrZ);
     query.exec();
+
+    return true;
 }
 
 QStandardItemModel *Donnees::toFen(){

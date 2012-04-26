@@ -21,10 +21,7 @@ int main(int argc, char *argv[])
     int port = QInputDialog::getInt(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :",1);
     Serial* com = new Serial(port);
 
-    if(!com->init()) {
-        QMessageBox::critical(NULL,"ERREUR VERY GRAVE","ERREUR DANS L'INITIALISATION DE LA COMMUNICATION SERIE.");
-        return -1;
-    }
+    //com->start();
 
     //------------------------------------------------------------------------------
 

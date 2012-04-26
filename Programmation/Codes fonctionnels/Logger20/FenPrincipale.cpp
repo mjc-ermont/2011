@@ -23,10 +23,23 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
         historique->open();
     }
 
+    timerAct->setInterval(1000);
+    connect(timerAct,SIGNAL(timeout()),this,SLOT(requestAct()));
+    connect(com,SIGNAL(dataRead(std::string)),this,SLOT(informationsReceived(std::string)));
 }
 
 FenPrincipale::~FenPrincipale(){
     delete ui;
+}
+
+void FenPrincipale::requestAct() {
+    //com->readData();
+}
+
+void FenPrincipale::informationsReceived(std::string _data) {
+   /* QString data = QString::fromStdString(_data);
+    if(data != "")
+        message(data);*/
 }
 
 void FenPrincipale::append(Line *a){
@@ -38,9 +51,3 @@ void FenPrincipale::message(QString message){
     ui->console->appendPlainText(message);
 }
 
-void FenPrincipale::on_pushButton_clicked()
-{
-    QString data = QString::fromStdString(com->readData());
-    if(data != "")
-        message(data);
-}

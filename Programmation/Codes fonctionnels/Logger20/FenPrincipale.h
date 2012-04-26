@@ -24,12 +24,12 @@ class FenPrincipale : public QMainWindow
         Ui::FenPrincipale *ui;
         Donnees* historique;
         Serial* com;
+        QTimer *timerAct;
 
     public slots:
         void message(QString message);
-
-private slots:
-    void on_pushButton_clicked();
+        void requestAct();
+        void informationsReceived(std::string);
 };
 
 #endif // FENPRINCIPALE_H

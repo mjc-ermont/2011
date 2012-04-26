@@ -58,7 +58,7 @@ bool Serial::init() {
        return 1;
 }
 
-std::string Serial::readData() {
+void Serial::readData() {
     std::string data;
     int size;
 
@@ -69,12 +69,9 @@ std::string Serial::readData() {
     buf[size]='\0';
     data = std::string(buf);
 
-    if(size > 0) {
+ /*   if(size > 0) {
         return data;
-    }
-    else {
-        return "Rien du tout lol";
-    }
+    }*/
 }
 
 
