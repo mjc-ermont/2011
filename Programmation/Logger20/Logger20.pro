@@ -15,15 +15,13 @@ SOURCES += main.cpp\
     Line.cpp \
     FenPrincipale.cpp \
     Donnees.cpp \
-    serial.cpp \
-    LSerie/LSerie.cpp
+    serial.cpp
 
 HEADERS  += \
     Line.h \
     FenPrincipale.h \
     Donnees.h \
-    serial.h \
-    LSerie/LSerie.h
+    serial.h
 
 FORMS    += \
     FenPrincipale.ui

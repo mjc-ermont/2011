@@ -9,6 +9,7 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
     com = _com;
 
+
     ui->setupUi(this);
     ui->tableWindow->setWindowTitle("Historique");
     ui->infosWindow->setWindowTitle("Tableau de bord");
