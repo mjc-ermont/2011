@@ -29,7 +29,7 @@ class FenPrincipale : public QMainWindow
     public slots:
         void message(QString message);
         void requestAct();
-        void informationsReceived(std::string);
+        void informationsReceived(QStringList);
 };
 
 #endif // FENPRINCIPALE_H

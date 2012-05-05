@@ -2,6 +2,7 @@
 #define SERIAL_H
 
 #include <QThread>
+#include <QStringList>
 #include <string>
 #include <windows.h>
 #include <cstdio>
@@ -37,7 +38,7 @@ public slots:
     void readData();
 
 signals:
-    void dataRead(std::string);
+    void dataRead(QStringList);
 
 private:
     int port;
@@ -46,6 +47,8 @@ private:
     COMMTIMEOUTS g_cto;
         /* Configuration du port COM */
     DCB g_dcb;
+
+    std::string skipped_buf;
 
 };
 

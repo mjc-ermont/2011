@@ -2,6 +2,8 @@
 
 Serial::Serial(int _port, QThread * parent) : QThread(parent)
 {
+    skipped_buf = "";
+
     port = _port;
 
     g_hCOM = NULL;
@@ -60,17 +62,26 @@ bool Serial::init() {
 }
 
 void Serial::readData() {
-    std::string data;
     int size;
 
-    char buf[50];
+    char buf[67];
 
-    ReadCOM(buf,49,&size);
+    ReadCOM(buf,66,&size);
 
     buf[size]='\0';
-    data = std::string(buf);
+    QString data = QString::fromStdString(skipped_buf + std::string(buf));
 
-    emit dataRead(data);
+    QStringList trames = data.split('@');
+    int nbTrames = trames.size();
+    if(nbTrames >= 2) {
+        if(trames.last().size() != trames[nbTrames - 2].size()) {
+            skipped_buf = trames.last().toStdString();
+            trames.removeLast();
+
+        }
+    }
+
+    emit dataRead(trames);
 }
 
 

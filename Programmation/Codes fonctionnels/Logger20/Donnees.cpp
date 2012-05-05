@@ -3,10 +3,21 @@
 Donnees::Donnees() : db(QSqlDatabase::addDatabase("QMYSQL")), capteurs(QApplication::applicationDirPath() + "/Config/Capteurs.ini", QSettings::IniFormat){
     fenetre = new QStandardItemModel;
 
+    Line l;
+    QStringList nomCapteurs = l.getCapteursNames();
+    QStringList nomValeurs = l.getValueNames();
 
-    for(int i = 0 ; i < nbCapteurs() ; i++){
-        QString nom = capteurInfo(listCapteurs().at(i)).toString();
-        fenetre->setHorizontalHeaderItem(i, new QStandardItem(nom));
+    int i=0;
+
+    for(int c = 0; c < NB_CAPTEURS;c++) {
+        for(int v = 0; nomValeurs[c*10+v] != "-1"; v++) {
+
+            QString nom = nomCapteurs[c] + " - " + nomValeurs[c*10+v];
+
+            fenetre->setHorizontalHeaderItem(i, new QStandardItem(nom));
+            i++;
+        }
+
     }
 
     //------------------------------------------------------------------
@@ -107,6 +118,14 @@ void Donnees::connect(){
     }
 }
 
+/**
+ *
+ *  @todo Réparer le fonction suivante.
+ *
+ *
+ */
+
+
 bool Donnees::appendInDB(Line* a){
     /*QSqlQuery q;
 
@@ -122,11 +141,12 @@ bool Donnees::appendInDB(Line* a){
     else{
         emit msg("Ça marche pas ! :(");
     }*/
+
     db.open();
     QSqlQuery query(db);
-    query.prepare("INSERT INTO logger (altitude, vith, vitv, tempout, tempin, temphyg, hyg, pressout, pressin, gpsx, gpsy, gpsaltitude, CH4, CO2, GyrX, GyrY, GyrZ) "
-                  "VALUES (:altitude, :vith, :vitv, :tempout, :tempin, :temphyg, :hyg, :pressout, :pressin, :gpsx, :gpsy, :gpsaltitude, :CH4, :CO2, :GyrX, :GyrY, :GyrZ)");
-    query.bindValue(":altitude", a->altitude);
+   // query.prepare("INSERT INTO logger (altitude, vith, vitv, tempout, tempin, temphyg, hyg, pressout, pressin, gpsx, gpsy, gpsaltitude, CH4, CO2, GyrX, GyrY, GyrZ) "
+   //               "VALUES (:altitude, :vith, :vitv, :tempout, :tempin, :temphyg, :hyg, :pressout, :pressin, :gpsx, :gpsy, :gpsaltitude, :CH4, :CO2, :GyrX, :GyrY, :GyrZ)");
+   /* query.bindValue(":altitude", a->altitude);
     query.bindValue(":vith", a->vith);
     query.bindValue(":vitv", a->vitv);
     query.bindValue(":tempout", a->tempout);
@@ -143,7 +163,7 @@ bool Donnees::appendInDB(Line* a){
     query.bindValue(":GyrX", a->GyrX);
     query.bindValue(":GyrY", a->GyrY);
     query.bindValue(":GyrZ", a->GyrZ);
-    query.exec();
+    query.exec();*/
 
     return true;
 }

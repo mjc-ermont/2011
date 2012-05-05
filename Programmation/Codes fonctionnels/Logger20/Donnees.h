@@ -3,7 +3,7 @@
 
 #include <QtGui>
 #include <QtSql>
-#include <Line.h>
+#include "Line.h"
 
 class Donnees : public QObject
 {

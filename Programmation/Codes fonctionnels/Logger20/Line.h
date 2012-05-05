@@ -3,6 +3,8 @@
 
 #include <QtGui>
 
+#define NB_CAPTEURS 6
+
 class Line : public QObject
 {
     Q_OBJECT
@@ -11,38 +13,27 @@ class Line : public QObject
         explicit Line(QObject *parent = 0);
         QList<QStandardItem *> toList() const;
 
-    signals:
+        QString addData(QString trame);
 
+        bool checkComplete();
+        void clear();
+
+        QStringList getCapteursNames() { return names ;}
+        QStringList getValueNames();
+
+    signals:
+        void complete();
     public slots:
 
     private:
-        QDateTime time;
+        QDateTime heure;
 
-    public:
-        double altitude;
-
-        double vith;
-        double vitv;
-
-        double tempout;
-        double tempin;
-
-        double temphyg;
-        double hyg;
-
-        double pressout;
-        double pressin;
-
-        double gpsx;
-        double gpsy;
-        double gpsaltitude;
-
-        double CH4;
-        double CO2;
-
-        double GyrX;
-        double GyrY;
-        double GyrZ;
+        QVector<QPair<QString, double> > content;
+        QStringList names;
+        /* Index vecteur = index capteur * 10 + index valeur
+         * QString = nom capteur
+         * double = valeur capteur
+         */
 };
 
 #endif // LINE_H
