@@ -1,6 +1,6 @@
 #include "serial.h"
 
-Serial::Serial(int _port)
+Serial::Serial(int _port, QThread * parent) : QThread(parent)
 {
     port = _port;
 
@@ -51,11 +51,12 @@ Serial::~Serial() {
     CloseCOM();
 }
 
+void Serial::run() {
+    init();
+}
+
 bool Serial::init() {
-   if( !OpenCOM(port) )
-       return 0;
-   else
-       return 1;
+   return OpenCOM(port);
 }
 
 void Serial::readData() {
@@ -69,9 +70,7 @@ void Serial::readData() {
     buf[size]='\0';
     data = std::string(buf);
 
- /*   if(size > 0) {
-        return data;
-    }*/
+    emit dataRead(data);
 }
 
 

@@ -1,12 +1,13 @@
 #ifndef SERIAL_H
 #define SERIAL_H
 
+#include <QThread>
 #include <string>
 #include <windows.h>
 #include <cstdio>
 #include <cstdlib>
 #include <conio.h>
-#include <QThread>
+#include <QDebug>
 
 #define BAUD 9600
 #define RX_SIZE 4096 /* taille tampon d'entrée */
@@ -18,8 +19,10 @@ class Serial : public QThread
     Q_OBJECT
 
 public:
-    Serial(int _port=1);
+    Serial(int _port=1,QThread * parent = 0);
     ~Serial();
+    void run();
+    bool init();
 
 
 protected:
@@ -30,8 +33,6 @@ protected:
 
 
 public slots:
-    void run();
-    bool init();
 
     void readData();
 

@@ -1,5 +1,7 @@
 #include <QtGui>
 #include <QInputDialog>
+#include <QDebug>
+
 #include "FenPrincipale.h"
 #include "Line.h"
 #include "serial.h"
@@ -17,11 +19,18 @@ int main(int argc, char *argv[])
 
     //------------------------------------------------------------------------------
 
+    qDebug() << "Test " ;
 
     int port = QInputDialog::getInt(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :",1);
+
+
+
     Serial* com = new Serial(port);
 
-    //com->start();
+
+    com->start();
+
+    qDebug() << "Test 4" ;
 
     //------------------------------------------------------------------------------
 

@@ -23,9 +23,13 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
         historique->open();
     }
 
-    timerAct->setInterval(1000);
+    timerAct = new QTimer();
     connect(timerAct,SIGNAL(timeout()),this,SLOT(requestAct()));
+
+    timerAct->start(5000);
+
     connect(com,SIGNAL(dataRead(std::string)),this,SLOT(informationsReceived(std::string)));
+    requestAct();
 }
 
 FenPrincipale::~FenPrincipale(){
@@ -33,13 +37,16 @@ FenPrincipale::~FenPrincipale(){
 }
 
 void FenPrincipale::requestAct() {
-    //com->readData();
+    qDebug() << "Da goud ?";
+    com->readData();
 }
 
 void FenPrincipale::informationsReceived(std::string _data) {
-   /* QString data = QString::fromStdString(_data);
+    QString data = QString::fromStdString(_data);
     if(data != "")
-        message(data);*/
+        message(data);
+
+    qDebug() << "Da goud :)";
 }
 
 void FenPrincipale::append(Line *a){

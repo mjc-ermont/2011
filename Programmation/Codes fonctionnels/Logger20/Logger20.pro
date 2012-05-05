@@ -17,8 +17,7 @@ SOURCES += main.cpp\
     Donnees.cpp \
     serial.cpp
 
-HEADERS  += \
-    Line.h \
+HEADERS  += Line.h \
     FenPrincipale.h \
     Donnees.h \
     serial.h
