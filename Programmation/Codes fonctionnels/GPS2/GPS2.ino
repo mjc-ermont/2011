@@ -92,7 +92,7 @@
              temp_trame += atrame;
              temp_trame += "$";
              temp_trame.toCharArray(temp_trame_array, 50);
-             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += String(get_checksum(temp_trame_array), HEX);
              temp_trame += "@\n";
              out_trame += temp_trame;
              temp_trame="";
@@ -106,7 +106,7 @@
              temp_trame += &mtrame[2];
              temp_trame += "$";
              temp_trame.toCharArray(temp_trame_array, 50);
-             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += String(get_checksum(temp_trame_array), HEX);
              temp_trame += "@\n";
              out_trame += temp_trame;
              temp_trame="";
@@ -122,7 +122,7 @@
              temp_trame += atrame;
              temp_trame += "$";
              temp_trame.toCharArray(temp_trame_array, 50);
-             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += String(get_checksum(temp_trame_array), HEX);
              temp_trame += "@\n";
              out_trame += temp_trame;
              temp_trame="";
@@ -139,7 +139,7 @@
              temp_trame += &mtrame[2];
              temp_trame += "$";
              temp_trame.toCharArray(temp_trame_array, 50);
-             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += String(get_checksum(temp_trame_array), HEX);
              temp_trame += "@\n";
              out_trame += temp_trame;
              temp_trame="";
@@ -154,7 +154,7 @@
              temp_trame += trame;
              temp_trame += "$";
              temp_trame.toCharArray(temp_trame_array, 50);
-             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += String(get_checksum(temp_trame_array), HEX);
              temp_trame += "@\n";
              out_trame += temp_trame;
              temp_trame="";
@@ -168,7 +168,7 @@
              temp_trame += trame;
              temp_trame += "$";
              temp_trame.toCharArray(temp_trame_array, 50);
-             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += String(get_checksum(temp_trame_array), HEX);
              temp_trame += "@\n";
              out_trame += temp_trame;
              temp_trame="";
@@ -256,7 +256,7 @@
              temp_trame += trame;
              temp_trame += "$";
              temp_trame.toCharArray(temp_trame_array, 50);
-             temp_trame += get_checksum(temp_trame_array);
+             temp_trame += String(get_checksum(temp_trame_array), HEX);
              temp_trame += "@\n";
              out_trame += temp_trame;
              temp_trame="";
