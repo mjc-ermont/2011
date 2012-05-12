@@ -1,5 +1,4 @@
  #include <string.h>
- #include <ctype.h>
  #include "trame.h"
  
  int byteGPS=-1;
