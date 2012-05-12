@@ -35,8 +35,8 @@ Donnees::~Donnees(){
 void Donnees::appendLine(Line* a){
     fenetre->appendRow(a->toList());
 
-    appendInFile();
-    appendInDB(a);
+ //   appendInFile();
+  //  appendInDB(a);
 }
 
 bool Donnees::appendInFile(){

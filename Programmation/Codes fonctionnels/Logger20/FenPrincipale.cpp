@@ -7,6 +7,8 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
     //------------------------------------------------------------------------------------------------------
 
+
+
     com = _com;
 
 
@@ -18,6 +20,8 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
     ui->table->setModel(historique->toFen());
 
     historique->connect();
+
+    tableauBord = new BoardingTable((QGridLayout*)ui->container);
 
     if(QFile::exists(QApplication::applicationDirPath() + "/save.log")){
         historique->open();
@@ -43,10 +47,15 @@ void FenPrincipale::requestAct() {
 }
 
 void FenPrincipale::informationsReceived(QStringList trames) {
-    for(int i=0;i<trames.size();i++) {
-        message(trames[i]);
-        curLine.addData(trames[i]);
+    if(trames.size() > 0) {
+        for(int i=0;i<trames.size();i++) {
+            message(trames[i]);
+            curLine.addData(trames[i]);
 
+        }
+
+        historique->appendLine(&curLine);
+        curLine.clear();
     }
 }
 

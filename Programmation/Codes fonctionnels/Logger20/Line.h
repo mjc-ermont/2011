@@ -22,7 +22,7 @@ class Line : public QObject
         QStringList getValueNames();
 
     protected:
-        int get_checksum(const char *trame);
+        QString get_checksum(const char *trame);
 
     signals:
         void complete();

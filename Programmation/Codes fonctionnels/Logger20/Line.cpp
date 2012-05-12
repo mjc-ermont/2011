@@ -138,16 +138,18 @@ QList<QStandardItem *> Line::toList() const{
     return prep;
 }
 
-int Line::get_checksum(const char *trame) {
-    int check;
+QString Line::get_checksum(const char *trame) {
+    unsigned int check, i;
     int c;
+    char buffer[17];
 
-    for (unsigned int i = 0 ; i < strlen(trame) ; i++){
-        c = (unsigned char)trame[i];
-        if (c != '$' && c!='#') check ^= c;
+    for (i = 0 ; i < strlen(trame) ; i++){
+            c = (unsigned char)trame[i];
+            if (c != '$' && c!='#') check ^= c;
     }
 
-    return check;
+    itoa(check, buffer, 10);
+    return QString(buffer);
 }
 
 QString Line::addData(QString trame) {
@@ -166,9 +168,9 @@ QString Line::addData(QString trame) {
         return "Ya un bug lol.";
 
     QString firstPart = elements[0] + "$" + elements[1] + "$" + elements[2] + "$" + elements[3] + "$";
-    int checkSum = get_checksum(firstPart.toStdString().c_str());
+    QString checkSum = get_checksum(firstPart.toStdString().c_str());
     qDebug() << "CS: " << checkSum;
-    if(checkSum == elements[4].toInt()) {
+    if(checkSum == elements[4]) {
         int numCapteur = elements[1].toInt();
         double valeur = elements[3].toDouble();
         int numValeur = elements[2].toInt();
@@ -182,8 +184,6 @@ QString Line::addData(QString trame) {
 }
 
 bool Line::checkComplete() {
-
-
     for(int c=0;c<NB_CAPTEURS;c++) {
         for(int v=0;v < 10;v++) {
             if((content[c*10+v].first != "-1") && content[c*10+v].second == -1)
