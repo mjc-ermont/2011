@@ -1,13 +1,16 @@
 #include <string.h>
-
-int get_checksum(char *trame){
-	int check, i;
-	int c; 
+#include <stdlib.h>
+ 
+char *get_checksum(char *trame){
+	unsigned int check, i;
+	int c;
+        char buffer[17];
 	
 	for (i = 0 ; i < strlen(trame) ; i++){
 		c = (unsigned char)trame[i];
-		if (c != '$' && c!='*') check ^= c;
+		if (c != '$' && c!='#') check ^= c;
 	}
 	
-	return check;
+	itoa(check, buffer, 10);
+        return buffer;
 }
