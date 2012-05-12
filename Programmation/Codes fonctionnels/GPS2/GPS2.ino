@@ -84,7 +84,7 @@
            }
            if(i == 2){
              trame.toCharArray(atrame, 3);
-             temp_trame += "#$01$01$";
+             temp_trame += "#$00$00$";
              lmaxtrame = 8;
              while((lmaxtrame - strlen(atrame)) > 0){
                temp_trame += '0';
@@ -98,7 +98,7 @@
              out_trame += temp_trame;
              temp_trame="";
              
-             temp_trame = "#$01$02$";
+             temp_trame = "#$00$02$";
              lmaxtrame = 8;
              while((lmaxtrame - strlen(&mtrame[2])) > 0){
                temp_trame += '0';
@@ -114,7 +114,7 @@
              
            } else if (i==4) {
              trame.toCharArray(atrame, 3);
-             temp_trame += "#$01$03$";
+             temp_trame += "#$00$03$";
              lmaxtrame = 8;
              while((lmaxtrame - strlen(atrame)) > 0){
                temp_trame += '0';
@@ -128,7 +128,7 @@
              out_trame += temp_trame;
              temp_trame="";
              
-             temp_trame += "#$01$04$";
+             temp_trame += "#$00$04$";
              lmaxtrame = 8;
              
              
@@ -146,7 +146,7 @@
              temp_trame="";
            
            } else if (i == 6){
-             temp_trame = "#$01$05$";
+             temp_trame = "#$00$05$";
              lmaxtrame = 8;
              while((lmaxtrame - trame.length()) > 0){
                temp_trame += '0';
@@ -160,7 +160,7 @@
              out_trame += temp_trame;
              temp_trame="";
            } else if (i == 0){
-             temp_trame = "#$01$06$";
+             temp_trame = "#$00$06$";
              lmaxtrame = 8;
              while((lmaxtrame - trame.length()) > 0){
                temp_trame += '0';
@@ -248,7 +248,7 @@
              atrame[i] = 0;
            }
            if (i == 8){
-             temp_trame = "#$01$07$";
+             temp_trame = "#$00$07$";
              lmaxtrame = 8;
              while((lmaxtrame - trame.length()) > 0){
                temp_trame += '0';
