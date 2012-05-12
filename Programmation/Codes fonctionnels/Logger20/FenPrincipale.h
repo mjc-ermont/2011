@@ -25,6 +25,7 @@ class FenPrincipale : public QMainWindow
         Donnees* historique;
         Serial* com;
         QTimer *timerAct;
+        Line curLine;
 
     public slots:
         void message(QString message);

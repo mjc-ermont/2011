@@ -39,13 +39,15 @@ FenPrincipale::~FenPrincipale(){
 void FenPrincipale::requestAct() {
     qDebug() << "Da goud ?";
     com->readData();
+
 }
 
 void FenPrincipale::informationsReceived(QStringList trames) {
     for(int i=0;i<trames.size();i++) {
         message(trames[i]);
-    }
+        curLine.addData(trames[i]);
 
+    }
 }
 
 void FenPrincipale::append(Line *a){
