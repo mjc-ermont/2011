@@ -11,22 +11,28 @@ Line::Line(QObject *parent) : QObject(parent){
 
             switch(c) {
             case 0: // GPS
-                names.push_back("GPS");
+                capteurNames.push_back("GPS");
                 switch(v) {
-                case 0: // Altitude
-                    value.first = "Altitude";
+                case 0: // Pos X
+                    value.first = "Latitude - Angle";
                     break;
-                case 1: // Pos X
-                    value.first = "Position - X";
+                case 1: // Pos Y
+                    value.first = "Latitude - Minute";
                     break;
-                case 2: // Pos Y
-                    value.first = "Position - Y";
+                case 2:
+                    value.first = "Longitude - Angle";
                     break;
                 case 3:
-                    value.first = "Vitesse Horizontale";
+                    value.first = "Longitude - Minute";
                     break;
                 case 4:
-                    value.first = "Vitesse verticale";
+                    value.first = "Vitesse (Knots)";
+                    break;
+                case 5:
+                    value.first = "Heure";
+                    break;
+                case 6: // Altitude
+                    value.first = "Altitude (m)";
                     break;
 
                 }
@@ -34,7 +40,7 @@ Line::Line(QObject *parent) : QObject(parent){
                 break;
 
             case 1: // Temperatures
-                names.push_back("Température");
+                capteurNames.push_back("Température");
                 switch(v) {
                 case 0: // Exterieur
                     value.first = "Extérieure";
@@ -47,7 +53,7 @@ Line::Line(QObject *parent) : QObject(parent){
                 break;
 
             case 2: // Gyroscope
-                names.push_back("Gyroscope");
+                capteurNames.push_back("Gyroscope");
                 switch(v) {
                 case 0: // X
                     value.first = "X";
@@ -63,7 +69,7 @@ Line::Line(QObject *parent) : QObject(parent){
                 break;
 
             case 3: // Gaz
-                names.push_back("Gaz");
+                capteurNames.push_back("Gaz");
                 switch(v) {
                 case 0: // CH4
                     value.first = "CH4";
@@ -76,7 +82,7 @@ Line::Line(QObject *parent) : QObject(parent){
                 break;
 
             case 4: // Pressions
-                names.push_back("Pression");
+                capteurNames.push_back("Pression");
                 switch(v) {
                 case 0: // Exterieur
                     value.first = "Extérieur";
@@ -88,7 +94,7 @@ Line::Line(QObject *parent) : QObject(parent){
                 }
                 break;
             case 5:
-                names.push_back("Hygrométrie");
+                capteurNames.push_back("Hygrométrie");
                 switch(v) {
                 case 0: // Exterieur
                     value.first = "Hygromètre";
@@ -100,6 +106,8 @@ Line::Line(QObject *parent) : QObject(parent){
             content.push_back(value);
         }
     }
+
+    capteurNames.removeDuplicates();
 }
 
 QStringList Line::getValueNames() {
@@ -130,16 +138,52 @@ QList<QStandardItem *> Line::toList() const{
     return prep;
 }
 
+QString Line::get_checksum(const char *trame) {
+    unsigned int check, i;
+    int c;
+    char buffer[17];
+
+    for (i = 0 ; i < strlen(trame) ; i++){
+            c = (unsigned char)trame[i];
+            if (c != '$' && c!='#') check ^= c;
+    }
+
+    itoa(check, buffer, 10);
+    return QString(buffer);
+}
+
 QString Line::addData(QString trame) {
     QString erreur = "OK";
 
+    qDebug() << "La trame: " << trame;
+
+
+    QStringList elements = trame.split("$");
+
+    for(int i=0;i < elements.size();i++) {
+        qDebug() << "[" << i << "] " << elements[i];
+    }
+
+    if(elements.size() != 5)
+        return "Ya un bug lol.";
+
+    QString firstPart = elements[0] + "$" + elements[1] + "$" + elements[2] + "$" + elements[3] + "$";
+    QString checkSum = get_checksum(firstPart.toStdString().c_str());
+    qDebug() << "CS: " << checkSum;
+    if(checkSum == elements[4]) {
+        int numCapteur = elements[1].toInt();
+        double valeur = elements[3].toDouble();
+        int numValeur = elements[2].toInt();
+
+        content[numCapteur*10+numValeur].second = valeur;
+    } else {
+        erreur = "Mauvais checksum.";
+    }
 
     return erreur;
 }
 
 bool Line::checkComplete() {
-
-
     for(int c=0;c<NB_CAPTEURS;c++) {
         for(int v=0;v < 10;v++) {
             if((content[c*10+v].first != "-1") && content[c*10+v].second == -1)

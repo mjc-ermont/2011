@@ -11,7 +11,7 @@ Donnees::Donnees() : db(QSqlDatabase::addDatabase("QMYSQL")), capteurs(QApplicat
 
     for(int c = 0; c < NB_CAPTEURS;c++) {
         for(int v = 0; nomValeurs[c*10+v] != "-1"; v++) {
-
+            qDebug() << "Capteur n°" << c << " : " << nomCapteurs[c] << " || Valeur n° " << v << " : " << nomValeurs[c*10+v];
             QString nom = nomCapteurs[c] + " - " + nomValeurs[c*10+v];
 
             fenetre->setHorizontalHeaderItem(i, new QStandardItem(nom));
@@ -35,8 +35,8 @@ Donnees::~Donnees(){
 void Donnees::appendLine(Line* a){
     fenetre->appendRow(a->toList());
 
-    appendInFile();
-    appendInDB(a);
+ //   appendInFile();
+  //  appendInDB(a);
 }
 
 bool Donnees::appendInFile(){
