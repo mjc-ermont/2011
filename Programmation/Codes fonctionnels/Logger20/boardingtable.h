@@ -3,6 +3,7 @@
 
 #include <QGridLayout>
 #include "Line.h"
+#include "defines.h"
 
 class BoardingTable
 {

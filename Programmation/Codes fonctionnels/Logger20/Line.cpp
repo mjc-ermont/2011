@@ -124,8 +124,31 @@ QList<QStandardItem *> Line::toList() const{
     for(int c=0;c<NB_CAPTEURS;c++) {
         for(int v=0;v < 10;v++) {
             if(content[c*10+v].first != "-1") {
-                prep << new QStandardItem(QString::number(content[c*10+v].second));
+                #ifdef DEBUG
+                    prep << new QStandardItem(QString::number(rand()%((rand()%100)+1)+10));
+                #else
+                    prep << new QStandardItem(QString::number(content[c*10+v].second));
+                #endif
             }
+        }
+    }
+
+    return prep;
+}
+
+QList<QStandardItem *> Line::toList(int numCapteur) const{
+    QList<QStandardItem *> prep;
+
+    heure.currentDateTime();
+    prep << new QStandardItem(heure.toString("dd/MM/yyyy-hh:mm:ss"));
+
+    for(int v=0;v < 10;v++) {
+        if(content[numCapteur*10+v].first != "-1") {
+            #ifdef DEBUG
+                prep << new QStandardItem(QString::number(rand()%((rand()%100)+1)+10));
+            #else
+                prep << new QStandardItem(QString::number(content[numCapteur*10+v].second));
+            #endif
         }
     }
 

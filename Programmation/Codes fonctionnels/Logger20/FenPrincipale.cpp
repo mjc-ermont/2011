@@ -13,7 +13,16 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
 
     ui->setupUi(this);
-    ui->table->setModel(historique->toFen());
+
+
+    for(int i=0;i<NB_CAPTEURS ;i++) {
+        QTableView *t = new QTableView;
+        tableauxHist.append(t);
+
+        ui->tab_historique->addTab(t,curLine.getCapteursNames()[i]);
+
+
+    }
 
     historique->connect();
 
@@ -57,6 +66,10 @@ void FenPrincipale::informationsReceived(QStringList trames) {
         historique->appendLine(&curLine);
         curLine.clear();
     }
+
+    #ifdef DEBUG
+        historique->appendLine(new Line);
+    #endif
 }
 
 void FenPrincipale::append(Line *a){

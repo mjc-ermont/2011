@@ -65,22 +65,25 @@ void Serial::readData() {
     int size;
 
     char buf[67];
+    QStringList trames;
 
-    ReadCOM(buf,66,&size);
+    #ifndef DEBUG
 
-    buf[size]='\0';
-    QString data = QString::fromStdString(skipped_buf + std::string(buf));
+        ReadCOM(buf,66,&size);
 
-    QStringList trames = data.split('@');
-    int nbTrames = trames.size();
-    if(nbTrames >= 2) {
-        if(trames.last().size() != trames[nbTrames - 2].size()) {
-            skipped_buf = trames.last().toStdString();
-            trames.removeLast();
+        buf[size]='\0';
+        QString data = QString::fromStdString(skipped_buf + std::string(buf));
 
+        trames = data.split('@');
+        int nbTrames = trames.size();
+        if(nbTrames >= 2) {
+            if(trames.last().size() != trames[nbTrames - 2].size()) {
+                skipped_buf = trames.last().toStdString();
+                trames.removeLast();
+
+            }
         }
-    }
-
+    #endif
     emit dataRead(trames);
 }
 
