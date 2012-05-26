@@ -53,16 +53,10 @@ Line::Line(QObject *parent) : QObject(parent){
                 break;
 
             case 2: // Gyroscope
-                capteurNames.push_back("Gyroscope");
+                capteurNames.push_back("Accéléromètre");
                 switch(v) {
                 case 0: // X
-                    value.first = "X";
-                    break;
-                case 1: // Y
-                    value.first = "Y";
-                    break;
-                case 2: // Z
-                    value.first = "Z";
+                    value.first = "Moyenne";
                     break;
 
                 }

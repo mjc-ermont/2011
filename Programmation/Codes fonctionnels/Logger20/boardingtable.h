@@ -14,7 +14,8 @@ public:
 
 private:
     QGridLayout *m_container;
-    QVector<QGroupBox *> capteurs;
+    QVector<QGridLayout *> capteurs_layouts;
+    QVector<QLCDNumber *> valeurs;
 };
 
 #endif // BOARDINGTABLE_H

@@ -21,6 +21,9 @@ class FenPrincipale : public QMainWindow
 
         void append(Line *a);
 
+protected:
+        void reinit_b();
+
     private:
         Ui::FenPrincipale *ui;
         Donnees* historique;
@@ -33,6 +36,13 @@ class FenPrincipale : public QMainWindow
         void message(QString message);
         void requestAct();
         void informationsReceived(QStringList);
+
+private slots:
+    void on_b_param_clicked();
+    void on_b_table_clicked();
+    void on_b_tb_clicked();
+    void on_b_console_clicked();
+    void on_actionQuitter_triggered();
 };
 
 #endif // FENPRINCIPALE_H
