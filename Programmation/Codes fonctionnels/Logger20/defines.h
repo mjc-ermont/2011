@@ -11,6 +11,8 @@
 
 #define NB_CAPTEURS 6
 
+#define UPDATE_TIME 3000
+
 
 // A enlever quand on utilise de vraies trames.
 #define DEBUG

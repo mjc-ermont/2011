@@ -38,7 +38,7 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
     timerAct = new QTimer();
     connect(timerAct,SIGNAL(timeout()),this,SLOT(requestAct()));
 
-    timerAct->start(5000);
+    timerAct->start(UPDATE_TIME);
 
     actTemps = new QTimer();
     connect(actTemps,SIGNAL(timeout()),this,SLOT(syncTime()));
@@ -72,9 +72,9 @@ void FenPrincipale::syncTime() {
         QPalette palette = ui->lcd_sec->palette();
         palette.setColor(QPalette::Normal, QPalette::Foreground, Qt::red);
         ui->lcd_sec->setPalette(palette);
-    } else if((s>=42)&&(s<=50)) {
+    } else if((s>=42)&&(s<=45)) {
         s = 42;
-    }else if(s == 51) {
+    }else if(s == 46) {
         ui->lcd_sec->setPalette(ui->lcd_hour->palette());
     }
 
@@ -102,11 +102,15 @@ void FenPrincipale::informationsReceived(QStringList trames) {
 
 
         historique->appendLine(&curLine);
+        tableauBord->update(&curLine);
         curLine.clear();
     }
 
     #ifdef DEBUG
-        historique->appendLine(new Line);
+        Line *l = new Line;
+        l->randUpdate();
+        historique->appendLine(l);
+        tableauBord->update(l);
     #endif
 }
 

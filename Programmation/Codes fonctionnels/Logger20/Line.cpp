@@ -120,11 +120,7 @@ QList<QStandardItem *> Line::toList(int numCapteur) const{
 
     for(int v=0;v < 10;v++) {
         if(content[numCapteur*10+v].first != "-1") {
-            #ifdef DEBUG
-                prep << new QStandardItem(QString::number(rand()%((rand()%100)+1)+10));
-            #else
-                prep << new QStandardItem(QString::number(content[numCapteur*10+v].second));
-            #endif
+            prep << new QStandardItem(QString::number(content[numCapteur*10+v].second));
         }
     }
 
@@ -191,6 +187,30 @@ void Line::clear(){
     for(int c=0;c<NB_CAPTEURS;c++) {
         for(int v=0;v < 10;v++) {
             content[c*10 + v].second = -1;
+        }
+    }
+}
+
+QVector<double> Line::getRawValues() {
+    QVector<double> values;
+
+    for(int c=0;c < NB_CAPTEURS;c++) {
+        for(int v=0;v < 10;v++) {
+            if(content[c*10+v].first != "-1") {
+                values.append(content[c*10+v].second);
+            }
+        }
+    }
+
+    return values;
+}
+
+void Line::randUpdate() {
+    for(int c=0;c < NB_CAPTEURS;c++) {
+        for(int v=0;v < 10;v++) {
+            if(content[c*10+v].first != "-1") {
+                content[c*10+v].second = (rand()%((rand()%1000)+1))/10.0;
+            }
         }
     }
 }

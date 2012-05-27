@@ -20,6 +20,10 @@ class Line : public QObject
         QStringList getCapteursNames() { return capteurNames ;}
         QStringList getValueNames();
 
+        QVector<double> getRawValues();
+
+        void randUpdate();
+
     protected:
         QString get_checksum(const char *trame);
 

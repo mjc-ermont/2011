@@ -139,7 +139,7 @@
       <item row="1" column="1" colspan="7">
        <widget class="QStackedWidget" name="stack">
         <property name="currentIndex">
-         <number>1</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="tabl_bord">
          <layout class="QVBoxLayout" name="verticalLayout_2">

@@ -39,20 +39,16 @@ void BoardingTable::init() {
                 valeurs.append(lcd);
                 capteurs_layouts[c]->addWidget(lcd,v,1);
 
-            } else {
-                valeurs.append(NULL);
             }
         }
     }
 }
-/*
- 0 => 0
- 1 => 0
- 2 => 1
- 3 => 1
- 4 => 2
- 5 => 2
 
+void BoardingTable::update(Line* l) {
+    QVector<double> values = l->getRawValues();
 
+    for(int i=0;i<valeurs.size();i++) {
 
-   */
+        valeurs[i]->display(values[i]);
+    }
+}

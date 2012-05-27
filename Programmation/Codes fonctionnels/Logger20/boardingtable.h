@@ -12,6 +12,7 @@ public:
     ~BoardingTable();
 
     void init();
+    void update(Line *l);
 
 private:
     QGridLayout *m_container;
