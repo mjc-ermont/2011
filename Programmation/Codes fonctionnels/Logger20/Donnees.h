@@ -17,36 +17,18 @@ class Donnees : public QObject
 
         //-----------------------------
 
-        bool appendInFile();
-        bool appendInDB(Line* a);
+       // bool appendInFile();
         void open();
 
-        //-----------------------------
-
-        void connect();
-
-        //-----------------------------
-
-        int nbCapteurs() const;
-        QStringList listCapteurs() const;
-        QVariant capteurInfo(QString capteur, QString type = "display");
-
-        //-----------------------------
-
-        QStandardItemModel *toFen();
+        QStandardItemModel* toTable(int numCapteur);
 
     signals:
         void msg(QString message);
 
     private:
-        QSqlDatabase db;
-        QStandardItemModel *fenetre;
-        QSettings capteurs;
+        QVector<Line *> data;
+        QVector<QStandardItemModel *> tables;
 
-        //-----------------------------
-
-        int colonnes() const;
-        int lignes() const;
 };
 
 #endif // DONNEES_H

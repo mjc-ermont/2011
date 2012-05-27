@@ -3,36 +3,37 @@
 
 FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historique(new Donnees()){
 
+
+    qDebug() << "Test 1";
     connect(historique, SIGNAL(msg(QString)), this, SLOT(message(QString)));
 
     //------------------------------------------------------------------------------------------------------
 
 
+    qDebug() << "Test 2";
 
     com = _com;
 
 
+    qDebug() << "Test 3";
     ui->setupUi(this);
 
+    ui->stack->setCurrentIndex(0);
 
     for(int i=0;i<NB_CAPTEURS ;i++) {
         QTableView *t = new QTableView;
         tableauxHist.append(t);
 
         ui->tab_historique->addTab(t,curLine.getCapteursNames()[i]);
-
-
+        t->setModel(historique->toTable(i));
     }
 
-    historique->connect();
-
-    tableauBord = new BoardingTable(ui->container);
 
     if(QFile::exists(QApplication::applicationDirPath() + "/save.log")){
         historique->open();
     }
 
-    ui->stack->setCurrentIndex(0);
+    tableauBord = new BoardingTable(ui->container);
 
     timerAct = new QTimer();
     connect(timerAct,SIGNAL(timeout()),this,SLOT(requestAct()));
