@@ -40,6 +40,13 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
     timerAct->start(5000);
 
+    actTemps = new QTimer();
+    connect(actTemps,SIGNAL(timeout()),this,SLOT(syncTime()));
+
+    actTemps->start(1000);
+
+
+
     connect(com,SIGNAL(dataRead(QStringList)),this,SLOT(informationsReceived(QStringList)));
     requestAct();
 }
@@ -53,6 +60,36 @@ void FenPrincipale::requestAct() {
     if(ui->get_infos->isChecked())
         com->readData();
 
+}
+
+void FenPrincipale::syncTime() {
+    int h,m,s;
+    h = QTime::currentTime().hour();
+    m = QTime::currentTime().minute();
+    s = QTime::currentTime().second();
+
+    if(s==42) {
+        QPalette palette = ui->lcd_sec->palette();
+        palette.setColor(QPalette::Normal, QPalette::Foreground, Qt::red);
+        ui->lcd_sec->setPalette(palette);
+    } else if((s>=42)&&(s<=50)) {
+        s = 42;
+    }else if(s == 51) {
+        ui->lcd_sec->setPalette(ui->lcd_hour->palette());
+    }
+
+
+    if(m==42) {
+        QPalette palette = ui->lcd_sec->palette();
+        palette.setColor(QPalette::Normal, QPalette::Foreground, Qt::red);
+        ui->lcd_sec->setPalette(palette);
+    } else if(m == 43) {
+        ui->lcd_sec->setPalette(ui->lcd_hour->palette());
+    }
+
+    ui->lcd_hour->display(h);
+    ui->lcd_min->display(m);
+    ui->lcd_sec->display(s);
 }
 
 void FenPrincipale::informationsReceived(QStringList trames) {
