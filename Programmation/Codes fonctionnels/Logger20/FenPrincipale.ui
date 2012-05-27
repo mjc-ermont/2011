@@ -40,7 +40,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,1,0,15">
+        <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,1,1,0,15">
          <property name="spacing">
           <number>1</number>
          </property>
@@ -72,6 +72,19 @@
            </property>
            <property name="flat">
             <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="b_graph">
+           <property name="minimumSize">
+            <size>
+             <width>85</width>
+             <height>65</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Graphiques</string>
            </property>
           </widget>
          </item>
@@ -139,16 +152,16 @@
       <item row="1" column="1" colspan="7">
        <widget class="QStackedWidget" name="stack">
         <property name="currentIndex">
-         <number>3</number>
+         <number>4</number>
         </property>
-        <widget class="QWidget" name="tabl_bord">
+        <widget class="QWidget" name="p_tabl_bord">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <layout class="QGridLayout" name="container"/>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="debug_console">
+        <widget class="QWidget" name="p_debug_console">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QPlainTextEdit" name="console">
@@ -159,14 +172,14 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="historique">
+        <widget class="QWidget" name="p_historique">
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <widget class="QTabWidget" name="tab_historique"/>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="params">
+        <widget class="QWidget" name="p_params">
          <layout class="QGridLayout" name="gridLayout" rowstretch="1,2">
           <item row="1" column="0">
            <widget class="QPushButton" name="pushButton">
@@ -188,6 +201,19 @@
             </property>
             <property name="checked">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="p_graphics">
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QWebView" name="webView">
+            <property name="url">
+             <url>
+              <string>http://www.google.com/webhp?q=utilisation de la librairie Qwt</string>
+             </url>
             </property>
            </widget>
           </item>
@@ -349,6 +375,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

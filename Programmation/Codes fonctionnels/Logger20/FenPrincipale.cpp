@@ -17,6 +17,7 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
     qDebug() << "Test 3";
     ui->setupUi(this);
+    message("[INFO] Core initialized. GUI Loaded.");
 
     ui->stack->setCurrentIndex(0);
 
@@ -33,7 +34,13 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
         historique->open();
     }
 
+    message("[INFO] Loading boarding table...");
+
     tableauBord = new BoardingTable(ui->container);
+    message("[INFO] Loaded !");
+
+
+    message("[INFO] Starting refreshing timers");
 
     timerAct = new QTimer();
     connect(timerAct,SIGNAL(timeout()),this,SLOT(requestAct()));
@@ -45,10 +52,16 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
     actTemps->start(1000);
 
+    message("[INFO] All started !");
+
 
 
     connect(com,SIGNAL(dataRead(QStringList)),this,SLOT(informationsReceived(QStringList)));
     requestAct();
+
+    #ifdef DEBUG
+        message("[WARNING] !! DEBUG MODE ACTIVATED !! SERIAL COMMUNICATIONS ARE NOT ENABLED.");
+    #endif
 }
 
 FenPrincipale::~FenPrincipale(){
@@ -94,8 +107,10 @@ void FenPrincipale::syncTime() {
 
 void FenPrincipale::informationsReceived(QStringList trames) {
     if(trames.size() > 0) {
+        message("[INFO] Informations received.");
+
         for(int i=0;i<trames.size();i++) {
-            message(trames[i]);
+            message("*" + trames[i]);
             curLine.addData(trames[i]);
         }
 
@@ -107,6 +122,7 @@ void FenPrincipale::informationsReceived(QStringList trames) {
     }
 
     #ifdef DEBUG
+        message("[INFAKE] Informations received.");
         Line *l = new Line;
         l->randUpdate();
         historique->appendLine(l);
@@ -119,6 +135,9 @@ void FenPrincipale::append(Line *a){
 }
 
 void FenPrincipale::message(QString message){
+
+    message = QDateTime::currentDateTime().toString("[hh:mm:ss] ") + message;
+
     ui->statusBar->showMessage(message);
     ui->console->appendPlainText(message);
 }
@@ -161,9 +180,19 @@ void FenPrincipale::on_b_param_clicked()
     ui->stack->setCurrentIndex(3);
 }
 
+void FenPrincipale::on_b_graph_clicked()
+{
+    reinit_b();
+    ui->b_graph->setDefault(true);
+
+    ui->stack->setCurrentIndex(4);
+}
+
 void FenPrincipale::reinit_b(){
     ui->b_tb->setDefault(false);
     ui->b_table->setDefault(false);
     ui->b_console->setDefault(false);
     ui->b_param->setDefault(false);
+    ui->b_graph->setDefault(false);
 }
+

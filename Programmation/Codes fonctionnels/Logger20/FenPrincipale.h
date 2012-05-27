@@ -49,6 +49,8 @@ protected:
         void on_b_tb_clicked();
         void on_b_console_clicked();
         void on_actionQuitter_triggered();
+private slots:
+        void on_b_graph_clicked();
 };
 
 #endif // FENPRINCIPALE_H
