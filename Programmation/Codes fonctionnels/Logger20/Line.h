@@ -2,8 +2,7 @@
 #define LINE_H
 
 #include <QtGui>
-
-#define NB_CAPTEURS 6
+#include "defines.h"
 
 class Line : public QObject
 {
@@ -12,6 +11,7 @@ class Line : public QObject
     public:
         explicit Line(QObject *parent = 0);
         QList<QStandardItem *> toList() const;
+        QList<QStandardItem *> toList(int numCapteur) const;
 
         QString addData(QString trame);
 

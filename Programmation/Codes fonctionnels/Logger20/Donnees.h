@@ -4,6 +4,7 @@
 #include <QtGui>
 #include <QtSql>
 #include "Line.h"
+#include "defines.h"
 
 class Donnees : public QObject
 {

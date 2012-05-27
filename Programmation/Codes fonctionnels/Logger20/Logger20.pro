@@ -22,7 +22,8 @@ HEADERS  += Line.h \
     FenPrincipale.h \
     Donnees.h \
     serial.h \
-    boardingtable.h
+    boardingtable.h \
+    defines.h
 
 FORMS    += \
     FenPrincipale.ui

@@ -1,6 +1,7 @@
 #include <QtGui>
 #include <QInputDialog>
 #include <QDebug>
+#include <ctime>
 
 #include "FenPrincipale.h"
 #include "Line.h"
@@ -8,6 +9,8 @@
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
+
     QApplication a(argc, argv);
 
 
@@ -19,7 +22,6 @@ int main(int argc, char *argv[])
 
     //------------------------------------------------------------------------------
 
-    qDebug() << "Test " ;
 
     int port = QInputDialog::getInt(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :",1);
 
@@ -30,11 +32,11 @@ int main(int argc, char *argv[])
 
     com->start();
 
-    qDebug() << "Test 4" ;
 
     //------------------------------------------------------------------------------
 
     FenPrincipale w(com);
+    w.setWindowTitle("Récupérateur des informations reçues par le biais du Kiwi au melon.");
     w.show();
 
     //------------------------------------------------------------------------------

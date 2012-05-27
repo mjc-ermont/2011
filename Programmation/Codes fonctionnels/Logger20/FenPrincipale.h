@@ -1,11 +1,14 @@
 #ifndef FENPRINCIPALE_H
 #define FENPRINCIPALE_H
 
+#define DEBUG // A activer si on n'utilise pas des vraies trames
+
 #include <QtGui>
 #include "Donnees.h"
 #include "Line.h"
 #include "serial.h"
 #include "boardingtable.h"
+#include "defines.h"
 
 namespace Ui {
     class FenPrincipale;
@@ -31,6 +34,8 @@ protected:
         QTimer *timerAct;
         Line curLine;
         BoardingTable* tableauBord;
+
+        QVector<QTableView*> tableauxHist;
 
     public slots:
         void message(QString message);
