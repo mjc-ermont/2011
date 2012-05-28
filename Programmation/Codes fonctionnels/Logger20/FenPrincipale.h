@@ -8,7 +8,9 @@
 #include "Line.h"
 #include "serial.h"
 #include "boardingtable.h"
+#include "graphicview.h"
 #include "defines.h"
+
 
 namespace Ui {
     class FenPrincipale;
@@ -37,6 +39,8 @@ protected:
         BoardingTable* tableauBord;
 
         QVector<QTableView*> tableauxHist;
+        QVector<GraphicView*> graphiques;
+
 
     public slots:
         void message(QString message);
@@ -51,6 +55,8 @@ protected:
         void on_actionQuitter_triggered();
 private slots:
         void on_b_graph_clicked();
+        void on_sel_capteur_currentIndexChanged(int index);
+        void on_add_graph_clicked();
 };
 
 #endif // FENPRINCIPALE_H

@@ -21,12 +21,21 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
     ui->stack->setCurrentIndex(0);
 
+    ui->sel_capteur->addItems(curLine.getCapteursNames());
+    for(int i=0;i<NB_VALEURS_MAX;i++) {
+        QString val_name =curLine.getValueNames()[i];
+        if(val_name != "-1")
+            ui->sel_valeur->addItem(val_name);
+    }
+
+
     for(int i=0;i<NB_CAPTEURS ;i++) {
         QTableView *t = new QTableView;
         tableauxHist.append(t);
 
         ui->tab_historique->addTab(t,curLine.getCapteursNames()[i]);
         t->setModel(historique->toTable(i));
+
     }
 
 
@@ -196,3 +205,21 @@ void FenPrincipale::reinit_b(){
     ui->b_graph->setDefault(false);
 }
 
+
+void FenPrincipale::on_sel_capteur_currentIndexChanged(int index)
+{
+    ui->sel_valeur->clear();
+
+    for(int i=0;i<NB_VALEURS_MAX;i++) {
+        QString val_name =curLine.getValueNames()[NB_VALEURS_MAX*index+i];
+        if(val_name != "-1")
+            ui->sel_valeur->addItem(val_name);
+    }
+}
+
+void FenPrincipale::on_add_graph_clicked()
+{
+    GraphicView* g = new GraphicView();
+    graphiques.append(g);
+    ui->zone_graph->addSubWindow(g)->show();
+}

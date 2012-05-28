@@ -4,11 +4,12 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui webkit
 QT       += sql
 
 TARGET = Logger20
 TEMPLATE = app
+
 
 
 SOURCES += main.cpp\
@@ -16,17 +17,22 @@ SOURCES += main.cpp\
     FenPrincipale.cpp \
     Donnees.cpp \
     serial.cpp \
-    boardingtable.cpp
+    boardingtable.cpp \
+    graphicview.cpp
 
 HEADERS  += Line.h \
     FenPrincipale.h \
     Donnees.h \
     serial.h \
     boardingtable.h \
-    defines.h
+    defines.h \
+    graphicview.h
 
 FORMS    += \
     FenPrincipale.ui
 
-OTHER_FILES += \
-    DefautBDD.sql.zip
+CONFIG += lucas
+
+lucas {
+    LIBS += C:\\QtSDK\\Desktop\\Qt\\4.8.1\\mingw\\lib\\libqwtd.a
+} #Ajouter les différents chemins selon les PC utilisés.

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
-    <height>491</height>
+    <width>763</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -207,15 +207,34 @@
          </layout>
         </widget>
         <widget class="QWidget" name="p_graphics">
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QWebView" name="webView">
-            <property name="url">
-             <url>
-              <string>http://www.google.com/webhp?q=utilisation de la librairie Qwt</string>
-             </url>
+         <layout class="QGridLayout" name="gridLayout_3" rowstretch="7,0">
+          <item row="1" column="0">
+           <widget class="QFrame" name="frame_3">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
             </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QComboBox" name="sel_capteur"/>
+             </item>
+             <item>
+              <widget class="QComboBox" name="sel_valeur"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="add_graph">
+               <property name="text">
+                <string>Ajouter le graphique</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QMdiArea" name="zone_graph"/>
           </item>
          </layout>
         </widget>
@@ -353,7 +372,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>750</width>
+     <width>763</width>
      <height>20</height>
     </rect>
    </property>
@@ -375,13 +394,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

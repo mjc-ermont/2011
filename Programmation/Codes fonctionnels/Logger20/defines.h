@@ -10,6 +10,7 @@
  */
 
 #define NB_CAPTEURS 6
+#define NB_VALEURS_MAX 10
 
 #define UPDATE_TIME 3000
 
