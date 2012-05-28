@@ -70,6 +70,8 @@ FenPrincipale::FenPrincipale(Serial* _com) :  historique(new Donnees()){
     #ifdef DEBUG
         message("[WARNING] !! DEBUG MODE ACTIVATED !! SERIAL COMMUNICATIONS ARE NOT ENABLED.");
     #endif
+
+    h_depart = QTime::currentTime();
 }
 
 FenPrincipale::~FenPrincipale(){

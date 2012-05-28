@@ -4,6 +4,11 @@ GraphicView::GraphicView(Donnees *data, int indexCapteur, int indexValeur, FenPr
     QwtPlot(parent), m_capteur(indexCapteur), m_valeur(indexValeur)
 {
     courbe = new QwtPlotCurve("Courbe");
+  //  courbe->setCurveAttribute(QwtPlotCurve::Fitted, true);
+    courbe->setStyle(QwtPlotCurve::Lines);
+
+    courbe->setPen(QPen(QBrush(Qt::black),5));
+
 
     m_data = data;
     m_parent = parent;
@@ -25,6 +30,14 @@ void GraphicView::majData(Donnees *data) {
 
 void GraphicView::majCurve() {
     calculateCurve();
+
+  /*  QwtSplineCurveFitter* fitter = new QwtSplineCurveFitter;
+
+    fitter->setFitMode(fitter->Auto);
+    fitter->setSplineSize(50);
+
+    courbe->setCurveFitter(fitter);*/
+
     courbe->setRawSamples(xValues.data(),yValues.data(),xValues.size());
     replot();
 }
@@ -36,8 +49,8 @@ void GraphicView::calculateCurve(QTime maxTime) {
     xValues.clear();
     yValues.clear();
 
-    for(int i = index - 1; (i >= 0)/* && (QTime(0,0).secsTo(valeurs[i].first) >=  maxTime.secsTo(QTime::currentTime()))*/; i--) {
-        xValues.append(QTime(0,0).secsTo(valeurs[i].first));
+    for(int i = index - 1; (i >= 0) && (QTime(0,0).secsTo(valeurs[i].first) >=  maxTime.secsTo(QTime::currentTime())); i--) {
+        xValues.append(m_parent->getDepart().secsTo(valeurs[i].first));
         yValues.append(valeurs[i].second);
     }
 }

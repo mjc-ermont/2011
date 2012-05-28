@@ -25,6 +25,8 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
 
         void append(Line *a);
 
+        QTime getDepart() { return h_depart;}
+
 
 protected:
         void reinit_b();
@@ -39,6 +41,8 @@ protected:
 
         QVector<QTableView*> tableauxHist;
         QVector<GraphicView*> graphiques;
+
+        QTime h_depart;
 
 
     public slots:
