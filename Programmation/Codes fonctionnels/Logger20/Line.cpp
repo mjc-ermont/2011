@@ -5,6 +5,8 @@ Line::Line(QObject *parent) : QObject(parent){
 
     for(int c=0;c<NB_CAPTEURS;c++) {
         for(int v=0;v < 10;v++) {
+            h_reception.append(QTime(0,0));
+
             QPair<QString, double> value;
             value.first = "-1";
             value.second = -1;
@@ -164,7 +166,8 @@ QString Line::addData(QString trame) {
         double valeur = elements[3].toDouble();
         int numValeur = elements[2].toInt();
 
-        content[numCapteur*10+numValeur].second = valeur;
+        content[numCapteur*NB_VALEURS_MAX+numValeur].second = valeur;
+        h_reception[numCapteur*NB_VALEURS_MAX + numValeur] = QTime::currentTime();
     } else {
         erreur = "Mauvais checksum.";
     }
@@ -174,8 +177,8 @@ QString Line::addData(QString trame) {
 
 bool Line::checkComplete() {
     for(int c=0;c<NB_CAPTEURS;c++) {
-        for(int v=0;v < 10;v++) {
-            if((content[c*10+v].first != "-1") && content[c*10+v].second == -1)
+        for(int v=0;v < NB_VALEURS_MAX;v++) {
+            if((content[c*NB_VALEURS_MAX+v].first != "-1") && content[c*NB_VALEURS_MAX+v].second == -1)
                 return false;
         }
     }
@@ -185,8 +188,9 @@ bool Line::checkComplete() {
 
 void Line::clear(){
     for(int c=0;c<NB_CAPTEURS;c++) {
-        for(int v=0;v < 10;v++) {
-            content[c*10 + v].second = -1;
+        for(int v=0;v < NB_VALEURS_MAX;v++) {
+            content[c*NB_VALEURS_MAX + v].second = -1;
+            h_reception[c*NB_VALEURS_MAX + v] = QTime(0,0);
         }
     }
 }
@@ -195,10 +199,27 @@ QVector<double> Line::getRawValues() {
     QVector<double> values;
 
     for(int c=0;c < NB_CAPTEURS;c++) {
-        for(int v=0;v < 10;v++) {
-            if(content[c*10+v].first != "-1") {
-                values.append(content[c*10+v].second);
+        for(int v=0;v < NB_VALEURS_MAX;v++) {
+            if(content[c*NB_VALEURS_MAX+v].first != "-1") {
+                values.append(content[c*NB_VALEURS_MAX+v].second);
             }
+        }
+    }
+
+    return values;
+}
+
+
+QVector<QPair<QTime,double> > Line::getValuesWithTime() {
+    QVector<QPair<QTime,double> > values;
+
+    for(int c=0;c < NB_CAPTEURS;c++) {
+        for(int v=0;v < 10;v++) {
+             QPair<QTime,double> tmp;
+             tmp.first = h_reception[c*NB_VALEURS_MAX + v];
+             tmp.second = content[c*NB_VALEURS_MAX+v].second;
+
+             values.append(tmp);
         }
     }
 
@@ -207,9 +228,10 @@ QVector<double> Line::getRawValues() {
 
 void Line::randUpdate() {
     for(int c=0;c < NB_CAPTEURS;c++) {
-        for(int v=0;v < 10;v++) {
-            if(content[c*10+v].first != "-1") {
-                content[c*10+v].second = (rand()%((rand()%1000)+1))/10.0;
+        for(int v=0;v < NB_VALEURS_MAX;v++) {
+            if(content[c*NB_VALEURS_MAX+v].first != "-1") {
+                content[c*NB_VALEURS_MAX+v].second = (rand()%((rand()%1000)+1))/10.0;
+                h_reception[c*NB_VALEURS_MAX + v] = QTime::currentTime();
             }
         }
     }

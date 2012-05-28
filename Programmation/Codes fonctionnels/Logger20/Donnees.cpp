@@ -69,6 +69,7 @@ bool Donnees::appendInFile(){
     return true;
 }
 */
+
 void Donnees::open(){
     QString texte("");
     QString done("");
@@ -109,3 +110,12 @@ void Donnees::open(){
     }
 }
 
+QVector<QPair<QTime, double> > Donnees::getData(int capteur, int valeur) {
+    QVector<QPair<QTime, double> > donnees;
+
+    for(int i=0;i<data.size();i++)
+        donnees.append(data[i]->getValuesWithTime()[capteur*NB_VALEURS_MAX+valeur]);
+
+
+    return donnees;
+}

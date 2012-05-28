@@ -21,6 +21,7 @@ class Donnees : public QObject
         void open();
 
         QStandardItemModel* toTable(int numCapteur);
+        QVector<QPair<QTime, double> > getData(int capteur, int valeur);
 
     signals:
         void msg(QString message);

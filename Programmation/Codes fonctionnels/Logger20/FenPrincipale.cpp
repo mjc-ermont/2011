@@ -1,7 +1,6 @@
 #include "FenPrincipale.h"
-#include "ui_FenPrincipale.h"
 
-FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historique(new Donnees()){
+FenPrincipale::FenPrincipale(Serial* _com) :  historique(new Donnees()){
 
 
     qDebug() << "Test 1";
@@ -16,16 +15,16 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
 
     qDebug() << "Test 3";
-    ui->setupUi(this);
+    setupUi(this);
     message("[INFO] Core initialized. GUI Loaded.");
 
-    ui->stack->setCurrentIndex(0);
+    stack->setCurrentIndex(0);
 
-    ui->sel_capteur->addItems(curLine.getCapteursNames());
+    sel_capteur->addItems(curLine.getCapteursNames());
     for(int i=0;i<NB_VALEURS_MAX;i++) {
         QString val_name =curLine.getValueNames()[i];
         if(val_name != "-1")
-            ui->sel_valeur->addItem(val_name);
+            sel_valeur->addItem(val_name);
     }
 
 
@@ -33,7 +32,7 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
         QTableView *t = new QTableView;
         tableauxHist.append(t);
 
-        ui->tab_historique->addTab(t,curLine.getCapteursNames()[i]);
+        tab_historique->addTab(t,curLine.getCapteursNames()[i]);
         t->setModel(historique->toTable(i));
 
     }
@@ -45,7 +44,7 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 
     message("[INFO] Loading boarding table...");
 
-    tableauBord = new BoardingTable(ui->container);
+    tableauBord = new BoardingTable(container);
     message("[INFO] Loaded !");
 
 
@@ -74,12 +73,12 @@ FenPrincipale::FenPrincipale(Serial* _com) : ui(new Ui::FenPrincipale), historiq
 }
 
 FenPrincipale::~FenPrincipale(){
-    delete ui;
+
 }
 
 void FenPrincipale::requestAct() {
 
-    if(ui->get_infos->isChecked())
+    if(get_infos->isChecked())
         com->readData();
 
 }
@@ -91,27 +90,27 @@ void FenPrincipale::syncTime() {
     s = QTime::currentTime().second();
 
     if(s==42) {
-        QPalette palette = ui->lcd_sec->palette();
+        QPalette palette = lcd_sec->palette();
         palette.setColor(QPalette::Normal, QPalette::Foreground, Qt::red);
-        ui->lcd_sec->setPalette(palette);
+        lcd_sec->setPalette(palette);
     } else if((s>=42)&&(s<=45)) {
         s = 42;
     }else if(s == 46) {
-        ui->lcd_sec->setPalette(ui->lcd_hour->palette());
+        lcd_sec->setPalette(lcd_hour->palette());
     }
 
 
     if(m==42) {
-        QPalette palette = ui->lcd_sec->palette();
+        QPalette palette = lcd_sec->palette();
         palette.setColor(QPalette::Normal, QPalette::Foreground, Qt::red);
-        ui->lcd_sec->setPalette(palette);
+        lcd_sec->setPalette(palette);
     } else if(m == 43) {
-        ui->lcd_sec->setPalette(ui->lcd_hour->palette());
+        lcd_sec->setPalette(lcd_hour->palette());
     }
 
-    ui->lcd_hour->display(h);
-    ui->lcd_min->display(m);
-    ui->lcd_sec->display(s);
+    lcd_hour->display(h);
+    lcd_min->display(m);
+    lcd_sec->display(s);
 }
 
 void FenPrincipale::informationsReceived(QStringList trames) {
@@ -128,6 +127,10 @@ void FenPrincipale::informationsReceived(QStringList trames) {
         historique->appendLine(&curLine);
         tableauBord->update(&curLine);
         curLine.clear();
+
+        for(int i=0;i<graphiques.size();i++) {
+            graphiques[i]->majData(historique);
+        }
     }
 
     #ifdef DEBUG
@@ -136,6 +139,10 @@ void FenPrincipale::informationsReceived(QStringList trames) {
         l->randUpdate();
         historique->appendLine(l);
         tableauBord->update(l);
+
+        for(int i=0;i<graphiques.size();i++) {
+            graphiques[i]->majData(historique);
+        }
     #endif
 }
 
@@ -147,8 +154,8 @@ void FenPrincipale::message(QString message){
 
     message = QDateTime::currentDateTime().toString("[hh:mm:ss] ") + message;
 
-    ui->statusBar->showMessage(message);
-    ui->console->appendPlainText(message);
+    barreStatus->showMessage(message);
+    console->appendPlainText(message);
 }
 
 
@@ -160,66 +167,81 @@ void FenPrincipale::on_actionQuitter_triggered()
 void FenPrincipale::on_b_console_clicked()
 {
     reinit_b();
-    ui->b_console->setDefault(true);
+    b_console->setDefault(true);
 
-    ui->stack->setCurrentIndex(1);
+    stack->setCurrentIndex(1);
 }
 
 void FenPrincipale::on_b_tb_clicked()
 {
     reinit_b();
-    ui->b_tb->setDefault(true);
+    b_tb->setDefault(true);
 
-    ui->stack->setCurrentIndex(0);
+    stack->setCurrentIndex(0);
 }
 
 void FenPrincipale::on_b_table_clicked()
 {
     reinit_b();
-    ui->b_table->setDefault(true);
+    b_table->setDefault(true);
 
-    ui->stack->setCurrentIndex(2);
+    stack->setCurrentIndex(2);
 }
 
 void FenPrincipale::on_b_param_clicked()
 {
     reinit_b();
-    ui->b_param->setDefault(true);
+    b_param->setDefault(true);
 
-    ui->stack->setCurrentIndex(3);
+    stack->setCurrentIndex(3);
 }
 
 void FenPrincipale::on_b_graph_clicked()
 {
     reinit_b();
-    ui->b_graph->setDefault(true);
+    b_graph->setDefault(true);
 
-    ui->stack->setCurrentIndex(4);
+    stack->setCurrentIndex(4);
 }
 
 void FenPrincipale::reinit_b(){
-    ui->b_tb->setDefault(false);
-    ui->b_table->setDefault(false);
-    ui->b_console->setDefault(false);
-    ui->b_param->setDefault(false);
-    ui->b_graph->setDefault(false);
+    b_tb->setDefault(false);
+    b_table->setDefault(false);
+    b_console->setDefault(false);
+    b_param->setDefault(false);
+    b_graph->setDefault(false);
 }
 
 
 void FenPrincipale::on_sel_capteur_currentIndexChanged(int index)
 {
-    ui->sel_valeur->clear();
+    sel_valeur->clear();
 
     for(int i=0;i<NB_VALEURS_MAX;i++) {
         QString val_name =curLine.getValueNames()[NB_VALEURS_MAX*index+i];
         if(val_name != "-1")
-            ui->sel_valeur->addItem(val_name);
+            sel_valeur->addItem(val_name);
     }
 }
 
 void FenPrincipale::on_add_graph_clicked()
 {
-    GraphicView* g = new GraphicView();
+    GraphicView* g = new GraphicView(historique, sel_capteur->currentIndex(), sel_valeur->currentIndex(),this);
     graphiques.append(g);
-    ui->zone_graph->addSubWindow(g)->show();
+
+    QMdiSubWindow *w = zone_graph->addSubWindow(g);
+    w->setGeometry(w->geometry().x(),w->geometry().y(),200,200);
+
+    w->show();
+
+    connect(g,SIGNAL(destroyed()),this,SLOT(graphClosed()));
+}
+
+void FenPrincipale::graphClosed() {
+    GraphicView* g = (GraphicView *)sender();
+    for(int i=0;i<graphiques.size();i++) {
+        if(g == graphiques[i])
+            graphiques.remove(i);
+    }
+
 }

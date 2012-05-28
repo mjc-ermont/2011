@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+DEFINES += QWT_DLL
+
 QT       += core gui webkit
 QT       += sql
 
@@ -34,5 +36,5 @@ FORMS    += \
 CONFIG += lucas
 
 lucas {
-    LIBS += C:\\QtSDK\\Desktop\\Qt\\4.8.1\\mingw\\lib\\libqwtd.a
+    LIBS += C:\QtSDK\Desktop\Qt\4.8.1\mingw\lib\libqwtd.a
 } #Ajouter les différents chemins selon les PC utilisés.

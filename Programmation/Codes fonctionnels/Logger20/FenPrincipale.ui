@@ -16,7 +16,7 @@
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="centralWidget">
+  <widget class="QWidget" name="widgetCentral">
    <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
      <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,8" columnstretch="1,19,0,0,0,0,0,32" columnminimumwidth="0,0,0,0,0,0,0,0">
@@ -366,7 +366,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="barreStatus"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>

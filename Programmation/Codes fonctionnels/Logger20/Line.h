@@ -20,7 +20,8 @@ class Line : public QObject
         QStringList getCapteursNames() { return capteurNames ;}
         QStringList getValueNames();
 
-        QVector<double> getRawValues();
+        QVector<double> getRawValues(); // Retourne les valeurs à la suite sans espacement
+        QVector<QPair<QTime,double> > getValuesWithTime(); // Retourne les valeurs, avec l'heure, et l'espacement quand on a une valeur vide.
 
         void randUpdate();
 
@@ -32,9 +33,8 @@ class Line : public QObject
     public slots:
 
     private:
-        QDateTime heure;
-
         QVector<QPair<QString, double> > content;
+        QVector<QTime> h_reception;
         QStringList capteurNames;
         /* Index vecteur = index capteur * 10 + index valeur
          * QString = nom capteur
