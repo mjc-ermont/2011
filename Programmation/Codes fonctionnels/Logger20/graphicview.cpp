@@ -4,10 +4,10 @@ GraphicView::GraphicView(Donnees *data, int indexCapteur, int indexValeur, FenPr
     QwtPlot(parent), m_capteur(indexCapteur), m_valeur(indexValeur)
 {
     courbe = new QwtPlotCurve("Courbe");
-  //  courbe->setCurveAttribute(QwtPlotCurve::Fitted, true);
+
     courbe->setStyle(QwtPlotCurve::Lines);
 
-    courbe->setPen(QPen(QBrush(Qt::black),5));
+    courbe->setPen(QPen(QBrush(Qt::black),2));
 
 
     m_data = data;
@@ -24,14 +24,17 @@ GraphicView::GraphicView(Donnees *data, int indexCapteur, int indexValeur, FenPr
 }
 
 void GraphicView::majData(Donnees *data) {
+    courbe->setCurveAttribute(QwtPlotCurve::Fitted, m_parent->interpol_curve->isChecked());
+
+
     m_data = data;
     majCurve();
 }
 
 void GraphicView::majCurve() {
     calculateCurve();
-
-  /*  QwtSplineCurveFitter* fitter = new QwtSplineCurveFitter;
+/*
+    QwtSplineCurveFitter* fitter = new QwtSplineCurveFitter;
 
     fitter->setFitMode(fitter->Auto);
     fitter->setSplineSize(50);

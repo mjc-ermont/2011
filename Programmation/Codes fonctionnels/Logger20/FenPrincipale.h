@@ -10,10 +10,13 @@
 #include "serial.h"
 #include "boardingtable.h"
 #include "graphicview.h"
+#include "mapsview.h"
 #include "defines.h"
 
 
+
 class GraphicView;
+class MapsView;
 
 class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
 {
@@ -38,6 +41,7 @@ protected:
         QTimer *actTemps;
         Line curLine;
         BoardingTable* tableauBord;
+        MapsView* carte;
 
         QVector<QTableView*> tableauxHist;
         QVector<GraphicView*> graphiques;
@@ -58,6 +62,7 @@ protected:
         void on_actionQuitter_triggered();
 
 private slots:
+        void on_b_carte_clicked();
         void on_b_graph_clicked();
         void on_sel_capteur_currentIndexChanged(int index);
         void on_add_graph_clicked();
@@ -66,3 +71,4 @@ private slots:
 };
 
 #endif // FENPRINCIPALE_H
+

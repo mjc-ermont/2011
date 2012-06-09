@@ -175,6 +175,10 @@ QString Line::addData(QString trame) {
     return erreur;
 }
 
+double Line::getValue(int c, int v) {
+    return content[c*NB_VALEURS_MAX+v].second;
+}
+
 bool Line::checkComplete() {
     for(int c=0;c<NB_CAPTEURS;c++) {
         for(int v=0;v < NB_VALEURS_MAX;v++) {

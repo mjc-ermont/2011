@@ -37,6 +37,8 @@ FenPrincipale::FenPrincipale(Serial* _com) :  historique(new Donnees()){
 
     }
 
+    carte = new MapsView(p_maps);
+
 
     if(QFile::exists(QApplication::applicationDirPath() + "/save.log")){
         historique->open();
@@ -142,6 +144,23 @@ void FenPrincipale::informationsReceived(QStringList trames) {
         historique->appendLine(l);
         tableauBord->update(l);
 
+        double latAngle = l->getValue(0,0);
+        double latMinute = l->getValue(0,1);
+        double longAngle = l->getValue(0,2);
+        double longMinute = l->getValue(0,3);
+
+        /*
+         *
+         * CELA NE MARCHE PAAAAAAAAAAAAAAAAAAAAAAAAAAS !!!!!!!!!!!!!!!!!!!!!!
+         *
+         *
+         */
+        double valLat = latAngle + latMinute / 100;
+        double valLong = longAngle + longMinute / 100;
+
+        carte->addPoint(valLat,valLong);
+
+
         for(int i=0;i<graphiques.size();i++) {
             graphiques[i]->majData(historique);
         }
@@ -206,12 +225,21 @@ void FenPrincipale::on_b_graph_clicked()
     stack->setCurrentIndex(4);
 }
 
+void FenPrincipale::on_b_carte_clicked()
+{
+    reinit_b();
+    b_carte->setDefault(true);
+
+    stack->setCurrentIndex(5);
+}
+
 void FenPrincipale::reinit_b(){
     b_tb->setDefault(false);
     b_table->setDefault(false);
     b_console->setDefault(false);
     b_param->setDefault(false);
     b_graph->setDefault(false);
+    b_carte->setDefault(false);
 }
 
 

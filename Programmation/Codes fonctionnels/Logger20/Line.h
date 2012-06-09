@@ -17,6 +17,8 @@ class Line : public QObject
         bool checkComplete();
         void clear();
 
+        double getValue(int c, int v);
+
         QStringList getCapteursNames() { return capteurNames ;}
         QStringList getValueNames();
 

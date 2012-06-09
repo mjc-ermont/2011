@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     Donnees.cpp \
     serial.cpp \
     boardingtable.cpp \
-    graphicview.cpp
+    graphicview.cpp \
+    mapsview.cpp
 
 HEADERS  += Line.h \
     FenPrincipale.h \
@@ -28,13 +29,22 @@ HEADERS  += Line.h \
     serial.h \
     boardingtable.h \
     defines.h \
-    graphicview.h
+    graphicview.h \
+    mapsview.h
 
-FORMS    += \
-    FenPrincipale.ui
+FORMS    += FenPrincipale.ui
 
-CONFIG += lucas
+CONFIG += robotik
 
 lucas {
     LIBS += C:\QtSDK\Desktop\Qt\4.8.1\mingw\lib\libqwtd.a
-} #Ajouter les différents chemins selon les PC utilisés.
+}
+
+robotik {
+    LIBS += C:\qwt-6.0.1\lib\libqwtd.a
+}
+
+
+ #Ajouter les différents chemins selon les PC utilisés.
+
+RESOURCES += ressources.qrc

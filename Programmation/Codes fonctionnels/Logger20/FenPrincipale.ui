@@ -17,8 +17,8 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="widgetCentral">
-   <layout class="QVBoxLayout" name="verticalLayout_4">
-    <item>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,8" columnstretch="1,19,0,0,0,0,0,32" columnminimumwidth="0,0,0,0,0,0,0,0">
       <item row="1" column="0">
        <widget class="QFrame" name="frame">
@@ -40,7 +40,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,1,1,0,15">
+        <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0,1,1,0,15">
          <property name="spacing">
           <number>1</number>
          </property>
@@ -55,7 +55,7 @@
            <property name="minimumSize">
             <size>
              <width>85</width>
-             <height>70</height>
+             <height>65</height>
             </size>
            </property>
            <property name="autoFillBackground">
@@ -80,11 +80,24 @@
            <property name="minimumSize">
             <size>
              <width>85</width>
-             <height>65</height>
+             <height>60</height>
             </size>
            </property>
            <property name="text">
             <string>Graphiques</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="b_carte">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Carte</string>
            </property>
           </widget>
          </item>
@@ -152,7 +165,7 @@
       <item row="1" column="1" colspan="7">
        <widget class="QStackedWidget" name="stack">
         <property name="currentIndex">
-         <number>4</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="p_tabl_bord">
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -180,8 +193,8 @@
          </layout>
         </widget>
         <widget class="QWidget" name="p_params">
-         <layout class="QGridLayout" name="gridLayout" rowstretch="1,2">
-          <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout" rowstretch="1,2,0">
+          <item row="2" column="0">
            <widget class="QPushButton" name="pushButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -201,6 +214,13 @@
             </property>
             <property name="checked">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="interpol_curve">
+            <property name="text">
+             <string>Interpoler les valeurs de courbe</string>
             </property>
            </widget>
           </item>
@@ -238,6 +258,7 @@
           </item>
          </layout>
         </widget>
+        <widget class="QWidget" name="p_maps"/>
        </widget>
       </item>
       <item row="0" column="0" colspan="6">
