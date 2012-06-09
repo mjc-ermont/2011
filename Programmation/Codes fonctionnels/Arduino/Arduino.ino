@@ -14,6 +14,6 @@
    
    Serial.print(gps_1);
    Serial.print(gps_2);*/
-   
    gps.refresh();
+   delay(20);
  }
