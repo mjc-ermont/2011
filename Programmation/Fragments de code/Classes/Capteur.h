@@ -3,11 +3,12 @@
 
 class Capteur{
    public:
-      virtual void refresh();
-      virtual void getValue();
+	  Capteur();	
+      virtual void refresh() = 0;
+      virtual void getValue() = 0;
       
    private:   
       float value;
-}
+};
 
 #endif
