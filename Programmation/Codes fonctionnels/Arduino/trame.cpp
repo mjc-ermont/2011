@@ -1,6 +1,5 @@
 #include <string.h>
 #include <Arduino.h>
-#include <string.h>
 
 uint8_t get_checksum(char *string)
 {
