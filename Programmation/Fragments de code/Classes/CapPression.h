@@ -4,16 +4,15 @@
 #include <inttypes.h>
 #include "Arduino.h"
 
+#include "Capteur.h"
 
-class CapPression {
+
+class CapPression : public Capteur {
    public:
       CapPression(int a_patte = 1);
       
-      int getValue();
-      int getAltitude();
-      
-   private:
-      int patte;
+      float getValue();
+      float getAltitude();
 
 };
 
