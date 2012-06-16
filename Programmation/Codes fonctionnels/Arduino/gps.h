@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <string.h>
 
 typedef struct {
   int age;

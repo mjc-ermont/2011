@@ -11,48 +11,63 @@ bool GPS::init(){
 }
 
 bool GPS::refresh(){
-  char current_char = 0;
-  char *trame_char = NULL;
-  String trame = "", table[20];
-  Sensor_out data;
+  //Serial.println("Debut debut lol");
   
-  data.id_capt = ID_CAPT_GPS;
-  data.nb_values = NB_VAL_GPS;
+  int current_char = 0;
+  int i = 0;
+  char *trame_char, *cz;
+  //Serial.println("Trolol bob");
+  String table[40];
+  //Sensor_out data;
+  
+  //Serial.println("Debut lol");
+  
+  /*data.id_capt = ID_CAPT_GPS;
+  data.nb_values = NB_VAL_GPS;*/
   
   trame_char = (char*)malloc(100 * sizeof(char));
   
-  if (Serial1.available() > 0){                     // On verifie qu'il y a des données a lire
+  if (Serial1.available()){                     // On verifie qu'il y a des données a lire
     while (Serial1.read() != '$');                  // On attend le debut de la trame
+    
+    //Serial.println("lol");
     
     while (true){                                   // On lit toute la trame, sauf le checksum, et on la place dans un string
       current_char = Serial1.read();
-      if (current_char == '*'){
+      if (((char)current_char == '*') || ((char)current_char == '$')){
         break;
-      }
-      if (current_char != -1){
-        trame += current_char;
+      } else if (current_char != -1){
+        trame_char[i] = (char)current_char;
+        i++;
       }
     }
     
+    trame_char[i] = 0;
+    
+    //Serial.println("Laulle");
+    
+    //trame.toCharArray(trame_char, 100); 
+    
 #if SERIAL_DEBUG
-    Serial.println(trame);
+    Serial.println(trame_char);
 #endif
 
-    trame.toCharArray(trame_char, 100);             // On convertit l'objet String en chaine de caracteres pour pouvoir le sparer
+    i = 0;
 
-    byte i = 0;
+    //Serial.println("Xd");
+    
+    //cz = trame_char;
+
     while ((table[i] = strsep(&trame_char, ",")) != NULL){   // On isole chacune des parties de la trame reçue et on la stocke dans un tableau 
+      Serial.println(table[i]);
       i++;
     }
     
-#if SERIAL_DEBUG
-    for (byte j = 0 ; j <= i ; j++){
-      Serial.println(table[j]);
-    }
-#endif
-
+    //Serial.println("xday.");
+    
     free(trame_char);                               // On libere la memoire
-    trame = "";
+    
+    //Serial.println("Fin lol");
     
     return true;
   } else {
