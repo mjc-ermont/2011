@@ -1,13 +1,13 @@
 #include <Arduino.h>
-#include <string.h>
 
 typedef struct {
-  int age;
-  String id_val;
+  //int age;
+  char *id_val;
+  String *val;
 } Value;
 
 typedef struct {
-        String id_capt;
+        char *id_capt;
         int nb_values;
 	Value *values;
 } Sensor_out;
