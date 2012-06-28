@@ -20,4 +20,6 @@
  
  void serialEvent1(){      // Quand il y a quelquechose a lire sur le port serie, on rafraichit les donnees du GPS
    gps.refresh();
+   //Serial.println("Xday");
+   gps.getTrame();
  }

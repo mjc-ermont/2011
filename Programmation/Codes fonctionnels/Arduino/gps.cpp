@@ -14,11 +14,6 @@ bool GPS::refresh(){
   char current_char = 0;
   String table[20];
   int i = 0;
-  Sensor_out data;
-  
-  data.id_capt = ID_CAPT_GPS;
-  data.nb_values = NB_VAL_GPS;
-  data.values = (Value*)malloc(NB_VAL_GPS * sizeof(Value));
   
   if (Serial1.available() > 0){                     // On verifie qu'il y a des données a lire
     while (Serial1.read() != '$');                  // On attend le debut de la trame
@@ -43,19 +38,17 @@ bool GPS::refresh(){
 
       if(table[0] == "GPRMC"){
         if(table[3].length() == 9){
-          Serial.print("deg : ");
-          Serial.println(table[3].substring(0, 2));
-          Serial.print("min : ");
-          Serial.println(table[3].substring(2));
-          Serial.println();
+          _lat_deg = table[3].substring(0, 2);
+          //Serial.println(_lat_deg);
+          _lat_min = table[3].substring(2);
+          //Serial.println(_lat_min);
         }
         
         if(table[5].length() == 10){
-          Serial.print("deg : ");
-          Serial.println(table[5].substring(0, 3));
-          Serial.print("min : ");
-          Serial.println(table[5].substring(3));
-          Serial.println();
+          _lon_deg = table[5].substring(0, 3);
+          //Serial.println(_lon_deg);
+          _lon_min = table[5].substring(3);
+          //Serial.println(_lon_min);
         }
       }
     
@@ -63,4 +56,12 @@ bool GPS::refresh(){
   } else {
     return false;
   }
+}
+
+void GPS::getTrame(){
+/*  Serial.println("Laulle");*/
+  Serial.println(_lat_deg);
+  Serial.println(_lat_min);
+  Serial.println(_lon_deg);
+  Serial.println(_lon_min);
 }
