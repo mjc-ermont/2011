@@ -5,10 +5,10 @@ CapteurAnalog::CapteurAnalog(int a_patte){
    patte = a_patte;
 }
 
-float CapteurAnalog::getValue{
-   return value;
-}
-
 void refresh(){
     value = analogRead(patte);
+}
+
+float CapteurAnalog::flush(){
+   return value;
 }

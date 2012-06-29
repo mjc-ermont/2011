@@ -11,8 +11,7 @@ class CapPression : public Capteur {
    public:
       CapPression(int a_patte = 1);
       
-      float getValue();
-      float getAltitude();
+      bool flush();
 
 };
 

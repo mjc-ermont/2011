@@ -11,8 +11,7 @@ class CapteurAnalog : public Capteur{
    public:
       Capteur(int a_patte = 1);
       
-      float getValue();
-      void refresh();
+      void init();
       
    private:
       int patte;
