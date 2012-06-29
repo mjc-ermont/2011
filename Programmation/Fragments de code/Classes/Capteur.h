@@ -3,12 +3,14 @@
 
 class Capteur{
    public:
-	  Capteur();	
+	  Capteur();
+      virtual void init();
       virtual void refresh() = 0;
-      virtual void getValue() = 0;
       
-   private:   
-      float value;
+      virtual bool flush() = 0;              //C'est du bluf, augmente la mise ...
+   
+   private:
+
 };
 
 #endif
