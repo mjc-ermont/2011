@@ -1,10 +1,10 @@
 #include <string.h>
 #include <Arduino.h>
 
-uint8_t get_checksum(char *string)
+byte get_checksum(String string)
 {
-  uint8_t XOR = 0;	
-  for (int i = 0; i < strlen(string); i++) 
+  byte XOR = 0;	
+  for (int i = 0; i < string.length() ; i++) 
   {
     XOR = XOR ^ string[i];
   }

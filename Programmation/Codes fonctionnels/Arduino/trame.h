@@ -1,2 +1,3 @@
-int get_checksum(char *trame);
-char** split(char* chaine,const char* delim,int vide);
+#include <Arduino.h>
+
+byte get_checksum(String trame);
