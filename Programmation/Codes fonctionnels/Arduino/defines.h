@@ -1,7 +1,7 @@
 /*  ------- DEBUG -------  */
 
 #define SERIAL_DEBUG    1
-#define SERIAL_BAUDRATE 9600
+#define SERIAL_BAUDRATE 115200
 
 /*  ------- TRASMISSION -------  */
 
@@ -14,3 +14,6 @@
 #define ID_VAL_LAT_MIN  "1"
 #define ID_VAL_LON_DEG  "2"
 #define ID_VAL_LON_MIN  "3"
+#define ID_VAL_VIT      "4"
+#define ID_VAL_UTIME    "5"
+

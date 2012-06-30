@@ -13,13 +13,10 @@ bool GPS::init(){
 bool GPS::refresh(){
   char current_char = 0;
   String table[20];
-  int i = 0;
+  byte i = 0;
   
   if (Serial1.available() > 0){                     // On verifie qu'il y a des données a lire
     while (Serial1.read() != '$');                  // On attend le debut de la trame
-    
-    //Serial.println("Laulx");
-    //delay(50);
     
     while (true){                                   // On lit toute la trame, sauf le checksum, et on la place dans un string
       current_char = Serial1.read();
@@ -28,6 +25,7 @@ bool GPS::refresh(){
       }
       
       if(current_char == ','){
+        //Serial.println(table[i]);
         i++;
       }
         
@@ -37,6 +35,9 @@ bool GPS::refresh(){
     }
     
       if(table[0] == "GPRMC"){
+         
+        _utime = table[1];
+        
         if(table[3].length() == 9){
           _lat_deg = table[3].substring(0, 2);
           _lat_min = table[3].substring(2);
@@ -46,8 +47,9 @@ bool GPS::refresh(){
           _lon_deg = table[5].substring(0, 3);
           _lon_min = table[5].substring(3);
         }
+        _vit = table[7];
+        //Serial.println(freeMemory());
       }
-    //Serial.println("xLaul");
     return true;
   } else {
     return false;
@@ -55,7 +57,7 @@ bool GPS::refresh(){
 }
 
 void GPS::getTrame(){
-  for (byte i = 0 ; i < /*NB_VAL_GPS*/ 4 ; i++){
+  for (byte i = 0 ; i < /*NB_VAL_GPS*/ 6 ; i++){
     String id_capt, val_capt;
     switch (i){
       case 0:
@@ -74,6 +76,14 @@ void GPS::getTrame(){
         id_capt = ID_VAL_LON_MIN;
         val_capt = _lon_min;
       break;
+      case 4:
+        id_capt = ID_VAL_VIT;
+        val_capt = _vit;
+      break;
+      case 5:
+        id_capt = ID_VAL_UTIME;
+        val_capt = _utime;
+      break;
       default:
       break;
     }    
@@ -87,6 +97,7 @@ void GPS::getTrame(){
     trame += "$";
     trame += String(get_checksum(trame), HEX);
     trame += "$@";
-    /*for (byte k = 0 ; k < NB_REPET ; k++)*/ Serial.println(trame);
+    for (byte k = 0 ; k < NB_REPET ; k++) Serial.println(trame);
+    Serial.flush();
   }
 }

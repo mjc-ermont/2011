@@ -12,4 +12,6 @@ private:
         String _lat_min;
         String _lon_deg;
         String _lon_min;
+        String _vit;
+        String _utime;
 };
