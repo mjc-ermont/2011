@@ -4,6 +4,6 @@ Capteur::Capteur(){
 
 }
 
-void Capteur::init(){
-   refresh();
+bool Capteur::flush(){
+   return fonctionOfTheDeadQuiEnverrasLaTrameEtQuiRetourneraSiCaAMarcheOuNonEnBoolean(trame);
 }

@@ -8,3 +8,7 @@ CapteurAnalog::CapteurAnalog(int a_patte){
 void CapteurAnalog::refresh(){
     value = analogRead(patte);
 }
+
+int CapteurAnalog::getPatte(){
+    return patte;
+}

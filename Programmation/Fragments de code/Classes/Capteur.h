@@ -3,7 +3,7 @@
 
 #include "arduino.h"
 
-#include "IdCapteurs.h"
+#include "Define.h"
 
 class Capteur{
    public:

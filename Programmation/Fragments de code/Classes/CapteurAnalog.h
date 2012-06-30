@@ -1,5 +1,5 @@
-#ifndef CapteurAnalog_h
-#define CapteurAnalog_h
+#ifndef CAPTEURANALOG_h
+#define CAPTEURANALOG_h
 
 #include <inttypes.h>
 #include "Arduino.h"
@@ -9,9 +9,12 @@
 
 class CapteurAnalog : public Capteur{
    public:
-      Capteur(int a_patte = 1);
+      CapteurAnalog(int a_patte = 1);
       
       void init();
+      
+   protected:
+     int getPatte();
       
    private:
       int patte;

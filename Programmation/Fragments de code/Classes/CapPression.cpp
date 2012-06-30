@@ -1,11 +1,11 @@
 #include "CapPression.h"
 
 CapPression::CapPression(int a_patte){
-   Capteur();
+  
 }
 
 void CapPression::refresh(){
-   float sensorValue = Capteur::getvalue()*5/1023;
+   float sensorValue = analogRead(patte)*5/1023;
    String pression = ftoa(sensorValue*25);
    
    trame  = "#";
