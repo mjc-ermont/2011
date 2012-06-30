@@ -4,14 +4,17 @@
 #include <inttypes.h>
 #include "Arduino.h"
 
-#include "Capteur.h"
+#include "CapteurAnalog.h"
 
 
-class CapPression : public Capteur {
+class CapPression : public CapteurAnalog {
    public:
       CapPression(int a_patte = 1);
-      
+     
       bool flush();
+      
+   private:
+      float pression;               //Pas trop de biere SVP
 
 };
 
