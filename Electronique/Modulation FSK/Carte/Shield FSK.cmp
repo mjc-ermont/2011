@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2011-11-27 BZR 3249)-stable date = 31/03/2012 15:34:49
+Cmp-Mod V01 Created by CvPCB (2011-07-08 BZR 3044)-stable date = 10/07/2012 10:57:19
 
 BeginCmp
 TimeStamp = /4F6DEA20;
@@ -33,6 +33,13 @@ TimeStamp = /4F6DEBDE;
 Reference = P1;
 ValeurCmp = BNC;
 IdModule  = bnc-ci;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FFBED61;
+Reference = P2;
+ValeurCmp = CONN_2;
+IdModule  = bornier2;
 EndCmp
 
 BeginCmp
@@ -89,6 +96,13 @@ TimeStamp = /4F5B704A;
 Reference = U1;
 ValeurCmp = XR2206;
 IdModule  = DIP-16__300;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FFBE6BF;
+Reference = U2;
+ValeurCmp = LM7810;
+IdModule  = TO220;
 EndCmp
 
 EndListe
