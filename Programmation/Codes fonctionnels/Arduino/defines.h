@@ -9,6 +9,7 @@
 #define SIZE_VALUE      7
 #define GPS_BAUDRATE    4800
 #define ID_CAPT_GPS     "00"
+#define ID_CAPT_ACCEL   "01"
 #define NB_VAL_GPS      7
 #define ID_VAL_LAT_DEG  "0"
 #define ID_VAL_LAT_MIN  "1"

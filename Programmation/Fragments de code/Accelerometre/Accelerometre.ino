@@ -44,8 +44,8 @@ void loop(){
     float length = 0.;
     for(i = 0; i < 3; i++){
       length += (float)acc_data[i] * (float)acc_data[i];
-      Serial.print(acc_data[i]);
-      Serial.print(" ");
+      //Serial.print(acc_data[i]);
+      //Serial.print(" ");
     }
     length = sqrt(length);
     Serial.print(length);
@@ -56,3 +56,5 @@ void loop(){
     Serial.println("ERROR: ADXL345 data read error");
   }
 }
+
+
