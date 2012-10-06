@@ -3,9 +3,11 @@
  #include "gps.h"
  #include "defines.h"
  #include "accel.h"
+ #include "humidity.h"
 
  GPS gps = GPS();
  Accel accel = Accel();
+ Hum hum = Hum();
  unsigned long timer;
   
  void setup() {
@@ -14,20 +16,23 @@
 #endif
    gps.init();
    accel.init();
+   hum.init();
    Serial1.begin(GPS_BAUDRATE);
    timer = millis();
  }
- 
+           
  void loop(){
    if ((millis() - timer) >= (unsigned long)1000){
-     Serial.println(millis() - timer);
+     //Serial.println(millis() - timer);
      timer = millis();
-     gps.getTrame();
+     /*gps.getTrame();
      accel.getTrame();
+     hum.getTrame();*/
    } else if (Serial1.available() > 0){
-     gps.refresh();
+     //gps.refresh();
    } else if ((millis() - timer) >= (unsigned long)800) {
-     accel.refresh();
+     //accel.refresh();
+     hum.refresh();
    }
  }
-
+    

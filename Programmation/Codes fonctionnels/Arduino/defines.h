@@ -1,7 +1,7 @@
 /*  ------- DEBUG -------  */
 
 #define SERIAL_DEBUG    1
-#define SERIAL_BAUDRATE 115200
+#define SERIAL_BAUDRATE 9600
 
 /*  ------- TRASMISSION -------  */
 
@@ -18,3 +18,4 @@
 #define ID_VAL_VIT      "4"
 #define ID_VAL_UTIME    "5"
 
+#define HYT371_ADDR     0x28
