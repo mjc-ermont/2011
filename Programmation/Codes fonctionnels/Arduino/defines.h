@@ -1,7 +1,7 @@
 /*  ------- DEBUG -------  */
 
 #define SERIAL_DEBUG    1
-#define SERIAL_BAUDRATE 9600
+#define SERIAL_BAUDRATE 600
 
 /*  ------- TRASMISSION -------  */
 
@@ -10,6 +10,7 @@
 #define GPS_BAUDRATE    4800
 #define ID_CAPT_GPS     "00"
 #define ID_CAPT_ACCEL   "01"
+#define ID_CAPT_HUM     "02"
 #define NB_VAL_GPS      7
 #define ID_VAL_LAT_DEG  "0"
 #define ID_VAL_LAT_MIN  "1"

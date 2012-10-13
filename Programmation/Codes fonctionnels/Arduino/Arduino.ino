@@ -9,6 +9,7 @@
  Accel accel = Accel();
  Hum hum = Hum();
  unsigned long timer;
+ 
   
  void setup() {
 #if SERIAL_DEBUG
@@ -25,14 +26,18 @@
    if ((millis() - timer) >= (unsigned long)1000){
      //Serial.println(millis() - timer);
      timer = millis();
-     /*gps.getTrame();
+     gps.getTrame();
      accel.getTrame();
-     hum.getTrame();*/
-   } else if (Serial1.available() > 0){
-     //gps.refresh();
+     //hum.getTrame();
    } else if ((millis() - timer) >= (unsigned long)800) {
-     //accel.refresh();
-     hum.refresh();
+     Serial.println("Debut accel");
+     accel.refresh();
+  
+    //hum.refresh();
+     Serial.println("Fin accel");
+   } else if (Serial1.available() > 0){
+     gps.refresh();
    }
  }
-    
+ 
+ 

@@ -47,19 +47,22 @@ bool Hum::refresh(){
 
     Wire.endTransmission();
     
-    Serial.println(Humidity);
+    _hum = String((int)(Humidity*100));
+    _temp = String((int)(Temperature*100));
+    
+    //Serial.println(Humidity);
 
 }
 
 void Hum::getTrame(){
-    /*String trame = "#$";
+    String trame = "#$";
     trame += ID_CAPT_HUM;
     trame += "$0$";
-    //for (byte j = 0 ;  j < SIZE_VALUE - _avg.length() ; j++) trame += "0";
-    //trame += _avg;
+    for (byte j = 0 ;  j < SIZE_VALUE - _hum.length() ; j++) trame += "0";
+    trame += _hum;
     trame += "$";
     trame += String(get_checksum(trame), HEX);
     trame += "$@";
     for (byte k = 0 ; k < NB_REPET ; k++) Serial.println(trame);
-    Serial.flush();*/
+    Serial.flush();
 }
