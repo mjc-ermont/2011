@@ -1,21 +1,22 @@
 #include "mapsview.h"
 
-MapsView::MapsView(QWidget *parent) : QWebView(parent)
+MapsView::MapsView(QVBoxLayout *parent) : QWebView()
 {
+    parent->addWidget(this);
+
     QFile fichier(":/html/maps");
     fichier.open(QFile::ReadOnly);
     QString s= QString(fichier.readAll());
     qDebug() << s;
     this->setHtml(s);
-
-    index = 0;
-
 }
 
-void MapsView::addPoint(int x, int y) {
+void MapsView::addPoint(double x, double y) {
+
+    qDebug() << "Map";
 
     QWebFrame* f = this->page()->mainFrame();
+    f->evaluateJavaScript("newPos(" + QString::number(x) + "," + QString::number(y) + ")");
 
-    f->evaluateJavaScript("addMarker(" + QString::number(x) + "," + QString::number(y) + "," + QString::number(index) + ")");
-    index++;
+    qDebug() << "FMap";
 }

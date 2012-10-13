@@ -12,7 +12,7 @@ FenPrincipale::FenPrincipale(Serial* _com) :  historique(new Donnees()){
     qDebug() << "Test 2";
 
     com = _com;
-
+    optimisation_graph = false;
 
     qDebug() << "Test 3";
     setupUi(this);
@@ -37,7 +37,8 @@ FenPrincipale::FenPrincipale(Serial* _com) :  historique(new Donnees()){
 
     }
 
-    carte = new MapsView(p_maps);
+    carte = new MapsView(c_maps);
+    befLine = 0;
 
 
     if(QFile::exists(QApplication::applicationDirPath() + "/save.log")){
@@ -133,14 +134,16 @@ void FenPrincipale::informationsReceived(QStringList trames) {
         curLine.clear();
 
         for(int i=0;i<graphiques.size();i++) {
-            graphiques[i]->majData(historique);
+            graphiques[i].first->majData(historique);
         }
     }
 
     #ifdef DEBUG
         message("[INFAKE] Informations received.");
+
         Line *l = new Line;
-        l->randUpdate();
+        l->randUpdate(befLine);
+        befLine = l;
         historique->appendLine(l);
         tableauBord->update(l);
 
@@ -162,7 +165,7 @@ void FenPrincipale::informationsReceived(QStringList trames) {
 
 
         for(int i=0;i<graphiques.size();i++) {
-            graphiques[i]->majData(historique);
+            graphiques[i].first->majData(historique);
         }
     #endif
 }
@@ -257,21 +260,185 @@ void FenPrincipale::on_sel_capteur_currentIndexChanged(int index)
 void FenPrincipale::on_add_graph_clicked()
 {
     GraphicView* g = new GraphicView(historique, sel_capteur->currentIndex(), sel_valeur->currentIndex(),this);
-    graphiques.append(g);
 
+    QPair<GraphicView*,QMdiSubWindow*> group;
     QMdiSubWindow *w = zone_graph->addSubWindow(g);
+    group.first = g;
+    group.second = w;
+
+    graphiques.append(group);
+
     w->setGeometry(w->geometry().x(),w->geometry().y(),200,200);
 
     w->show();
 
     connect(g,SIGNAL(destroyed()),this,SLOT(graphClosed()));
+
+    if(optimisation_graph) {
+        optimise_graph();
+    }
+    g->setWindowTitle(g->windowTitle() + " (" + QString::number(graphiques.size() - 1) + ")");
 }
 
 void FenPrincipale::graphClosed() {
     GraphicView* g = (GraphicView *)sender();
     for(int i=0;i<graphiques.size();i++) {
-        if(g == graphiques[i])
+        if(g == graphiques[i].first)
             graphiques.remove(i);
     }
 
+    if(optimisation_graph) {
+        optimise_graph();
+    }
+}
+
+void FenPrincipale::on_btn_optimiser_clicked()
+{
+    if(btn_optimiser->isChecked())
+        optimise_graph();
+
+    optimisation_graph = btn_optimiser->isChecked();
+}
+
+void FenPrincipale::optimise_graph() {
+    int nbItems = graphiques.size();
+    qDebug() << "Nb graphs: " << nbItems;
+    qDebug() << "Taille w: " << zone_graph->geometry().width() << "| h: " << zone_graph->geometry().height();
+
+
+    int rowNb;
+    int rowSize = zone_graph->geometry().height();
+    int colNb;
+    int colSize = zone_graph->geometry().width();
+
+    for(int i=0;i<graphiques.size();i++) {
+        int row, rowStretch, col, colStretch;
+        bool error = false;
+        switch(nbItems) {
+            case 1:
+                row = 0;
+                rowStretch = 1;
+                col = 0;
+                colStretch = 1;
+                rowNb = 1;
+                colNb = 1;
+                break;
+            case 2:
+                row = 0;
+                rowStretch = 1;
+                col = i;
+                colStretch = 1;
+                rowNb = 1;
+                colNb = 2;
+                break;
+            case 3:
+                row = !(i == 0);
+                rowStretch = 1;
+                col = (i == 2);
+                colStretch = (i == 0) ? 2 : 1;
+                rowNb = 2;
+                colNb = 2;
+                break;
+            case 4:
+                row = !(i<=1);
+                rowStretch = 1;
+                col = !((i==0) || (i==2));
+                colStretch = 1;
+                rowNb = 2;
+                colNb = 2;
+                break;
+            case 5:
+                row = !(i<3);
+                rowStretch = (i==1) +1;
+                col = (i<=2) ? i : ((i == 3) ? 0 : 2 );
+                colStretch = 1;
+                rowNb = 2;
+                colNb = 3;
+                break;
+            case 6:
+                row = !(i<3);
+                rowStretch = 1;
+                col = (i<=2) ? i : i-3;
+                colStretch = 1;
+                rowNb = 2;
+                colNb = 3;
+                break;
+            case 7:
+                row = !(i<3);
+                rowStretch = 1;
+                col = (i<=2) ? ((i==2) ? 3 : i): i-3;
+                colStretch = (i == 1) ? 2 : 1;
+                rowNb = 2;
+                colNb = 4;
+                break;
+            case 8:
+                row = !(i<=3);
+                rowStretch = 1;
+                col = (i<=3) ? i : i-4;
+                colStretch = 1;
+                rowNb = 2;
+                colNb = 4;
+                break;
+            case 9:
+                if(i<=4)
+                    row = 0;
+                else if(i<=7)
+                    row = 1;
+                else
+                    row = 2;
+
+                rowStretch = ((i == 5) || (i ==7)) + 1;
+
+                if(i<=4) {
+                    col = i;
+                    colStretch = 1;
+                } else if(i == 5) {
+                    col = 0;
+                    colStretch = 1;
+                } else if(i == 6) {
+                    col = 1;
+                    colStretch = 3;
+                } else if(i == 7) {
+                    col = 4;
+                    colStretch = 1;
+                } else if(i == 8) {
+                    col = 1;
+                    colStretch = 3;
+                }
+
+
+                rowNb = 3;
+                colNb = 5;
+                break;
+            case 10:
+                if(i<=3)
+                    row = 0;
+                else if(i<=5)
+                    row = 1;
+                else
+                    row = 2;
+
+                rowStretch = 1;
+                colStretch = ((i == 4) || (i == 5)) + 1;
+
+                if(i<=3) {
+                    col = i;
+                } else if(i >= 6) {
+                    col = i-6;
+                } else if(i == 4) {
+                    col = 0;
+                } else if(i == 5) {
+                    col = 2;
+                }
+
+
+                rowNb = 3;
+                colNb = 4;
+                break;
+            default:
+                error = true;
+        }
+        if(!error)
+            graphiques[i].second->setGeometry(col * (colSize / colNb),row * (rowSize / rowNb), (colSize / colNb) * colStretch, (rowSize / rowNb) * rowStretch);
+    }
 }

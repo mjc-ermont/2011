@@ -5,7 +5,6 @@
 #include <QWebView>
 #include <QWebFrame>
 #include <QFile>
-
 #include <FenPrincipale.h>
 #include <defines.h>
 
@@ -13,13 +12,12 @@ class MapsView : public QWebView
 {
     Q_OBJECT
 public:
-    explicit MapsView(QWidget *parent = 0);
+    explicit MapsView(QVBoxLayout *parent = 0);
 
-    void addPoint(int x, int y);
+    void addPoint(double x, double y);
 
 private:
-    int index;
-
+    QVector<QPair<double,double> > points;
 };
 
 #endif // MAPSVIEW_H

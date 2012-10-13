@@ -20,7 +20,6 @@ GraphicView::GraphicView(Donnees *data, int indexCapteur, int indexValeur, FenPr
 
     courbe->attach(this);
     majCurve();
-
 }
 
 void GraphicView::majData(Donnees *data) {
@@ -47,6 +46,7 @@ void GraphicView::majCurve() {
 
 void GraphicView::calculateCurve(QTime maxTime) {
     QVector<QPair<QTime, double> > valeurs = m_data->getData(m_capteur,m_valeur);
+
 
     int index = valeurs.size();
     xValues.clear();

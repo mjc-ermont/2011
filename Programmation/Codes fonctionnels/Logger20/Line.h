@@ -25,7 +25,7 @@ class Line : public QObject
         QVector<double> getRawValues(); // Retourne les valeurs à la suite sans espacement
         QVector<QPair<QTime,double> > getValuesWithTime(); // Retourne les valeurs, avec l'heure, et l'espacement quand on a une valeur vide.
 
-        void randUpdate();
+        void randUpdate(Line* defL);
 
     protected:
         QString get_checksum(const char *trame);

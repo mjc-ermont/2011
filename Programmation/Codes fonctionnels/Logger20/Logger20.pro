@@ -34,7 +34,7 @@ HEADERS  += Line.h \
 
 FORMS    += FenPrincipale.ui
 
-CONFIG += robotik
+CONFIG += linusque
 
 lucas {
     LIBS += C:\QtSDK\Desktop\Qt\4.8.1\mingw\lib\libqwtd.a
@@ -44,7 +44,10 @@ robotik {
     LIBS += C:\qwt-6.0.1\lib\libqwtd.a
 }
 
+linusque {
+    LIBS += /usr/lib/libqwt.so
+}
 
- #Ajouter les différents chemins selon les PC utilisés.
+ #Ajouter les diffrents chemins selon les PC utiliss.
 
 RESOURCES += ressources.qrc

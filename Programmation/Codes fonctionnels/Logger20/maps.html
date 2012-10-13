@@ -1,77 +1,52 @@
-<!--<html>
-<head>
-<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-<script type="text/javascript">
-listMarker = [];
-  function initialize() {
-    var latlng = new google.maps.LatLng(0, 0);
-    var myOptions = {
-      zoom: 1,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-	google.maps.event.addListener(map, 'bounds_changed', function(){
-	  var pt = map.getCenter();
-	  mainWindow.showLatLng(pt.lat(),pt.lng());
-	});
-  }
-  
-  function addMarker(x,y,index){//,type){
-    var latlng = new google.maps.LatLng(x, y);
-	var marker = new google.maps.Marker({
-      position: latlng, 
-      map: map,
-      icon: 'marker.png'
-	});	
-	
-	listMarker[index] = marker;
-	google.maps.event.addListener(marker, 'click', function(){
-		mainWindow.displayInfo(index);
-		});
-  }
-  
-  function updateCenter(x,y) {
-	var latlng = new google.maps.LatLng(x, y);
-	var myOptions = { zoom: 4};
-	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  }
-</script>
-</head>
-<body onLoad="initialize()">
-  <div id="map_canvas" style="width:100%; height:100%"></div>
-</body>
-</html>-->
-
+<!DOCTYPE HTML>
 <html>
   <head>
-	<script src="http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js"></script> 
-	  <script type="text/javascript"> 
-
-		/*An example of using the MQA.EventUtil to hook into the window load event and execute defined function 
-		passed in as the last parameter. You could alternatively create a plain function here and have it 
-		executed whenever you like (e.g. <body onload="yourfunction">).*/ 
-
-		MQA.EventUtil.observe(window, 'load', function() {
+    <title>OpenLayers Demo</title>
+    <style type="text/css">
+      html, body, #basicMap {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+      }
+    </style>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script>
+	var mapnik         = new OpenLayers.Layer.OSM();
+	var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+	var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+	var position       = new OpenLayers.LonLat(13.41,52.52).transform( fromProjection, toProjection);
+	var vectorLayer    = new OpenLayers.Layer.Vector("Vector Layer");
+	var zoom           = 5; 
+	
+	var points = [];
+	
+	var style_green = {
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.7,
+        strokeWidth: 6
+    };
+ 
+      function init() {
+        map = new OpenLayers.Map("basicMap");
+        map.addLayer(mapnik);
+        map.setCenter(position, zoom );
 		
-		  /*Create an object for options*/ 
-		  var options={
-			elt:document.getElementById('map'),       /*ID of element on the page where you want the map added*/ 
-			zoom:13,                                  /*initial zoom level of the map*/ 
-			latLng:{lat:40.735383, lng:-73.984655},   /*center of map in latitude/longitude */ 
-			mtype:'osm',                              /*map type (osm)*/ 
-			bestFitMargin:0,                          /*margin offset from the map viewport when applying a bestfit on shapes*/ 
-			zoomOnDoubleClick:true                    /*zoom in when double-clicking on map*/ 
-		  };
+		map.addLayer(vectorLayer);
+      }
+	  
+	  function newPos(x,y) {
+        var position = new OpenLayers.LonLat(x,y).transform(fromProjection, toProjection);
+        map.setCenter(position, map.getZoom());
+		
+		points.push(new OpenLayers.Geometry.Point(x,y).transform(fromProjection, toProjection));
+		var lineString = new OpenLayers.Geometry.LineString(points);
+		var lineFeature = new OpenLayers.Feature.Vector(lineString, null, style_green);
 
-		  /*Construct an instance of MQA.TileMap with the options object*/ 
-		  window.map = new MQA.TileMap(options);
-		});
-
-	  </script> 
+		vectorLayer.addFeatures([lineFeature]);
+	}
+    </script>
   </head>
-  <body>
-  <div id="map" style="width:100%; height:100%;"></div>
+  <body onload="init();">
+    <div id="basicMap"></div>
   </body>
 </html>

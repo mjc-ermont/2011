@@ -40,13 +40,15 @@ protected:
         QTimer *timerAct;
         QTimer *actTemps;
         Line curLine;
+        Line *befLine;
         BoardingTable* tableauBord;
         MapsView* carte;
 
         QVector<QTableView*> tableauxHist;
-        QVector<GraphicView*> graphiques;
+        QVector<QPair<GraphicView*,QMdiSubWindow*> > graphiques;
 
         QTime h_depart;
+        bool optimisation_graph;
 
 
     public slots:
@@ -61,14 +63,17 @@ protected:
         void on_b_console_clicked();
         void on_actionQuitter_triggered();
 
-private slots:
         void on_b_carte_clicked();
         void on_b_graph_clicked();
         void on_sel_capteur_currentIndexChanged(int index);
+
         void on_add_graph_clicked();
 
         void graphClosed();
+        void optimise_graph();
+        void on_btn_optimiser_clicked();
 };
 
 #endif // FENPRINCIPALE_H
+
 

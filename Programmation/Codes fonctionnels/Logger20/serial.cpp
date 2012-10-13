@@ -6,6 +6,8 @@ Serial::Serial(int _port, QThread * parent) : QThread(parent)
 
     port = _port;
 
+#ifdef WIN32
+
     g_hCOM = NULL;
     COMMTIMEOUTS _g_cto = {
        MAX_WAIT_READ, /* ReadIntervalTimeOut */
@@ -47,6 +49,7 @@ Serial::Serial(int _port, QThread * parent) : QThread(parent)
 
    g_cto = _g_cto;
    g_dcb = _g_dcb;
+#endif
 }
 
 Serial::~Serial() {
@@ -90,6 +93,7 @@ void Serial::readData() {
 
 bool Serial::OpenCOM(int nId)
 {
+#ifdef WIN32
     /* variables locales */
     char szCOM[16];
     /* construction du nom du port, tentative d'ouverture */
@@ -113,6 +117,7 @@ bool Serial::OpenCOM(int nId)
     /* on vide les tampons d'émission et de réception, mise à 1 DTR */
     PurgeComm(g_hCOM, PURGE_TXCLEAR|PURGE_RXCLEAR|PURGE_TXABORT|PURGE_RXABORT);
     EscapeCommFunction(g_hCOM, SETDTR);
+#endif
     return true;
 }
 
@@ -124,7 +129,9 @@ retour : vrai si l'opération a réussi, faux sinon.
 bool Serial::CloseCOM()
 {
     /* fermeture du port COM */
+#ifdef WIN32
     CloseHandle(g_hCOM);
+#endif
     return true;
 }
 
@@ -143,7 +150,12 @@ caractères n'est présent dans le tampon d'entrée.
 ******************************************************************************/
 bool Serial::ReadCOM(void* buffer, int nBytesToRead, int* pBytesRead)
 {
+#ifdef WIN32
     return ReadFile(g_hCOM, buffer, nBytesToRead, (DWORD*)pBytesRead, NULL);
+#else
+    return true;
+#endif
+
 }
 /******************************************************************************
 WriteCOM : envoi de données sur le port COM.
@@ -156,5 +168,10 @@ retour : vrai si l'opération a réussi, faux sinon.
 bool Serial::WriteCOM(void* buffer, int nBytesToWrite, int* pBytesWritten)
 {
     /* écriture sur le port */
-    return WriteFile(g_hCOM, buffer, nBytesToWrite, (DWORD*)pBytesWritten, NULL);
+
+    #ifdef WIN32
+        return WriteFile(g_hCOM, buffer, nBytesToWrite, (DWORD*)pBytesWritten, NULL);
+    #else
+        return true;
+    #endif
 }

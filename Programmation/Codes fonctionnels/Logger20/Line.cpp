@@ -5,7 +5,7 @@ Line::Line(QObject *parent) : QObject(parent){
 
     for(int c=0;c<NB_CAPTEURS;c++) {
         for(int v=0;v < 10;v++) {
-            h_reception.append(QTime(0,0));
+            h_reception.push_back(QTime(0,0));
 
             QPair<QString, double> value;
             value.first = "-1";
@@ -104,6 +104,8 @@ Line::Line(QObject *parent) : QObject(parent){
     }
 
     capteurNames.removeDuplicates();
+
+    qDebug() << h_reception.size();
 }
 
 QStringList Line::getValueNames() {
@@ -139,7 +141,7 @@ QString Line::get_checksum(const char *trame) {
             if (c != '$' && c!='#') check ^= c;
     }
 
-    itoa(check, buffer, 10);
+    //itoa(check, buffer, 10);
     return QString(buffer);
 }
 
@@ -217,10 +219,11 @@ QVector<double> Line::getRawValues() {
 QVector<QPair<QTime,double> > Line::getValuesWithTime() {
     QVector<QPair<QTime,double> > values;
 
+
     for(int c=0;c < NB_CAPTEURS;c++) {
         for(int v=0;v < 10;v++) {
              QPair<QTime,double> tmp;
-             tmp.first = h_reception[c*NB_VALEURS_MAX + v];
+             tmp.first = h_reception[c*NB_VALEURS_MAX+v];
              tmp.second = content[c*NB_VALEURS_MAX+v].second;
 
              values.append(tmp);
@@ -230,13 +233,24 @@ QVector<QPair<QTime,double> > Line::getValuesWithTime() {
     return values;
 }
 
-void Line::randUpdate() {
+void Line::randUpdate(Line *befL) {
     for(int c=0;c < NB_CAPTEURS;c++) {
         for(int v=0;v < NB_VALEURS_MAX;v++) {
             if(content[c*NB_VALEURS_MAX+v].first != "-1") {
-                content[c*NB_VALEURS_MAX+v].second = (rand()%((rand()%1000)+1))/10.0;
-                h_reception[c*NB_VALEURS_MAX + v] = QTime::currentTime();
+                 if(befL == 0) {
+                     qDebug() <<  "KOUKOU ";
+                     content[c*NB_VALEURS_MAX+v].second = (rand()%((rand()%1000)+1))/10.0;
+                     h_reception[c*NB_VALEURS_MAX + v] = QTime::currentTime();
+                } else {
+                     qDebug() <<  "TU VEUX VOUAR MA BEAT ";
+                     content[c*NB_VALEURS_MAX+v].second = befL->getValue(c,v) + (rand()%4)-2;
+                     h_reception[c*NB_VALEURS_MAX + v] = QTime::currentTime();
+                }
             }
         }
     }
+
+
+    qDebug() << "Content: " << content.size();
+    qDebug() << "H reception: " << h_reception.size();
 }

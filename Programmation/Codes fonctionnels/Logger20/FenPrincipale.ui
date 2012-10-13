@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>763</width>
-    <height>523</height>
+    <height>545</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="widgetCentral">
-   <layout class="QGridLayout" name="gridLayout_4">
-    <item row="0" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout_5">
+    <item>
      <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,8" columnstretch="1,19,0,0,0,0,0,32" columnminimumwidth="0,0,0,0,0,0,0,0">
       <item row="1" column="0">
        <widget class="QFrame" name="frame">
@@ -165,7 +165,7 @@
       <item row="1" column="1" colspan="7">
        <widget class="QStackedWidget" name="stack">
         <property name="currentIndex">
-         <number>5</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="p_tabl_bord">
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -250,6 +250,16 @@
                </property>
               </widget>
              </item>
+             <item>
+              <widget class="QPushButton" name="btn_optimiser">
+               <property name="text">
+                <string>OPTIMISATION</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
@@ -258,7 +268,19 @@
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="p_maps"/>
+        <widget class="QWidget" name="p_maps">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout" name="c_maps"/>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
       <item row="0" column="0" colspan="6">
@@ -394,7 +416,7 @@
      <x>0</x>
      <y>0</y>
      <width>763</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">

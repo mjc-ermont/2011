@@ -5,10 +5,10 @@
 #include <QThread>
 #include <QStringList>
 #include <string>
-#include <windows.h>
+//#include <windows.h>
 #include <cstdio>
 #include <cstdlib>
-#include <conio.h>
+//#include <conio.h>
 #include <QDebug>
 
 
@@ -39,12 +39,12 @@ signals:
 
 private:
     int port;
-
+/*
     HANDLE g_hCOM;
     COMMTIMEOUTS g_cto;
-        /* Configuration du port COM */
-    DCB g_dcb;
 
+    DCB g_dcb;
+*/
     std::string skipped_buf;
 
 };
