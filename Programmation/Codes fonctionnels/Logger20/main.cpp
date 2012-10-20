@@ -26,9 +26,9 @@ int main(int argc, char *argv[])
 
 
 
-    #ifndef DEBUG
+ //   #ifndef DEBUG
         port = QInputDialog::getInt(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :",1);
-    #endif
+  //  #endif
 
 
     Serial* com = new Serial(port);

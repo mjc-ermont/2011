@@ -16,7 +16,8 @@
 
 
 // A enlever quand on utilise de vraies trames.
-#define DEBUG
+//#define DEBUG
+#undef DEBUG
 
 
 

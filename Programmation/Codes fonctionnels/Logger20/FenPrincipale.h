@@ -33,6 +33,7 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
 
 protected:
         void reinit_b();
+        void resizeEvent(QResizeEvent *);
 
     private:
         Donnees* historique;

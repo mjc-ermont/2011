@@ -7,7 +7,6 @@ MapsView::MapsView(QVBoxLayout *parent) : QWebView()
     QFile fichier(":/html/maps");
     fichier.open(QFile::ReadOnly);
     QString s= QString(fichier.readAll());
-    qDebug() << s;
     this->setHtml(s);
 }
 

@@ -152,27 +152,26 @@ QString Line::addData(QString trame) {
 
 
     QStringList elements = trame.split("$");
-
     for(int i=0;i < elements.size();i++) {
         qDebug() << "[" << i << "] " << elements[i];
     }
 
-    if(elements.size() != 5)
+    if(elements.size() < 5)
         return "Ya un bug lol.";
 
     QString firstPart = elements[0] + "$" + elements[1] + "$" + elements[2] + "$" + elements[3] + "$";
     QString checkSum = get_checksum(firstPart.toStdString().c_str());
     qDebug() << "CS: " << checkSum;
-    if(checkSum == elements[4]) {
+   // if(checkSum == elements[4]) {
         int numCapteur = elements[1].toInt();
         double valeur = elements[3].toDouble();
         int numValeur = elements[2].toInt();
 
         content[numCapteur*NB_VALEURS_MAX+numValeur].second = valeur;
         h_reception[numCapteur*NB_VALEURS_MAX + numValeur] = QTime::currentTime();
-    } else {
-        erreur = "Mauvais checksum.";
-    }
+   // } else {
+    //    erreur = "Mauvais checksum.";
+   // }
 
     return erreur;
 }

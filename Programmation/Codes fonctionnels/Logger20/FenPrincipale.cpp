@@ -6,6 +6,7 @@ FenPrincipale::FenPrincipale(Serial* _com) :  historique(new Donnees()){
     qDebug() << "Test 1";
     connect(historique, SIGNAL(msg(QString)), this, SLOT(message(QString)));
 
+
     //------------------------------------------------------------------------------------------------------
 
 
@@ -81,6 +82,12 @@ FenPrincipale::~FenPrincipale(){
 
 }
 
+void FenPrincipale::resizeEvent(QResizeEvent *) {
+    if(optimisation_graph)
+        optimise_graph();
+
+}
+
 void FenPrincipale::requestAct() {
 
     if(get_infos->isChecked())
@@ -106,11 +113,11 @@ void FenPrincipale::syncTime() {
 
 
     if(m==42) {
-        QPalette palette = lcd_sec->palette();
+        QPalette palette = lcd_min->palette();
         palette.setColor(QPalette::Normal, QPalette::Foreground, Qt::red);
-        lcd_sec->setPalette(palette);
+        lcd_min->setPalette(palette);
     } else if(m == 43) {
-        lcd_sec->setPalette(lcd_hour->palette());
+        lcd_min->setPalette(lcd_hour->palette());
     }
 
     lcd_hour->display(h);
@@ -124,7 +131,7 @@ void FenPrincipale::informationsReceived(QStringList trames) {
 
         for(int i=0;i<trames.size();i++) {
             message("*" + trames[i]);
-            curLine.addData(trames[i]);
+            qDebug() << curLine.addData(trames[i]);
         }
 
 
@@ -139,7 +146,7 @@ void FenPrincipale::informationsReceived(QStringList trames) {
     }
 
     #ifdef DEBUG
-        message("[INFAKE] Informations received.");
+    /*    message("[INFAKE] Informations received.");
 
         Line *l = new Line;
         l->randUpdate(befLine);
@@ -157,7 +164,7 @@ void FenPrincipale::informationsReceived(QStringList trames) {
          * CELA NE MARCHE PAAAAAAAAAAAAAAAAAAAAAAAAAAS !!!!!!!!!!!!!!!!!!!!!!
          *
          *
-         */
+
         double valLat = latAngle + latMinute / 100;
         double valLong = longAngle + longMinute / 100;
 
@@ -166,7 +173,7 @@ void FenPrincipale::informationsReceived(QStringList trames) {
 
         for(int i=0;i<graphiques.size();i++) {
             graphiques[i].first->majData(historique);
-        }
+        }*/
     #endif
 }
 

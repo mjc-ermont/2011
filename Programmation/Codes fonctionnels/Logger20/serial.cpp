@@ -1,12 +1,12 @@
 #include "serial.h"
 
+#ifdef WIN32
 Serial::Serial(int _port, QThread * parent) : QThread(parent)
 {
     skipped_buf = "";
 
     port = _port;
 
-#ifdef WIN32
 
     g_hCOM = NULL;
     COMMTIMEOUTS _g_cto = {
@@ -49,7 +49,6 @@ Serial::Serial(int _port, QThread * parent) : QThread(parent)
 
    g_cto = _g_cto;
    g_dcb = _g_dcb;
-#endif
 }
 
 Serial::~Serial() {
@@ -93,7 +92,7 @@ void Serial::readData() {
 
 bool Serial::OpenCOM(int nId)
 {
-#ifdef WIN32
+
     /* variables locales */
     char szCOM[16];
     /* construction du nom du port, tentative d'ouverture */
@@ -117,7 +116,7 @@ bool Serial::OpenCOM(int nId)
     /* on vide les tampons d'émission et de réception, mise à 1 DTR */
     PurgeComm(g_hCOM, PURGE_TXCLEAR|PURGE_RXCLEAR|PURGE_TXABORT|PURGE_RXABORT);
     EscapeCommFunction(g_hCOM, SETDTR);
-#endif
+
     return true;
 }
 
@@ -129,9 +128,9 @@ retour : vrai si l'opération a réussi, faux sinon.
 bool Serial::CloseCOM()
 {
     /* fermeture du port COM */
-#ifdef WIN32
+
     CloseHandle(g_hCOM);
-#endif
+
     return true;
 }
 
@@ -150,11 +149,8 @@ caractères n'est présent dans le tampon d'entrée.
 ******************************************************************************/
 bool Serial::ReadCOM(void* buffer, int nBytesToRead, int* pBytesRead)
 {
-#ifdef WIN32
     return ReadFile(g_hCOM, buffer, nBytesToRead, (DWORD*)pBytesRead, NULL);
-#else
-    return true;
-#endif
+
 
 }
 /******************************************************************************
@@ -169,9 +165,103 @@ bool Serial::WriteCOM(void* buffer, int nBytesToWrite, int* pBytesWritten)
 {
     /* écriture sur le port */
 
-    #ifdef WIN32
-        return WriteFile(g_hCOM, buffer, nBytesToWrite, (DWORD*)pBytesWritten, NULL);
-    #else
-        return true;
-    #endif
+    return WriteFile(g_hCOM, buffer, nBytesToWrite, (DWORD*)pBytesWritten, NULL);
 }
+
+
+#endif
+
+#ifdef __linux
+Serial::Serial(int _port, QThread * parent) : QThread(parent)
+{
+    port = _port;
+}
+
+
+Serial::~Serial() {
+    CloseCOM();
+}
+
+void Serial::run() {
+    init();
+}
+
+
+bool Serial::init() {
+    const char *acm = "/dev/ttyUSB0";
+
+    qDebug() << "acm = " << acm;
+
+    memset(&tio,0,sizeof(tio));
+    tio.c_iflag=0; //IGNPAR;
+    tio.c_oflag=0;
+    tio.c_cflag=CS8|CREAD|CLOCAL;           // 8n1, see termios.h for more information
+    tio.c_lflag=0;
+    tio.c_cc[VMIN]=1;
+    tio.c_cc[VTIME]=5;
+
+    tty_fd = open( acm, O_RDWR | O_NONBLOCK);
+    if(tty_fd < 0){
+        perror("open");
+        printf("file => %s\n", acm);
+        return false;
+    }
+
+    setspeed(B4800);
+    return true;
+}
+
+
+void Serial::readData() {
+
+    QStringList trames;
+
+    #ifndef DEBUG
+        nb_read = read(tty_fd, buffer, 1024);
+        QString s;
+        for(int i=0;i<1024;i++)
+            s += buffer[i];
+
+        QString data = skipped_buf + s;
+
+        trames = data.split('@');
+        int nbTrames = trames.size();
+        if(nbTrames >= 2) {
+            if(trames.last().size() != trames[nbTrames - 2].size()) {
+                skipped_buf = trames.last();
+                trames.removeLast();
+
+            }
+        }
+    #endif
+    emit dataRead(trames);
+}
+
+
+// ----- Protected
+
+bool Serial::OpenCOM(int nId) {
+
+}
+
+bool Serial::CloseCOM()
+{
+    if (close(tty_fd)<0) {
+       perror("close");
+       return false;
+    }
+    return true;
+}
+
+bool Serial::ReadCOM(void* buffer, int nBytesToRead, int* pBytesRead)
+{
+
+}
+
+bool Serial::WriteCOM(void* buffer, int nBytesToWrite, int* pBytesWritten)
+{
+    write(tty_fd,buffer,nBytesToWrite);
+    return true;
+}
+
+#endif

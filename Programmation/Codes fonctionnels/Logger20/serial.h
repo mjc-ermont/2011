@@ -11,6 +11,16 @@
 //#include <conio.h>
 #include <QDebug>
 
+#include <stdlib.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <iostream>
+#include <pthread.h>
+
 
 class Serial : public QThread
 {
@@ -45,7 +55,20 @@ private:
 
     DCB g_dcb;
 */
-    std::string skipped_buf;
+
+    QString skipped_buf;
+
+    void setspeed(speed_t vitesse)
+    {
+      cfsetospeed(&tio, vitesse);
+      cfsetispeed(&tio, vitesse);
+      tcsetattr(tty_fd,TCSANOW,&tio);
+    }
+
+    int nb_read;
+    unsigned char buffer[1024];
+    struct termios tio;
+    int tty_fd;
 
 };
 
