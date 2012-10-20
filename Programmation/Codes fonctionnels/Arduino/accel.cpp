@@ -35,6 +35,6 @@ void Accel::getTrame(){
     trame += "$";
     trame += String(get_checksum(trame), HEX);
     trame += "$@";
-    for (byte k = 0 ; k < NB_REPET ; k++) Serial.println(trame);
+    for (byte k = 0 ; k < NB_REPET ; k++) Serial.print(trame);
     Serial.flush();
 }
