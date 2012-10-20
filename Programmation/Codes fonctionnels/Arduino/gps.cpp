@@ -11,6 +11,7 @@ bool GPS::init(){
 }
 
 bool GPS::refresh(){
+  //Serial.println("Debut");
   char current_char = 0;
   String table[20];
   byte i = 0;
@@ -50,6 +51,7 @@ bool GPS::refresh(){
         _vit = table[7];
         //Serial.println(freeMemory());
       }
+    //Serial.println("fin");  
     return true;
   } else {
     return false;
@@ -97,7 +99,7 @@ void GPS::getTrame(){
     trame += "$";
     trame += String(get_checksum(trame), HEX);
     trame += "$@";
-    for (byte k = 0 ; k < NB_REPET ; k++) Serial.println(trame);
+    for (byte k = 0 ; k < NB_REPET ; k++) Serial.print(trame);
     Serial.flush();
   }
 }
