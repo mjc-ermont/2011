@@ -18,26 +18,24 @@
    gps.init();
    accel.init();
    hum.init();
+   
    Serial1.begin(GPS_BAUDRATE);
    timer = millis();
  }
            
  void loop(){
    if ((millis() - timer) >= (unsigned long)1000){
+     
      //Serial.println(millis() - timer);
      timer = millis();
      gps.getTrame();
      accel.getTrame();
-     //hum.getTrame();
+     hum.getTrame();
    } else if ((millis() - timer) >= (unsigned long)800) {
-     Serial.println("Debut accel");
      accel.refresh();
-  
-    //hum.refresh();
-     Serial.println("Fin accel");
+     hum.refresh();
    } else if (Serial1.available() > 0){
      gps.refresh();
    }
  }
- 
- 
+

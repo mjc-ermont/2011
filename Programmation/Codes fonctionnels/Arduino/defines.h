@@ -1,7 +1,7 @@
 /*  ------- DEBUG -------  */
 
 #define SERIAL_DEBUG    1
-#define SERIAL_BAUDRATE 600
+#define SERIAL_BAUDRATE 4800
 
 /*  ------- TRASMISSION -------  */
 

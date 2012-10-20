@@ -20,8 +20,6 @@ bool Accel::refresh(){
   
   for(int i = 0; i < 3; i++){
     avg += (float)acc_data[i] * (float)acc_data[i];
-    Serial.println(acc_data[i]);
-    Serial.println(_accel.status);
   }
   
   avg = sqrt(avg);

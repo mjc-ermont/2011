@@ -65,4 +65,16 @@ void Hum::getTrame(){
     trame += "$@";
     for (byte k = 0 ; k < NB_REPET ; k++) Serial.println(trame);
     Serial.flush();
+    
+    trame = "#$";
+    trame += ID_CAPT_HUM;
+    trame += "$1$";
+    for (byte j = 0 ;  j < SIZE_VALUE - _temp.length() ; j++) trame += "0";
+    trame += _temp;
+    trame += "$";
+    trame += String(get_checksum(trame), HEX);
+    trame += "$@";
+    for (byte k = 0 ; k < NB_REPET ; k++) Serial.println(trame);
+    Serial.flush();
+    
 }
