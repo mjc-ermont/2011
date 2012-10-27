@@ -1,5 +1,6 @@
 #include "Line.h"
 
+
 Line::Line(QObject *parent) : QObject(parent){
 
 
@@ -16,13 +17,13 @@ Line::Line(QObject *parent) : QObject(parent){
                 capteurNames.push_back("GPS");
                 switch(v) {
                 case 0: // Pos X
-                    value.first = "Latitude - Angle";
+                    value.first = "Latitude - Degrés";
                     break;
                 case 1: // Pos Y
                     value.first = "Latitude - Minute";
                     break;
                 case 2:
-                    value.first = "Longitude - Angle";
+                    value.first = "Longitude - Degrés";
                     break;
                 case 3:
                     value.first = "Longitude - Minute";
@@ -31,7 +32,7 @@ Line::Line(QObject *parent) : QObject(parent){
                     value.first = "Vitesse (Knots)";
                     break;
                 case 5:
-                    value.first = "Heure";
+                    value.first = "Heure UTC";
                     break;
                 case 6: // Altitude
                     value.first = "Altitude (m)";
@@ -40,63 +41,25 @@ Line::Line(QObject *parent) : QObject(parent){
                 }
 
                 break;
-
-            case 1: // Temperatures
-                capteurNames.push_back("Température");
-                switch(v) {
-                case 0: // Exterieur
-                    value.first = "Extérieure";
-                    break;
-                case 1: // Interieur
-                    value.first = "Intérieure";
-                    break;
-
-                }
-                break;
-
-            case 2: // Gyroscope
+            case 1: // ACCELEROMETRE
                 capteurNames.push_back("Accéléromètre");
                 switch(v) {
-                case 0: // X
-                    value.first = "Moyenne";
+                case 0:
+                    value.first = "Valeur moyenne";
                     break;
-
                 }
                 break;
-
-            case 3: // Gaz
-                capteurNames.push_back("Gaz");
+            case 2: // HUMIDITE
+                capteurNames.push_back("Humidité");
                 switch(v) {
-                case 0: // CH4
-                    value.first = "CH4";
+                case 0:
+                    value.first = "Humidité";
                     break;
-                case 1: // CO2
-                    value.first = "CO2";
+                case 1:
+                    value.first = "Température";
                     break;
-
                 }
                 break;
-
-            case 4: // Pressions
-                capteurNames.push_back("Pression");
-                switch(v) {
-                case 0: // Exterieur
-                    value.first = "Extérieur";
-                    break;
-                case 1: // Interieur
-                    value.first = "Intérieur";
-                    break;
-
-                }
-                break;
-            case 5:
-                capteurNames.push_back("Hygrométrie");
-                switch(v) {
-                case 0: // Exterieur
-                    value.first = "Hygromètre";
-                    break;
-
-                }
             }
 
             content.push_back(value);
@@ -131,18 +94,17 @@ QList<QStandardItem *> Line::toList(int numCapteur) const{
     return prep;
 }
 
-QString Line::get_checksum(const char *trame) {
-    unsigned int check, i;
-    int c;
-    char buffer[17];
+QString Line::get_checksum(QString trame) {
 
-    for (i = 0 ; i < strlen(trame) ; i++){
-            c = (unsigned char)trame[i];
-            if (c != '$' && c!='#') check ^= c;
+    char XOR = 0;
+    for (int i = 0; i < trame.length() ; i++)
+    {
+       XOR = XOR ^ trame.toStdString()[i];
     }
 
-    //itoa(check, buffer, 10);
-    return QString(buffer);
+    qDebug() << XOR;
+
+    return QString::number(XOR);
 }
 
 QString Line::addData(QString trame) {
@@ -150,28 +112,33 @@ QString Line::addData(QString trame) {
 
     qDebug() << "La trame: " << trame;
 
-
+DEFINES_H
     QStringList elements = trame.split("$");
-    for(int i=0;i < elements.size();i++) {
+/*    for(int i=0;i < elements.size();i++) {
         qDebug() << "[" << i << "] " << elements[i];
-    }
+    }*/
 
     if(elements.size() < 5)
         return "Ya un bug lol.";
 
     QString firstPart = elements[0] + "$" + elements[1] + "$" + elements[2] + "$" + elements[3] + "$";
-    QString checkSum = get_checksum(firstPart.toStdString().c_str());
-    qDebug() << "CS: " << checkSum;
-   // if(checkSum == elements[4]) {
+    QString checkSum = get_checksum(firstPart);
+    qDebug() << "CS: "<< QString(checkSum).toInt(NULL, 10) << " | "  << elements[4].toInt(NULL, 16) ;
+    if(QString(checkSum).toInt(NULL, 10) == elements[4].toInt(NULL, 16) ) {
         int numCapteur = elements[1].toInt();
         double valeur = elements[3].toDouble();
         int numValeur = elements[2].toInt();
 
+        if(numCapteur == 2) // LE PUTAIN DE CAPTEUR D'ARTHUR QU'IL FAUT DIVISER PAR 100
+            valeur = valeur / 100;
+
+        qDebug() << "VALEUR BORDEL DE MERDE ("<<numCapteur<<";"<<numValeur<< ")"<<valeur;
+
         content[numCapteur*NB_VALEURS_MAX+numValeur].second = valeur;
         h_reception[numCapteur*NB_VALEURS_MAX + numValeur] = QTime::currentTime();
-   // } else {
-    //    erreur = "Mauvais checksum.";
-   // }
+    } else {
+        erreur = "Mauvais checksum.";
+    }
 
     return erreur;
 }

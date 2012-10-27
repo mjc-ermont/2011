@@ -27,7 +27,7 @@ class Serial : public QThread
     Q_OBJECT
 
 public:
-    Serial(int _port=1,QThread * parent = 0);
+    Serial(QString _port="/dev/TTYUSB0",QThread * parent = 0);
     ~Serial();
     void run();
     bool init();
@@ -48,7 +48,7 @@ signals:
     void dataRead(QStringList);
 
 private:
-    int port;
+    QString port;
 /*
     HANDLE g_hCOM;
     COMMTIMEOUTS g_cto;
