@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "ADXL345.h"
 
 class Hum {
 public:
