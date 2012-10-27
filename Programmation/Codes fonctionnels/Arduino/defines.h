@@ -11,6 +11,7 @@
 #define ID_CAPT_GPS     "00"
 #define ID_CAPT_ACCEL   "01"
 #define ID_CAPT_HUM     "02"
+#define ID_CAPT_PRESS   "03"
 #define NB_VAL_GPS      7
 #define ID_VAL_LAT_DEG  "0"
 #define ID_VAL_LAT_MIN  "1"

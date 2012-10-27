@@ -4,10 +4,12 @@
  #include "defines.h"
  #include "accel.h"
  #include "humidity.h"
+ #include "pression.h"
 
  GPS gps = GPS();
  Accel accel = Accel();
  Hum hum = Hum();
+ Press press = Press();
  unsigned long timer;
  
   
@@ -15,6 +17,7 @@ void setup() {
 #if SERIAL_DEBUG
    Serial.begin(SERIAL_BAUDRATE);
 #endif
+   press.init();
    gps.init();
    accel.init();
    hum.init();
@@ -31,9 +34,11 @@ void loop(){
      gps.getTrame();
      accel.getTrame();
      hum.getTrame();
+     press.getTrame();
    } else if ((millis() - timer) >= (unsigned long)800) {
      accel.refresh();
      hum.refresh();
+     press.refresh();
    } else if (Serial1.available() > 0){
      gps.refresh();
    }
