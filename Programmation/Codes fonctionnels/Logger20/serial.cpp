@@ -172,7 +172,7 @@ bool Serial::WriteCOM(void* buffer, int nBytesToWrite, int* pBytesWritten)
 #endif
 
 #ifdef __linux
-Serial::Serial(int _port, QThread * parent) : QThread(parent)
+Serial::Serial(QString _port, QThread * parent) : QThread(parent)
 {
     port = _port;
 }
@@ -188,9 +188,10 @@ void Serial::run() {
 
 
 bool Serial::init() {
-    const char *acm = "/dev/ttyUSB0";
+    qDebug() << "port = " << port.toStdString().c_str();
 
-    qDebug() << "acm = " << acm;
+    std::string acm = port.toStdString();
+
 
     memset(&tio,0,sizeof(tio));
     tio.c_iflag=0; //IGNPAR;
@@ -200,40 +201,60 @@ bool Serial::init() {
     tio.c_cc[VMIN]=1;
     tio.c_cc[VTIME]=5;
 
-    tty_fd = open( acm, O_RDWR | O_NONBLOCK);
+    tty_fd = open( acm.c_str(), O_RDWR | O_NONBLOCK);
     if(tty_fd < 0){
         perror("open");
-        printf("file => %s\n", acm);
+        printf("file => %s\n", acm.c_str());
         return false;
     }
 
-    setspeed(B4800);
+    setspeed(BAUD);
     return true;
 }
 
 
 void Serial::readData() {
 
+    qDebug() << "------------------------------------------------------------------------------------------";
+    qDebug() << "------------------------------------------------------------------------------------------";
+    qDebug() << "------------------------------------------------------------------------------------------";
+
     QStringList trames;
+    for(int i=0;i<1024;++i)
+        buffer[i] = '\n';
 
     #ifndef DEBUG
         nb_read = read(tty_fd, buffer, 1024);
+        int eol=0;
+
+        for(int i=0;(i<1024)&&(eol==0);++i)
+            if(buffer[i] == '\n')
+                eol = i;
+
+
         QString s;
-        for(int i=0;i<1024;i++)
+        for(int i=0;i<eol;i++)
             s += buffer[i];
 
         QString data = skipped_buf + s;
 
         trames = data.split('@');
         int nbTrames = trames.size();
+        qDebug() << "NB TRAMES:" << nbTrames;
         if(nbTrames >= 2) {
             if(trames.last().size() != trames[nbTrames - 2].size()) {
                 skipped_buf = trames.last();
+                qDebug()  << "|" << skipped_buf << "| YA UNE COUILLE DANS L'PATE QUOI";
                 trames.removeLast();
-
+            } else {
+                qDebug() << "Y'a pas d'couille dans l'pate quoi : " << trames.last().size() << " | " << trames[nbTrames - 1].size();
             }
         }
     #endif
+
+    qDebug() << "------------------------------------------------------------------------------------------";
+    qDebug() << "------------------------------------------------------------------------------------------";
+    qDebug() << "------------------------------------------------------------------------------------------";
     emit dataRead(trames);
 }
 

@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     srand(time(NULL));
 
     QApplication a(argc, argv);
-    int port = 1;
+    QString port = "/dev/ttyUSB0";
 
 
     QString locale = QLocale::system().name().section('_', 0, 0);
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
 
  //   #ifndef DEBUG
-        port = QInputDialog::getInt(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :",1);
+        port = QInputDialog::getText(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :");
   //  #endif
 
 
