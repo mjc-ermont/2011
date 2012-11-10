@@ -2,7 +2,6 @@
 #include "trame.h"
 #include "defines.h"
 #include <Arduino.h>
-#include <Wire.h>
 
 Press::Press(){
 }
