@@ -33,13 +33,14 @@ void loop(){
    if ((millis() - timer) >= (unsigned long)1000){
      
      //Serial.println(millis() - timer);
-     timer = millis();
      gps.getTrame();
      accel.getTrame();
      hum.getTrame();
      press.getTrame();
      temp.getTrame();
-   } else if ((millis() - timer) >= (unsigned long)800) {
+     timer = millis();   
+ } else if ((millis() - timer) >= (unsigned long)800) {
+     Serial.println();
      accel.refresh();
      hum.refresh();
      press.refresh();
