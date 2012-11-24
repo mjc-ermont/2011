@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>OpenLayers Demo</title>
+    <style type="text/css">
+      html, body, #basicMap {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+      }
+
+      #lock {
+	position: absolute;
+	top: 62px;
+	left: 7px;
+	z-index: 1337;
+      }
+
+	#lock img {
+		width: 30px;
+		height: 30px;
+	}
+
+    </style>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script>
+
+			var lock=true;
+
+			var mapnik         = new OpenLayers.Layer.OSM();
+			var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+			var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+			var position       = new OpenLayers.LonLat(13.41,52.52).transform( fromProjection, toProjection);
+			var vectorLayer    = new OpenLayers.Layer.Vector("Vector Layer");
+			var zoom           = 5; 
+	
+			var points = [];
+	
+			var style_green = {
+				    strokeColor: "#FF0000",
+				    strokeOpacity: 0.7,
+				    strokeWidth: 6
+					};
+		 
+				  function init() {
+				    map = new OpenLayers.Map("basicMap");
+				    map.addLayer(mapnik);
+				    map.setCenter(position, zoom );
+		
+				map.addLayer(vectorLayer);
+				  }
+			
+			function newPos(x,y) {
+			    var position = new OpenLayers.LonLat(x,y).transform(fromProjection, toProjection);
+					if(lock) {
+			    	map.setCenter(position, map.getZoom());
+					}
+
+		
+					points.push(new OpenLayers.Geometry.Point(x,y).transform(fromProjection, toProjection));
+					var lineString = new OpenLayers.Geometry.LineString(points);
+					var lineFeature = new OpenLayers.Feature.Vector(lineString, null, style_green);
+
+					vectorLayer.addFeatures([lineFeature]);
+				
+			}
+	
+			function toggleLock() {
+				if(lock) {
+					lock=false;
+					document.getElementById('lockBtn').src = "http://img855.imageshack.us/img855/8822/systemeicone8556128.png";
+				} else {
+					lock=true;
+					document.getElementById('lockBtn').src = "http://imageshack.us/a/img805/5206/systemeicone7836128.png";
+				}
+			}
+    </script>
+  </head>
+  <body onload="init();">
+    <div id="basicMap"></div>
+<!-- 
+http://img855.imageshack.us/img855/8822/systemeicone8556128.png
+http://imageshack.us/a/img805/5206/systemeicone7836128.png
+-->
+    <div id="lock" onclick="toggleLock()">  <img id="lockBtn" src="http://imageshack.us/a/img805/5206/systemeicone7836128.png"/> </div>
+  </body>
+</html>
