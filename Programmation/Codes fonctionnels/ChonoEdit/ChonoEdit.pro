@@ -17,4 +17,5 @@ HEADERS  += chronoedit.h
 
 FORMS    += chronoedit.ui
 
-LIBS += -L$(SYSTEM_API_LIBS) -lqtproxy -lqjson
+
+unix|win32: LIBS += -lqjson

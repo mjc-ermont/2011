@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>922</width>
-    <height>361</height>
+    <width>591</width>
+    <height>438</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,11 +17,56 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
-     <widget class="QWidget" name="tab_3">
+     <widget class="QWidget" name="tab_4">
       <attribute name="title">
        <string>&amp;Chronologie</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QTableWidget" name="events">
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>Évenement</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Moment</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Lieu</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Responsable</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Description</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>&amp;Ajout</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
@@ -45,10 +90,10 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="titreLineEdit"/>
+               <widget class="QLineEdit" name="eventTitle"/>
               </item>
               <item row="1" column="1">
-               <widget class="QSpinBox" name="heureSpinBox">
+               <widget class="QSpinBox" name="eventTime">
                 <property name="minimum">
                  <number>-14400</number>
                 </property>
@@ -64,18 +109,12 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
-               <widget class="QComboBox" name="lieuCombo"/>
-              </item>
               <item row="3" column="0">
                <widget class="QLabel" name="actionnaireLabel">
                 <property name="text">
-                 <string>Actionnaire</string>
+                 <string>Actionnaires</string>
                 </property>
                </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QComboBox" name="actionnaireCombo"/>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="heureLabel">
@@ -84,15 +123,28 @@
                 </property>
                </widget>
               </item>
+              <item row="2" column="1">
+               <widget class="QComboBox" name="eventPlace"/>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="eventResp">
+                <property name="text">
+                 <string>Aucun - selectionnez dans l'onglet &quot;Contributeurs&quot;</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="plainTextEdit"/>
+             <widget class="QPlainTextEdit" name="eventDesc"/>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="addEvent">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>&amp;Ajouter</string>
                 </property>
@@ -104,9 +156,6 @@
           </item>
          </layout>
         </widget>
-       </item>
-       <item>
-        <widget class="QTableWidget" name="tableWidget"/>
        </item>
       </layout>
      </widget>
@@ -130,7 +179,18 @@
         </layout>
        </item>
        <item>
-        <widget class="QListWidget" name="Contributeurs"/>
+        <widget class="QListWidget" name="Contributeurs">
+         <property name="selectionMode">
+          <enum>QAbstractItemView::MultiSelection</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="checkContribs">
+         <property name="text">
+          <string>&amp;Selectionner</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -154,7 +214,11 @@
         </layout>
        </item>
        <item>
-        <widget class="QListWidget" name="Lieux"/>
+        <widget class="QListWidget" name="Lieux">
+         <property name="selectionMode">
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -166,22 +230,6 @@
  <resources/>
  <connections>
   <connection>
-   <sender>setContributeur</sender>
-   <signal>returnPressed()</signal>
-   <receiver>addContributeur</receiver>
-   <slot>click()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>202</x>
-     <y>63</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>468</x>
-     <y>63</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>setLieu</sender>
    <signal>returnPressed()</signal>
    <receiver>addLieu</receiver>
@@ -192,8 +240,24 @@
      <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>498</x>
+     <x>999</x>
+     <y>76</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>setContributeur</sender>
+   <signal>returnPressed()</signal>
+   <receiver>addContributeur</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>202</x>
      <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>999</x>
+     <y>76</y>
     </hint>
    </hints>
   </connection>
