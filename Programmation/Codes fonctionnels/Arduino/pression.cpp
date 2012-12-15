@@ -11,7 +11,7 @@ bool Press::init(){
 
 bool Press::refresh(){
    int sensorValue;
-   sensorValue = analogRead(5);  
+   sensorValue = analogRead(8);  
    
    float volt = ((float)sensorValue*5)/1023;
    float pr = ((volt-0.2)/(0.045));

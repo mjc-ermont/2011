@@ -23,7 +23,7 @@ bool Accel::refresh(){
   }
   
   avg = sqrt(avg);
-  //Serial.println((int)(avg*100));
+  Serial.println((int)(avg*100));
 }
 
 void Accel::getTrame(){
