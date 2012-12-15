@@ -12,10 +12,17 @@ ChronoEdit::ChronoEdit(QWidget *parent) : QWidget(parent), ui(new Ui::ChronoEdit
 
     connect(this, SIGNAL(notAllSet(bool)), ui->addEvent, SLOT(setEnabled(bool)));
     connect(ui->checkContribs, SIGNAL(pressed()), this, SLOT(refreshContribLabel()));
+
     connect(ui->addLieu, SIGNAL(pressed()), this, SLOT(verifyEnable()));
     connect(ui->eventTitle, SIGNAL(textEdited(QString)), this, SLOT(verifyEnable()));
     connect(ui->checkContribs, SIGNAL(pressed()), this, SLOT(verifyEnable()));
     connect(ui->addEvent, SIGNAL(pressed()), this, SLOT(ajouterEvent()));
+
+    connect(ui->addLieu, SIGNAL(pressed()), this, SLOT(save()));
+    connect(ui->eventTitle, SIGNAL(textEdited(QString)), this, SLOT(save()));
+    connect(ui->checkContribs, SIGNAL(pressed()), this, SLOT(save()));
+    connect(ui->addEvent, SIGNAL(pressed()), this, SLOT(save()));
+    connect(ui->events, SIGNAL(cellChanged(int,int)), this, SLOT(save()));
 }
 
 ChronoEdit::~ChronoEdit(){
