@@ -11,6 +11,7 @@ Accel::Accel(){
 bool Accel::init(){
   Wire.begin();
   _accel.set_bw(ADXL345_BW_12);
+  _accel.powerOn();
 }
 
 bool Accel::refresh(){
