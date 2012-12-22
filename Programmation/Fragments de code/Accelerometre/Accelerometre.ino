@@ -31,7 +31,7 @@ void setup(){
   delay(1);
   Serial.println("Here");
   Accel.set_bw(ADXL345_BW_12);
-  Accel.powerOn() 
+  Accel.powerOn();
   Serial.print("BW_OK? ");
   Serial.println(Accel.status, DEC);
   delay(1000);
