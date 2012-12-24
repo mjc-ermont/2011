@@ -10,6 +10,7 @@ Accel::Accel(){
 
 bool Accel::init(){
   Wire.begin();
+  delay(100);
   _accel.set_bw(ADXL345_BW_12);
   _accel.powerOn();
 }
@@ -23,8 +24,8 @@ bool Accel::refresh(){
     avg += (float)acc_data[i] * (float)acc_data[i];
   }
   
-  avg = sqrt(avg);
-  Serial.println((int)(avg*100));
+  _avg = String((int)(100*sqrt(avg)));
+  //Serial.println((int)(avg*100));
 }
 
 void Accel::getTrame(){
@@ -36,6 +37,12 @@ void Accel::getTrame(){
     trame += "$";
     trame += String(get_checksum(trame), HEX);
     trame += "$@";
-    for (byte k = 0 ; k < NB_REPET ; k++) Serial.print(trame);
-    Serial.flush();
+    for (int i = 0 ; i < _out.size() ; i++){
+      _out[i].addTrame(trame);
+      _out[i].writeQueue();
+    }
+}
+
+void Accel::addOut(Out &out){
+  _out.push_back(out);
 }

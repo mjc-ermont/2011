@@ -20,6 +20,7 @@ bool GPS::refresh(){
     while (Serial1.read() != '$');                  // On attend le debut de la trame
     
     while (true){                                   // On lit toute la trame, sauf le checksum, et on la place dans un string
+      //Serial.println("w");
       current_char = Serial1.read();
       if (current_char == '*'){
         break;
@@ -59,6 +60,7 @@ bool GPS::refresh(){
 }
 
 void GPS::getTrame(){
+  //Serial.println("dtg");
   for (byte i = 0 ; i < /*NB_VAL_GPS*/ 6 ; i++){
     String id_capt, val_capt;
     switch (i){
@@ -88,7 +90,8 @@ void GPS::getTrame(){
       break;
       default:
       break;
-    }    
+    }
+    //Serial.println("mtg");
     String trame = "#$";
     trame += ID_CAPT_GPS;
     trame += "$";
@@ -99,7 +102,10 @@ void GPS::getTrame(){
     trame += "$";
     trame += String(get_checksum(trame), HEX);
     trame += "$@";
-    for (byte k = 0 ; k < NB_REPET ; k++) Serial.print(trame);
-    Serial.flush();
+    for (byte k = 0 ; k < NB_REPET ; k++) {
+      Serial.print(trame);
+      Serial.flush();
+    }
+    //Serial.println("ftg");
   }
 }

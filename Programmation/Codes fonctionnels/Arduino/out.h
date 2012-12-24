@@ -1,11 +1,19 @@
+#ifndef OUT_INCLUDED
+#define OUT_INCLUDED
+
 #include <Arduino.h>
+#include "queue.h"
+
+
 
 class Out {
 public:
 	Out();
-	bool init();
-        void addTrame(const char *trame);
-        virtual void writeQueue();
-private:
-
+	virtual bool init() = 0;
+        void addTrame(String trame);
+        virtual void writeQueue() = 0;
+protected:
+        QueueArray<String> queue;
 };
+
+#endif
