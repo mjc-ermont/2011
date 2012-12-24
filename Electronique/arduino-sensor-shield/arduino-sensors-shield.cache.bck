@@ -1,0 +1,37 @@
+EESchema-DOCLIB  Version 2.0  23/12/2012-00:52:33
+#
+$CMP 4050
+D Hex Buffer
+K CMOS BUFFER
+$ENDCMP
+#
+$CMP C
+D Condensateur non polarise
+$ENDCMP
+#
+$CMP CONN_3
+D Symbole general de connecteur
+K CONN
+$ENDCMP
+#
+$CMP CONN_4
+D Symbole general de connecteur
+K CONN
+$ENDCMP
+#
+$CMP CONN_4X2
+D Symbole general de connecteur
+K CONN
+$ENDCMP
+#
+$CMP CONN_8
+D Symbole general de connecteur
+K CONN
+$ENDCMP
+#
+$CMP R
+D Resistance
+K R DEV
+$ENDCMP
+#
+#End Doc Library

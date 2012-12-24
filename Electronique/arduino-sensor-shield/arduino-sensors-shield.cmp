@@ -1,0 +1,150 @@
+Cmp-Mod V01 Created by Cvpcb (2007-02-16) date = 23/12/2012-00:39:34
+
+BeginCmp
+TimeStamp = 5055C3F3;
+Reference = C30;
+ValeurCmp = C;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5055C2B0;
+Reference = C50;
+ValeurCmp = C;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5055CCB6;
+Reference = D5;
+ValeurCmp = LED;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 50D63767;
+Reference = MCP3002;
+ValeurCmp = CONN_4X2;
+IdModule  = 8dip300;
+EndCmp
+
+BeginCmp
+TimeStamp = 505F2D18;
+Reference = P1;
+ValeurCmp = CONN_3;
+IdModule  = SIL-3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5054E9AF;
+Reference = P2;
+ValeurCmp = CONN_3;
+IdModule  = SIL-3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5054E9B2;
+Reference = P3;
+ValeurCmp = CONN_3;
+IdModule  = SIL-3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5055CBFD;
+Reference = P5;
+ValeurCmp = CONN_8;
+IdModule  = P5;
+EndCmp
+
+BeginCmp
+TimeStamp = 505F2714;
+Reference = P8;
+ValeurCmp = CONN_3;
+IdModule  = SIL-3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5054EA03;
+Reference = P31;
+ValeurCmp = ADXL345;
+IdModule  = SIL-8;
+EndCmp
+
+BeginCmp
+TimeStamp = 5054E9FC;
+Reference = P33;
+ValeurCmp = HYT-371;
+IdModule  = SIL-4;
+EndCmp
+
+BeginCmp
+TimeStamp = 50D63A02;
+Reference = P50;
+ValeurCmp = CONN_3;
+IdModule  = SIL-3;
+EndCmp
+
+BeginCmp
+TimeStamp = 50D63A03;
+Reference = P51;
+ValeurCmp = CONN_3;
+IdModule  = SIL-3;
+EndCmp
+
+BeginCmp
+TimeStamp = 5054EA1D;
+Reference = R1;
+ValeurCmp = R;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5079971B;
+Reference = R2;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = 50799723;
+Reference = R3;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = 5055CCB3;
+Reference = R5;
+ValeurCmp = R;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5055C1F6;
+Reference = R31;
+ValeurCmp = R;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5055C1CF;
+Reference = R32;
+ValeurCmp = R;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = 5054E9AA;
+Reference = SHIELD_R;
+ValeurCmp = ARDUINO_SHIELD;
+IdModule  = SHIELD_REV_V31;
+EndCmp
+
+BeginCmp
+TimeStamp = 5054EC57;
+Reference = U1;
+ValeurCmp = 4050;
+IdModule  = SO16E;
+EndCmp
+
+EndListe

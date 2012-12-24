@@ -1,0 +1,320 @@
+# EESchema Netlist Version 1.1 created  23/12/2012-00:52:19
+(
+ ( 50D63A03 $noname  P51 CONN_3 {Lib=CONN_3}
+  (    1 CH1_1 )
+  (    2 Vcc_5_1 )
+  (    3 GND_1 )
+ )
+ ( 50D63A02 $noname  P50 CONN_3 {Lib=CONN_3}
+  (    1 CH0_1 )
+  (    2 Vcc_5_1 )
+  (    3 GND_1 )
+ )
+ ( 50D63767 $noname  MCP3002 CONN_4X2 {Lib=CONN_4X2}
+  (    1 CS2_1 )
+  (    2 CH0_1 )
+  (    3 CH1_1 )
+  (    4 GND_1 )
+  (    5 Vcc_5_1 )
+  (    6 SCK_1 )
+  (    7 MISO_1 )
+  (    8 MOSI_1 )
+ )
+ ( 50799723 $noname  R3 R {Lib=R}
+  (    1 N-000010 )
+  (    2 GND_1 )
+ )
+ ( 5079971B $noname  R2 R {Lib=R}
+  (    1 N-000009 )
+  (    2 N-000010 )
+ )
+ ( 505F2D18 $noname  P1 CONN_3 {Lib=CONN_3}
+  (    1 A1_1 )
+  (    2 Vcc_5_1 )
+  (    3 GND_1 )
+ )
+ ( 505F2714 $noname  P8 CONN_3 {Lib=CONN_3}
+  (    1 Rx_1 )
+  (    2 Vcc_5_1 )
+  (    3 GND_1 )
+ )
+ ( 5054EC57 $noname  U1 4050 {Lib=4050}
+  (    1 Vcc_3_1 )
+  (    2 iCS_1 )
+  (    3 CS1_1 )
+  (    4 iMOSI_1 )
+  (    5 MOSI_1 )
+  (    6 iSCK_1 )
+  (    7 SCK_1 )
+  (    8 GND_1 )
+  (    9 GND_1 )
+  (   10  ? )
+  (   11 GND_1 )
+  (   12  ? )
+  (   14 GND_1 )
+  (   15  ? )
+ )
+ ( 5055CCB6 $noname  D5 LED {Lib=LED}
+  (    1 Vcc_5_1 )
+  (    2 N-000022 )
+ )
+ ( 5055CCB3 $noname  R5 R {Lib=R}
+  (    1 N-000022 )
+  (    2 GND_1 )
+ )
+ ( 5055CBFD $noname  P5 CONN_8 {Lib=CONN_8}
+  (    1  ? )
+  (    2 iCS_1 )
+  (    3 iMOSI_1 )
+  (    4 Vcc_3_1 )
+  (    5 iSCK_1 )
+  (    6 GND_1 )
+  (    7 MISO_1 )
+  (    8  ? )
+ )
+ ( 5055C3F3 $noname  C30 C {Lib=C}
+  (    1 Vcc_3_1 )
+  (    2 GND_1 )
+ )
+ ( 5055C2B0 $noname  C50 C {Lib=C}
+  (    1 Vcc_5_1 )
+  (    2 GND_1 )
+ )
+ ( 5055C1F6 $noname  R31 R {Lib=R}
+  (    1 Vcc_3_1 )
+  (    2 SDA_1 )
+ )
+ ( 5055C1CF $noname  R32 R {Lib=R}
+  (    1 Vcc_3_1 )
+  (    2 SCL_1 )
+ )
+ ( 5054EA1D $noname  R1 R {Lib=R}
+  (    1 A1_1 )
+  (    2 GND_1 )
+ )
+ ( 5054EA03 $noname  P31 ADXL345 {Lib=CONN_8}
+  (    1 GND_1 )
+  (    2 Vcc_3_1 )
+  (    3 Vcc_3_1 )
+  (    4  ? )
+  (    5  ? )
+  (    6  ? )
+  (    7 SDA_1 )
+  (    8 SCL_1 )
+ )
+ ( 5054E9FC $noname  P33 HYT-371 {Lib=CONN_4}
+  (    1 SDA_1 )
+  (    2 GND_1 )
+  (    3 Vcc_3_1 )
+  (    4 SCL_1 )
+ )
+ ( 5054E9B2 $noname  P3 CONN_3 {Lib=CONN_3}
+  (    1 A3_1 )
+  (    2 Vcc_5_1 )
+  (    3 GND_1 )
+ )
+ ( 5054E9AF $noname  P2 CONN_3 {Lib=CONN_3}
+  (    1 A2_1 )
+  (    2 Vcc_5_1 )
+  (    3 GND_1 )
+ )
+ ( 5054E9AA $noname  SHIELD_REV_V31 ARDUINO_SHIELD {Lib=ARDUINO_SHIELD}
+  (    0 Rx_1 )
+  ( IORE  ? )
+  (  RST  ? )
+  ( GND1 GND_1 )
+  ( GND2 GND_1 )
+  ( V_IN N-000009 )
+  (  AD0 N-000010 )
+  (  AD1 A1_1 )
+  (  AD2 A2_1 )
+  (  AD3 A3_1 )
+  (  AD4  ? )
+  (  AD5  ? )
+  (  SCL SCL_1 )
+  (  SDA SDA_1 )
+  ( GND3 GND_1 )
+  ( AREF  ? )
+  (   NC  ? )
+  (    1  ? )
+  (    2  ? )
+  (    3  ? )
+  (  3V3 Vcc_3_1 )
+  (    4  ? )
+  (   5V Vcc_5_1 )
+  (    5  ? )
+  (    6  ? )
+  (    7  ? )
+  (    8  ? )
+  (    9 CS1_1 )
+  (   10 CS2_1 )
+  (   11 MOSI_1 )
+  (   12 MISO_1 )
+  (   13 SCK_1 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component R3
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R2
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R5
+ R?
+ SM0603
+ SM0805
+$endlist
+$component C30
+ C?
+ SM*
+$endlist
+$component C50
+ C?
+ SM*
+$endlist
+$component R31
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R32
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R1
+ R?
+ SM0603
+ SM0805
+$endlist
+$endfootprintlist
+}
+{ Pin List by Nets
+Net 1 "SCL_1"
+ SHIELD_REV_V31 SCL
+ P33 4
+ P31 8
+ R32 2
+Net 2 "Vcc_5_1"
+ P51 2
+ P1 2
+ P8 2
+ P50 2
+ MCP3002 5
+ D5 1
+ SHIELD_REV_V31 5V
+ P3 2
+ P2 2
+ C50 1
+Net 3 "CH1_1"
+ MCP3002 3
+ P51 1
+Net 4 "CH0_1"
+ P50 1
+ MCP3002 2
+Net 5 "SCK_1"
+ SHIELD_REV_V31 13
+ U1 7
+ MCP3002 6
+Net 6 "MOSI_1"
+ U1 5
+ SHIELD_REV_V31 11
+ MCP3002 8
+Net 7 "CS2_1"
+ SHIELD_REV_V31 10
+ MCP3002 1
+Net 8 "MISO_1"
+ MCP3002 7
+ SHIELD_REV_V31 12
+ P5 7
+Net 9 ""
+ R2 1
+ SHIELD_REV_V31 V_IN
+Net 10 ""
+ R2 2
+ R3 1
+ SHIELD_REV_V31 AD0
+Net 11 "CS1_1"
+ SHIELD_REV_V31 9
+ U1 3
+Net 12 "Vcc_3_1"
+ U1 1
+ P31 3
+ U1 1
+ P33 3
+ U1 1
+ U1 1
+ P5 4
+ R32 1
+ U1 1
+ R31 1
+ SHIELD_REV_V31 3V3
+ P31 2
+ U1 1
+ C30 1
+Net 13 "iSCK_1"
+ U1 6
+ P5 5
+Net 14 "iMOSI_1"
+ U1 4
+ P5 3
+Net 15 "A3_1"
+ P3 1
+ SHIELD_REV_V31 AD3
+Net 16 "A1_1"
+ R1 1
+ P1 1
+ SHIELD_REV_V31 AD1
+Net 20 "A2_1"
+ SHIELD_REV_V31 AD2
+ P2 1
+Net 21 "iCS_1"
+ U1 2
+ P5 2
+Net 22 ""
+ D5 2
+ R5 1
+Net 23 "Rx_1"
+ SHIELD_REV_V31 0
+ P8 1
+Net 24 "SDA_1"
+ R31 2
+ P31 7
+ SHIELD_REV_V31 SDA
+ P33 1
+Net 30 "GND_1"
+ C30 2
+ C50 2
+ SHIELD_REV_V31 GND1
+ SHIELD_REV_V31 GND2
+ SHIELD_REV_V31 GND3
+ P5 6
+ R5 2
+ U1 8
+ U1 9
+ P8 3
+ P1 3
+ U1 8
+ U1 14
+ U1 8
+ R3 2
+ U1 11
+ U1 8
+ MCP3002 4
+ P50 3
+ P51 3
+ U1 8
+ U1 8
+ R1 2
+ P31 1
+ P33 2
+ P3 3
+ P2 3
+}
+#End
