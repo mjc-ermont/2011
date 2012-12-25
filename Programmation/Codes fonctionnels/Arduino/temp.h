@@ -3,10 +3,10 @@
 class Temp {
 public:
 	Temp();
-	bool init();
-	bool refresh();
-        void getTrame();
+	bool init(); // Initialisation du capteur
+	bool refresh();  // Recuperation de la temperature
+        void getTrame(); // Envoi de la trame
 
 private:
-        String  _temp;
+        String  _temp;  // Temperature
 };
