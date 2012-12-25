@@ -20,7 +20,7 @@ bool GPS::refresh(){
     while (Serial1.read() != '$');                  // On attend le debut de la trame
     
     while (true){                                   // On lit toute la trame, sauf le checksum, et on la place dans un string
-      //Serial.println("w");
+      debug("w");
       current_char = Serial1.read();
       if (current_char == '*'){                     // Arret de la boucle quand on arrive a la fin
         break;
@@ -52,7 +52,6 @@ bool GPS::refresh(){
       _vit = table[7];                                  // ... et la vitesse
       //Serial.println(freeMemory());
     }
-  //Serial.println("fin");  
     return true;
   } else {
     return false;
@@ -60,7 +59,7 @@ bool GPS::refresh(){
 }
 
 void GPS::getTrame(){
-  //Serial.println("dtg");
+  debug("dtg");
   for (byte i = 0 ; i < /*NB_VAL_GPS*/ 6 ; i++){          // Pour chaque valeur envoyée par le GPS
     String id_capt, val_capt;                             // variables contenant respectivement l'id et la valeur de la donnee du GPS en cours d'envoi
     switch (i){                                           // On attribue a la variable temporaire la valeur et l'ID de la donnee du GPS en cours d'envoi
@@ -91,7 +90,7 @@ void GPS::getTrame(){
       default:
       break;
     }
-    //Serial.println("mtg");
+    debug("mtg");
     String trame = "#$";      // Debut + separateur
     trame += ID_CAPT_GPS;     // ID du capteur
     trame += "$";             // Separateur
@@ -106,6 +105,6 @@ void GPS::getTrame(){
       Serial.print(trame);
       Serial.flush();
     }
-    //Serial.println("ftg");
+    debug("ftg");
   }
 }

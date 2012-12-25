@@ -7,6 +7,7 @@
  #include "pression.h"
  #include "temp.h"
  #include "serial_out.h"
+ #include "debug.h"
  
  GPS gps = GPS();
  Accel accel = Accel();
@@ -32,10 +33,10 @@ void setup() {
 }
            
 void loop(){
-   //Serial.println("d");
+   debug("d");
    if ((millis() - timer) >= (unsigned long)1000){
      
-     //Serial.println("dt");
+     debug("dt");
      gps.getTrame();
      Serial.flush();
      accel.getTrame();
@@ -47,19 +48,19 @@ void loop(){
      temp.getTrame();
      Serial.flush();
      timer = millis();
-     //Serial.println("ft");
+     debug("ft");
    } else if ((millis() - timer) >= (unsigned long)800) {
-     //Serial.println("dr");
+     debug("dr");
      accel.refresh();
      hum.refresh();
      press.refresh();
      temp.refresh();
-     //Serial.println("fr");
+     debug("fr");
    } else if (Serial1.available() > 0){
-     //Serial.println("drg");
+     debug("drg");
      gps.refresh();
-     //Serial.println("frg");  
+     debug("frg");  
  }
-   //Serial.println("f");
+   debug("f");
 }
 
