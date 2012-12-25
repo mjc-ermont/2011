@@ -7,11 +7,11 @@
 class Accel : public Capteur{
 public:
 	Accel();
-	bool init();
-	bool refresh();
-        void getTrame();
+	bool init(); // methode de recuperation des donnees de l'accelerometre
+	bool refresh(); // methode de recuperation des donnees de l'accelerometre
+        void getTrame(); // methode d'envoi de la trame
 
 private:
-        ADXL345 _accel;
-        String  _avg;
+        ADXL345 _accel; // Objet pour gérer accelerometre
+        String  _avg; // Norme du vecteur acceleration
 };
