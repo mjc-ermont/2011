@@ -6,5 +6,5 @@ Capteur::Capteur(){
 }
 
 void Capteur::addOut(Out &out){
-  _out.push_back(out);
+  _out.push_back(out);  // Ajout de la sortie au tableau des sorties
 }
