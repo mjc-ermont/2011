@@ -8,10 +8,10 @@ public:
         void getTrame();
 
 private:
-        String _lat_deg;
-        String _lat_min;
-        String _lon_deg;
-        String _lon_min;
-        String _vit;
-        String _utime;
+        String _lat_deg; // Degres de latitude
+        String _lat_min; // Minutes de latitude
+        String _lon_deg; // Degres de longitude
+        String _lon_min; // Minutes de longitude
+        String _vit;     // Vitesse
+        String _utime;   // Temps UTC
 };
