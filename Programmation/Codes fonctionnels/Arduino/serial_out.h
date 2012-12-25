@@ -8,8 +8,8 @@
 class SerialOut : public Out {
 public:
 	SerialOut();
-	virtual bool init();
-        virtual void writeQueue();
+	virtual bool init();        // Initialisation du port serie
+        virtual void writeQueue();  // Ecriture de la sortie sur le port serie
 };
 
 #endif // SERIALOUT_INCLUDED
