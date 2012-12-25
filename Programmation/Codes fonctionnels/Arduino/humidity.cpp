@@ -7,13 +7,13 @@
 Hum::Hum(){
 }
 
-bool Hum::init(){
-  Wire.begin();
+bool Hum::init(){  // Initialisation du capteur
+  Wire.begin();    // Initialisation de la bibliotheque IIC
 }
 
-bool Hum::refresh(){
-    double Humidity;
-    double Temperature;
+bool Hum::refresh(){    // Recuperation des valeurs du capteur
+    double Humidity;    // Valeur de l'humidite
+    double Temperature; // valeur de la temperature
 
   
     Wire.beginTransmission(HYT371_ADDR);
@@ -54,7 +54,7 @@ bool Hum::refresh(){
 
 }
 
-void Hum::getTrame(){
+void Hum::getTrame(){  // Envoi de la trame
     String trame = "#$";
     trame += ID_CAPT_HUM;
     trame += "$0$";

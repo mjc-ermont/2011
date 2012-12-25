@@ -8,6 +8,6 @@ public:
         void getTrame();
 
 private:
-        String  _hum;
-        String  _temp;
+        String  _hum; // Humidite
+        String  _temp;// Temperature
 };
