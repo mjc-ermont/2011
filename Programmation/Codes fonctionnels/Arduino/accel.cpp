@@ -16,10 +16,10 @@ bool Accel::init(){ // methode d'iniialisation de l'accelerometre
 }
 
 bool Accel::refresh(){ // methode de recuperation des donnees de l'accelerometre
-  double acc_data[3];            // Tableau des trois composantes du vecteur d'acceleration
+  float acc_data[3];             // Tableau des trois composantes du vecteur d'acceleration
   float avg = 0;                 // Norme du vecteur d'acceleration
   
-  _accel.get_Gxyz(acc_data);     // recuperation des valeurs de l'accelerometre
+  _accel.get_Gxyz((double*)acc_data);     // recuperation des valeurs de l'accelerometre
   
   for(int i = 0; i < 3; i++){    // Calcul de la norme du vecteur d'acceleration
     avg += (float)acc_data[i] * (float)acc_data[i];

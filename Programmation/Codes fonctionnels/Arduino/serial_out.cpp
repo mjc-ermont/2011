@@ -10,8 +10,8 @@ bool SerialOut::init(){          // Initialisation du port serie (SERIAL_BAUDRAT
 }
 
 void SerialOut::writeQueue(){    // Eccriture de la file sur la sortie
-  for(int h = 0 ; h < queue.count() ; h++){    // Ecriture de la totalité de la file
-    for (int i = 0 ; i<NB_REPET ; i++){        // Plusieurs fois au cas ou le recepteur de receptionnerait pas les premieres fois
+  for(byte h = 0 ; h < queue.count() ; h++){    // Ecriture de la totalité de la file
+    for (byte i = 0 ; i<NB_REPET ; i++){        // Plusieurs fois au cas ou le recepteur de receptionnerait pas les premieres fois
       Serial.print(queue.pop());               // Ecriture de l'element courant
       Serial.flush();                          // attente de la fin de l'ecriture
     }
