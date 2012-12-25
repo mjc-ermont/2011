@@ -48,7 +48,7 @@ void loop(){
      Serial.flush();
      timer = millis();
      //Serial.println("ft");
- } else if ((millis() - timer) >= (unsigned long)800) {
+   } else if ((millis() - timer) >= (unsigned long)800) {
      //Serial.println("dr");
      accel.refresh();
      hum.refresh();

@@ -36,23 +36,23 @@ bool GPS::refresh(){
       }
     }
     
-      if(table[0] == "GPRMC"){                            // On trie les données recues : Si la trame recue est une trame GPRMC ...
-         
-        _utime = table[1];                                // ... On en extrait le temps, ...
-        
-        if(table[3].length() == 9){                       // ... la latitude et la longitude (si la valeur a la bonne longueur) ...
-          _lat_deg = table[3].substring(0, 2);
-          _lat_min = table[3].substring(2);
-        }
-        
-        if(table[5].length() == 10){
-          _lon_deg = table[5].substring(0, 3);
-          _lon_min = table[5].substring(3);
-        }
-        _vit = table[7];                                  // ... et la vitesse
-        //Serial.println(freeMemory());
+    if(table[0] == "GPRMC"){                            // On trie les données recues : Si la trame recue est une trame GPRMC ...
+       
+      _utime = table[1];                                // ... On en extrait le temps, ...
+      
+      if(table[3].length() == 9){                       // ... la latitude et la longitude (si la valeur a la bonne longueur) ...
+        _lat_deg = table[3].substring(0, 2);
+        _lat_min = table[3].substring(2);
       }
-    //Serial.println("fin");  
+      
+      if(table[5].length() == 10){
+        _lon_deg = table[5].substring(0, 3);
+        _lon_min = table[5].substring(3);
+      }
+      _vit = table[7];                                  // ... et la vitesse
+      //Serial.println(freeMemory());
+    }
+  //Serial.println("fin");  
     return true;
   } else {
     return false;
