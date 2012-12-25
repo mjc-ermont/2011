@@ -42,7 +42,3 @@ void Accel::getTrame(){
       _out[i].writeQueue();
     }
 }
-
-void Accel::addOut(Out &out){
-  _out.push_back(out);
-}

@@ -2,17 +2,16 @@
 #include "ADXL345.h"
 #include "vector.h"
 #include "out.h"
+#include "capteur.h"
 
-class Accel {
+class Accel : public Capteur{
 public:
 	Accel();
 	bool init();
 	bool refresh();
         void getTrame();
-        void addOut(Out &out);
 
 private:
         ADXL345 _accel;
         String  _avg;
-        Vector<Out> _out;
 };
