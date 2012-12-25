@@ -6,21 +6,21 @@
 Press::Press(){
 }
 
-bool Press::init(){
+bool Press::init(){ // Initialisation du capteur
 }
 
-bool Press::refresh(){
+bool Press::refresh(){ // recuperation de la valeur de la pression
    int sensorValue;
-   sensorValue = analogRead(8);  
+   sensorValue = analogRead(8);   // Lecture de la valeur de la patte
    
-   float volt = ((float)sensorValue*5)/1023;
+   float volt = ((float)sensorValue*5)/1023;   // Conversion de la tension en pression (A modifier suite au calibrage)
    float pr = ((volt-0.2)/(0.045));
    
-   _press = String((int)(pr*100));
+   _press = String((int)(pr*100));             // Ecriture de la pression dans une string
 
 }
 
-void Press::getTrame(){
+void Press::getTrame(){ // Envoi de la trame
     String trame = "#$";
     trame += ID_CAPT_PRESS;
     trame += "$0$";

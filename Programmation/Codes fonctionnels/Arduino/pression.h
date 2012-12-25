@@ -3,10 +3,10 @@
 class Press {
 public:
 	Press();
-	bool init();
-	bool refresh();
-        void getTrame();
+	bool init(); // Initialisation du capteur
+	bool refresh();  // Recuperation de la valeur de la pression
+        void getTrame(); // Envoi de la trame
 
 private:
-        String  _press;
+        String  _press;  // Pression
 };
