@@ -12,8 +12,8 @@
  GPS gps = GPS();
  Accel accel = Accel();
  Hum hum = Hum();
- Press press = Press(8);
- Temp temp = Temp(9);
+ Press press = Press(PIN_PRESS);
+ Temp temp = Temp(PIN_TEMP);
  SerialOut so = SerialOut();;
  unsigned long timer;
  

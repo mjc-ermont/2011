@@ -23,6 +23,14 @@
 #define ID_VAL_UTIME    "5"  // No de la valeur "temps UTC" dans la trame
 
 
-/*  ------- CAPTEUR HMIDITE -------  */
+/*  ------- CAPTEUR HUMIDITE -------  */
 
 #define HYT371_ADDR     0x28 // Adresse I2C Capteur Humidité
+
+/*  ------- CAPTEUR PRESSION -------  */
+
+#define PIN_PRESS       8
+
+/*  ------- CAPTEUR TEMPERATURE -------  */
+
+#define PIN_TEMP        9
