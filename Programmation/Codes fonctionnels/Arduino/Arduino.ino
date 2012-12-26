@@ -34,7 +34,7 @@ void setup() {
            
 void loop(){
    debug("d");
-   if ((millis() - timer) >= (unsigned long)1000){
+   if ((millis() - timer) >= (unsigned long)DELAY_SEND){
      
      debug("dt");
      gps.getTrame();
@@ -49,7 +49,7 @@ void loop(){
      Serial.flush();
      timer = millis();
      debug("ft");
-   } else if ((millis() - timer) >= (unsigned long)800) {
+   } else if ((millis() - timer) >= (unsigned long)DELAY_REFRESH) {
      debug("dr");
      accel.refresh();
      hum.refresh();

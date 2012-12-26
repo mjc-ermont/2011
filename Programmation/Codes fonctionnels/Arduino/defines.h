@@ -7,6 +7,9 @@
 
 /*  ------- TRASMISSION -------  */
 
+#define DELAY_SEND      1000
+#define DELAY_REFRESH   800
+
 #define SERIAL_BAUDRATE 4800 // baudrate de la liaison série avec le kiwi
 #define NB_REPET        3    // Nombre de répéition de la trame
 #define SIZE_VALUE      7    // Longueur maxi de la valeur dans la trame
@@ -37,6 +40,7 @@
 /*  ------- CAPTEUR TEMPERATURE -------  */
 
 #define PIN_TEMP        9
+
 
 
 #endif
