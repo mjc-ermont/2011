@@ -1,3 +1,6 @@
+#ifndef CAPTEUR_INCLUDED
+#define CAPTEUR_INCLUDED
+
 #include <Arduino.h>
 #include "vector.h"
 #include "out.h"
@@ -18,3 +21,5 @@ public:
 protected:
         Vector<Out> _out;             // Tableau des sorties du capteur
 };
+
+#endif
