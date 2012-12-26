@@ -3,9 +3,10 @@
 #include "defines.h"
 #include <Arduino.h>
 #include <Wire.h>
+#include "capteur.h"
 
-Accel::Accel(){
-  
+Accel::Accel(const byte &id_capt) : Capteur::Capteur(id_capt){
+
 }
 
 bool Accel::init(){ // methode d'iniialisation de l'accelerometre
@@ -29,7 +30,7 @@ bool Accel::refresh(){ // methode de recuperation des donnees de l'accelerometre
   //Serial.println((int)(avg*100));
 }
 
-void Accel::getTrame(){ // methode d'envoi de la trame
+/*void Accel::getTrame(){ // methode d'envoi de la trame
     String trame = "#$";                     // debut +separaeur
     trame += ID_CAPT_ACCEL;                  // Ajout de l'ID du capteur
     trame += "$0$";                          // separaeur + ID valeur + separateur
@@ -42,4 +43,4 @@ void Accel::getTrame(){ // methode d'envoi de la trame
       _out[i].addTrame(trame);               // Ajout de la trame a la file d'envoi
       _out[i].writeQueue();                  // écriture sur la sortie de la file d'envoi 
     }
-}
+}*/

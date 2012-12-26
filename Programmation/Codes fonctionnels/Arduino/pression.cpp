@@ -3,7 +3,7 @@
 #include "defines.h"
 #include <Arduino.h>
 
-Press::Press(int pin) : CapteurAnalog::CapteurAnalog(pin){
+Press::Press(byte id, int pin) : CapteurAnalog::CapteurAnalog(id, pin){
 }
 
 bool Press::init(){ // Initialisation du capteur
@@ -20,7 +20,7 @@ bool Press::refresh(){ // recuperation de la valeur de la pression
 
 }
 
-void Press::getTrame(){ // Envoi de la trame
+/*void Press::getTrame(){ // Envoi de la trame
     String trame = "#$";
     trame += ID_CAPT_PRESS;
     trame += "$0$";
@@ -31,4 +31,4 @@ void Press::getTrame(){ // Envoi de la trame
     trame += "$@";
     for (byte k = 0 ; k < NB_REPET ; k++) Serial.print(trame);
     Serial.flush();
-}
+}*/

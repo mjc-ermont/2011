@@ -9,10 +9,10 @@
 
 class Accel : public Capteur{
 public:
-	Accel();
+	Accel(const byte &id_capt);
 	bool init(); // methode de recuperation des donnees de l'accelerometre
 	bool refresh(); // methode de recuperation des donnees de l'accelerometre
-        void getTrame(); // methode d'envoi de la trame
+//        void getTrame(); // methode d'envoi de la trame
 
 private:
         ADXL345 _accel; // Objet pour gérer accelerometre

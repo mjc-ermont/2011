@@ -3,7 +3,7 @@
 #include "defines.h"
 #include <Arduino.h>
 
-Temp::Temp(int pin) : CapteurAnalog::CapteurAnalog(pin){
+Temp::Temp(byte id, int pin) : CapteurAnalog::CapteurAnalog(id, pin){
 }
 
 bool Temp::init(){ // Initialisation du capteur
@@ -19,7 +19,7 @@ bool Temp::refresh(){  // Recuperation de la temperature
  _temp = String((int)(Temp*100)); // Formatage de la valeur pour l'envoi
 }
 
-void Temp::getTrame(){  // Evoi de la trame
+/*void Temp::getTrame(){  // Evoi de la trame
     String trame = "#$";
     trame += ID_CAPT_TEMP;
     trame += "$0$";
@@ -30,4 +30,4 @@ void Temp::getTrame(){  // Evoi de la trame
     trame += "$@";
     for (byte k = 0 ; k < NB_REPET ; k++) Serial.print(trame);
     Serial.flush();
-}
+}*/

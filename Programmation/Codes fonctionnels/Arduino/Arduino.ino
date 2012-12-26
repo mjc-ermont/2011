@@ -10,10 +10,10 @@
  #include "debug.h"
  
  GPS gps = GPS();
- Accel accel = Accel();
+ Accel accel = Accel(ID_CAPT_ACCEL);
  Hum hum = Hum();
- Press press = Press(PIN_PRESS);
- Temp temp = Temp(PIN_TEMP);
+ Press press = Press(ID_CAPT_PRESS, PIN_PRESS);
+ Temp temp = Temp(ID_CAPT_TEMP, PIN_TEMP);
  SerialOut so = SerialOut();;
  unsigned long timer;
  

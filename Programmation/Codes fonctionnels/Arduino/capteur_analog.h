@@ -13,7 +13,7 @@
 
 class CapteurAnalog : public Capteur{
 public:
-	CapteurAnalog(int pin); // Declaration du capteur avec sa pin
+	CapteurAnalog(byte id, int pin); // Declaration du capteur avec sa pin
         
 protected:
         int _pin; // Patte sur laquelle le capteur est connecté
