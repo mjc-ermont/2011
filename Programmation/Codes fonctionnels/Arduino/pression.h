@@ -1,3 +1,6 @@
+#ifndef PRESSION_INCLUDED
+#define PRESSION_INCLUDED
+
 #include <Arduino.h>
 #include "capteur_analog.h"
 
@@ -11,3 +14,5 @@ public:
 private:
         String  _press;  // Pression
 };
+
+#endif
