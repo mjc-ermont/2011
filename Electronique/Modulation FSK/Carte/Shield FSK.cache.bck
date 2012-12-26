@@ -1,7 +1,16 @@
-EESchema-DOCLIB  Version 2.0  25/12/2012-16:07:40
+EESchema-DOCLIB  Version 2.0  26/12/2012-21:56:48
 #
 $CMP C
 D Condensateur non polarise
+$ENDCMP
+#
+$CMP CP
+D Condensateur polarise
+$ENDCMP
+#
+$CMP DIODE
+D Diode simple
+K DEV DIODE
 $ENDCMP
 #
 $CMP POT
