@@ -1,6 +1,7 @@
 #include "gps.h"
 #include "trame.h"
 #include "defines.h"
+#include "debug.h"
 
 GPS::GPS(){
 
