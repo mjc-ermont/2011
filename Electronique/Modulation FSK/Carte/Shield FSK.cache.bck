@@ -1,12 +1,12 @@
-EESchema-DOCLIB  Version 2.0  10/3/2012-15:42:15
+EESchema-DOCLIB  Version 2.0  25/12/2012-16:07:40
 #
 $CMP C
 D Condensateur non polarise
 $ENDCMP
 #
-$CMP R
-D Resistance
-K R DEV
+$CMP POT
+D Potentionmetre
+K R
 $ENDCMP
 #
 #End Doc Library
