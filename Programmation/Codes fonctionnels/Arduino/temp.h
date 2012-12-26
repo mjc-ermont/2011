@@ -1,3 +1,6 @@
+#ifndef TEMP_INCLUDED
+#define TEMP_INCLUDED
+
 #include <Arduino.h>
 #include "capteur_analog.h"
 
@@ -11,3 +14,5 @@ public:
 private:
         String  _temp;  // Temperature
 };
+
+#endif
