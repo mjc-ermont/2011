@@ -28,6 +28,8 @@ void setup() {
    hum.init();
    temp.init();
    accel.addOut(so);
+   press.addOut(so);
+   temp.addOut(so);
    Serial1.begin(GPS_BAUDRATE);
    timer = millis();
 }
