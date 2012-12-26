@@ -1,3 +1,6 @@
+#ifndef ACCEL_INCLUDED
+#define ACCEL_INCLUDED
+
 #include <Arduino.h>
 #include "ADXL345.h"
 #include "vector.h"
@@ -15,3 +18,4 @@ private:
         ADXL345 _accel; // Objet pour gérer accelerometre
         String  _avg; // Norme du vecteur acceleration
 };
+#endif
