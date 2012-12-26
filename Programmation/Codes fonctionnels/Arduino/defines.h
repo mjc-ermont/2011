@@ -1,3 +1,6 @@
+#ifndef DEFINES_INCLUDED
+#define DEFINES_INCLUDED
+
 /*  ------- DEBUG -------  */
 
 #define SERIAL_DEBUG    1    // Activation du mode debug
@@ -34,3 +37,6 @@
 /*  ------- CAPTEUR TEMPERATURE -------  */
 
 #define PIN_TEMP        9
+
+
+#endif
