@@ -1,3 +1,6 @@
+#ifndef GPS_INCLUDED
+#define GPS_INCLUDED
+
 #include <Arduino.h>
 
 class GPS {
@@ -15,3 +18,5 @@ private:
         String _vit;     // Vitesse
         String _utime;   // Temps UTC
 };
+
+#endif
