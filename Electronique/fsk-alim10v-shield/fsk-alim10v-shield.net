@@ -1,0 +1,193 @@
+# EESchema Netlist Version 1.1 created  27/12/2012-12:58:18
+(
+ ( 50DB78E4 C1V5 C1 CP
+  ( 1 N-000013 )
+  ( 2 GND )
+ )
+ ( 50DB78F4 C1V5 C2 CP
+  ( 1 VCC )
+  ( 2 GND )
+ )
+ ( 50DB8208 C2 C3 C
+  ( 1 N-000001 )
+  ( 2 GND )
+ )
+ ( 50DB83A5 C2 C4 C
+  ( 1 N-000006 )
+  ( 2 N-000016 )
+ )
+ ( 50DB83F5 C2 C5 C
+  ( 1 N-000005 )
+  ( 2 GND )
+ )
+ ( 50DB78BB SM1812L D1 DIODE
+  ( 1 N-000011 )
+  ( 2 N-000012 )
+ )
+ ( 50DB7D57 LEDV D2 LED
+  ( 1 N-000014 )
+  ( 2 GND )
+ )
+ ( 50DB855B SIL-3 K1 CONN_3
+  ( 1 N-000020 )
+  ( 2 iFSK_1 )
+  ( 3 N-000002 )
+ )
+ ( 50DB78CE SM1812L L1 INDUCTOR
+  ( 1 N-000012 )
+  ( 2 N-000013 )
+ )
+ ( 50DB78D8 SM1812L L2 INDUCTOR
+  ( 1 N-000010 )
+  ( 2 GND )
+ )
+ ( 50DB78AC bornier2 P1 CONN_2
+  ( 1 N-000011 )
+  ( 2 N-000010 )
+ )
+ ( 50DB7D5C SIL-2 P2 CONN_2
+  ( 1 N-000009 )
+  ( 2 GND )
+ )
+ ( 50DB81BC bnc-ci P3 BNC
+  ( 1 N-000008 )
+  ( 2 GND )
+ )
+ ( 50DB7D4D R4 R1 R
+  ( 1 VCC )
+  ( 2 N-000014 )
+ )
+ ( 50DB7D50 R4 R2 R
+  ( 1 VCC )
+  ( 2 N-000009 )
+ )
+ ( 50DB83D9 R4 R3 R
+  ( 1 N-000005 )
+  ( 2 GND )
+ )
+ ( 50DB845C R4 R4 R
+  ( 1 VCC )
+  ( 2 N-000005 )
+ )
+ ( 50DB8503 R1 R5 R
+  ( 1 N-000018 )
+  ( 2 N-000003 )
+ )
+ ( 50DB82D2 POAMH RV1 POT
+  ( 1 GND )
+  ( 2 N-000015 )
+  ( 3 N-000015 )
+ )
+ ( 50DB82E4 POAMH RV2 POT
+  ( 1 GND )
+  ( 2 N-000007 )
+  ( 3 N-000007 )
+ )
+ ( 50DB83D0 POAMH RV3 POT
+  ( 1 N-000005 )
+  ( 2 N-000005 )
+  ( 3 N-000017 )
+ )
+ ( 50DB7C6D ARDUINO_SHIELD SHIELD1 ARDUINO_SHIELD
+  ( 0 ? )
+  ( 1 N-000002 )
+  ( 2 ? )
+  ( 3 N-000020 )
+  ( 3V3 ? )
+  ( 4 ? )
+  ( 5 ? )
+  ( 5V ? )
+  ( 6 ? )
+  ( 7 ? )
+  ( 8 ? )
+  ( 9 ? )
+  ( 10 ? )
+  ( 11 ? )
+  ( 12 ? )
+  ( 13 ? )
+  ( AD0 ? )
+  ( AD1 ? )
+  ( AD2 ? )
+  ( AD3 ? )
+  ( AD4 ? )
+  ( AD5 ? )
+  ( AREF ? )
+  ( GND1 GND )
+  ( GND2 GND )
+  ( GND3 GND )
+  ( RST ? )
+  ( V_IN VCC )
+ )
+ ( 50DB7A23 LM78XX U1 7805
+  ( GND GND )
+  ( VI N-000013 )
+  ( VO VCC )
+ )
+ ( 50DB871F 16DIP-ELL300 U2 XR2206
+  ( 1 GND )
+  ( 2 N-000008 )
+  ( 3 N-000017 )
+  ( 4 VCC )
+  ( 5 N-000006 )
+  ( 6 N-000016 )
+  ( 7 N-000007 )
+  ( 8 N-000015 )
+  ( 9 iFSK_1 )
+  ( 10 N-000001 )
+  ( 11 ? )
+  ( 12 GND )
+  ( 13 N-000018 )
+  ( 14 N-000003 )
+  ( 15 ? )
+  ( 16 ? )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C1
+ CP*
+ SM*
+$endlist
+$component C2
+ CP*
+ SM*
+$endlist
+$component C3
+ C?
+ SM*
+$endlist
+$component C4
+ C?
+ SM*
+$endlist
+$component C5
+ C?
+ SM*
+$endlist
+$component R1
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R2
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R4
+ R?
+ SM0603
+ SM0805
+$endlist
+$component R5
+ R?
+ SM0603
+ SM0805
+$endlist
+$endfootprintlist
+}
