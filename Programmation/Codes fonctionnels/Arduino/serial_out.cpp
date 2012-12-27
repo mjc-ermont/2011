@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "serial_out.h"
+#include <SD.h>
 
 SerialOut::SerialOut(){
   

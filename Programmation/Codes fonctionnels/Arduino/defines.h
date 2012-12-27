@@ -41,6 +41,8 @@
 
 #define PIN_TEMP        9
 
+/*  ------- CAPTEUR TEMPERATURE -------  */
 
+#define SD_CS_PIN       8
 
 #endif
