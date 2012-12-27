@@ -1,0 +1,171 @@
+Cmp-Mod V01 Created by Cvpcb (2007-02-16) date = 27/12/2012-12:58:18
+
+BeginCmp
+TimeStamp = 50DB78E4;
+Reference = C1;
+ValeurCmp = CP;
+IdModule  = C1V5;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB78F4;
+Reference = C2;
+ValeurCmp = CP;
+IdModule  = C1V5;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB8208;
+Reference = C3;
+ValeurCmp = C;
+IdModule  = C2;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB83A5;
+Reference = C4;
+ValeurCmp = C;
+IdModule  = C2;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB83F5;
+Reference = C5;
+ValeurCmp = C;
+IdModule  = C2;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB78BB;
+Reference = D1;
+ValeurCmp = DIODE;
+IdModule  = SM1812L;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB7D57;
+Reference = D2;
+ValeurCmp = LED;
+IdModule  = LEDV;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB855B;
+Reference = K1;
+ValeurCmp = CONN_3;
+IdModule  = SIL-3;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB78CE;
+Reference = L1;
+ValeurCmp = INDUCTOR;
+IdModule  = SM1812L;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB78D8;
+Reference = L2;
+ValeurCmp = INDUCTOR;
+IdModule  = SM1812L;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB78AC;
+Reference = P1;
+ValeurCmp = CONN_2;
+IdModule  = bornier2;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB7D5C;
+Reference = P2;
+ValeurCmp = CONN_2;
+IdModule  = SIL-2;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB81BC;
+Reference = P3;
+ValeurCmp = BNC;
+IdModule  = bnc-ci;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB7D4D;
+Reference = R1;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB7D50;
+Reference = R2;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB83D9;
+Reference = R3;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB845C;
+Reference = R4;
+ValeurCmp = R;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB8503;
+Reference = R5;
+ValeurCmp = R;
+IdModule  = R1;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB82D2;
+Reference = RV1;
+ValeurCmp = POT;
+IdModule  = POAMH;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB82E4;
+Reference = RV2;
+ValeurCmp = POT;
+IdModule  = POAMH;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB83D0;
+Reference = RV3;
+ValeurCmp = POT;
+IdModule  = POAMH;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB7C6D;
+Reference = SHIELD1;
+ValeurCmp = ARDUINO_SHIELD;
+IdModule  = ARDUINO_SHIELD;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB7A23;
+Reference = U1;
+ValeurCmp = 7805;
+IdModule  = LM78XX;
+EndCmp
+
+BeginCmp
+TimeStamp = 50DB871F;
+Reference = U2;
+ValeurCmp = XR2206;
+IdModule  = 16DIP-ELL300;
+EndCmp
+
+EndListe
