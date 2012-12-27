@@ -7,6 +7,8 @@ Temp::Temp(byte id, int pin) : CapteurAnalog::CapteurAnalog(id, pin){
 }
 
 bool Temp::init(){ // Initialisation du capteur
+  _val.push_back("");
+
 }
 
 bool Temp::refresh(){  // Recuperation de la temperature
@@ -16,7 +18,7 @@ bool Temp::refresh(){  // Recuperation de la temperature
  Temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * Temp * Temp ))* Temp );
  Temp = Temp - 273.15;            // Convert Kelvin to Celcius
  
- _temp = String((int)(Temp*100)); // Formatage de la valeur pour l'envoi
+ _val[0] = String((int)(Temp*100)); // Formatage de la valeur pour l'envoi
 }
 
 /*void Temp::getTrame(){  // Evoi de la trame

@@ -14,6 +14,7 @@ bool Accel::init(){ // methode d'iniialisation de l'accelerometre
   delay(100);
   _accel.set_bw(ADXL345_BW_12);  // Allumage de l'accelerometre
   _accel.powerOn();
+  _val.push_back("");
 }
 
 bool Accel::refresh(){ // methode de recuperation des donnees de l'accelerometre
@@ -26,7 +27,7 @@ bool Accel::refresh(){ // methode de recuperation des donnees de l'accelerometre
     avg += (float)acc_data[i] * (float)acc_data[i];
   }
   
-  _avg = String((int)(100*sqrt(avg)));
+  _val[0] = String((int)(100*sqrt(avg)));
   //Serial.println((int)(avg*100));
 }
 

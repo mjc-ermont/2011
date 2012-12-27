@@ -16,6 +16,5 @@ public:
 
 private:
         ADXL345 _accel; // Objet pour gérer accelerometre
-        String  _avg; // Norme du vecteur acceleration
 };
 #endif

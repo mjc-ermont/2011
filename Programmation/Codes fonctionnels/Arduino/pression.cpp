@@ -7,6 +7,7 @@ Press::Press(byte id, int pin) : CapteurAnalog::CapteurAnalog(id, pin){
 }
 
 bool Press::init(){ // Initialisation du capteur
+  _val.push_back("");
 }
 
 bool Press::refresh(){ // recuperation de la valeur de la pression
@@ -16,7 +17,7 @@ bool Press::refresh(){ // recuperation de la valeur de la pression
      float volt = ((float)sensorValue*5)/1023;   // Conversion de la tension en pression (A modifier suite au calibrage)
      float pr = ((volt-0.2)/(0.045));
      
-     _press = String((int)(pr*100));             // Ecriture de la pression dans une string
+     _val[0] = String((int)(pr*100));             // Ecriture de la pression dans une string
 
 }
 
