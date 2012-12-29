@@ -2,21 +2,16 @@
 #define GPS_INCLUDED
 
 #include <Arduino.h>
+#include "capteur.h"
 
-class GPS {
+class GPS : public Capteur {
 public:
-	GPS();
+	GPS(const byte &id);
 	bool init();
 	bool refresh();
-        void getTrame();
+        //void getTrame();
 
 private:
-        String _lat_deg; // Degres de latitude
-        String _lat_min; // Minutes de latitude
-        String _lon_deg; // Degres de longitude
-        String _lon_min; // Minutes de longitude
-        String _vit;     // Vitesse
-        String _utime;   // Temps UTC
 };
 
 #endif

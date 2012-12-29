@@ -10,7 +10,7 @@
  #include "serial_out.h"
  #include "debug.h"
  
- GPS gps = GPS();
+ GPS gps = GPS(ID_CAPT_GPS);
  Accel accel = Accel(ID_CAPT_ACCEL);
  Hum hum = Hum(ID_CAPT_HUM);
  Press press = Press(ID_CAPT_PRESS, PIN_PRESS);

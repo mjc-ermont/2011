@@ -3,12 +3,16 @@
 #include "defines.h"
 #include "debug.h"
 
-GPS::GPS(){
+GPS::GPS(const byte &id) : Capteur::Capteur(id){
 
 }
 
 bool GPS::init(){
-
+  _val.push_back("");
+  _val.push_back("");
+  _val.push_back("");
+  _val.push_back("");
+  _val.push_back("");
 }
 
 bool GPS::refresh(){
@@ -39,18 +43,18 @@ bool GPS::refresh(){
     
     if(table[0] == "GPRMC"){                            // On trie les données recues : Si la trame recue est une trame GPRMC ...
        
-      _utime = table[1];                                // ... On en extrait le temps, ...
+      _val[ID_VAL_UTIME] = table[1];                                // ... On en extrait le temps, ...
       
       if(table[3].length() == 9){                       // ... la latitude et la longitude (si la valeur a la bonne longueur) ...
-        _lat_deg = table[3].substring(0, 2);
-        _lat_min = table[3].substring(2);
+        _val[ID_VAL_LAT_DEG] = table[3].substring(0, 2);
+        _val[ID_VAL_LAT_MIN] = table[3].substring(2);
       }
       
       if(table[5].length() == 10){
-        _lon_deg = table[5].substring(0, 3);
-        _lon_min = table[5].substring(3);
+        _val[ID_VAL_LON_DEG] = table[5].substring(0, 3);
+        _val[ID_VAL_LON_MIN] = table[5].substring(3);
       }
-      _vit = table[7];                                  // ... et la vitesse
+      _val[ID_VAL_VIT] = table[7];                                  // ... et la vitesse
       //Serial.println(freeMemory());
     }
     return true;
@@ -59,9 +63,9 @@ bool GPS::refresh(){
   }
 }
 
-void GPS::getTrame(){
+/*void GPS::getTrame(){
   debug("dtg");
-  for (byte i = 0 ; i < /*NB_VAL_GPS*/ 6 ; i++){          // Pour chaque valeur envoyée par le GPS
+  for (byte i = 0 ; i < 6 ; i++){          // Pour chaque valeur envoyée par le GPS
     String id_capt, val_capt;                             // variables contenant respectivement l'id et la valeur de la donnee du GPS en cours d'envoi
     switch (i){                                           // On attribue a la variable temporaire la valeur et l'ID de la donnee du GPS en cours d'envoi
       case 0:
@@ -108,4 +112,4 @@ void GPS::getTrame(){
     }
     debug("ftg");
   }
-}
+}*/
