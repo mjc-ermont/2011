@@ -1,13 +1,15 @@
-#include <Arduino.h>
+#ifndef HUMIDITY_INCLUDED
+#define HUMIDITY_INCLUDED
 
-class Hum {
+#include <Arduino.h>
+#include "capteur.h"
+
+class Hum : public Capteur {
 public:
-	Hum();
+	Hum(const byte &id);
 	bool init();
 	bool refresh();
-        void getTrame();
-
-private:
-        String  _hum; // Humidite
-        String  _temp;// Temperature
+        //void getTrame();
 };
+
+#endif

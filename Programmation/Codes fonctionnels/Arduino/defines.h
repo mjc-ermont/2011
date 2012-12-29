@@ -15,7 +15,7 @@
 #define SIZE_VALUE      7    // Longueur maxi de la valeur dans la trame
 #define ID_CAPT_GPS     "00" // ID dans la trame du GPS
 #define ID_CAPT_ACCEL   1    // ID dans la trame de l'accéléromètre
-#define ID_CAPT_HUM     "02" // ID dans la trame du capeur d'humidité
+#define ID_CAPT_HUM     2    // ID dans la trame du capeur d'humidité
 #define ID_CAPT_PRESS   3    // ID dans la trame du capeur de pression
 #define ID_CAPT_TEMP    4    // ID dans la trame du capeur de temperature
 // GPS
