@@ -5,8 +5,7 @@
 
 #include "defines.h"
 #include "FenPrincipale.h"
-#include "Line.h"
-#include "serial.h"
+#include "InPut/serial.h"
 
 int main(int argc, char *argv[])
 {

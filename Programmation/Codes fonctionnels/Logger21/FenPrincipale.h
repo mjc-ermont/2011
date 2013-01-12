@@ -1,22 +1,21 @@
 #ifndef FENPRINCIPALE_H
 #define FENPRINCIPALE_H
 
-#define DEBUG // A activer si on n'utilise pas des vraies trames
-
 #include <QtGui>
 #include "ui_FenPrincipale.h"
-#include "Donnees.h"
-#include "Line.h"
-#include "serial.h"
-#include "boardingtable.h"
-#include "graphicview.h"
-#include "mapsview.h"
+#include "InPut/sensormanager.h"
+#include "InPut/serial.h"
+#include "UI/boardingtable.h"
+#include "UI/graphicview.h"
+#include "UI/mapsview.h"
 #include "defines.h"
 
 
 
 class GraphicView;
 class MapsView;
+class BoardingTable;
+class SensorManager;
 
 class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
 {
@@ -25,31 +24,31 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
     public:
         explicit FenPrincipale(Serial *com);
         ~FenPrincipale();
-
-        void append(Line *a);
-
         QTime getDepart() { return h_depart;}
 
+        BoardingTable* getBT() {return tableauBord;}
+        SensorManager* getSensorMgr(){return sensormgr; }
 
-protected:
+
+    protected:
         void reinit_b();
         void resizeEvent(QResizeEvent *);
 
     private:
-        Donnees* historique;
         Serial* com;
         QTimer *timerAct;
         QTimer *actTemps;
-        Line curLine;
-        Line *befLine;
         BoardingTable* tableauBord;
         MapsView* carte;
+
+        SensorManager *sensormgr;
 
         QVector<QTableView*> tableauxHist;
         QVector<QPair<GraphicView*,QMdiSubWindow*> > graphiques;
 
         QTime h_depart;
         bool optimisation_graph;
+        int nbSensors;
 
 
     public slots:

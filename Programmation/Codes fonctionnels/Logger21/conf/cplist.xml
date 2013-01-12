@@ -1,6 +1,10 @@
 <sensorlist>
 	<sensor name="Test troll" id="0">
 		<value name="Valeur 1" unit="km" id="0" />
-		<value name="Valeur 2" unit="cm" id="0" />
+		<value name="Valeur 2" unit="cm" id="1" />
+	</sensor>
+	<sensor name="Capteur 2" id="1">
+		<value name="Valeur 1" unit="km" id="0" />
+		<value name="Valeur 2" unit="cm" id="1" />
 	</sensor>
 </sensorlist>
