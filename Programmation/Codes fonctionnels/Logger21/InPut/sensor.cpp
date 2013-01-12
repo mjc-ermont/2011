@@ -1,6 +1,6 @@
 #include "sensor.h"
 
-Sensor::Sensor(String i_name, int i_id) : name(i_name), id(i_id)
+Sensor::Sensor(QString i_name, int i_id) : name(i_name), id(i_id)
 {
 }
 

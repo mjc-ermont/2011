@@ -243,7 +243,7 @@ void Serial::readData() {
             }
         }
     #endif
-
+    qDebug() << "Data read" << trames;
     emit dataRead(trames);
 }
 

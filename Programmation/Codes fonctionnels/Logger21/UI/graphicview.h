@@ -7,8 +7,10 @@
 #include <Qwt/qwt_plot_curve.h>
 #include <Qwt/qwt_curve_fitter.h>
 
-#include <Donnees.h>
+//#include <Donnees.h>
 #include <FenPrincipale.h>
+#include <InPut/sensorvalue.h>
+#include <InPut/sensor.h>
 
 class FenPrincipale;
 
@@ -21,8 +23,8 @@ class GraphicView : public QwtPlot
     Q_OBJECT
 
     public:
-        explicit GraphicView(Donnees *data, int indexCapteur, int indexValeur, FenPrincipale *parent = 0);
-        void majData(Donnees *data);
+        explicit GraphicView(int indexCapteur, int indexValeur, FenPrincipale *parent = 0);
+        void majData();
 
     protected:
         void calculateCurve(QTime maxTime = QTime(0,1));
@@ -32,13 +34,14 @@ class GraphicView : public QwtPlot
     private:
         int m_capteur;
         int m_valeur;
-        Donnees *m_data;
+
         FenPrincipale *m_parent;
 
         QwtPlotCurve* courbe;
         QVector<double> xValues;
         QVector<double> yValues;
-    
+
+        SensorValue *value;
 };
 
 #endif // GRAPHICVIEW_H

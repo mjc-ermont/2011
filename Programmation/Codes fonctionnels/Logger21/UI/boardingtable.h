@@ -2,17 +2,22 @@
 #define BOARDINGTABLE_H
 
 #include <QGridLayout>
-#include "Line.h"
+#include <QLCDNumber>
+#include <QGroupBox>
+#include <QLabel>
+#include "../InPut/sensormanager.h"
 #include "defines.h"
+
+class SensorManager;
 
 class BoardingTable
 {
 public:
-    BoardingTable(QGridLayout *container);
+    BoardingTable(QGridLayout *container, SensorManager *mgr);
     ~BoardingTable();
 
-    void init();
-    void update(Line *l);
+    void init(SensorManager* );
+    void update(SensorValue *sv);
 
 private:
     QGridLayout *m_container;

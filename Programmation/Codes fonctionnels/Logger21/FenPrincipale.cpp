@@ -1,57 +1,51 @@
 #include "FenPrincipale.h"
 
-FenPrincipale::FenPrincipale(Serial* _com) :  historique(new Donnees()){
+FenPrincipale::FenPrincipale(Serial* _com) {
 
-
-    qDebug() << "Test 1";
-    connect(historique, SIGNAL(msg(QString)), this, SLOT(message(QString)));
 
 
     //------------------------------------------------------------------------------------------------------
 
 
-    qDebug() << "Test 2";
-
     com = _com;
     optimisation_graph = false;
-
-    qDebug() << "Test 3";
     setupUi(this);
-    message("[INFO] Core initialized. GUI Loaded.");
 
     stack->setCurrentIndex(0);
 
-    sel_capteur->addItems(curLine.getCapteursNames());
-    for(int i=0;i<NB_VALEURS_MAX;i++) {
-        QString val_name =curLine.getValueNames()[i];
-        if(val_name != "-1")
-            sel_valeur->addItem(val_name);
-    }
 
+    sensormgr = new SensorManager(this);
+    QVector<Sensor*> sensorList = sensormgr->getSensors();
+    nbSensors = sensorList.size();
+    foreach(Sensor* s, sensorList)
+        sel_capteur->addItem(s->getName());
 
-    for(int i=0;i<NB_CAPTEURS ;i++) {
+    for(int i=0;i<nbSensors ;i++) {
         QTableView *t = new QTableView;
         tableauxHist.append(t);
 
-        tab_historique->addTab(t,curLine.getCapteursNames()[i]);
-        t->setModel(historique->toTable(i));
+        tab_historique->addTab(t,sensormgr->getSensor(i)->getName());
 
+        QStandardItemModel *modele = new QStandardItemModel;
+        int v=0;
+        foreach(SensorValue* s,  sensormgr->getSensor(i)->getValues()) {
+            modele->setHorizontalHeaderItem(v,new QStandardItem(s->getName()));
+            v++;
+        }
+
+        t->setModel(modele);
     }
 
     carte = new MapsView(c_maps);
-    befLine = 0;
 
-
-    if(QFile::exists(QApplication::applicationDirPath() + "/save.log")){
-        historique->open();
-    }
 
     message("[INFO] Loading boarding table...");
 
-    tableauBord = new BoardingTable(container);
+    tableauBord = new BoardingTable(container,sensormgr);
     message("[INFO] Loaded !");
 
 
+    qDebug() << "pizzdrfa";
     message("[INFO] Starting refreshing timers");
 
     timerAct = new QTimer();
@@ -89,10 +83,8 @@ void FenPrincipale::resizeEvent(QResizeEvent *) {
 }
 
 void FenPrincipale::requestAct() {
-
     if(get_infos->isChecked())
         com->readData();
-
 }
 
 void FenPrincipale::syncTime() {
@@ -127,59 +119,9 @@ void FenPrincipale::syncTime() {
 
 void FenPrincipale::informationsReceived(QStringList trames) {
     if(trames.size() > 0) {
-     //   message("[INFO] Informations received.");
-
-      /*  for(int i=0;i<trames.size();i++) {
-            message("*" + trames[i]);
-            qDebug() << ;
-        }*/
         for(int i=0;i<trames.size();i++)
-            curLine.addData(trames[i]);
-
-
-        historique->appendLine(&curLine);
-        tableauBord->update(&curLine);
-        curLine.clear();
-
-        for(int i=0;i<graphiques.size();i++) {
-            graphiques[i].first->majData(historique);
-        }
+            sensormgr->addData(trames[i]);
     }
-
-    #ifdef DEBUG
-    /*    message("[INFAKE] Informations received.");
-
-        Line *l = new Line;
-        l->randUpdate(befLine);
-        befLine = l;
-        historique->appendLine(l);
-        tableauBord->update(l);
-
-        double latAngle = l->getValue(0,0);
-        double latMinute = l->getValue(0,1);
-        double longAngle = l->getValue(0,2);
-        double longMinute = l->getValue(0,3);
-
-        /*
-         *
-         * CELA NE MARCHE PAAAAAAAAAAAAAAAAAAAAAAAAAAS !!!!!!!!!!!!!!!!!!!!!!
-         *
-         *
-
-        double valLat = latAngle + latMinute / 100;
-        double valLong = longAngle + longMinute / 100;
-
-        carte->addPoint(valLat,valLong);
-
-
-        for(int i=0;i<graphiques.size();i++) {
-            graphiques[i].first->majData(historique);
-        }*/
-    #endif
-}
-
-void FenPrincipale::append(Line *a){
-    historique->appendLine(a);
 }
 
 void FenPrincipale::message(QString message){
@@ -258,22 +200,18 @@ void FenPrincipale::on_sel_capteur_currentIndexChanged(int index)
 {
     sel_valeur->clear();
 
-    for(int i=0;i<NB_VALEURS_MAX;i++) {
-        QString val_name =curLine.getValueNames()[NB_VALEURS_MAX*index+i];
-        if(val_name != "-1")
-            sel_valeur->addItem(val_name);
-    }
+    foreach(SensorValue *v, sensormgr->getSensor(index)->getValues())
+        sel_valeur->addItem(v->getName());
 }
 
 void FenPrincipale::on_add_graph_clicked()
 {
-    GraphicView* g = new GraphicView(historique, sel_capteur->currentIndex(), sel_valeur->currentIndex(),this);
+    GraphicView* g = new GraphicView(sel_capteur->currentIndex(), sel_valeur->currentIndex(),this);
 
     QPair<GraphicView*,QMdiSubWindow*> group;
     QMdiSubWindow *w = zone_graph->addSubWindow(g);
     group.first = g;
     group.second = w;
-
     graphiques.append(group);
 
     w->setGeometry(w->geometry().x(),w->geometry().y(),200,200);
