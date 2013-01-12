@@ -15,7 +15,7 @@
  Hum hum = Hum(ID_CAPT_HUM);
  Press press = Press(ID_CAPT_PRESS, PIN_PRESS);
  Temp temp = Temp(ID_CAPT_TEMP, PIN_TEMP);
- SerialOut so = SerialOut();;
+ SerialOut so = SerialOut();
  unsigned long timer;
  
   
@@ -23,22 +23,30 @@ void setup() {
 #if SERIAL_DEBUG
    Serial.begin(SERIAL_BAUDRATE);
 #endif
+   Serial.println("ddd");
    press.init();
+   Serial.println("111");
    gps.init();
+   Serial.println("222");
    accel.init();
+   Serial.println("333");
    hum.init();
+   Serial.println("444");
    temp.init();
+   Serial.println("mmm");
    accel.addOut(so);
    press.addOut(so);
    temp.addOut(so);
+   hum.addOut(so);
+   gps.addOut(so);
    Serial1.begin(GPS_BAUDRATE);
    timer = millis();
+   Serial.println("fff");
 }
            
 void loop(){
    debug("d");
    if ((millis() - timer) >= (unsigned long)DELAY_SEND){
-     
      debug("dt");
      gps.getTrame();
      Serial.flush();
@@ -62,8 +70,8 @@ void loop(){
    } else if (Serial1.available() > 0){
      debug("drg");
      gps.refresh();
-     debug("frg");  
- }
+     debug("frg");
+   }
    debug("f");
 }
 

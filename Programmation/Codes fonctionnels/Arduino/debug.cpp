@@ -1,5 +1,9 @@
+#include <Arduino.h>
+#include "defines.h"
+
 void debug (const char *string){
-#ifdef SERIAL_DEBUG
+#if SERIAL_DEBUG
     Serial.println(string);
+    Serial.flush();
 #endif
 }

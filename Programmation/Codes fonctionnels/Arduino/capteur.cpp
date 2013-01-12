@@ -2,6 +2,7 @@
 #include "capteur.h"
 #include "defines.h"
 #include "trame.h"
+#include "debug.h"
 
 Capteur::Capteur(const byte &id_capt) : _id_capt(id_capt) {
   
@@ -13,7 +14,9 @@ void Capteur::addOut(Out &out){
 
 void Capteur::getTrame(){
   String trame;         // Trame qui sera envoyee
-  for (byte i = 0 ; i > _val.size() ; i++){
+  for (byte i = 0 ; i < _val.size() ; i++){
+    /*Serial.print("Size : ");
+    Serial.println(_out.size());*/
     trame = "#$";                              // debut +separaeur
     if (_id_capt < 10)                         // Pour toujours garder une taille constante
       trame += "0";
@@ -27,8 +30,8 @@ void Capteur::getTrame(){
     trame += String(get_checksum(trame), HEX); // Ajout du checksum
     trame += "$@";                             // separaeur + fin
     for (int j = 0 ; j < _out.size() ; j++){   // envoi de la trame a toutes les sorties (d'ou le for)
-      _out[j].addTrame(trame);                 // Ajout de la trame a la file d'envoi
-      _out[j].writeQueue();                    // écriture sur la sortie de la file d'envoi 
+      //_out[j].addTrame(trame);                 // Ajout de la trame a la file d'envoi
+      //_out[j].writeQueue();                    // écriture sur la sortie de la file d'envoi 
     }
   }
 }
