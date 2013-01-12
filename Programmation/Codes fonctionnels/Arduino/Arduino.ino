@@ -20,6 +20,8 @@
  
   
 void setup() {
+    pinMode(13, OUTPUT);
+    so.init();
 #if SERIAL_DEBUG
    Serial.begin(SERIAL_BAUDRATE);
 #endif
@@ -67,7 +69,8 @@ void loop(){
      press.refresh();
      temp.refresh();
      debug("fr");
-   } else if (Serial1.available() > 0){
+   } 
+   if (Serial1.available() > 0){
      debug("drg");
      gps.refresh();
      debug("frg");

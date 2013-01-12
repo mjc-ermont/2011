@@ -9,7 +9,7 @@ Capteur::Capteur(const byte &id_capt) : _id_capt(id_capt) {
 }
 
 void Capteur::addOut(Out &out){
-  _out.push_back(out);  // Ajout de la sortie au tableau des sorties
+  _out.push_back(&out);  // Ajout de la sortie au tableau des sorties
 }
 
 void Capteur::getTrame(){
@@ -29,9 +29,13 @@ void Capteur::getTrame(){
     trame += "$";                              // separaeur
     trame += String(get_checksum(trame), HEX); // Ajout du checksum
     trame += "$@";                             // separaeur + fin
+    
     for (int j = 0 ; j < _out.size() ; j++){   // envoi de la trame a toutes les sorties (d'ou le for)
-      //_out[j].addTrame(trame);                 // Ajout de la trame a la file d'envoi
-      //_out[j].writeQueue();                    // écriture sur la sortie de la file d'envoi 
+      _out[j]->addTrame(trame);                 // Ajout de la trame a la file d'envoi
+      debug("debut_send");
+      _out[j]->writeQueue();                    // écriture sur la sortie de la file d'envoi 
+      debug("fin_send");
     }
+    
   }
 }

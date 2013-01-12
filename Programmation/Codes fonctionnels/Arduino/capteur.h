@@ -19,7 +19,7 @@ public:
         virtual void addOut(Out &out);// Ajoute une sortie au capteur
 
 protected:
-        Vector<Out> _out;             // Tableau des sorties du capteur
+        Vector<Out*> _out;             // Tableau des sorties du capteur
         Vector<String> _val;          // Tableau contenant les valeurs des captoeurs
         const byte _id_capt;
 };

@@ -1,7 +1,7 @@
 /*
- *  QueueArray.h
+ *  QueueList.h
  *
- *  Library implementing a generic, dynamic queue (array version).
+ *  Library implementing a generic, dynamic queue (linked list version).
  *
  *  ---
  *
@@ -24,15 +24,11 @@
  *
  *  Version 1.0
  *
- *    2010-09-29  Efstathios Chatzikyriakidis  <contact@efxa.org>
- *
- *      - added resize(): for growing, shrinking the array size.
- *
- *    2010-09-25  Efstathios Chatzikyriakidis  <contact@efxa.org>
+ *    2010-09-28  Efstathios Chatzikyriakidis  <contact@efxa.org>
  *
  *      - added exit(), blink(): error reporting and handling methods.
  *
- *    2010-09-24  Alexander Brevig  <alexanderbrevig@gmail.com>
+ *    2010-09-25  Alexander Brevig  <alexanderbrevig@gmail.com>
  *
  *      - added setPrinter(): indirectly reference a Serial object.
  *
@@ -46,21 +42,21 @@
  */
 
 // header defining the interface of the source.
-#ifndef _QUEUEARRAY_H
-#define _QUEUEARRAY_H
+#ifndef _QUEUELIST_H
+#define _QUEUELIST_H
 
 // include Arduino basic header.
 #include <Arduino.h>
 
 // the definition of the queue class.
 template<typename T>
-class QueueArray {
+class QueueList {
   public:
     // init the queue (constructor).
-    QueueArray ();
+    QueueList ();
 
     // clear the queue (destructor).
-    ~QueueArray ();
+    ~QueueList ();
 
     // push an item to the queue.
     void push (const T i);
@@ -77,186 +73,138 @@ class QueueArray {
     // get the number of items in the queue.
     int count () const;
 
-    // check if the queue is full.
-    bool isFull () const;
-
     // set the printer of the queue.
     void setPrinter (Print & p);
 
   private:
-    // resize the size of the queue.
-    void resize (const int s);
-
     // exit report method in case of error.
     void exit (const char * m) const;
 
     // led blinking method in case of error.
     void blink () const;
 
-    // the initial size of the queue.
-    static const int initialSize = 2;
-
     // the pin number of the on-board led.
     static const int ledPin = 13;
 
+    // the structure of each node in the list.
+    typedef struct node {
+      T item;      // the item in the node.
+      node * next; // the next node in the list.
+    } node;
+
+    typedef node * link; // synonym for pointer to a node.
+
     Print * printer; // the printer of the queue.
-    T * contents;    // the array of the queue.
-
     int size;        // the size of the queue.
-    int items;       // the number of items of the queue.
-
-    int head;        // the head of the queue.
-    int tail;        // the tail of the queue.
+    link head;       // the head of the list.
+    link tail;       // the tail of the list.
 };
 
 // init the queue (constructor).
 template<typename T>
-QueueArray<T>::QueueArray () {
+QueueList<T>::QueueList () {
   size = 0;       // set the size of queue to zero.
-  items = 0;      // set the number of items of queue to zero.
-
-  head = 0;       // set the head of the queue to zero.
-  tail = 0;       // set the tail of the queue to zero.
-
+  head = NULL;    // set the head of the list to point nowhere.
+  tail = NULL;    // set the tail of the list to point nowhere.
   printer = NULL; // set the printer of queue to point nowhere.
-
-  // allocate enough memory for the array.
-  contents = (T *) malloc (sizeof (T) * initialSize);
-
-  // if there is a memory allocation error.
-  if (contents == NULL)
-    exit ("QUEUE: insufficient memory to initialize queue.");
-
-  // set the initial size of the queue.
-  size = initialSize;
 }
 
 // clear the queue (destructor).
 template<typename T>
-QueueArray<T>::~QueueArray () {
-  free (contents); // deallocate the array of the queue.
+QueueList<T>::~QueueList () {
+  // deallocate memory space of each node in the list.
+  for (link t = head; t != NULL; head = t) {
+    t = head->next; delete head;
+  }
 
-  contents = NULL; // set queue's array pointer to nowhere.
-  printer = NULL;  // set the printer of queue to point nowhere.
-
-  size = 0;        // set the size of queue to zero.
-  items = 0;       // set the number of items of queue to zero.
-
-  head = 0;        // set the head of the queue to zero.
-  tail = 0;        // set the tail of the queue to zero.
-}
-
-// resize the size of the queue.
-template<typename T>
-void QueueArray<T>::resize (const int s) {
-  // defensive issue.
-  if (s <= 0)
-    exit ("QUEUE: error due to undesirable size for queue size.");
-
-  // allocate enough memory for the temporary array.
-  T * temp = (T *) malloc (sizeof (T) * s);
-
-  // if there is a memory allocation error.
-  if (temp == NULL)
-    exit ("QUEUE: insufficient memory to initialize temporary queue.");
-  
-  // copy the items from the old queue to the new one.
-  for (int i = 0; i < items; i++)
-    temp[i] = contents[(head + i) % size];
-
-  // deallocate the old array of the queue.
-  free (contents);
-
-  // copy the pointer of the new queue.
-  contents = temp;
-
-  // set the head and tail of the new queue.
-  head = 0; tail = items;
-
-  // set the new size of the queue.
-  size = s;
+  size = 0;       // set the size of queue to zero.
+  tail = NULL;    // set the tail of the list to point nowhere.
+  printer = NULL; // set the printer of queue to point nowhere.
 }
 
 // push an item to the queue.
 template<typename T>
-void QueueArray<T>::push (const T i) {
-  // check if the queue is full.
-  if (isFull ())
-    // double size of array.
-    resize (size * 2);
+void QueueList<T>::push (const T i) {
+  // create a temporary pointer to tail.
+  link t = tail;
 
-  // store the item to the array.
-  contents[tail++] = i;
+  // create a new node for the tail.
+  tail = (link) new node;
+
+  // if there is a memory allocation error.
+  if (tail == NULL)
+    exit ("QUEUE: insufficient memory to create a new node.");
+
+  // set the next of the new node.
+  tail->next = NULL;
+
+  // store the item to the new node.
+  tail->item = i;
+
+  // check if the queue is empty.
+  if (isEmpty ())
+    // make the new node the head of the list.
+    head = tail;
+  else
+    // make the new node the tail of the list.
+    t->next = tail;
   
-  // wrap-around index.
-  if (tail == size) tail = 0;
-
   // increase the items.
-  items++;
+  size++;
 }
 
 // pop an item from the queue.
 template<typename T>
-T QueueArray<T>::pop () {
+T QueueList<T>::pop () {
   // check if the queue is empty.
   if (isEmpty ())
     exit ("QUEUE: can't pop item from queue: queue is empty.");
 
-  // fetch the item from the array.
-  T item = contents[head++];
+  // get the item of the head node.
+  T item = head->item;
+
+  // remove only the head node.
+  link t = head->next; delete head; head = t;
 
   // decrease the items.
-  items--;
+  size--;
 
-  // wrap-around index.
-  if (head == size) head = 0;
-
-  // shrink size of array if necessary.
-  if (!isEmpty () && (items <= size / 4))
-    resize (size / 2);
-
-  // return the item from the array.
+  // return the item.
   return item;
 }
 
 // get an item from the queue.
 template<typename T>
-T QueueArray<T>::peek () const {
+T QueueList<T>::peek () const {
   // check if the queue is empty.
   if (isEmpty ())
     exit ("QUEUE: can't peek item from queue: queue is empty.");
 
-  // get the item from the array.
-  return contents[head];
+  // return the item of the head node.
+  return head->item;
 }
 
 // check if the queue is empty.
 template<typename T>
-bool QueueArray<T>::isEmpty () const {
-  return items == 0;
-}
-
-// check if the queue is full.
-template<typename T>
-bool QueueArray<T>::isFull () const {
-  return items == size;
+bool QueueList<T>::isEmpty () const {
+  return head == NULL;
 }
 
 // get the number of items in the queue.
 template<typename T>
-int QueueArray<T>::count () const {
-  return items;
+int QueueList<T>::count () const {
+  return size;
 }
 
 // set the printer of the queue.
 template<typename T>
-void QueueArray<T>::setPrinter (Print & p) {
+void QueueList<T>::setPrinter (Print & p) {
   printer = &p;
 }
 
 // exit report method in case of error.
 template<typename T>
-void QueueArray<T>::exit (const char * m) const {
+void QueueList<T>::exit (const char * m) const {
   // print the message if there is a printer.
   if (printer)
     printer->println (m);
@@ -267,7 +215,7 @@ void QueueArray<T>::exit (const char * m) const {
 
 // led blinking method in case of error.
 template<typename T>
-void QueueArray<T>::blink () const {
+void QueueList<T>::blink () const {
   // set led pin as output.
   pinMode (ledPin, OUTPUT);
 
@@ -282,4 +230,4 @@ void QueueArray<T>::blink () const {
   // solution selected due to lack of exit() and assert().
 }
 
-#endif // _QUEUEARRAY_H
+#endif // _QUEUELIST_H
