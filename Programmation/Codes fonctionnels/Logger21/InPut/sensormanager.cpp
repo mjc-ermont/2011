@@ -54,8 +54,7 @@ QString SensorManager::addData(QString trame) {
         double valeur = elements[3].toDouble();
         int numValeur = elements[2].toInt();
 
-        if(numCapteur == 2) // LE PUTAIN DE CAPTEUR D'ARTHUR QU'IL FAUT DIVISER PAR 100
-            valeur = valeur / 100;
+        valeur = valeur * sensorList[numCapteur]->getValues()[numValeur]->getCoef();
 
         sensorList[numCapteur]->getValues()[numValeur]->addData(valeur);
         parent->getBT()->update(sensorList[numCapteur]->getValues()[numValeur]);

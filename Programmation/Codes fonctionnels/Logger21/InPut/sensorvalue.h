@@ -10,17 +10,21 @@ class Sensor;
 class SensorValue
 {
 public:
-    SensorValue(QString i_name, QString i_unit, int i_id,Sensor* i_parent);
+    SensorValue(QString i_name, QString i_unit, int i_id,Sensor* i_parent, double i_coef=1, QString i_param="");
     void addData(double d);
     QString getName() { return name;}
     QVector<Data> getData() {return datalist;}
     int getID() {return id;}
     Sensor* getCapteur() {return parent;}
+    double getCoef() { return coef;}
+    QString getParam() { return param;}
 
 private:
     QString name;
     QString unit;
     int id;
+    double coef;
+    QString param;
     QVector<Data> datalist;
     Sensor* parent;
 };

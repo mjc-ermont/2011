@@ -19,7 +19,7 @@
   <widget class="QWidget" name="widgetCentral">
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
-     <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,8" columnstretch="1,19,0,0,0,0,0,32" columnminimumwidth="0,0,0,0,0,0,0,0">
+     <layout class="QGridLayout" name="gridLayout_2" rowstretch="1,0" columnstretch="1,0,0">
       <item row="1" column="0">
        <widget class="QFrame" name="frame">
         <property name="sizePolicy">
@@ -162,10 +162,10 @@
         </layout>
        </widget>
       </item>
-      <item row="1" column="1" colspan="7">
+      <item row="1" column="1" colspan="2">
        <widget class="QStackedWidget" name="stack">
         <property name="currentIndex">
-         <number>4</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="p_tabl_bord">
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -283,20 +283,7 @@
         </widget>
        </widget>
       </item>
-      <item row="0" column="0" colspan="6">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="6">
+      <item row="0" column="0">
        <widget class="QFrame" name="frame_2">
         <property name="autoFillBackground">
          <bool>false</bool>
@@ -391,19 +378,6 @@
          </item>
         </layout>
        </widget>
-      </item>
-      <item row="0" column="7">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>
