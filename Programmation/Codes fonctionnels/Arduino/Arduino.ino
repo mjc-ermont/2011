@@ -17,56 +17,65 @@
  Temp temp = Temp(ID_CAPT_TEMP, PIN_TEMP);
  SerialOut so = SerialOut();
  unsigned long timer;
+ bool refreshed = false;
  
-  
 void setup() {
-    pinMode(13, OUTPUT);
     so.init();
+    pinMode(13, OUTPUT);
 #if SERIAL_DEBUG
    Serial.begin(SERIAL_BAUDRATE);
 #endif
-   Serial.println("ddd");
+   debug("ddd");
    press.init();
-   Serial.println("111");
+   debug("111");
    gps.init();
-   Serial.println("222");
+   debug("222");
    accel.init();
-   Serial.println("333");
+   debug("333");
    hum.init();
-   Serial.println("444");
+   debug("444");
    temp.init();
-   Serial.println("mmm");
-   accel.addOut(so);
-   press.addOut(so);
-   temp.addOut(so);
-   hum.addOut(so);
-   gps.addOut(so);
+   debug("mmm");
+   accel.addOut(&so);
+   press.addOut(&so);
+   temp.addOut(&so);
+   hum.addOut(&so);
+   gps.addOut(&so);
    Serial1.begin(GPS_BAUDRATE);
    timer = millis();
-   Serial.println("fff");
+   debug("fff");
 }
            
 void loop(){
-   debug("d");
+   //debug("d");
    if ((millis() - timer) >= (unsigned long)DELAY_SEND){
      debug("dt");
      gps.getTrame();
      Serial.flush();
+     debug("1");
      accel.getTrame();
      Serial.flush();
+     debug("2");
      hum.getTrame();
      Serial.flush();
+     debug("3");
      press.getTrame();
      Serial.flush();
+     debug("4");
      temp.getTrame();
      Serial.flush();
      timer = millis();
+     refreshed = false;
      debug("ft");
-   } else if ((millis() - timer) >= (unsigned long)DELAY_REFRESH) {
+   } else if ( ((millis() - timer) >= (unsigned long)DELAY_REFRESH) && (!(refreshed)) ) {
+     refreshed = true;
      debug("dr");
      accel.refresh();
+     debug("1");
      hum.refresh();
+     debug("2");
      press.refresh();
+     debug("3");
      temp.refresh();
      debug("fr");
    } 
@@ -75,6 +84,6 @@ void loop(){
      gps.refresh();
      debug("frg");
    }
-   debug("f");
+   //debug("f");
 }
 

@@ -4,6 +4,6 @@ Out::Out(){
   //queue = QueueArray<String>();  
 }
 
-void Out::addTrame(String &trame){ // Ajout d'une sortie a la file d'attente
+void Out::addTrame(char *trame){ // Ajout d'une sortie a la file d'attente
   queue.push(trame);
 }

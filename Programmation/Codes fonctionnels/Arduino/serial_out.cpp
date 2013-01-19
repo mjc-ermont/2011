@@ -14,7 +14,7 @@ void SerialOut::writeQueue(){    // Eccriture de la file sur la sortie
     String trame = queue.pop();
     for (byte i = 0 ; i < NB_REPET ; i++){        // Plusieurs fois au cas ou le recepteur de receptionnerait pas les premieres fois
       Serial.print(trame);               // Ecriture de l'element courant
-      Serial.flush();                          // attente de la fin de l'ecriture
+      //Serial.flush();                          // attente de la fin de l'ecriture
     }
   }
 }
