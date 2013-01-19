@@ -30,7 +30,7 @@ void setup() {
    debug("111");
    gps.init();
    debug("222");
-   accel.init();
+   //accel.init();
    debug("333");
    hum.init();
    debug("444");
@@ -43,12 +43,14 @@ void setup() {
    gps.addOut(&so);
    Serial1.begin(GPS_BAUDRATE);
    timer = millis();
+   accel.init();
    debug("fff");
 }
            
 void loop(){
    //debug("d");
-   if ((millis() - timer) >= (unsigned long)DELAY_SEND){
+   if ( ((millis() - timer) >= (unsigned long)DELAY_SEND) && (refreshed) ){
+     refreshed = false;
      debug("dt");
      gps.getTrame();
      Serial.flush();
@@ -65,10 +67,9 @@ void loop(){
      temp.getTrame();
      Serial.flush();
      timer = millis();
-     refreshed = false;
      debug("ft");
    } else if ( ((millis() - timer) >= (unsigned long)DELAY_REFRESH) && (!(refreshed)) ) {
-     refreshed = true;
+     
      debug("dr");
      accel.refresh();
      debug("1");
@@ -78,12 +79,14 @@ void loop(){
      debug("3");
      temp.refresh();
      debug("fr");
+     refreshed = true;
    } 
    if (Serial1.available() > 0){
      debug("drg");
      gps.refresh();
      debug("frg");
    }
+   Serial.flush();
    //debug("f");
 }
 

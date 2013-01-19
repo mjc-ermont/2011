@@ -3,7 +3,7 @@
 
 /*  ------- DEBUG -------  */
 
-#define SERIAL_DEBUG    0    // Activation du mode debug
+#define SERIAL_DEBUG    1    // Activation du mode debug
 
 /*  ------- TRASMISSION -------  */
 
@@ -13,7 +13,7 @@
 #define SERIAL_BAUDRATE 4800 // baudrate de la liaison série avec le kiwi
 #define NB_REPET        3    // Nombre de répéition de la trame
 #define SIZE_VALUE      7    // Longueur maxi de la valeur dans la trame
-#define ID_CAPT_GPS     00   // ID dans la trame du GPS
+#define ID_CAPT_GPS     0   // ID dans la trame du GPS
 #define ID_CAPT_ACCEL   1    // ID dans la trame de l'accéléromètre
 #define ID_CAPT_HUM     2    // ID dans la trame du capeur d'humidité
 #define ID_CAPT_PRESS   3    // ID dans la trame du capeur de pression
