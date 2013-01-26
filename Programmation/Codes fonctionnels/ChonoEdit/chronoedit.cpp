@@ -4,6 +4,8 @@
 ChronoEdit::ChronoEdit(QWidget *parent) : QWidget(parent), ui(new Ui::ChronoEdit){
     ui->setupUi(this);
 
+    ui->events->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+
     connect(ui->addContributeur, SIGNAL(pressed()), this, SLOT(ajouterContrib()));
     connect(ui->addContributeur, SIGNAL(pressed()), ui->setContributeur, SLOT(clear()));
 
@@ -12,6 +14,7 @@ ChronoEdit::ChronoEdit(QWidget *parent) : QWidget(parent), ui(new Ui::ChronoEdit
 
     connect(this, SIGNAL(notAllSet(bool)), ui->addEvent, SLOT(setEnabled(bool)));
     connect(ui->checkContribs, SIGNAL(pressed()), this, SLOT(refreshContribLabel()));
+    connect(this, SIGNAL(deletePressed()), this, SLOT(deleteEvent()));
 
     connect(ui->addLieu, SIGNAL(pressed()), this, SLOT(verifyEnable()));
     connect(ui->eventTitle, SIGNAL(textEdited(QString)), this, SLOT(verifyEnable()));
@@ -21,6 +24,8 @@ ChronoEdit::ChronoEdit(QWidget *parent) : QWidget(parent), ui(new Ui::ChronoEdit
     connect(ui->addLieu, SIGNAL(pressed()), this, SLOT(save()));
     connect(ui->addContributeur, SIGNAL(pressed()), this, SLOT(save()));
     connect(ui->addEvent, SIGNAL(pressed()), this, SLOT(save()));
+
+    open();
 }
 
 ChronoEdit::~ChronoEdit(){
@@ -60,30 +65,42 @@ QString ChronoEdit::json(){
     return QString(json);
 }
 
+void ChronoEdit::setContrib(QString contrib){
+    ui->Contributeurs->addItem(contrib);
+}
+
+void ChronoEdit::setLieu(QString lieu){
+    ui->Lieux->addItem(lieu);
+    ui->eventPlace->addItem(lieu);
+}
+
+void ChronoEdit::setEvent(QString titre, QString time, QString lieu, QString resp, QString desc){
+    int ligne = ui->events->rowCount();
+
+    ui->events->insertRow(ligne);
+    ui->events->setItem(ligne, 0, new QTableWidgetItem(titre));
+    ui->events->setItem(ligne, 1, new QTableWidgetItem(time));
+    ui->events->setItem(ligne, 2, new QTableWidgetItem(lieu));
+    ui->events->setItem(ligne, 3, new QTableWidgetItem(resp));
+    ui->events->setItem(ligne, 4, new QTableWidgetItem(desc));
+}
+
 void ChronoEdit::ajouterContrib(){
     if(ui->Contributeurs->findItems(ui->setContributeur->text(), Qt::MatchExactly).count()   ||   ui->setContributeur->text().isEmpty())
         return;
 
-    ui->Contributeurs->addItem(ui->setContributeur->text());
+    setContrib(ui->setContributeur->text());
 }
 
 void ChronoEdit::ajouterLieu(){
     if(ui->Lieux->findItems(ui->setLieu->text(), Qt::MatchExactly).count()   ||    ui->setLieu->text().isEmpty())
         return;
 
-    ui->Lieux->addItem(ui->setLieu->text());
-    ui->eventPlace->addItem(ui->setLieu->text());
+    setLieu(ui->setLieu->text());
 }
 
 void ChronoEdit::ajouterEvent(){
-    int ligne = ui->events->rowCount();
-
-    ui->events->insertRow(ligne);
-    ui->events->setItem(ligne, 0, new QTableWidgetItem(ui->eventTitle->text()));
-    ui->events->setItem(ligne, 1, new QTableWidgetItem(ui->eventTime->text()));
-    ui->events->setItem(ligne, 2, new QTableWidgetItem(ui->eventPlace->itemText(ui->eventPlace->currentIndex())));
-    ui->events->setItem(ligne, 3, new QTableWidgetItem(ui->eventResp->text()));
-    ui->events->setItem(ligne, 4, new QTableWidgetItem(ui->eventDesc->toPlainText()));
+    setEvent(ui->eventTitle->text(), ui->eventTime->text(), ui->eventPlace->itemText(ui->eventPlace->currentIndex()), ui->eventResp->text(), ui->eventDesc->toPlainText());
 
     ui->eventTitle->clear();
     ui->eventDesc->clear();
@@ -100,6 +117,32 @@ void ChronoEdit::save(){
 
         fichier.flush();
         fichier.close();
+    }
+}
+
+void ChronoEdit::open(){
+    QFile fichier("chronologie.json");
+    QString json("");
+    QJson::Parser parser;
+
+    if(fichier.open(QIODevice::ReadOnly)){
+        qDebug("\nOuverture du fichier de configuration pour lecture reussie");
+        json = fichier.readAll();
+        fichier.flush();
+        fichier.close();
+    }
+
+    QVariantMap result = parser.parse(json.toAscii()).toMap();
+    foreach(QString contrib, result["contributeurs"].toStringList()){
+        setContrib(contrib);
+    }
+    foreach(QString lieu, result["lieux"].toStringList()){
+        setLieu(lieu);
+    }
+    QVariantList eventList(result["events"].toList());
+    foreach(QVariant eventstr, eventList){
+        QVariantMap event = eventstr.toMap();
+        setEvent(event["titre"].toString(), event["time"].toString(), event["lieu"].toString(), event["contributeurs"].toString(), event["description"].toString());
     }
 }
 
@@ -129,4 +172,31 @@ void ChronoEdit::verifyEnable(){
         checker = false;
 
     emit notAllSet(checker);
+}
+
+void ChronoEdit::deleteEvent(){
+    if(ui->tabWidget->currentIndex() == 0){
+        QList<int> lignes;
+        lignes << -1;
+        foreach(QTableWidgetItem* i, ui->events->selectedItems()){
+            if(!lignes.contains(i->row())){
+                int j(0);
+                while(lignes[j] > i->row()){
+                    j++;
+                }
+                lignes.insert(j, i->row());
+            }
+        }
+
+        foreach(int i, lignes){
+            ui->events->removeRow(i);
+        }
+        save();
+    }
+}
+
+void ChronoEdit::keyPressEvent(QKeyEvent *e){
+    if(e->key() == Qt::Key_Delete){
+        emit deletePressed();
+    }
 }

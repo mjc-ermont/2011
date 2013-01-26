@@ -15,55 +15,78 @@
  Hum hum = Hum(ID_CAPT_HUM);
  Press press = Press(ID_CAPT_PRESS, PIN_PRESS);
  Temp temp = Temp(ID_CAPT_TEMP, PIN_TEMP);
- SerialOut so = SerialOut();;
+ SerialOut so = SerialOut();
  unsigned long timer;
+ bool refreshed = false;
  
-  
 void setup() {
+    so.init();
+    pinMode(13, OUTPUT);
 #if SERIAL_DEBUG
    Serial.begin(SERIAL_BAUDRATE);
 #endif
+   debug("ddd");
    press.init();
+   debug("111");
    gps.init();
-   accel.init();
+   debug("222");
+   //accel.init();
+   debug("333");
    hum.init();
+   debug("444");
    temp.init();
-   accel.addOut(so);
-   press.addOut(so);
-   temp.addOut(so);
+   debug("mmm");
+   accel.addOut(&so);
+   press.addOut(&so);
+   temp.addOut(&so);
+   hum.addOut(&so);
+   gps.addOut(&so);
    Serial1.begin(GPS_BAUDRATE);
    timer = millis();
+   accel.init();
+   debug("fff");
 }
            
 void loop(){
-   debug("d");
-   if ((millis() - timer) >= (unsigned long)DELAY_SEND){
-     
+   //debug("d");
+   if ( ((millis() - timer) >= (unsigned long)DELAY_SEND) && (refreshed) ){
+     refreshed = false;
      debug("dt");
      gps.getTrame();
      Serial.flush();
+     debug("1");
      accel.getTrame();
      Serial.flush();
+     debug("2");
      hum.getTrame();
      Serial.flush();
+     debug("3");
      press.getTrame();
      Serial.flush();
+     debug("4");
      temp.getTrame();
      Serial.flush();
      timer = millis();
      debug("ft");
-   } else if ((millis() - timer) >= (unsigned long)DELAY_REFRESH) {
+   } else if ( ((millis() - timer) >= (unsigned long)DELAY_REFRESH) && (!(refreshed)) ) {
+     
      debug("dr");
      accel.refresh();
+     debug("1");
      hum.refresh();
+     debug("2");
      press.refresh();
+     debug("3");
      temp.refresh();
      debug("fr");
-   } else if (Serial1.available() > 0){
+     refreshed = true;
+   } 
+   if (Serial1.available() > 0){
      debug("drg");
      gps.refresh();
-     debug("frg");  
- }
-   debug("f");
+     debug("frg");
+   }
+   Serial.flush();
+   //debug("f");
 }
 

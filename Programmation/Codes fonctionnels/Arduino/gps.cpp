@@ -23,9 +23,11 @@ bool GPS::refresh(){
   
   if (Serial1.available() > 0){                     // On verifie qu'il y a des données a lire
     while (Serial1.read() != '$');                  // On attend le debut de la trame
-    
+    int timer = millis();
     while (true){                                   // On lit toute la trame, sauf le checksum, et on la place dans un string
-      debug("w");
+      //debug("w");
+      if ((millis() - timer) > 1000)
+        break;
       current_char = Serial1.read();
       if (current_char == '*'){                     // Arret de la boucle quand on arrive a la fin
         break;

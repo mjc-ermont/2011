@@ -19,8 +19,15 @@ class ChronoEdit : public QWidget
 
         QString json();
 
+        void setContrib(QString contrib);
+        void setLieu(QString lieu);
+        void setEvent(QString titre, QString time, QString lieu, QString resp, QString desc = "");
+
     private:
         Ui::ChronoEdit *ui;
+
+    protected:
+        void keyPressEvent(QKeyEvent * e);
 
     private slots:
         void ajouterContrib();
@@ -30,11 +37,15 @@ class ChronoEdit : public QWidget
         void verifyEnable();
         void refreshContribLabel();
 
+        void deleteEvent();
+
     public slots:
         void save();
+        void open();
 
     signals:
         void notAllSet(bool a = false);
+        void deletePressed();
 };
 
 #endif // CHRONOEDIT_H

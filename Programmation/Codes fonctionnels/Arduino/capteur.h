@@ -16,10 +16,10 @@ public:
 	virtual bool init() = 0;      // Initialisation du capteur
 	virtual bool refresh() = 0;   // Recuperation des infos du capteur
         virtual void getTrame();  // Envoi des infos du capteur a toutes les sorties
-        virtual void addOut(Out &out);// Ajoute une sortie au capteur
+        virtual void addOut(Out *out);// Ajoute une sortie au capteur
 
 protected:
-        Vector<Out> _out;             // Tableau des sorties du capteur
+        Vector<Out*> _out;             // Tableau des sorties du capteur
         Vector<String> _val;          // Tableau contenant les valeurs des captoeurs
         const byte _id_capt;
 };
