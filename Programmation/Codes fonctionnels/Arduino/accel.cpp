@@ -5,7 +5,7 @@
 #include <Wire.h>
 #include "capteur.h"
 
-Accel::Accel(const byte &id_capt) : Capteur::Capteur(id_capt){
+Accel::Accel(const byte &id_capt) : Capteur::Capteur(id_capt, 1){
 
 }
 
@@ -14,7 +14,6 @@ bool Accel::init(){ // methode d'iniialisation de l'accelerometre
   delay(100);
   _accel.set_bw(ADXL345_BW_12);  // Allumage de l'accelerometre
   _accel.powerOn();
-  _val.push_back("");
 }
 
 bool Accel::refresh(){ // methode de recuperation des donnees de l'accelerometre
@@ -27,7 +26,7 @@ bool Accel::refresh(){ // methode de recuperation des donnees de l'accelerometre
     avg += (float)acc_data[i] * (float)acc_data[i];
   }
   
-  _val[0] = String((int)(100*sqrt(avg)));
+  itoa((int)(100*sqrt(avg)), _val[0], 10);
   //Serial.println((int)(avg*100));
 }
 
