@@ -15,13 +15,15 @@ void SensorManager::getSensorsFromFile() {
     Sensor* curSensor;
     while(!reader.atEnd()) {
         if((reader.name() == "sensor")&&(reader.attributes().value("name").toString() != "")) {
-            Sensor *s = new Sensor(reader.attributes().value("name").toString(),reader.attributes().value("id").toString().toInt());
+            Sensor *s = new Sensor(this,reader.attributes().value("name").toString(),reader.attributes().value("id").toString().toInt());
             curSensor = s;
             sensorList.append(s);
             qDebug() << "New sensor:" << s->getName();
         }
         if((reader.name() == "value")&&(reader.attributes().value("name").toString() != "")) {
-            SensorValue *sv = new SensorValue(reader.attributes().value("name").toString() ,reader.attributes().value("unit").toString(),reader.attributes().value("id").toString().toInt(),curSensor);
+            int coef=1;
+            QString params = reader.attributes().value("param").toString();
+            SensorValue *sv = new SensorValue(reader.attributes().value("name").toString() ,reader.attributes().value("unit").toString(),reader.attributes().value("id").toString().toInt(),curSensor,coef,params);
             if(curSensor != NULL)
                 curSensor->addSensorValue(sv);
 
