@@ -43,7 +43,6 @@ void setup() {
    gps.addOut(&so);
    Serial1.begin(GPS_BAUDRATE);
    timer = millis();
-   accel.init();
    debug("fff");
 }
            
@@ -55,7 +54,7 @@ void loop(){
      gps.getTrame();
      Serial.flush();
      debug("1");
-     accel.getTrame();
+     //accel.getTrame();
      Serial.flush();
      debug("2");
      hum.getTrame();
@@ -71,7 +70,7 @@ void loop(){
    } else if ( ((millis() - timer) >= (unsigned long)DELAY_REFRESH) && (!(refreshed)) ) {
      
      debug("dr");
-     accel.refresh();
+     //accel.refresh();
      debug("1");
      hum.refresh();
      debug("2");

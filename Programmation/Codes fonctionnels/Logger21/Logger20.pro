@@ -15,16 +15,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    Line.cpp \
     FenPrincipale.cpp \
-    Donnees.cpp \
-    serial.cpp \
-    boardingtable.cpp \
-    graphicview.cpp \
-    mapsview.cpp \
-    sensormanager.cpp \
-    sensor.cpp \
-    value.cpp \
     UI/mapsview.cpp \
     UI/graphicview.cpp \
     UI/boardingtable.cpp \
@@ -35,15 +26,7 @@ SOURCES += main.cpp\
 
 HEADERS  += Line.h \
     FenPrincipale.h \
-    Donnees.h \
-    serial.h \
-    boardingtable.h \
     defines.h \
-    graphicview.h \
-    mapsview.h \
-    sensormanager.h \
-    sensor.h \
-    value.h \
     UI/mapsview.h \
     UI/graphmanager.h \
     UI/graphicview.h \

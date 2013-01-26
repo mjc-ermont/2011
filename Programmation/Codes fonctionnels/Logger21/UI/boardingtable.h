@@ -9,6 +9,7 @@
 #include "defines.h"
 
 class SensorManager;
+class SensorValue;
 
 class BoardingTable
 {

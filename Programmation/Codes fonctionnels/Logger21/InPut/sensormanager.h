@@ -7,6 +7,7 @@
 #include "FenPrincipale.h"
 
 class FenPrincipale;
+class Sensor;
 
 class SensorManager
 {
@@ -15,6 +16,7 @@ public:
     Sensor* getSensor(int id);
     QVector<Sensor*> getSensors() {return sensorList;}
     QString addData(QString trame);
+    FenPrincipale* getParent(){return parent;}
 protected:
     void getSensorsFromFile();
     QString get_checksum(QString);

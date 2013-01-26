@@ -28,7 +28,7 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
 
         BoardingTable* getBT() {return tableauBord;}
         SensorManager* getSensorMgr(){return sensormgr; }
-
+        MapsView* getMap() {return carte;}
 
     protected:
         void reinit_b();

@@ -15,13 +15,15 @@ void SensorManager::getSensorsFromFile() {
     Sensor* curSensor;
     while(!reader.atEnd()) {
         if((reader.name() == "sensor")&&(reader.attributes().value("name").toString() != "")) {
-            Sensor *s = new Sensor(reader.attributes().value("name").toString(),reader.attributes().value("id").toString().toInt());
+            Sensor *s = new Sensor(this,reader.attributes().value("name").toString(),reader.attributes().value("id").toString().toInt());
             curSensor = s;
             sensorList.append(s);
             qDebug() << "New sensor:" << s->getName();
         }
         if((reader.name() == "value")&&(reader.attributes().value("name").toString() != "")) {
-            SensorValue *sv = new SensorValue(reader.attributes().value("name").toString() ,reader.attributes().value("unit").toString(),reader.attributes().value("id").toString().toInt(),curSensor);
+            int coef=1;
+            QString params = reader.attributes().value("param").toString();
+            SensorValue *sv = new SensorValue(reader.attributes().value("name").toString() ,reader.attributes().value("unit").toString(),reader.attributes().value("id").toString().toInt(),curSensor,coef,params);
             if(curSensor != NULL)
                 curSensor->addSensorValue(sv);
 
@@ -49,13 +51,15 @@ QString SensorManager::addData(QString trame) {
     QString firstPart = elements[0] + "$" + elements[1] + "$" + elements[2] + "$" + elements[3] + "$";
     QString checkSum = get_checksum(firstPart);
     qDebug() << "CS: "<< QString(checkSum).toInt(NULL, 10) << " | "  << elements[4].toInt(NULL, 16) ;
-    if(QString(checkSum).toInt(NULL, 10) == elements[4].toInt(NULL, 16) ) {
+
+    bool checkLeSum = false;
+
+    if((QString(checkSum).toInt(NULL, 10) == elements[4].toInt(NULL, 16))||(!checkLeSum)) {
         int numCapteur = elements[1].toInt();
         double valeur = elements[3].toDouble();
         int numValeur = elements[2].toInt();
 
-        if(numCapteur == 2) // LE PUTAIN DE CAPTEUR D'ARTHUR QU'IL FAUT DIVISER PAR 100
-            valeur = valeur / 100;
+        valeur = valeur * sensorList[numCapteur]->getValues()[numValeur]->getCoef();
 
         sensorList[numCapteur]->getValues()[numValeur]->addData(valeur);
         parent->getBT()->update(sensorList[numCapteur]->getValues()[numValeur]);
@@ -69,12 +73,9 @@ QString SensorManager::addData(QString trame) {
 QString SensorManager::get_checksum(QString trame) {
 
     char XOR = 0;
-    for (int i = 0; i < trame.length() ; i++)
-    {
+    for (int i = 0; i < trame.length() ; i++) {
        XOR = XOR ^ trame.toStdString()[i];
     }
-
-    qDebug() << XOR;
 
     return QString::number(XOR);
 }
