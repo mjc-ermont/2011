@@ -49,7 +49,10 @@ QString SensorManager::addData(QString trame) {
     QString firstPart = elements[0] + "$" + elements[1] + "$" + elements[2] + "$" + elements[3] + "$";
     QString checkSum = get_checksum(firstPart);
     qDebug() << "CS: "<< QString(checkSum).toInt(NULL, 10) << " | "  << elements[4].toInt(NULL, 16) ;
-    if(QString(checkSum).toInt(NULL, 10) == elements[4].toInt(NULL, 16) ) {
+
+    bool checkLeSum = false;
+
+    if((QString(checkSum).toInt(NULL, 10) == elements[4].toInt(NULL, 16))||(!checkLeSum)) {
         int numCapteur = elements[1].toInt();
         double valeur = elements[3].toDouble();
         int numValeur = elements[2].toInt();
@@ -68,12 +71,9 @@ QString SensorManager::addData(QString trame) {
 QString SensorManager::get_checksum(QString trame) {
 
     char XOR = 0;
-    for (int i = 0; i < trame.length() ; i++)
-    {
+    for (int i = 0; i < trame.length() ; i++) {
        XOR = XOR ^ trame.toStdString()[i];
     }
-
-    qDebug() << XOR;
 
     return QString::number(XOR);
 }
