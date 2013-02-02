@@ -6,44 +6,17 @@
 #include "defines.h"
 #include "FenPrincipale.h"
 #include "InPut/serial.h"
+#include "dialog.h"
 
 int main(int argc, char *argv[])
 {
     srand(time(NULL));
 
     QApplication a(argc, argv);
-    QString port = "/dev/ttyUSB0";
-
-
-    QString locale = QLocale::system().name().section('_', 0, 0);
-    QTranslator translator;
-    translator.load(QString("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    a.installTranslator(&translator);
-
 
     //------------------------------------------------------------------------------
-
-
-
- //   #ifndef DEBUG
-        port = QInputDialog::getText(NULL,"Choose the COM port","Please choose the serial communication port to get important informations :");
-  //  #endif
-
-
-    Serial* com = new Serial(port);
-
-
-    com->start();
-
-
-    //------------------------------------------------------------------------------
-    qDebug() << "Test 0";
-
-    FenPrincipale w(com);
-
-    w.setWindowTitle("Récupérateur des informations reçues par le biais du Kiwi au melon.");
-    w.show();
-
+    AskDialog* d = new AskDialog();
+    d->show();
     //------------------------------------------------------------------------------
 
     return a.exec();
