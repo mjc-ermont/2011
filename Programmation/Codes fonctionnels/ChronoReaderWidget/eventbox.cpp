@@ -1,14 +1,25 @@
 #include "eventbox.h"
 #include "ui_eventbox.h"
 
-EventBox::EventBox(QString name, QString contributeurs, int time, QString lieu, QString description) : m_time(time), ui(new Ui::EventBox){
+EventBox::EventBox(QString name, QString contributeurs, QTime m_debut, int m_signe, QTime m_fin, QString lieu, QString description) : debut(m_debut), signe(m_signe), fin(m_fin), ui(new Ui::EventBox){
     ui->setupUi(this);
         ui->name->setTitle(name);
         ui->contribs->setText(contributeurs);
         ui->lieu->setText(lieu);
         this->setToolTip(description);
 
-        ui->time->setText(QString::number(time) + " minutes");
+        if(signe == -1 && TimeCalcs::toMs(debut) > TimeCalcs::toMs(fin)){
+            ui->time->setText("-"+debut.toString());
+            ui->fin->setText("-" + TimeCalcs::addition(debut, fin, 1, -1).toString());
+        }
+        else if(signe == -1 && TimeCalcs::toMs(debut) == TimeCalcs::toMs(fin)){
+            ui->time->setText("-"+debut.toString());
+            ui->fin->setText(TimeCalcs::addition(debut, fin, 1, -1).toString());
+        }
+        else{
+            ui->time->setText(debut.toString());
+            ui->fin->setText(TimeCalcs::addition(fin, debut, 1, signe).toString());
+        }
         ui->progression->setValue(0);
         ui->progression->hide();
 }
@@ -17,22 +28,23 @@ EventBox::~EventBox(){
     delete ui;
 }
 
-void EventBox::setTime(QTime heure){
-    debut = QTime::currentTime();
+void EventBox::setTime(QTime m_time){
+    time = m_time;
 
-    moment = heure.addSecs(m_time*60);
-    ui->time->setText(moment.toString("hh:mm"));
+    ui->time->setText(TimeCalcs::addition(debut, time, signe).toString());
+    ui->fin->setText(TimeCalcs::addition(TimeCalcs::addition(debut, time, signe), fin).toString());
 
-    ui->progression->show();
     reload();
 }
 
 void EventBox::reload(){
-    int avancement =     (QTime::currentTime().hour()*3600 + QTime::currentTime().minute()*60 + QTime::currentTime().second()) - (debut.hour()*3600 + debut.minute()*60 + debut.second());
-    int differenceTime = (moment.hour()*3600 + moment.minute()*60 + moment.second()) - (debut.hour()*3600 + debut.minute()*60 + debut.second());
-    if(avancement > 0 && differenceTime > 0)
-        ui->progression->setValue(int(avancement*100/differenceTime));
-    else
-        ui->progression->setValue(100);
-    qDebug() << avancement << differenceTime;
+    if(TimeCalcs::toMs(QTime::currentTime()) > TimeCalcs::toMs(TimeCalcs::addition(debut, time, signe))){
+        int avance = TimeCalcs::toMs(QTime::currentTime()) - TimeCalcs::toMs(TimeCalcs::addition(debut, time, signe));
+        if(avance > TimeCalcs::toMs(fin))
+            ui->progression->setValue(100);
+        else
+            ui->progression->setValue((avance*100)/TimeCalcs::toMs(fin));
+    }
+    if(TimeCalcs::toMs(QTime::currentTime()) > TimeCalcs::toMs(TimeCalcs::addition(debut, time, signe)))
+        ui->progression->show();
 }

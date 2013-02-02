@@ -6,11 +6,11 @@ ChronoReaderWidget::ChronoReaderWidget(QWidget *parent) : QWidget(parent), ui(ne
 
     open();
     foreach(event i, evenements){
-        boxes << new EventBox(i.titre, i.contribs, i.moment, i.lieu, i.description);
+        boxes << new EventBox(i.titre, i.contribs, i.debut, i.moment, i.fin, i.lieu, i.description);
         ui->layout->addWidget(boxes[boxes.size()-1]);
     }
 
-    laucherCounter(QTime(17,40));
+    laucherCounter(QTime(17,18));
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(refresh()));
     timer->start(500);
@@ -38,13 +38,16 @@ void ChronoReaderWidget::open(){
         QVariantMap curentevent = eventstr.toMap();
         event entree;
         int i(0);
+            entree.moment = (curentevent["avant"].toString() == "avant")*(-1);
             entree.titre = curentevent["titre"].toString();
             entree.description = curentevent["description"].toString();
             entree.contribs = curentevent["contributeurs"].toString();
-            entree.moment = curentevent["time"].toInt();
+            entree.debut = QTime::fromString(curentevent["debut"].toString());
+            entree.fin = QTime::fromString(curentevent["fin"].toString());
             entree.lieu = curentevent["lieu"].toString();
-        while(i < evenements.size() && evenements[i].moment < entree.moment){
-            i++;
+
+            while(i < evenements.size() && TimeCalcs::toMs(evenements[i].debut)*evenements[i].moment + TimeCalcs::toMs(evenements[i].fin) < TimeCalcs::toMs(entree.debut)*entree.moment + TimeCalcs::toMs(entree.fin)){
+                i++;
         }
         evenements.insert(i, entree);
     }
@@ -54,7 +57,7 @@ void ChronoReaderWidget::laucherCounter(QTime m_heure){
     heure = m_heure;
 
     foreach(EventBox *i, boxes){
-        i->setTime(heure);
+        i->setTime(m_heure);
     }
 }
 
