@@ -22,30 +22,31 @@ SOURCES += main.cpp\
     InPut/serial.cpp \
     InPut/sensormanager.cpp \
     InPut/sensor.cpp \
-    InPut/sensorvalue.cpp
+    InPut/sensorvalue.cpp \
+    dialog.cpp
 
-HEADERS  += Line.h \
-    FenPrincipale.h \
-    defines.h \
+HEADERS  += FenPrincipale.h \
     UI/mapsview.h \
-    UI/graphmanager.h \
     UI/graphicview.h \
     InPut/serial.h \
     InPut/sensormanager.h \
     InPut/sensor.h \
     UI/boardingtable.h \
-    InPut/sensorvalue.h
+    InPut/sensorvalue.h \
+    defines.h \
+    dialog.h
 
-FORMS    += FenPrincipale.ui
+FORMS    += FenPrincipale.ui \
+    dialog.ui
 
 CONFIG += linusque
 
 lucas {
-    LIBS += C:\QtSDK\Desktop\Qt\4.8.1\mingw\lib\libqwtd.a
+    LIBS += C:\\QtSDK\\Desktop\\Qt\\4.8.1\\mingw\\lib\\libqwtd.a
 }
 
 robotik {
-    LIBS += C:\qwt-6.0.1\lib\libqwtd.a
+    LIBS += C:\\qwt-6.0.1\\lib\\libqwtd.a
 }
 
 linusque {

@@ -7,6 +7,8 @@ FenPrincipale::FenPrincipale(Serial* _com) {
     //------------------------------------------------------------------------------------------------------
 
 
+    this->setWindowTitle("Récupérateur des informations reçues par le biais du Kiwi au melon.");
+
     com = _com;
     optimisation_graph = false;
     setupUi(this);
