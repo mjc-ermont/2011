@@ -21,7 +21,7 @@ class ChronoEdit : public QWidget
 
         void setContrib(QString contrib);
         void setLieu(QString lieu);
-        void setEvent(QString titre, QString time, QString lieu, QString resp, QString desc = "");
+        void setEvent(QString titre, QString debut, QString fin, QString lieu, QString resp, QString desc = "");
 
     private:
         Ui::ChronoEdit *ui;

@@ -66,7 +66,12 @@
          </column>
          <column>
           <property name="text">
-           <string>Moment</string>
+           <string>Début</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Fin</string>
           </property>
          </column>
          <column>
@@ -116,44 +121,111 @@
               <item row="0" column="1">
                <widget class="QLineEdit" name="eventTitle"/>
               </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="eventTime">
-                <property name="minimum">
-                 <number>-14400</number>
-                </property>
-                <property name="maximum">
-                 <number>14400</number>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="lieuLabel">
                 <property name="text">
                  <string>Lieu</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="1" column="1">
+               <widget class="QComboBox" name="eventPlace"/>
+              </item>
+              <item row="2" column="0">
                <widget class="QLabel" name="actionnaireLabel">
                 <property name="text">
                  <string>Actionnaires</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="heureLabel">
-                <property name="text">
-                 <string>Temps</string>
-                </property>
-               </widget>
-              </item>
               <item row="2" column="1">
-               <widget class="QComboBox" name="eventPlace"/>
-              </item>
-              <item row="3" column="1">
                <widget class="QLabel" name="eventResp">
                 <property name="text">
                  <string>Aucun - selectionnez dans l'onglet &quot;Contributeurs&quot;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Début </string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTimeEdit" name="debut">
+                <property name="time">
+                 <time>
+                  <hour>0</hour>
+                  <minute>0</minute>
+                  <second>0</second>
+                 </time>
+                </property>
+                <property name="minimumTime">
+                 <time>
+                  <hour>0</hour>
+                  <minute>0</minute>
+                  <second>0</second>
+                 </time>
+                </property>
+                <property name="calendarPopup">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Durée</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTimeEdit" name="fin"/>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radioButton">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selectionnez si vous désirez que cet évènement se déroule avant ou après &lt;span style=&quot; font-weight:600;&quot;&gt;le lancement&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Avant</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radioButton_2">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selectionnez si vous désirez que cet évènement se déroule avant ou après &lt;span style=&quot; font-weight:600;&quot;&gt;le lancement&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Après</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>

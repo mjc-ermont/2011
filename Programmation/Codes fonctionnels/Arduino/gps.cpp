@@ -3,24 +3,19 @@
 #include "defines.h"
 #include "debug.h"
 
-GPS::GPS(const byte &id) : Capteur::Capteur(id){
+GPS::GPS(const byte &id) : Capteur::Capteur(id, 6){
 
 }
 
 bool GPS::init(){
-  _val.push_back("");
-  _val.push_back("");
-  _val.push_back("");
-  _val.push_back("");
-  _val.push_back("");
 }
 
 bool GPS::refresh(){
   //Serial.println("Debut");
   char current_char = 0;                            // Variable contenant le byte qui vient d'être lu depuis le GPS
-  String table[20];                                 // tableau contenant la trame complète envoyée par le GPS
-  byte i = 0;
-  
+  char table[40][100];                                 // tableau contenant la trame complète envoyée par le GPS
+  byte i = 0, j = 0;
+    
   if (Serial1.available() > 0){                     // On verifie qu'il y a des données a lire
     while (Serial1.read() != '$');                  // On attend le debut de la trame
     int timer = millis();
@@ -34,30 +29,34 @@ bool GPS::refresh(){
       }
       
       if(current_char == ','){                      // si on rencontre une virgule, on passe a la valeur suivante
-        //Serial.println(table[i]);
+        table[i][j] = '\0';
         i++;
+        j=0;
       }
         
       if ((current_char != -1) && (current_char != ',')){ // Si la donnée lue est une valeur acceptable, on l'ajoute a la chaine
-        table[i] += current_char;
+        table[i][j] = current_char;
+        j++;
       }
     }
-    
-    if(table[0] == "GPRMC"){                            // On trie les données recues : Si la trame recue est une trame GPRMC ...
+    //debug("fg");
+    if(strcmp(table[0], "GPRMC") == 0){                            // On trie les données recues : Si la trame recue est une trame GPRMC ...
        
-      _val[ID_VAL_UTIME] = table[1];                                // ... On en extrait le temps, ...
+      strcpy(_val[ID_VAL_UTIME], table[1]);                                // ... On en extrait le temps, ...
       
-      if(table[3].length() == 9){                       // ... la latitude et la longitude (si la valeur a la bonne longueur) ...
-        _val[ID_VAL_LAT_DEG] = table[3].substring(0, 2);
-        _val[ID_VAL_LAT_MIN] = table[3].substring(2);
+      if(strlen(table[3]) == 9){                       // ... la latitude et la longitude (si la valeur a la bonne longueur) ...
+        strncpy(_val[ID_VAL_LAT_DEG], table[3], 2);
+        _val[ID_VAL_LAT_DEG][2] = '\0';
+        strncpy(_val[ID_VAL_LAT_MIN], table[3] + 2, 7);
+        _val[ID_VAL_LAT_MIN][7] = '\0';
       }
-      
-      if(table[5].length() == 10){
-        _val[ID_VAL_LON_DEG] = table[5].substring(0, 3);
-        _val[ID_VAL_LON_MIN] = table[5].substring(3);
+      if(strlen(table[5]) == 10){
+        strncpy(_val[ID_VAL_LON_DEG], table[5], 3);
+        _val[ID_VAL_LON_DEG][2] = '\0';
+        strncpy(_val[ID_VAL_LON_MIN], table[5] + 3, 7);
+        _val[ID_VAL_LON_MIN][3] = '\0';
       }
-      _val[ID_VAL_VIT] = table[7];                                  // ... et la vitesse
-      //Serial.println(freeMemory());
+      strcpy(_val[ID_VAL_VIT], table[7]);                                  // ... et la vitesse
     }
     return true;
   } else {

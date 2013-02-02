@@ -11,7 +11,7 @@ bool SdOut::init(){          // Initialisation de la carte sd
   _file = SD.open("log.txt", FILE_WRITE);
 }
 
-void SdOut::writeQueue(){    // Eccriture de la file sur la sortie
+void SdOut::writeQueue(char* trame){    // Eccriture de la file sur la sortie
   for(byte h = 0 ; h < queue.count() ; h++){    // Ecriture de la totalité de la file
     for (byte i = 0 ; i<NB_REPET ; i++){        // Plusieurs fois au cas ou le recepteur de receptionnerait pas les premieres fois
       _file.print(queue.pop());               // Ecriture de l'element courant

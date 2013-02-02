@@ -4,13 +4,11 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-Hum::Hum(const byte &id) : Capteur::Capteur(id){
+Hum::Hum(const byte &id) : Capteur::Capteur(id, 2){
 }
 
 bool Hum::init(){  // Initialisation du capteur
   Wire.begin();    // Initialisation de la bibliotheque IIC
-  _val.push_back("");
-  _val.push_back("");
 }
 
 bool Hum::refresh(){    // Recuperation des valeurs du capteur
@@ -49,11 +47,8 @@ bool Hum::refresh(){    // Recuperation des valeurs du capteur
 
   Wire.endTransmission();
   
-  _val[0] = String((int)(Humidity*100));
-  _val[1] = String((int)(Temperature*100));
-  
-  //Serial.println(Humidity);
-
+  itoa((int)(Humidity*100), _val[0], 10);
+  itoa((int)(Temperature*100), _val[1], 10);
 }
 
 /*void Hum::getTrame(){  // Envoi de la trame
