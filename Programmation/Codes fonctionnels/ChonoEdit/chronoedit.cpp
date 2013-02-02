@@ -52,10 +52,11 @@ QString ChronoEdit::json(){
             QVariantMap event;
             event.insert("titre", ui->events->item(i, 0)->text());
             event.insert("debut", ui->events->item(i, 1)->text());
-            event.insert("fin", ui->events->item(i, 2)->text());
-            event.insert("lieu", ui->events->item(i, 3)->text());
-            event.insert("contributeurs", ui->events->item(i, 4)->text());
-            event.insert("description", ui->events->item(i, 5)->text());
+            event.insert("avant", ui->events->item(i, 2)->text());
+            event.insert("fin", ui->events->item(i, 3)->text());
+            event.insert("lieu", ui->events->item(i, 4)->text());
+            event.insert("contributeurs", ui->events->item(i, 5)->text());
+            event.insert("description", ui->events->item(i, 6)->text());
             events.insert(i, event);
         }
         all.insert("events", events);
@@ -75,16 +76,22 @@ void ChronoEdit::setLieu(QString lieu){
     ui->eventPlace->addItem(lieu);
 }
 
-void ChronoEdit::setEvent(QString titre, QString debut, QString fin, QString lieu, QString resp, QString desc){
+void ChronoEdit::setEvent(QString titre, QString debut, QString fin, QString lieu, QString resp, bool avant, QString desc){
+    QString moment;
+    if(avant)
+        moment = "avant";
+    else
+        moment = "apres";
     int ligne = ui->events->rowCount();
 
     ui->events->insertRow(ligne);
     ui->events->setItem(ligne, 0, new QTableWidgetItem(titre));
     ui->events->setItem(ligne, 1, new QTableWidgetItem(debut));
-    ui->events->setItem(ligne, 2, new QTableWidgetItem(fin));
-    ui->events->setItem(ligne, 3, new QTableWidgetItem(lieu));
-    ui->events->setItem(ligne, 4, new QTableWidgetItem(resp));
-    ui->events->setItem(ligne, 5, new QTableWidgetItem(desc));
+    ui->events->setItem(ligne, 2, new QTableWidgetItem(moment));
+    ui->events->setItem(ligne, 3, new QTableWidgetItem(fin));
+    ui->events->setItem(ligne, 4, new QTableWidgetItem(lieu));
+    ui->events->setItem(ligne, 5, new QTableWidgetItem(resp));
+    ui->events->setItem(ligne, 6, new QTableWidgetItem(desc));
 }
 
 void ChronoEdit::ajouterContrib(){
@@ -102,7 +109,7 @@ void ChronoEdit::ajouterLieu(){
 }
 
 void ChronoEdit::ajouterEvent(){
-    setEvent(ui->eventTitle->text(), ui->debut->text(), ui->fin->text(), ui->eventPlace->itemText(ui->eventPlace->currentIndex()), ui->eventResp->text(), ui->eventDesc->toPlainText());
+    setEvent(ui->eventTitle->text(), ui->debut->text(), ui->fin->text(), ui->eventPlace->itemText(ui->eventPlace->currentIndex()), ui->eventResp->text(), ui->avant->isChecked(), ui->eventDesc->toPlainText());
 
     ui->eventTitle->clear();
     ui->eventDesc->clear();
@@ -144,7 +151,7 @@ void ChronoEdit::open(){
     QVariantList eventList(result["events"].toList());
     foreach(QVariant eventstr, eventList){
         QVariantMap event = eventstr.toMap();
-        setEvent(event["titre"].toString(), event["debut"].toString(), event["fin"].toString(),event["lieu"].toString() , event["contributeurs"].toString(), event["description"].toString());
+        setEvent(event["titre"].toString(), event["debut"].toString(), event["fin"].toString(),event["lieu"].toString() , event["contributeurs"].toString(), event["avant"] == "avant", event["description"].toString());
     }
 }
 

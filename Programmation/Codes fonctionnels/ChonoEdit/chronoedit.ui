@@ -71,6 +71,11 @@
          </column>
          <column>
           <property name="text">
+           <string>Moment</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Fin</string>
           </property>
          </column>
@@ -204,7 +209,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QRadioButton" name="radioButton">
+               <widget class="QRadioButton" name="avant">
                 <property name="toolTip">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Selectionnez si vous désirez que cet évènement se déroule avant ou après &lt;span style=&quot; font-weight:600;&quot;&gt;le lancement&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
