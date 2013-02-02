@@ -44,18 +44,19 @@ bool GPS::refresh(){
        
       strcpy(_val[ID_VAL_UTIME], table[1]);                                // ... On en extrait le temps, ...
       
-      if(strlen(table[3]) == 9){                       // ... la latitude et la longitude (si la valeur a la bonne longueur) ...
+      
+      //if(strlen(table[3]) == 10){                       // ... la latitude et la longitude (si la valeur a la bonne longueur) ...
         strncpy(_val[ID_VAL_LAT_DEG], table[3], 2);
-        _val[ID_VAL_LAT_DEG][2] = '\0';
+        //_val[ID_VAL_LAT_DEG][2] = '\0';
         strncpy(_val[ID_VAL_LAT_MIN], table[3] + 2, 7);
-        _val[ID_VAL_LAT_MIN][7] = '\0';
-      }
-      if(strlen(table[5]) == 10){
+        //_val[ID_VAL_LAT_MIN][7] = '\0';
+      //}
+      //if(strlen(table[5]) == 11){
         strncpy(_val[ID_VAL_LON_DEG], table[5], 3);
-        _val[ID_VAL_LON_DEG][2] = '\0';
+        //_val[ID_VAL_LON_DEG][2] = '\0';
         strncpy(_val[ID_VAL_LON_MIN], table[5] + 3, 7);
-        _val[ID_VAL_LON_MIN][3] = '\0';
-      }
+        //_val[ID_VAL_LON_MIN][3] = '\0';
+      //%}
       strcpy(_val[ID_VAL_VIT], table[7]);                                  // ... et la vitesse
     }
     return true;

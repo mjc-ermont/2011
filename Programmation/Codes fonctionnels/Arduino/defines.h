@@ -3,7 +3,7 @@
 
 /*  ------- DEBUG -------  */
 
-#define SERIAL_DEBUG    0    // Activation du mode debug
+#define SERIAL_DEBUG    1    // Activation du mode debug
 
 /*  ------- TRASMISSION -------  */
 
