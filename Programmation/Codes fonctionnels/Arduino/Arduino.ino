@@ -26,17 +26,16 @@ void setup() {
 //#if SERIAL_DEBUG
    Serial.begin(SERIAL_BAUDRATE);
 //#endif
-  File _file;
     pinMode(SD_CS_PIN, OUTPUT);
-  if (!SD.begin(SD_CS_PIN)) {
-    Serial.println("Card failed, or not present");
+/*  if (!SD.begin(SD_CS_PIN)) {
+    Serial.println("Card failed, or not presente");
   }
-  _file = SD.open("log.txt", FILE_WRITE);
+  File _file = SD.open("sprof.txt", FILE_WRITE);
   if(!(_file)){
     Serial.println("------------------------");
   }
   _file.print("sdsdsd");
-  _file.close();
+  _file.close();*/
   //Serial.print("jsdfjhfhfhfh");
     so.init();
     sd.init();
