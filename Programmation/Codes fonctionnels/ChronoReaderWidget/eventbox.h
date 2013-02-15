@@ -19,6 +19,10 @@ class EventBox : public QFrame
         ~EventBox();
         void reload();
 
+    signals:
+        void finished();
+        void begin();
+
     private:
         Ui::EventBox *ui;
 
@@ -27,6 +31,9 @@ class EventBox : public QFrame
         QTime fin;
 
         QTime time;
+
+
+        bool began, finish;
 
     public slots:
 };
