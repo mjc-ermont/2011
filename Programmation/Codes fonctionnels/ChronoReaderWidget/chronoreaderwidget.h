@@ -12,6 +12,18 @@ namespace Ui {
 class ChronoReaderWidget;
 }
 
+/****************************************************************
+**              Comment utilliser ChronoReaderWidget ?          *
+*****************************************************************
+** Méthodes :
+**  Pour lancer le compteur et definir l'heure de lancement : laucherCounter( heure de lancement du ballon : "QTime" )
+**  Si tu veut recharger le fichier :                         open()
+**
+** Signaux :
+**  Pour quand y a un compteur qui commence :                 eventBegan(event)
+**  Pour quand y a un compteur qui fini :                     eventFinished(event)
+**/
+
 class ChronoReaderWidget : public QWidget
 {
     Q_OBJECT
