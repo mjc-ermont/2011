@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>523</width>
+    <width>458</width>
     <height>139</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ChronoReaderWidget</string>
   </property>
-  <layout class="QHBoxLayout" name="layout_2">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -33,7 +33,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>521</width>
+        <width>456</width>
         <height>137</height>
        </rect>
       </property>

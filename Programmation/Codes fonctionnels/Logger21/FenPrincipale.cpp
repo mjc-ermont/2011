@@ -1,4 +1,5 @@
 #include "FenPrincipale.h"
+#include "../ChronoReaderWidget/chronoreaderwidget.h"
 
 FenPrincipale::FenPrincipale(Serial* _com) {
 
@@ -72,6 +73,10 @@ FenPrincipale::FenPrincipale(Serial* _com) {
     #endif
 
     h_depart = QTime::currentTime();
+    ChronoReaderWidget *chronoWidget = new ChronoReaderWidget;
+    chronoWidget->laucherCounter(QTime::currentTime());
+    chronolayout->addWidget(chronoWidget);
+
 }
 
 FenPrincipale::~FenPrincipale(){

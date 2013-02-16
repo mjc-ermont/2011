@@ -19,3 +19,6 @@ FORMS    += chronoedit.ui
 
 
 unix|win32: LIBS += -lqjson
+
+RESOURCES += \
+    ressources.qrc

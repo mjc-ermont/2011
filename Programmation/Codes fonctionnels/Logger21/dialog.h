@@ -22,8 +22,11 @@ private slots:
 
     void on_addToList_clicked();
 
+    void on_removeButton_clicked();
+
 private:
     FenPrincipale* fen;
+    int nItems;
 };
 
 #endif // DIALOG_H
