@@ -34,6 +34,12 @@
           <height>0</height>
          </size>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -285,6 +291,18 @@
       </item>
       <item row="0" column="0">
        <widget class="QFrame" name="frame_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>142</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="autoFillBackground">
          <bool>false</bool>
         </property>
@@ -378,6 +396,9 @@
          </item>
         </layout>
        </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <layout class="QVBoxLayout" name="chronolayout"/>
       </item>
      </layout>
     </item>

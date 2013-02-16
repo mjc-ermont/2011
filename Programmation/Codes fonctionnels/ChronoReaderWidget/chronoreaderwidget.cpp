@@ -12,7 +12,6 @@ ChronoReaderWidget::ChronoReaderWidget(QWidget *parent) : QWidget(parent), ui(ne
         connect(boxes[boxes.size()-1], SIGNAL(finished()), this, SLOT(hasFinished()));
     }
 
-    laucherCounter(QTime(14,47));
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(refresh()));
     timer->start(500);

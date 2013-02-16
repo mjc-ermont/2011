@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'FenPrincipale.ui'
 **
-** Created: Sat Feb 2 15:33:33 2013
+** Created: Sat Feb 16 15:45:30 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -87,6 +87,7 @@ public:
     QLCDNumber *lcd_min;
     QLabel *label_2;
     QLCDNumber *lcd_sec;
+    QVBoxLayout *chronolayout;
     QStatusBar *barreStatus;
     QMenuBar *menuBar;
     QMenu *menuFichier;
@@ -116,6 +117,7 @@ public:
         sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
         frame->setSizePolicy(sizePolicy);
         frame->setMinimumSize(QSize(0, 0));
+        frame->setMaximumSize(QSize(200, 16777215));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         verticalLayout = new QVBoxLayout(frame);
@@ -316,6 +318,8 @@ public:
 
         frame_2 = new QFrame(widgetCentral);
         frame_2->setObjectName(QString::fromUtf8("frame_2"));
+        frame_2->setMinimumSize(QSize(0, 142));
+        frame_2->setMaximumSize(QSize(200, 16777215));
         frame_2->setAutoFillBackground(false);
         frame_2->setStyleSheet(QString::fromUtf8("background-color: rgb(232, 232, 232);\n"
 ""));
@@ -372,6 +376,12 @@ public:
 
 
         gridLayout_2->addWidget(frame_2, 0, 0, 1, 1);
+
+        chronolayout = new QVBoxLayout();
+        chronolayout->setSpacing(6);
+        chronolayout->setObjectName(QString::fromUtf8("chronolayout"));
+
+        gridLayout_2->addLayout(chronolayout, 0, 1, 1, 2);
 
         gridLayout_2->setRowStretch(0, 1);
         gridLayout_2->setColumnStretch(0, 1);

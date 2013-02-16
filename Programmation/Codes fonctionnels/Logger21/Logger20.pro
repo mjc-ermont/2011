@@ -23,7 +23,10 @@ SOURCES += main.cpp\
     InPut/sensormanager.cpp \
     InPut/sensor.cpp \
     InPut/sensorvalue.cpp \
-    dialog.cpp
+    dialog.cpp \
+    ../ChronoReaderWidget/timecalcs.cpp \
+    ../ChronoReaderWidget/eventbox.cpp \
+    ../ChronoReaderWidget/chronoreaderwidget.cpp
 
 HEADERS  += FenPrincipale.h \
     UI/mapsview.h \
@@ -34,10 +37,15 @@ HEADERS  += FenPrincipale.h \
     UI/boardingtable.h \
     InPut/sensorvalue.h \
     defines.h \
-    dialog.h
+    dialog.h \
+    ../ChronoReaderWidget/timecalcs.h \
+    ../ChronoReaderWidget/eventbox.h \
+    ../ChronoReaderWidget/chronoreaderwidget.h
 
 FORMS    += FenPrincipale.ui \
-    dialog.ui
+    dialog.ui \
+    ../ChronoReaderWidget/eventbox.ui \
+    ../ChronoReaderWidget/chronoreaderwidget.ui
 
 CONFIG += linusque
 
@@ -51,8 +59,13 @@ robotik {
 
 linusque {
     LIBS += /usr/lib/libqwt.so
+    LIBS += -lqjson
 }
 
  #Ajouter les diffrents chemins selon les PC utiliss.
 
 RESOURCES += ressources.qrc
+
+OTHER_FILES += \
+    ../ChronoReaderWidget/ChronoReaderWidget.pro \
+    ../ChronoReaderWidget/chronologie.json
