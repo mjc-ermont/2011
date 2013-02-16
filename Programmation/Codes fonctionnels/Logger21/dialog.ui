@@ -13,40 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" rowstretch="1,1,1,1" columnstretch="0,0,0,0">
-   <item row="3" column="2">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Continuer</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="2">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLineEdit" name="textEntry"/>
-   </item>
-   <item row="2" column="1" colspan="2">
-    <widget class="QPushButton" name="addToList">
-     <property name="text">
-      <string>Ajouter</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="3">
-    <widget class="QComboBox" name="selectEntry"/>
-   </item>
+  <layout class="QGridLayout" name="gridLayout" rowstretch="1,1,1,1,0" columnstretch="0,0,0">
    <item row="0" column="0" colspan="3">
     <widget class="QLabel" name="label">
      <property name="sizePolicy">
@@ -59,6 +26,46 @@
       <string>Entrez le port de communication:</string>
      </property>
     </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLineEdit" name="textEntry"/>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Continuer</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1" colspan="2">
+    <widget class="QPushButton" name="addToList">
+     <property name="text">
+      <string>Ajouter</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" rowspan="2" colspan="2">
+    <widget class="QComboBox" name="selectEntry"/>
+   </item>
+   <item row="1" column="2" rowspan="2">
+    <widget class="QPushButton" name="removeButton">
+     <property name="text">
+      <string>Supprimer</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

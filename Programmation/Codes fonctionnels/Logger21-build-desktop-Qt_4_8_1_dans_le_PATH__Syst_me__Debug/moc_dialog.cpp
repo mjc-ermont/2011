@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'dialog.h'
 **
-** Created: Sat Feb 2 16:29:45 2013
+** Created: Sat Feb 16 14:55:08 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_AskDialog[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,6 +34,7 @@ static const uint qt_meta_data_AskDialog[] = {
       11,   10,   10,   10, 0x08,
       34,   29,   10,   10, 0x08,
       78,   10,   10,   10, 0x08,
+     101,   10,   10,   10, 0x08,
 
        0        // eod
 };
@@ -41,7 +42,7 @@ static const uint qt_meta_data_AskDialog[] = {
 static const char qt_meta_stringdata_AskDialog[] = {
     "AskDialog\0\0continueClicked()\0arg1\0"
     "on_selectEntry_currentIndexChanged(QString)\0"
-    "on_addToList_clicked()\0"
+    "on_addToList_clicked()\0on_removeButton_clicked()\0"
 };
 
 void AskDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -53,6 +54,7 @@ void AskDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 0: _t->continueClicked(); break;
         case 1: _t->on_selectEntry_currentIndexChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 2: _t->on_addToList_clicked(); break;
+        case 3: _t->on_removeButton_clicked(); break;
         default: ;
         }
     }
@@ -92,9 +94,9 @@ int AskDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }
