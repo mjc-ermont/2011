@@ -76,7 +76,7 @@
          </column>
          <column>
           <property name="text">
-           <string>Fin</string>
+           <string>Durée</string>
           </property>
          </column>
          <column>
