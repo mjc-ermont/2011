@@ -27,7 +27,7 @@
 #define ID_VAL_LON_MIN  3    // No de la valeur "Minutes longitude" dans la trame
 #define ID_VAL_VIT      4    // No de la valeur "Vitesse" dans la trame
 #define ID_VAL_UTIME    5    // No de la valeur "temps UTC" dans la trame
-#define ID_VAL_ALT	    6    // No de la valeur "temps UTC" dans la trame
+#define ID_VAL_ALT      6    // No de la valeur "temps UTC" dans la trame
 
 
 /*  ------- CAPTEUR HUMIDITE -------  */
@@ -36,14 +36,14 @@
 
 /*  ------- CAPTEUR PRESSION -------  */
 
-#define PIN_PRESS       8
+#define PIN_PRESS       2
 
 /*  ------- CAPTEUR TEMPERATURE -------  */
 
-#define PIN_TEMP        9
+#define PIN_TEMP        3
 
 /*  ------- CAPTEUR TEMPERATURE -------  */
 
-#define SD_CS_PIN       8
+#define SD_CS_PIN       9
 
 #endif
