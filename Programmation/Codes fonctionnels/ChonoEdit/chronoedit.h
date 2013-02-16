@@ -39,6 +39,9 @@ class ChronoEdit : public QWidget
 
         void deleteEvent();
 
+        void deleteSelectedContrib();
+        void deleteSelectedLieu();
+
     public slots:
         void save();
         void open();
