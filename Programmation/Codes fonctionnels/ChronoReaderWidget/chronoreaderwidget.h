@@ -6,6 +6,7 @@
 #include <qjson/serializer.h>
 
 #include "eventbox.h"
+#include "timecalcs.h"
 
 namespace Ui {
 class ChronoReaderWidget;
@@ -17,6 +18,8 @@ class ChronoReaderWidget : public QWidget
 
     struct event{
         int moment;
+        QTime debut;
+        QTime fin;
         QString titre;
         QString lieu;
         QString contribs;
@@ -30,7 +33,16 @@ class ChronoReaderWidget : public QWidget
     public slots:
         void open();
         void laucherCounter(QTime m_heure);
+
+    private slots:
         void refresh();
+
+        void hasFinished();
+        void hasBegun();
+
+    signals:
+        void eventBegan(event e);
+        void eventFinished(event e);
 
     private:
         Ui::ChronoReaderWidget *ui;
@@ -41,6 +53,7 @@ class ChronoReaderWidget : public QWidget
         QTime heure;
 
         QTimer *timer;
+        int finished, runing;
 };
 
 #endif // CHRONOREADERWIDGET_H

@@ -27,6 +27,7 @@
 #define ID_VAL_LON_MIN  3    // No de la valeur "Minutes longitude" dans la trame
 #define ID_VAL_VIT      4    // No de la valeur "Vitesse" dans la trame
 #define ID_VAL_UTIME    5    // No de la valeur "temps UTC" dans la trame
+#define ID_VAL_ALT	    6    // No de la valeur "temps UTC" dans la trame
 
 
 /*  ------- CAPTEUR HUMIDITE -------  */
