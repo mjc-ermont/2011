@@ -79,4 +79,5 @@ void ChronoReaderWidget::hasFinished(){
     finished++;
     emit eventFinished(evenements[finished-1]);
     qDebug() << evenements[finished-1].titre << " s'est termine";
+    ui->scrollArea->horizontalScrollBar()->move(100, 0);
 }
