@@ -9,6 +9,7 @@
 #include "UI/graphicview.h"
 #include "UI/mapsview.h"
 #include "defines.h"
+#include "tablemgr.h"
 
 
 
@@ -16,6 +17,7 @@ class GraphicView;
 class MapsView;
 class BoardingTable;
 class SensorManager;
+class TableMgr;
 
 class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
 {
@@ -29,6 +31,7 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
         BoardingTable* getBT() {return tableauBord;}
         SensorManager* getSensorMgr(){return sensormgr; }
         MapsView* getMap() {return carte;}
+        TableMgr* getTableMgr() {return tableManager;}
 
     protected:
         void reinit_b();
@@ -40,6 +43,7 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
         QTimer *actTemps;
         BoardingTable* tableauBord;
         MapsView* carte;
+        TableMgr* tableManager;
 
         SensorManager *sensormgr;
 
@@ -62,6 +66,7 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
         void on_b_tb_clicked();
         void on_b_console_clicked();
         void on_actionQuitter_triggered();
+        void on_actionOuvrir_triggered();
 
         void on_b_carte_clicked();
         void on_b_graph_clicked();

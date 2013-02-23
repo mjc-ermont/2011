@@ -21,11 +21,3 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
-
-/*
-
- table (TableView) => Tableau data;
- container(GridLayout) => Tableau de bord
- console (QPlainTextEdit) => Affichage debug;
-
- */

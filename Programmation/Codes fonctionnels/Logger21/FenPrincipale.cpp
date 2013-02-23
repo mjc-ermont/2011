@@ -1,4 +1,5 @@
 #include "FenPrincipale.h"
+#include "InPut/fileimportdialog.h"
 #include "../ChronoReaderWidget/chronoreaderwidget.h"
 
 FenPrincipale::FenPrincipale(Serial* _com) {
@@ -15,7 +16,6 @@ FenPrincipale::FenPrincipale(Serial* _com) {
     setupUi(this);
 
     stack->setCurrentIndex(0);
-
 
     sensormgr = new SensorManager(this);
     QVector<Sensor*> sensorList = sensormgr->getSensors();
@@ -37,8 +37,10 @@ FenPrincipale::FenPrincipale(Serial* _com) {
         }
 
         t->setModel(modele);
+
     }
 
+    tableManager = new TableMgr(&tableauxHist);
     carte = new MapsView(c_maps);
 
 
@@ -127,7 +129,7 @@ void FenPrincipale::syncTime() {
 void FenPrincipale::informationsReceived(QStringList trames) {
     if(trames.size() > 0) {
         for(int i=0;i<trames.size();i++)
-            sensormgr->addData(trames[i]);
+            sensormgr->addData(trames[i],tableManager);
 
         QPair<GraphicView*,QMdiSubWindow*> value;
         foreach(value,graphiques) {
@@ -148,6 +150,12 @@ void FenPrincipale::message(QString message){
 void FenPrincipale::on_actionQuitter_triggered()
 {
     qApp->quit();
+}
+
+void FenPrincipale::on_actionOuvrir_triggered()
+{
+    FileImportDialog *fi_dialog = new FileImportDialog(this);
+    fi_dialog->show();
 }
 
 void FenPrincipale::on_b_console_clicked()

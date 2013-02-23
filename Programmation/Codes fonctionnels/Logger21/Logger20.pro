@@ -8,6 +8,7 @@ DEFINES += QWT_DLL
 
 QT       += core gui webkit
 QT       += sql
+QT       += network
 
 TARGET = Logger20
 TEMPLATE = app
@@ -26,7 +27,9 @@ SOURCES += main.cpp\
     dialog.cpp \
     ../ChronoReaderWidget/timecalcs.cpp \
     ../ChronoReaderWidget/eventbox.cpp \
-    ../ChronoReaderWidget/chronoreaderwidget.cpp
+    ../ChronoReaderWidget/chronoreaderwidget.cpp \
+    InPut/fileimportdialog.cpp \
+    tablemgr.cpp
 
 HEADERS  += FenPrincipale.h \
     UI/mapsview.h \
@@ -40,12 +43,15 @@ HEADERS  += FenPrincipale.h \
     dialog.h \
     ../ChronoReaderWidget/timecalcs.h \
     ../ChronoReaderWidget/eventbox.h \
-    ../ChronoReaderWidget/chronoreaderwidget.h
+    ../ChronoReaderWidget/chronoreaderwidget.h \
+    InPut/fileimportdialog.h \
+    tablemgr.h
 
 FORMS    += FenPrincipale.ui \
     dialog.ui \
     ../ChronoReaderWidget/eventbox.ui \
-    ../ChronoReaderWidget/chronoreaderwidget.ui
+    ../ChronoReaderWidget/chronoreaderwidget.ui \
+    InPut/fileimportdialog.ui
 
 CONFIG += linusque
 

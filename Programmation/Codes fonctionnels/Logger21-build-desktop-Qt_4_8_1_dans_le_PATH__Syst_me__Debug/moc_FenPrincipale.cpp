@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'FenPrincipale.h'
 **
-** Created: Sat Feb 16 15:46:16 2013
+** Created: Sat Feb 23 17:25:37 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_FenPrincipale[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -41,12 +41,13 @@ static const uint qt_meta_data_FenPrincipale[] = {
      158,   14,   14,   14, 0x0a,
      181,   14,   14,   14, 0x0a,
      210,   14,   14,   14, 0x0a,
-     231,   14,   14,   14, 0x0a,
-     258,  252,   14,   14, 0x0a,
-     298,   14,   14,   14, 0x0a,
-     321,   14,   14,   14, 0x0a,
-     335,   14,   14,   14, 0x0a,
-     352,   14,   14,   14, 0x0a,
+     238,   14,   14,   14, 0x0a,
+     259,   14,   14,   14, 0x0a,
+     286,  280,   14,   14, 0x0a,
+     326,   14,   14,   14, 0x0a,
+     349,   14,   14,   14, 0x0a,
+     363,   14,   14,   14, 0x0a,
+     380,   14,   14,   14, 0x0a,
 
        0        // eod
 };
@@ -58,6 +59,7 @@ static const char qt_meta_stringdata_FenPrincipale[] = {
     "on_b_table_clicked()\0on_b_tb_clicked()\0"
     "on_b_console_clicked()\0"
     "on_actionQuitter_triggered()\0"
+    "on_actionOuvrir_triggered()\0"
     "on_b_carte_clicked()\0on_b_graph_clicked()\0"
     "index\0on_sel_capteur_currentIndexChanged(int)\0"
     "on_add_graph_clicked()\0graphClosed()\0"
@@ -79,13 +81,14 @@ void FenPrincipale::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 6: _t->on_b_tb_clicked(); break;
         case 7: _t->on_b_console_clicked(); break;
         case 8: _t->on_actionQuitter_triggered(); break;
-        case 9: _t->on_b_carte_clicked(); break;
-        case 10: _t->on_b_graph_clicked(); break;
-        case 11: _t->on_sel_capteur_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 12: _t->on_add_graph_clicked(); break;
-        case 13: _t->graphClosed(); break;
-        case 14: _t->optimise_graph(); break;
-        case 15: _t->on_btn_optimiser_clicked(); break;
+        case 9: _t->on_actionOuvrir_triggered(); break;
+        case 10: _t->on_b_carte_clicked(); break;
+        case 11: _t->on_b_graph_clicked(); break;
+        case 12: _t->on_sel_capteur_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 13: _t->on_add_graph_clicked(); break;
+        case 14: _t->graphClosed(); break;
+        case 15: _t->optimise_graph(); break;
+        case 16: _t->on_btn_optimiser_clicked(); break;
         default: ;
         }
     }
@@ -125,9 +128,9 @@ int FenPrincipale::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

@@ -36,10 +36,10 @@ void GraphicView::majCurve() {
 void GraphicView::calculateCurve(QTime maxTime) {
     yValues.clear();
     xValues.clear();
-    foreach(Data d, value->getData()) {
-        if(QTime(0,0).secsTo(d.time) >=  maxTime.secsTo(QTime::currentTime())) {
-            xValues.append(m_parent->getDepart().secsTo(d.time));
-            yValues.append(d.value);
+    foreach(Data *d, value->getData()) {
+        if(QTime(0,0).secsTo(d->time) >=  maxTime.secsTo(QTime::currentTime())) {
+            xValues.append(m_parent->getDepart().secsTo(d->time));
+            yValues.append(d->value);
         }
     }
 }

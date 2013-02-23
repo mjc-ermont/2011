@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'FenPrincipale.ui'
 **
-** Created: Sat Feb 16 15:45:30 2013
+** Created: Sat Feb 23 15:50:56 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -41,18 +41,10 @@ class Ui_FenPrincipale
 {
 public:
     QAction *actionQuitter;
+    QAction *actionOuvrir;
     QWidget *widgetCentral;
     QVBoxLayout *verticalLayout_5;
     QGridLayout *gridLayout_2;
-    QFrame *frame;
-    QVBoxLayout *verticalLayout;
-    QPushButton *b_tb;
-    QPushButton *b_graph;
-    QPushButton *b_carte;
-    QPushButton *b_console;
-    QPushButton *b_table;
-    QPushButton *b_param;
-    QTextBrowser *textBrowser_4;
     QStackedWidget *stack;
     QWidget *p_tabl_bord;
     QVBoxLayout *verticalLayout_2;
@@ -88,6 +80,15 @@ public:
     QLabel *label_2;
     QLCDNumber *lcd_sec;
     QVBoxLayout *chronolayout;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout;
+    QPushButton *b_tb;
+    QPushButton *b_graph;
+    QPushButton *b_carte;
+    QPushButton *b_console;
+    QPushButton *b_table;
+    QPushButton *b_param;
+    QTextBrowser *textBrowser_4;
     QStatusBar *barreStatus;
     QMenuBar *menuBar;
     QMenu *menuFichier;
@@ -96,10 +97,12 @@ public:
     {
         if (FenPrincipale->objectName().isEmpty())
             FenPrincipale->setObjectName(QString::fromUtf8("FenPrincipale"));
-        FenPrincipale->resize(763, 545);
+        FenPrincipale->resize(763, 644);
         FenPrincipale->setUnifiedTitleAndToolBarOnMac(false);
         actionQuitter = new QAction(FenPrincipale);
         actionQuitter->setObjectName(QString::fromUtf8("actionQuitter"));
+        actionOuvrir = new QAction(FenPrincipale);
+        actionOuvrir->setObjectName(QString::fromUtf8("actionOuvrir"));
         widgetCentral = new QWidget(FenPrincipale);
         widgetCentral->setObjectName(QString::fromUtf8("widgetCentral"));
         verticalLayout_5 = new QVBoxLayout(widgetCentral);
@@ -109,80 +112,6 @@ public:
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setSpacing(6);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        frame = new QFrame(widgetCentral);
-        frame->setObjectName(QString::fromUtf8("frame"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
-        frame->setSizePolicy(sizePolicy);
-        frame->setMinimumSize(QSize(0, 0));
-        frame->setMaximumSize(QSize(200, 16777215));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        verticalLayout = new QVBoxLayout(frame);
-        verticalLayout->setSpacing(1);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        b_tb = new QPushButton(frame);
-        b_tb->setObjectName(QString::fromUtf8("b_tb"));
-        sizePolicy.setHeightForWidth(b_tb->sizePolicy().hasHeightForWidth());
-        b_tb->setSizePolicy(sizePolicy);
-        b_tb->setMinimumSize(QSize(85, 65));
-        b_tb->setAutoFillBackground(false);
-        b_tb->setAutoDefault(false);
-        b_tb->setDefault(true);
-        b_tb->setFlat(false);
-
-        verticalLayout->addWidget(b_tb);
-
-        b_graph = new QPushButton(frame);
-        b_graph->setObjectName(QString::fromUtf8("b_graph"));
-        b_graph->setMinimumSize(QSize(85, 60));
-
-        verticalLayout->addWidget(b_graph);
-
-        b_carte = new QPushButton(frame);
-        b_carte->setObjectName(QString::fromUtf8("b_carte"));
-        b_carte->setMinimumSize(QSize(0, 50));
-
-        verticalLayout->addWidget(b_carte);
-
-        b_console = new QPushButton(frame);
-        b_console->setObjectName(QString::fromUtf8("b_console"));
-        sizePolicy.setHeightForWidth(b_console->sizePolicy().hasHeightForWidth());
-        b_console->setSizePolicy(sizePolicy);
-        b_console->setMinimumSize(QSize(85, 50));
-
-        verticalLayout->addWidget(b_console);
-
-        b_table = new QPushButton(frame);
-        b_table->setObjectName(QString::fromUtf8("b_table"));
-        sizePolicy.setHeightForWidth(b_table->sizePolicy().hasHeightForWidth());
-        b_table->setSizePolicy(sizePolicy);
-        b_table->setMinimumSize(QSize(85, 50));
-
-        verticalLayout->addWidget(b_table);
-
-        b_param = new QPushButton(frame);
-        b_param->setObjectName(QString::fromUtf8("b_param"));
-        b_param->setMinimumSize(QSize(85, 50));
-
-        verticalLayout->addWidget(b_param);
-
-        textBrowser_4 = new QTextBrowser(frame);
-        textBrowser_4->setObjectName(QString::fromUtf8("textBrowser_4"));
-        textBrowser_4->setEnabled(false);
-
-        verticalLayout->addWidget(textBrowser_4);
-
-        verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(3, 1);
-        verticalLayout->setStretch(4, 1);
-        verticalLayout->setStretch(6, 15);
-
-        gridLayout_2->addWidget(frame, 1, 0, 1, 1);
-
         stack = new QStackedWidget(widgetCentral);
         stack->setObjectName(QString::fromUtf8("stack"));
         p_tabl_bord = new QWidget();
@@ -231,6 +160,9 @@ public:
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         pushButton = new QPushButton(p_params);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
         pushButton->setSizePolicy(sizePolicy);
 
@@ -383,6 +315,77 @@ public:
 
         gridLayout_2->addLayout(chronolayout, 0, 1, 1, 2);
 
+        frame = new QFrame(widgetCentral);
+        frame->setObjectName(QString::fromUtf8("frame"));
+        sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
+        frame->setSizePolicy(sizePolicy);
+        frame->setMinimumSize(QSize(0, 0));
+        frame->setMaximumSize(QSize(200, 16777215));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        verticalLayout = new QVBoxLayout(frame);
+        verticalLayout->setSpacing(1);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        b_tb = new QPushButton(frame);
+        b_tb->setObjectName(QString::fromUtf8("b_tb"));
+        sizePolicy.setHeightForWidth(b_tb->sizePolicy().hasHeightForWidth());
+        b_tb->setSizePolicy(sizePolicy);
+        b_tb->setMinimumSize(QSize(85, 65));
+        b_tb->setAutoFillBackground(false);
+        b_tb->setAutoDefault(false);
+        b_tb->setDefault(true);
+        b_tb->setFlat(false);
+
+        verticalLayout->addWidget(b_tb);
+
+        b_graph = new QPushButton(frame);
+        b_graph->setObjectName(QString::fromUtf8("b_graph"));
+        b_graph->setMinimumSize(QSize(85, 60));
+
+        verticalLayout->addWidget(b_graph);
+
+        b_carte = new QPushButton(frame);
+        b_carte->setObjectName(QString::fromUtf8("b_carte"));
+        b_carte->setMinimumSize(QSize(0, 50));
+
+        verticalLayout->addWidget(b_carte);
+
+        b_console = new QPushButton(frame);
+        b_console->setObjectName(QString::fromUtf8("b_console"));
+        sizePolicy.setHeightForWidth(b_console->sizePolicy().hasHeightForWidth());
+        b_console->setSizePolicy(sizePolicy);
+        b_console->setMinimumSize(QSize(85, 50));
+
+        verticalLayout->addWidget(b_console);
+
+        b_table = new QPushButton(frame);
+        b_table->setObjectName(QString::fromUtf8("b_table"));
+        sizePolicy.setHeightForWidth(b_table->sizePolicy().hasHeightForWidth());
+        b_table->setSizePolicy(sizePolicy);
+        b_table->setMinimumSize(QSize(85, 50));
+
+        verticalLayout->addWidget(b_table);
+
+        b_param = new QPushButton(frame);
+        b_param->setObjectName(QString::fromUtf8("b_param"));
+        b_param->setMinimumSize(QSize(85, 50));
+
+        verticalLayout->addWidget(b_param);
+
+        textBrowser_4 = new QTextBrowser(frame);
+        textBrowser_4->setObjectName(QString::fromUtf8("textBrowser_4"));
+        textBrowser_4->setEnabled(false);
+
+        verticalLayout->addWidget(textBrowser_4);
+
+        verticalLayout->setStretch(0, 1);
+        verticalLayout->setStretch(3, 1);
+        verticalLayout->setStretch(4, 1);
+        verticalLayout->setStretch(6, 15);
+
+        gridLayout_2->addWidget(frame, 1, 0, 1, 1);
+
         gridLayout_2->setRowStretch(0, 1);
         gridLayout_2->setColumnStretch(0, 1);
 
@@ -400,11 +403,13 @@ public:
         FenPrincipale->setMenuBar(menuBar);
 
         menuBar->addAction(menuFichier->menuAction());
+        menuFichier->addAction(actionOuvrir);
+        menuFichier->addSeparator();
         menuFichier->addAction(actionQuitter);
 
         retranslateUi(FenPrincipale);
 
-        stack->setCurrentIndex(0);
+        stack->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(FenPrincipale);
@@ -415,12 +420,7 @@ public:
         FenPrincipale->setWindowTitle(QApplication::translate("FenPrincipale", "FenPrincipale", 0, QApplication::UnicodeUTF8));
         actionQuitter->setText(QApplication::translate("FenPrincipale", "Quitter", 0, QApplication::UnicodeUTF8));
         actionQuitter->setShortcut(QApplication::translate("FenPrincipale", "Ctrl+Q", 0, QApplication::UnicodeUTF8));
-        b_tb->setText(QApplication::translate("FenPrincipale", "Tableau de bord", 0, QApplication::UnicodeUTF8));
-        b_graph->setText(QApplication::translate("FenPrincipale", "Graphiques", 0, QApplication::UnicodeUTF8));
-        b_carte->setText(QApplication::translate("FenPrincipale", "Carte", 0, QApplication::UnicodeUTF8));
-        b_console->setText(QApplication::translate("FenPrincipale", "Console", 0, QApplication::UnicodeUTF8));
-        b_table->setText(QApplication::translate("FenPrincipale", "Historique", 0, QApplication::UnicodeUTF8));
-        b_param->setText(QApplication::translate("FenPrincipale", "Param\303\250tres", 0, QApplication::UnicodeUTF8));
+        actionOuvrir->setText(QApplication::translate("FenPrincipale", "Ouvrir", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("FenPrincipale", "Trololol bob", 0, QApplication::UnicodeUTF8));
         get_infos->setText(QApplication::translate("FenPrincipale", "Activer mise \303\240 jour des infos", 0, QApplication::UnicodeUTF8));
         interpol_curve->setText(QApplication::translate("FenPrincipale", "Interpoler les valeurs de courbe", 0, QApplication::UnicodeUTF8));
@@ -428,6 +428,12 @@ public:
         btn_optimiser->setText(QApplication::translate("FenPrincipale", "OPTIMISATION", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("FenPrincipale", ":", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("FenPrincipale", ":", 0, QApplication::UnicodeUTF8));
+        b_tb->setText(QApplication::translate("FenPrincipale", "Tableau de bord", 0, QApplication::UnicodeUTF8));
+        b_graph->setText(QApplication::translate("FenPrincipale", "Graphiques", 0, QApplication::UnicodeUTF8));
+        b_carte->setText(QApplication::translate("FenPrincipale", "Carte", 0, QApplication::UnicodeUTF8));
+        b_console->setText(QApplication::translate("FenPrincipale", "Console", 0, QApplication::UnicodeUTF8));
+        b_table->setText(QApplication::translate("FenPrincipale", "Historique", 0, QApplication::UnicodeUTF8));
+        b_param->setText(QApplication::translate("FenPrincipale", "Param\303\250tres", 0, QApplication::UnicodeUTF8));
         menuFichier->setTitle(QApplication::translate("FenPrincipale", "Fichier", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

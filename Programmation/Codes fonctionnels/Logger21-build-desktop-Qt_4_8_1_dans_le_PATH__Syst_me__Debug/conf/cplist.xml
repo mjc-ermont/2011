@@ -20,4 +20,7 @@
 	<sensor name="Température" id="4">
 		<value name="Valeur" unit="" id="0" />	
 	</sensor>
+	<sensor name="Pile" id="5">
+		<value name="Tension" unit="V" id="0" />	
+	</sensor>
 </sensorlist>
