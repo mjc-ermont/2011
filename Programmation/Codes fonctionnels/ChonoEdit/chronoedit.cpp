@@ -15,11 +15,13 @@ ChronoEdit::ChronoEdit(QWidget *parent) : QWidget(parent), ui(new Ui::ChronoEdit
     connect(this, SIGNAL(notAllSet(bool)), ui->addEvent, SLOT(setEnabled(bool)));
     connect(ui->checkContribs, SIGNAL(pressed()), this, SLOT(refreshContribLabel()));
     connect(this, SIGNAL(deletePressed()), this, SLOT(deleteEvent()));
+    connect(ui->deleteContribs, SIGNAL(pressed()), this, SLOT(deleteSelectedContrib()));
 
     connect(ui->addLieu, SIGNAL(pressed()), this, SLOT(verifyEnable()));
     connect(ui->eventTitle, SIGNAL(textEdited(QString)), this, SLOT(verifyEnable()));
     connect(ui->checkContribs, SIGNAL(pressed()), this, SLOT(verifyEnable()));
     connect(ui->addEvent, SIGNAL(pressed()), this, SLOT(ajouterEvent()));
+    connect(ui->deleteLieu, SIGNAL(pressed()), this, SLOT(deleteSelectedLieu()));
 
     connect(ui->addLieu, SIGNAL(pressed()), this, SLOT(save()));
     connect(ui->addContributeur, SIGNAL(pressed()), this, SLOT(save()));
@@ -92,6 +94,8 @@ void ChronoEdit::setEvent(QString titre, QString debut, QString fin, QString lie
     ui->events->setItem(ligne, 4, new QTableWidgetItem(lieu));
     ui->events->setItem(ligne, 5, new QTableWidgetItem(resp));
     ui->events->setItem(ligne, 6, new QTableWidgetItem(desc));
+
+    refreshContribLabel();
 }
 
 void ChronoEdit::ajouterContrib(){
@@ -164,7 +168,7 @@ void ChronoEdit::refreshContribLabel(){
     }
     text.resize(text.size() - 2);
     if( liste.size() == 0 ){
-        text = "Aucun - selectionnez dans l'onglet \"Contributeurs\"";
+        text = "<span style='color:#ff0000 ; font-weight:bold'> Aucun - selectionnez dans l'onglet \"Contributeurs\"</span>";
     }
 
     ui->eventResp->setText(text);
@@ -202,10 +206,28 @@ void ChronoEdit::deleteEvent(){
         }
         save();
     }
+
+    if(ui->tabWidget->currentIndex() == 2){
+        deleteSelectedContrib();
+    }
+
+    if(ui->tabWidget->currentIndex() == 3){
+        deleteSelectedLieu();
+    }
 }
 
 void ChronoEdit::keyPressEvent(QKeyEvent *e){
     if(e->key() == Qt::Key_Delete){
         emit deletePressed();
     }
+}
+
+void ChronoEdit::deleteSelectedContrib(){
+    qDeleteAll(ui->Contributeurs->selectedItems());
+    save();
+}
+
+void ChronoEdit::deleteSelectedLieu(){
+    qDeleteAll(ui->Lieux->selectedItems());
+    save();
 }

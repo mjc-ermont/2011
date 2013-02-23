@@ -25,6 +25,7 @@ class EventBox : public QFrame
 
     private:
         Ui::EventBox *ui;
+        void mousePressEvent(QMouseEvent *a);
 
         QTime debut;
         int signe;
@@ -33,7 +34,8 @@ class EventBox : public QFrame
         QTime time;
 
 
-        bool began, finish;
+        bool began;
+        bool finish;
 
     public slots:
 };

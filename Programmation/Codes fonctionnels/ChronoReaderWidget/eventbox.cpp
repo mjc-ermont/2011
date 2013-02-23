@@ -55,3 +55,8 @@ void EventBox::reload(){
             ui->progression->setValue((avance*100)/TimeCalcs::toMs(fin));
     }
 }
+
+void EventBox::mousePressEvent(QMouseEvent *a){
+    if(finish)
+        hide();
+}
