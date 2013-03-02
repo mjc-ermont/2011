@@ -43,8 +43,10 @@ Sensor* SensorManager::getSensor(int id) {
 
 Data* SensorManager::addData(QString trame,TableMgr* tableManager) {
     QStringList elements = trame.split("$");
-    if(elements.size() < 5)
+    if(elements.size() < 6) {
+         qDebug() << "Trame incomplete";
         return NULL;
+    }
 
     QString firstPart = elements[0] + "$" + elements[1] + "$" + elements[2] + "$" + elements[3] + "$";
     QString checkSum = get_checksum(firstPart);
