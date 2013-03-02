@@ -26,6 +26,8 @@ protected:
 private:
     QVector<Sensor*> sensorList;
     FenPrincipale* parent;
+    int precIdCapteur;
+    int precIdValeur;
 };
 
 #endif // SENSORMANAGER_H

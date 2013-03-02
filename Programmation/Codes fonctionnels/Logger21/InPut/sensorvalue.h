@@ -17,7 +17,10 @@ public:
     int getID() {return id;}
     Sensor* getCapteur() {return parent;}
     double getCoef() { return coef;}
+    void setCoef(double p_coef) { coef=p_coef;}
     QString getParam() { return param;}
+
+    QString getUnit() { return unit;}
 
 private:
     QString name;

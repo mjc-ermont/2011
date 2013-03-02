@@ -31,12 +31,14 @@ void BoardingTable::init(SensorManager* mgr) {
 
         for(int v = 0; v < mgr->getSensor(i)->getValues().size(); v++) {
             QLabel *l = new QLabel(values[v]);
-            capteurs_layouts[i]->addWidget(l,v,0);
+            capteurs_layouts[i]->addWidget(l, v, 0, 1, 1);
 
             QLCDNumber *lcd = new QLCDNumber(8);
             lcd->display(42);
             valeurs.append(lcd);
-            capteurs_layouts[i]->addWidget(lcd,v,1);
+            capteurs_layouts[i]->addWidget(lcd, v, 1, 1, 9);
+            QLabel *unitText=new QLabel(mgr->getSensor(i)->getValues()[v]->getUnit());
+            capteurs_layouts[i]->addWidget(unitText, v, 10, 1, 1);
         }
 
         values.clear();
@@ -46,5 +48,5 @@ void BoardingTable::init(SensorManager* mgr) {
 void BoardingTable::update(SensorValue* newSV) {
     QGridLayout* layout = capteurs_layouts[newSV->getCapteur()->getId()];
     QLCDNumber *lcd = (QLCDNumber*)layout->itemAtPosition(newSV->getID(),1)->widget();
-    lcd->display((newSV->getData()[newSV->getData().size()-1])->value);
+    lcd->display(QString::number((newSV->getData()[newSV->getData().size()-1])->value));
 }

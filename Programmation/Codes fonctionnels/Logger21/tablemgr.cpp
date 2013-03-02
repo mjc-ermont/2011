@@ -13,21 +13,29 @@ void TableMgr::addData(SensorValue *valeur) {
         QVector<QString> v;
         v.push_back("null");
         line.push_back(v);
+        bef_line.push_back(v);
     }
 
-    while(line[idcapteur].size() <= idvaleur) {
+    while(line[idcapteur].size() <= idvaleur+1) {
         line[idcapteur].push_back("null");
+        bef_line[idcapteur].push_back("null");
     }
 
-    line[idcapteur][idvaleur] = QString::number(valeur->getData().last()->value);
-  //  line[idcapteur][0] = valeur->getData().last()->time.toString();
+  //  bool updateLine=false;
 
+   // if(bef_line[idcapteur][idvaleur+1] != QString::number(valeur->getData().last()->value)) {
+        line[idcapteur][idvaleur+1] = QString::number(valeur->getData().last()->value);
+        line[idcapteur][0] = valeur->getData().last()->time.toString();
+      //  bef_line[idcapteur][idvaleur+1]=QString::number(valeur->getData().last()->value);
+     //   updateLine=true;
+   // }
 
 
     if(lineFull(idcapteur)) {
         update(idcapteur);
-        qDebug() << "LINE FULL = UPDATE "<<idcapteur;
+        qDebug() << "LINE FULL = UPDATE"<<idcapteur;
     }
+
 }
 
 bool TableMgr::lineFull(int capteur) {

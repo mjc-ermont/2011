@@ -4,6 +4,8 @@
 SensorManager::SensorManager(FenPrincipale* _parent) {
     getSensorsFromFile();
     parent = _parent;
+    precIdCapteur=0;
+    precIdValeur=0;
 }
 
 void SensorManager::getSensorsFromFile() {
@@ -24,8 +26,13 @@ void SensorManager::getSensorsFromFile() {
             int coef=1;
             QString params = reader.attributes().value("param").toString();
             SensorValue *sv = new SensorValue(reader.attributes().value("name").toString() ,reader.attributes().value("unit").toString(),reader.attributes().value("id").toString().toInt(),curSensor,coef,params);
+
+            if(reader.attributes().value("coef").toString().toFloat() != 0)
+                sv->setCoef(reader.attributes().value("coef").toString().toDouble());
+
             if(curSensor != NULL)
                 curSensor->addSensorValue(sv);
+
 
             qDebug() << "  New value:" << sv->getName();
             qDebug() << "  For:" << curSensor->getName();
@@ -56,11 +63,13 @@ Data* SensorManager::addData(QString trame,TableMgr* tableManager) {
 
     bool checkLeSum = true;
     Data *d=NULL;
+    int numCapteur = elements[1].toInt();
+    double valeur = elements[3].toDouble();
+    int numValeur = elements[2].toInt();
 
-    if((QString(checkSum).toInt(NULL, 10) == elements[4].toInt(NULL, 16))||(!checkLeSum)) {
-        int numCapteur = elements[1].toInt();
-        double valeur = elements[3].toDouble();
-        int numValeur = elements[2].toInt();
+    if(((QString(checkSum).toInt(NULL, 10) == elements[4].toInt(NULL, 16))||(!checkLeSum))&&((numCapteur!=precIdCapteur)||(precIdValeur!=numValeur))){
+        precIdCapteur=numCapteur;
+        precIdValeur=numValeur;
 
         valeur = valeur * sensorList[numCapteur]->getValues()[numValeur]->getCoef();
 

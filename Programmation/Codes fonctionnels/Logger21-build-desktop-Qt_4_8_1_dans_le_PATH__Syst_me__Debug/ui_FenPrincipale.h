@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'FenPrincipale.ui'
 **
-** Created: Sat Feb 23 15:50:56 2013
+** Created: Sat Mar 2 17:13:57 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -409,7 +409,7 @@ public:
 
         retranslateUi(FenPrincipale);
 
-        stack->setCurrentIndex(2);
+        stack->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(FenPrincipale);

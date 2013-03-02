@@ -30,7 +30,9 @@ FenPrincipale::FenPrincipale(Serial* _com) {
         tab_historique->addTab(t,sensormgr->getSensor(i)->getName());
 
         QStandardItemModel *modele = new QStandardItemModel;
-        int v=0;
+        int v=1;
+        modele->setHorizontalHeaderItem(0,new QStandardItem("Temps"));
+
         foreach(SensorValue* s,  sensormgr->getSensor(i)->getValues()) {
             modele->setHorizontalHeaderItem(v,new QStandardItem(s->getName()));
             v++;

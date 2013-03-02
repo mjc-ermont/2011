@@ -16,6 +16,7 @@ protected:
 private:
     QVector<QTableView*> *m_tab_historique;
     QVector<QVector<QString> > line;
+    QVector<QVector<QString> > bef_line;
 };
 
 #endif // TABLEMGR_H
