@@ -18,8 +18,9 @@
  Temp temp = Temp(ID_CAPT_TEMP, PIN_TEMP);
  SerialOut so = SerialOut();
  SdOut sd = SdOut();
+ CapteurAnalog pile (5, 0);
  
- unsigned long timer;
+ unsigned long timer, timeralt;
  bool refreshed = false;
  
 void setup() {
@@ -56,17 +57,21 @@ void setup() {
    temp.addOut(&so);
    hum.addOut(&so);
    gps.addOut(&so);
+   pile.addOut(&so);
    accel.addOut(&sd);
    press.addOut(&sd);
    temp.addOut(&sd);
    hum.addOut(&sd);
    gps.addOut(&sd);
+   pile.addOut(&sd);
    //Serial1.begin(GPS_BAUDRATE);
    timer = millis();
+   timeralt = millis();
    debug("fff");
 }
            
 void loop(){
+  byte check_alt = 0;
    //debug("d");
    if ( ((millis() - timer) >= (unsigned long)DELAY_SEND) && (refreshed) ){
      refreshed = false;
@@ -84,11 +89,11 @@ void loop(){
      Serial.flush();
      debug("4");
      temp.getTrame();
+     pile.getTrame();
      Serial.flush();
      timer = millis();
      debug("ft");
    } else if ( ((millis() - timer) >= (unsigned long)DELAY_REFRESH) && (!(refreshed)) ) {
-     
      debug("dr");
      accel.refresh();
      debug("1");
@@ -98,12 +103,26 @@ void loop(){
      debug("3");
      temp.refresh();
      debug("fr");
+     pile.refresh();
      refreshed = true;
    } 
    if (/*Serial1.available() > 0*/ false){
      debug("drg");
      gps.refresh();
      debug("frg");
+   }
+   if ( ((millis() - timeralt) >= (unsigned long)DELAY_CHECK_ALT) && (!(refreshed)) ){
+     timeralt = millis();
+     int altgps /*= atoi(gps.getValue(ID_VAL_ALT))*/;
+     int altpress = atoi(press.getValue(0));
+     if((altgps > 25000) || (altpress < 250)){
+       check_alt++;
+     } else {
+       check_alt = 0;
+     }
+   }
+   if (check_alt > 60){
+     digitalWrite(13, HIGH);
    }
    Serial.flush();
    //debug("f");

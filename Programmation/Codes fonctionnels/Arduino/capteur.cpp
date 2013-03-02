@@ -58,6 +58,14 @@ void Capteur::getTrame(){
   free(trame);
 }
 
+char* Capteur::getValue(int i){
+  if (i > _nb_val){
+    return NULL;
+  } else {
+    return _val[i];
+  }
+}
+
 Capteur::~Capteur(){
   for (byte i = 0 ; i < _nb_val ; i++){
     free(_val[i]);

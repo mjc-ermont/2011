@@ -11,7 +11,7 @@ bool GPS::init(){
 }
 
 bool GPS::refresh(){
-/*  //Serial.println("Debut");
+  /* //Serial.println("Debut");
   char current_char = 0;                            // Variable contenant le byte qui vient d'être lu depuis le GPS
   char table[40][100];                                 // tableau contenant la trame complète envoyée par le GPS
   byte i = 0, j = 0;

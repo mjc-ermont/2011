@@ -13,10 +13,9 @@ bool Press::refresh(){ // recuperation de la valeur de la pression
      int sensorValue;
      sensorValue = analogRead(_pin);   // Lecture de la valeur de la patte
      
-     float volt = ((float)sensorValue*5)/1023;   // Conversion de la tension en pression (A modifier suite au calibrage)
-     float pr = ((volt-0.2)/(0.045));
-     
-     itoa((int)(pr*100), _val[0], 10);             // Ecriture de la pression dans une string
+     //float volt = ((float)sensorValue*5)/1023;   // Conversion de la tension en pression (A modifier suite au calibrage)
+     float pr = ((sensorValue*107.4396437)+11336.0291415);
+     itoa((int)(pr/100), _val[0], 10);             // Ecriture de la pression dans une string
 
 }
 

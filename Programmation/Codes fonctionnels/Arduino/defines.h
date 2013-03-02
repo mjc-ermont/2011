@@ -10,7 +10,7 @@
 #define DELAY_SEND      1000
 #define DELAY_REFRESH   800
 
-#define SERIAL_BAUDRATE 4800 // baudrate de la liaison série avec le kiwi
+#define SERIAL_BAUDRATE 600 // baudrate de la liaison série avec le kiwi
 #define NB_REPET        3    // Nombre de répéition de la trame
 #define SIZE_VALUE      7    // Longueur maxi de la valeur dans la trame
 #define ID_CAPT_GPS     0   // ID dans la trame du GPS
@@ -44,6 +44,8 @@
 
 /*  ------- CAPTEUR TEMPERATURE -------  */
 
-#define SD_CS_PIN       9
+#define SD_CS_PIN       8
+
+#define DELAY_CHECK_ALT 1000
 
 #endif

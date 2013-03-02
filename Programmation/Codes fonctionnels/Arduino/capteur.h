@@ -13,6 +13,7 @@
 class Capteur {
 public:
 	Capteur(const byte &id_capt, const byte &nb_val);
+        char* getValue(int i);
 	virtual bool init() = 0;      // Initialisation du capteur
 	virtual bool refresh() = 0;   // Recuperation des infos du capteur
         virtual void getTrame();  // Envoi des infos du capteur a toutes les sorties

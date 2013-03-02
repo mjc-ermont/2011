@@ -14,7 +14,8 @@
 class CapteurAnalog : public Capteur{
 public:
 	CapteurAnalog(byte id, int pin); // Declaration du capteur avec sa pin
-        
+        virtual bool refresh();
+        virtual bool init();
 protected:
         int _pin; // Patte sur laquelle le capteur est connecté
 };
