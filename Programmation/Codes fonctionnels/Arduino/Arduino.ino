@@ -15,10 +15,11 @@
  Accel accel = Accel(ID_CAPT_ACCEL);
  Hum hum = Hum(ID_CAPT_HUM);
  Press press = Press(ID_CAPT_PRESS, PIN_PRESS);
+ Press pressext = Press(ID_CAPT_PRESSEXT, PIN_PRESSEXT);
  Temp temp = Temp(ID_CAPT_TEMP, PIN_TEMP);
  SerialOut so = SerialOut();
  SdOut sd = SdOut();
- CapteurAnalog pile (5, 0);
+ CapteurAnalog pile (ID_CAPT_PILE, 0);
  
  unsigned long timer, timeralt;
  bool refreshed = false;
@@ -43,6 +44,7 @@ void setup() {
     pinMode(13, OUTPUT);
    debug("ddd");
    press.init();
+   pressext.init();
    debug("111");
    gps.init();
    debug("222");
@@ -54,12 +56,14 @@ void setup() {
    debug("mmm");
    accel.addOut(&so);
    press.addOut(&so);
+   pressext.addOut(&so);
    temp.addOut(&so);
    hum.addOut(&so);
    gps.addOut(&so);
    pile.addOut(&so);
    accel.addOut(&sd);
    press.addOut(&sd);
+   pressext.addOut(&sd);
    temp.addOut(&sd);
    hum.addOut(&sd);
    gps.addOut(&sd);
@@ -86,6 +90,7 @@ void loop(){
      Serial.flush();
      debug("3");
      press.getTrame();
+     pressext.getTrame();
      Serial.flush();
      debug("4");
      temp.getTrame();
@@ -100,6 +105,7 @@ void loop(){
      hum.refresh();
      debug("2");
      press.refresh();
+     pressext.refresh();
      debug("3");
      temp.refresh();
      debug("fr");
