@@ -15,12 +15,15 @@
 		<value name="Température" unit="°C" id="1" coef="0.01" />	
 	</sensor>
 	<sensor name="Pression" id="3">
-		<value name="Valeur" unit="" id="0" />	
+		<value name="Valeur" unit="hPa" id="0" />	
 	</sensor>
 	<sensor name="Température" id="4">
 		<value name="Valeur" unit="°C" id="0" coef="0.01" />	
 	</sensor>
 	<sensor name="Pile" id="5">
 		<value name="Tension" unit="V" id="0" coef="0.053763441"/>	
+	</sensor>
+	<sensor name="Pression Extérieure" id="6">
+		<value name="Valeur" unit="hPa" id="0" />	
 	</sensor>
 </sensorlist>
