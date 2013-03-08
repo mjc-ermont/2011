@@ -1,12 +1,12 @@
 <RCC>
     <qresource prefix="/icons">
-        <file alias="icon">icon.png</file>
+        <file alias="icon">Icons/icon.png</file>
     </qresource>
     <qresource prefix="/icons/buttons">
-        <file alias="boussole">compass.png</file>
-        <file alias="plus">plus.png</file>
-        <file alias="users">users.png</file>
-        <file alias="check">check.png</file>
-        <file alias="delete">delete.png</file>
+        <file alias="check">Icons/Buttons/check.png</file>
+        <file alias="boussole">Icons/Buttons/compass.png</file>
+        <file alias="delete">Icons/Buttons/delete.png</file>
+        <file alias="plus">Icons/Buttons/plus.png</file>
+        <file alias="users">Icons/Buttons/users.png</file>
     </qresource>
 </RCC>
