@@ -8,6 +8,7 @@ DEFINES += QWT_DLL
 
 QT       += core gui webkit
 QT       += sql
+QT       += network
 
 TARGET = Logger20
 TEMPLATE = app
