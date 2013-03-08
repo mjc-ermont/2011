@@ -1,9 +1,5 @@
 #include "timecalcs.h"
 
-TimeCalcs::TimeCalcs(){
-
-}
-
 QTime TimeCalcs::addition(QTime a, QTime b, int signea, int signeb){
     if(signea < 0 && signeb > 0){
         return fromMs(a.msecsTo(b));
