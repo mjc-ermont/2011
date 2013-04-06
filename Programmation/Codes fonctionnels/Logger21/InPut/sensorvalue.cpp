@@ -17,7 +17,7 @@ Data* SensorValue::addData(double d) {
 
     datalist.append(newData);
     qDebug()<<"Param: " << param;
-    if(param == "ymap2") { // Updating map
+    /*if(param == "ymap2") { // Updating map
         qDebug() << "I can haz cheeseburger";
         double NDeg=999, NMin=999, WDeg=999,WMin=999;
         NMin = d;
@@ -40,6 +40,6 @@ Data* SensorValue::addData(double d) {
 
             parent->getParent()->getParent()->getMap()->addPoint(x,y);
         }
-    }
+    }*/
     return newData;
 }

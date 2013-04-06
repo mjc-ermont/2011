@@ -39,7 +39,7 @@ void TableMgr::actualisay(QTime start,QTime end,SensorManager* sensormgr) {
             QVector<Data*> d = sensormgr->getSensor(i_capteur)->getValues()[i_valeur]->getData();
             for(int i_data=0;i_data<d.size();i_data++) {
                if((TimeCalcs::toMs(d[i_data]->time) > TimeCalcs::toMs(start))&&(TimeCalcs::toMs(d[i_data]->time) < TimeCalcs::toMs(end))) {
-                   if(i_valeur=0) {
+                   if(i_valeur==0) {
                        QList<QStandardItem*> items;
                        for(int i=0;i<sensormgr->getSensor(i_capteur)->getValues().size();i++) {
                            QStandardItem* curElement  = new QStandardItem;
