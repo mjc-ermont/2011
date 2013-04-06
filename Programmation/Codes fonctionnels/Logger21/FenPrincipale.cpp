@@ -17,6 +17,7 @@ FenPrincipale::FenPrincipale(Serial* _com) {
 
     stack->setCurrentIndex(0);
 
+
     sensormgr = new SensorManager(this);
     QVector<Sensor*> sensorList = sensormgr->getSensors();
     nbSensors = sensorList.size();
@@ -123,15 +124,16 @@ void FenPrincipale::syncTime() {
         lcd_min->setPalette(lcd_hour->palette());
     }
 
-    lcd_hour->display(h);
-    lcd_min->display(m);
-    lcd_sec->display(s);
+    lcd_hour->display(QString("%1").arg(h, 10, 10, QChar('0').toUpper()));
+    lcd_min->display(QString("%1").arg(m, 10, 10, QChar('0').toUpper()));
+    lcd_sec->display(QString("%1").arg(s, 10, 10, QChar('0').toUpper()));
 }
 
 void FenPrincipale::informationsReceived(QStringList trames) {
     if(trames.size() > 0) {
-        for(int i=0;i<trames.size();i++)
-            sensormgr->addData(trames[i],tableManager);
+        for(int i=0;i<trames.size();i++) {
+            sensormgr->addData(trames[i]);
+        }
 
         QPair<GraphicView*,QMdiSubWindow*> value;
         foreach(value,graphiques) {
@@ -266,6 +268,57 @@ void FenPrincipale::on_btn_optimiser_clicked()
         optimise_graph();
 
     optimisation_graph = btn_optimiser->isChecked();
+}
+
+void FenPrincipale::on_actualizeTableButton_clicked()
+{
+    if(check_all_values->isChecked()) {
+        //TODO: Travailler
+    } else {
+        QTime start = time_start->time();
+        QTime end   =   time_end->time();
+
+        if(TimeCalcs::toMs(start) < TimeCalcs::toMs(end)) {
+            start = TimeCalcs::fromMs(TimeCalcs::toMs(start) + TimeCalcs::toMs(h_depart));
+            end   = TimeCalcs::fromMs(TimeCalcs::toMs(end) + TimeCalcs::toMs(h_depart));
+            tableManager->actualisay(start,end,sensormgr);
+        } else {
+            start = TimeCalcs::fromMs(TimeCalcs::toMs(QTime::currentTime()) - TimeCalcs::toMs(time_start->time()));
+            end   = TimeCalcs::fromMs(TimeCalcs::toMs(QTime::currentTime()) - TimeCalcs::toMs(time_end->time()));
+            tableManager->actualisay(start,end,sensormgr);
+        }
+    }
+}
+
+void FenPrincipale::on_horizontalSlider_sliderMoved(int position)
+{
+    if(position<60) {
+        if(position == 1)
+            bowltext->setText(QString::number(position) + " minute");
+        else
+            bowltext->setText(QString::number(position) + " minutes");
+    } else  {
+        int heures = (position-position%60)/60;
+        QString heureMsg = heures>1 ? " heures ":" heure ";
+
+        int minutes = position%60;
+        QString minutesMsg = minutes>1 ? " minutes ":" minute ";
+
+        if(minutes == 0)
+            bowltext->setText(QString::number(heures) + heureMsg);
+        else
+            bowltext->setText(QString::number(heures) + heureMsg + QString::number(minutes) + minutesMsg);
+    }
+}
+
+void FenPrincipale::on_horizontalSlider_sliderReleased()
+{
+    int position = horizontalSlider->value();
+
+    QPair<GraphicView*,QMdiSubWindow*> value;
+    foreach(value,graphiques) {
+        value.first->majData(QTime(0,position,0));
+    }
 }
 
 void FenPrincipale::optimise_graph() {

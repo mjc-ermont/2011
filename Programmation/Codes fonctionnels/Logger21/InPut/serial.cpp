@@ -219,30 +219,34 @@ void Serial::readData() {
     for(int i=0;i<1024;++i)
         buffer[i] = '\n';
 
-    #ifndef DEBUG
-        nb_read = read(tty_fd, buffer, 1024);
-        int eol=0;
+    nb_read = read(tty_fd, buffer, 1024);
+    int eol=0;
 
-        for(int i=0;(i<1024)&&(eol==0);++i)
-            if(buffer[i] == '\n')
-                eol = i;
+    for(int i=0;(i<1024)&&(eol==0);++i)
+        if(buffer[i] == '\n')
+            eol = i;
 
 
-        QString s;
-        for(int i=0;i<eol;i++)
-            s += buffer[i];
+    QString s;
+    for(int i=0;i<eol;i++)
+        s += buffer[i];
 
-        QString data = skipped_buf + s;
+    QFile logfile("log.beat");
+    logfile.open(QFile::Append);
+    logfile.write(s.remove('\n').toStdString().c_str());
+    logfile.close();
 
-        trames = data.split('@');
-        int nbTrames = trames.size();
-        if(nbTrames >= 2) {
-            if(trames.last().size() != trames[nbTrames - 2].size()) {
-                skipped_buf = trames.last();
-                trames.removeLast();
-            }
+    QString data = skipped_buf + s;
+
+    trames = data.split('@');
+    int nbTrames = trames.size();
+    if(nbTrames >= 2) {
+        if(trames.last().size() != trames[nbTrames - 2].size()) {
+            skipped_buf = trames.last();
+            trames.removeLast();
         }
-    #endif
+    }
+
     qDebug() << "Data read" << trames;
     emit dataRead(trames);
 }

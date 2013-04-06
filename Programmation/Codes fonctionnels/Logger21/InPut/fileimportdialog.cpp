@@ -24,7 +24,7 @@ void FileImportDialog::on_buttonBox_accepted() {
     int i=0;
     QTime base = QTime::currentTime();
     foreach(QString trame, trames) {
-        Data* d = m_parent->getSensorMgr()->addData(trame,m_parent->getTableMgr());
+        Data* d = m_parent->getSensorMgr()->addData(trame);
         if(d != NULL)
             d->time = QTime(base.hour(),base.minute(),base.second()+i);
 

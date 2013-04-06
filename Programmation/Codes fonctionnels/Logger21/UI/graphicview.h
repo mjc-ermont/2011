@@ -24,6 +24,7 @@ class GraphicView : public QwtPlot
 
     public:
         explicit GraphicView(int indexCapteur, int indexValeur, FenPrincipale *parent = 0);
+        void majData(QTime n_duration);
         void majData();
 
     protected:
@@ -42,6 +43,7 @@ class GraphicView : public QwtPlot
         QVector<double> yValues;
 
         SensorValue *value;
+        QTime duration;
 };
 
 #endif // GRAPHICVIEW_H

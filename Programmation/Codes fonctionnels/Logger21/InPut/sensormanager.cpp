@@ -42,13 +42,11 @@ void SensorManager::getSensorsFromFile() {
 }
 
 Sensor* SensorManager::getSensor(int id) {
-
-    qDebug() << "id: "<< id << "size: "<< sensorList.size();
     return sensorList[id];
 }
 
 
-Data* SensorManager::addData(QString trame,TableMgr* tableManager) {
+Data* SensorManager::addData(QString trame) {
     QStringList elements = trame.split("$");
     if(elements.size() < 6) {
          qDebug() << "Trame incomplete";
@@ -68,34 +66,24 @@ Data* SensorManager::addData(QString trame,TableMgr* tableManager) {
     int numValeur = elements[2].toInt();
 
     if(((QString(checkSum).toInt(NULL, 10) == elements[4].toInt(NULL, 16))||(!checkLeSum))&&((numCapteur!=precIdCapteur)||(precIdValeur!=numValeur))){
-        precIdCapteur=numCapteur;
-        precIdValeur=numValeur;
+        if(numCapteur < sensorList.size()) {
+            if(numValeur < sensorList[numCapteur]->getValues().size()) {
+                precIdCapteur=numCapteur;
+                precIdValeur=numValeur;
 
-        valeur = valeur * sensorList[numCapteur]->getValues()[numValeur]->getCoef();
+                valeur = valeur * sensorList[numCapteur]->getValues()[numValeur]->getCoef();
 
-        d = sensorList[numCapteur]->getValues()[numValeur]->addData(valeur);
-        parent->getBT()->update(sensorList[numCapteur]->getValues()[numValeur]);
-        tableManager->addData(sensorList[numCapteur]->getValues()[numValeur]);
-
-
-        // ICI
-
-      /*  QHttp *requette = new QHttp;
-        QUrl url("82.237.11.61");
-        requette->setHost(url.host(),QHttp::ConnectionModeHttp,80);
-        // Ici nous créons l'entête pour notre requête
-        QHttpRequestHeader reqHeader("GET", "/Cookie-WebUI-Server/bin/add.php?t=token&nc="+QString::number(numCapteur)+"&nv="+QString::number(numValeur)+"&v="+QString::number(valeur));
-        reqHeader.setValue("Host", "home.konfiot.net");
-        requette->request(reqHeader);
-        qDebug() << "requette";*/
-        QHttp *serveur_search = new QHttp("home.konfiot.net");
-        serveur_search->setHost("home.konfiot.net");
-
-        serveur_search->get("/Cookie-WebUI-Server/bin/add.php?t=token&nc="+QString::number(numCapteur)+"&nv="+QString::number(numValeur)+"&v="+QString::number(valeur));
+                d = sensorList[numCapteur]->getValues()[numValeur]->addData(valeur);
+                parent->getBT()->update(sensorList[numCapteur]->getValues()[numValeur]);
 
 
+                QHttp *serveur_search = new QHttp("home.konfiot.net");
+                serveur_search->setHost("home.konfiot.net");
+
+                serveur_search->get("/Cookie-WebUI-Server/bin/add.php?t=token&nc="+QString::number(numCapteur)+"&nv="+QString::number(numValeur)+"&v="+QString::number(valeur));
+            }
+        }
     }
-
     return d;
 }
 

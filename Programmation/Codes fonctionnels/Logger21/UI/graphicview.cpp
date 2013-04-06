@@ -10,17 +10,22 @@ GraphicView::GraphicView(int indexCapteur, int indexValeur, FenPrincipale *paren
 
     setWindowTitle(value->getCapteur()->getName() + " - " + value->getName());
 
+    duration = QTime(0,5,0);
     courbe->attach(this);
     majCurve();
 }
 
 void GraphicView::majData() {
-    qDebug()<<"Updating graph data";
+    majCurve();
+}
+
+void GraphicView::majData(QTime n_duration) {
+    duration=n_duration;
     majCurve();
 }
 
 void GraphicView::majCurve() {
-    calculateCurve();
+    calculateCurve(duration);
 
     QwtSplineCurveFitter* fitter = new QwtSplineCurveFitter;
 

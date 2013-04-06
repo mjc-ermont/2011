@@ -19,7 +19,7 @@ public:
     SensorManager(FenPrincipale *_parent);
     Sensor* getSensor(int id);
     QVector<Sensor*> getSensors() {return sensorList;}
-    Data* addData(QString trame, TableMgr *tableManager);
+    Data* addData(QString trame);
     FenPrincipale* getParent(){return parent;}
 protected:
     void getSensorsFromFile();

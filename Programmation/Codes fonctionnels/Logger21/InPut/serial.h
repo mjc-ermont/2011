@@ -10,6 +10,7 @@
 #include <cstdlib>
 //#include <conio.h>
 #include <QDebug>
+#include <QFile>
 
 #include <stdlib.h>
 #include <string.h>

@@ -77,6 +77,10 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
         void graphClosed();
         void optimise_graph();
         void on_btn_optimiser_clicked();
+private slots:
+        void on_actualizeTableButton_clicked();
+        void on_horizontalSlider_sliderMoved(int position);
+        void on_horizontalSlider_sliderReleased();
 };
 
 #endif // FENPRINCIPALE_H
