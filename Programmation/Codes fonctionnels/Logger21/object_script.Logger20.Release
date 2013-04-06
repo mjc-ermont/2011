@@ -1,0 +1,16 @@
+INPUT(
+./release\main.o
+./release\FenPrincipale.o
+./release\mapsview.o
+./release\graphicview.o
+./release\boardingtable.o
+./release\serial.o
+./release\sensormanager.o
+./release\sensor.o
+./release\sensorvalue.o
+./release\moc_FenPrincipale.o
+./release\moc_mapsview.o
+./release\moc_graphicview.o
+./release\moc_serial.o
+./release\qrc_ressources.o
+);

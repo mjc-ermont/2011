@@ -21,6 +21,6 @@
 		<value name="Valeur" unit="°C" id="0" coef="0.01" />	
 	</sensor>
 	<sensor name="Pile" id="5">
-		<value name="Tension" unit="V" id="0" />	
+		<value name="Tension" unit="V" id="0" coef="0.053763441"/>	
 	</sensor>
 </sensorlist>

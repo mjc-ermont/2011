@@ -12,6 +12,7 @@
 class FenPrincipale;
 class Sensor;
 
+
 class SensorManager
 {
 public:

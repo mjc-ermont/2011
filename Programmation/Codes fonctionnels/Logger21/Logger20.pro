@@ -25,11 +25,11 @@ SOURCES += main.cpp\
     InPut/sensor.cpp \
     InPut/sensorvalue.cpp \
     dialog.cpp \
-    ../ChronoReaderWidget/timecalcs.cpp \
     ../ChronoReaderWidget/eventbox.cpp \
     ../ChronoReaderWidget/chronoreaderwidget.cpp \
     InPut/fileimportdialog.cpp \
-    tablemgr.cpp
+    tablemgr.cpp \
+    ../ChronoReaderWidget/TimeCalcs/timecalcs.cpp
 
 HEADERS  += FenPrincipale.h \
     UI/mapsview.h \
@@ -41,11 +41,11 @@ HEADERS  += FenPrincipale.h \
     InPut/sensorvalue.h \
     defines.h \
     dialog.h \
-    ../ChronoReaderWidget/timecalcs.h \
     ../ChronoReaderWidget/eventbox.h \
     ../ChronoReaderWidget/chronoreaderwidget.h \
     InPut/fileimportdialog.h \
-    tablemgr.h
+    tablemgr.h \
+    ../ChronoReaderWidget/TimeCalcs/timecalcs.h
 
 FORMS    += FenPrincipale.ui \
     dialog.ui \
