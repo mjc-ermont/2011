@@ -24,7 +24,7 @@
 ---------------------------------------------------------------------------
  */
 
-#define BAUD B600
+#define BAUD B57600
 #define RX_SIZE 4096 /* taille tampon d'entrée */
 #define TX_SIZE 4096 /* taille tampon de sortie */
 #define MAX_WAIT_READ 5000 /* temps max d'attente pour lecture (en ms) */
