@@ -1,40 +1,61 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2012-02-04T15:51:54
+# Project created by QtCreator 2013-04-06T14:33:11
 #
 #-------------------------------------------------
-
 DEFINES += QWT_DLL
 
-QT       += core gui webkit
-QT       += sql
-QT       += network
+QT       += core gui network sql webkit
 
-TARGET = Logger20
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = Logger21
 TEMPLATE = app
 
 
-
-SOURCES += main.cpp\
+SOURCES += \
     FenPrincipale.cpp \
+    dialog.cpp \
+    tablemgr.cpp \
+    main.cpp \
     UI/mapsview.cpp \
     UI/graphicview.cpp \
     UI/boardingtable.cpp \
     InPut/serial.cpp \
+    InPut/sensorvalue.cpp \
     InPut/sensormanager.cpp \
     InPut/sensor.cpp \
-    InPut/sensorvalue.cpp
+    InPut/fileimportdialog.cpp \
+    ../ChronoReaderWidget/chronoreaderwidget.cpp \
+    ../ChronoReaderWidget/TimeCalcs/timecalcs.cpp \
+    ../ChronoReaderWidget/eventbox.cpp
 
-HEADERS  += FenPrincipale.h \
+HEADERS  += \
+    tablemgr.h \
+    FenPrincipale.h \
+    dialog.h \
+    defines.h \
     UI/mapsview.h \
     UI/graphicview.h \
+    UI/boardingtable.h \
     InPut/serial.h \
+    InPut/sensorvalue.h \
     InPut/sensormanager.h \
     InPut/sensor.h \
-    UI/boardingtable.h \
-    InPut/sensorvalue.h
+    InPut/fileimportdialog.h \
+    ../ChronoReaderWidget/chronoreaderwidget.h \
+    ../ChronoReaderWidget/TimeCalcs/timecalcs.h \
+    ../ChronoReaderWidget/eventbox.h
 
-FORMS    += FenPrincipale.ui
+FORMS += \
+    FenPrincipale.ui \
+    dialog.ui \
+    InPut/fileimportdialog.ui \
+    ../ChronoReaderWidget/chronoreaderwidget.ui \
+    ../ChronoReaderWidget/eventbox.ui
+
+RESOURCES += \
+    ressources.qrc
 
 CONFIG += linusque
 
@@ -48,8 +69,6 @@ robotik {
 
 linusque {
     LIBS += /usr/lib/libqwt.so
+    LIBS += -lqjson
 }
 
- #Ajouter les diffrents chemins selon les PC utiliss.
-
-RESOURCES += ressources.qrc

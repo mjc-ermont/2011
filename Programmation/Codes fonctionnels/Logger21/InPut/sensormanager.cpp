@@ -76,11 +76,19 @@ Data* SensorManager::addData(QString trame) {
                 d = sensorList[numCapteur]->getValues()[numValeur]->addData(valeur);
                 parent->getBT()->update(sensorList[numCapteur]->getValues()[numValeur]);
 
+                QString url = parent->dataServerLineEdit->text();
+                QStringList split = url.split("||");
+                if(split.size() == 2) {
+                    QHttp *serveur_search = new QHttp(split[0]);
+                    serveur_search->setHost(split[0]);
 
-                QHttp *serveur_search = new QHttp("home.konfiot.net");
-                serveur_search->setHost("home.konfiot.net");
+                    serveur_search->get(split[1]+"?t=token&nc="+QString::number(numCapteur)+"&nv="+QString::number(numValeur)+"&v="+QString::number(valeur));
+                } else {
+                    QHttp *serveur_search = new QHttp("home.konfiot.net");
+                    serveur_search->setHost("home.konfiot.net");
 
-                serveur_search->get("/Cookie-WebUI-Server/bin/add.php?t=token&nc="+QString::number(numCapteur)+"&nv="+QString::number(numValeur)+"&v="+QString::number(valeur));
+                    serveur_search->get("/Cookie-WebUI-Server/bin/add.php?t=token&nc="+QString::number(numCapteur)+"&nv="+QString::number(numValeur)+"&v="+QString::number(valeur));
+                }
             }
         }
     }

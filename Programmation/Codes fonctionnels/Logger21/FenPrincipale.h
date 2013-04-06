@@ -81,6 +81,7 @@ private slots:
         void on_actualizeTableButton_clicked();
         void on_horizontalSlider_sliderMoved(int position);
         void on_horizontalSlider_sliderReleased();
+        void on_dataServerLineEdit_editingFinished();
 };
 
 #endif // FENPRINCIPALE_H

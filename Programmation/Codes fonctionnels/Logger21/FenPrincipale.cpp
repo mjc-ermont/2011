@@ -82,6 +82,12 @@ FenPrincipale::FenPrincipale(Serial* _com) {
     chronoWidget->laucherCounter(QTime::currentTime());
     chronolayout->addWidget(chronoWidget);
 
+
+    QFile file("conf/url.ini");
+    file.open(QIODevice::ReadOnly);
+    QString url = QString(file.readAll());
+    file.close();
+    dataServerLineEdit->setText(url);
 }
 
 FenPrincipale::~FenPrincipale(){
@@ -288,6 +294,16 @@ void FenPrincipale::on_actualizeTableButton_clicked()
             tableManager->actualisay(start,end,sensormgr);
         }
     }
+}
+
+
+void FenPrincipale::on_dataServerLineEdit_editingFinished()
+{
+    QFile file("conf/url.ini");
+    file.open(QIODevice::ReadWrite);
+    file.resize(0);
+    file.write(dataServerLineEdit->text().toStdString().c_str());
+    file.close();
 }
 
 void FenPrincipale::on_horizontalSlider_sliderMoved(int position)
