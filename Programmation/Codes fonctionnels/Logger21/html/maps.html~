@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="../js/leaflet/leaflet.css" />
- 		<script src="../js/leaflet/leaflet.js"></script>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+ 		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
 
 
 	</head>
 	<body>
- 		<div id="map" style="height: 100%;"></div>
+ 		<div id="map" style="height: 500px;"></div>
 		<script>
-			var map = L.map('map').setView([51.505, -0.09], 13);
-
+			var map = L.map('map');
 			var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 			var osmAttrib='Map data © OpenStreetMap contributors';
-			var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});		
+			var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 15, attribution: osmAttrib});		
+			map.addLayer(osm);
+
+			map.setView([48, 2], 13);
+
+			var polyline = L.polyline([], {color: 'red'}).addTo(map);
 
 
+			function newPos(x,y) {
+		    	polyline.addLatLng( new L.LatLng(x, y));
+				//map.fitBounds(polyline.getBounds());
+			}
+	
 		</script>
 
 	</body>

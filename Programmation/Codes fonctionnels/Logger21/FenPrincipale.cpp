@@ -333,7 +333,7 @@ void FenPrincipale::on_horizontalSlider_sliderReleased()
 
     QPair<GraphicView*,QMdiSubWindow*> value;
     foreach(value,graphiques) {
-        value.first->majData(QTime(0,position,0));
+     //  value.first->majData(QTime(0,position,0));
     }
 }
 

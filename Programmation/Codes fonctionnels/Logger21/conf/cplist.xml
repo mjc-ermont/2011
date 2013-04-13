@@ -1,11 +1,10 @@
 <sensorlist>
 	<sensor name="GPS" id="0">
-		<value name="Latitude - Angle" unit="°" id="0" param="xmap1" />
-		<value name="Latitude - Minutes" unit="'" id="1" param="xmap2" />
-		<value name="Longitude - Angle" unit="°" id="2" param="ymap1" />
-		<value name="Longitude - Minutes" unit="'" id="3" param="ymap2" />
-		<value name="Vitesse" unit="noeuds" id="4" />
-		<value name="Heure" unit="" id="5" />
+		<value name="Longitude" unit="°" id="0" param="ymap" coef="0.00001"/>
+		<value name="Latitude" unit="°" id="1" param="xmap" coef="0.00001" />
+		<value name="Vitesse" unit="noeuds" id="2" />
+		<value name="Heure" unit="" id="3" />
+		<value name="Altitude" unit="" id="4" />
 	</sensor>
 	<sensor name="Accéléromètre" id="1">
 		<value name="Valeur" unit="" id="0" />	

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../js/jquery.js"></script>
+        <script src="../js/highstock.js"></script>
+        <script src="../js/exporting.js"></script>
+    </head>
+    <body>
+        <div id="content"></div>
+        <button id="button">Add points</button>
+
+
+        <script type="text/javascript">
+
+            var chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'content'
+                },
+                rangeSelector: {
+                    selected: 1
+                },
+
+
+                series: [{
+                data: []
+                }]
+            });
+
+            function addPoint(var x, var y) {
+                chart.series[0].addPoint([x,y], false);
+            }
+
+
+
+        </script>
+    </body>
+</html>

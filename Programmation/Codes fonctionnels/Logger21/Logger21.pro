@@ -19,7 +19,6 @@ SOURCES += \
     tablemgr.cpp \
     main.cpp \
     UI/mapsview.cpp \
-    UI/graphicview.cpp \
     UI/boardingtable.cpp \
     InPut/serial.cpp \
     InPut/sensorvalue.cpp \
@@ -28,7 +27,8 @@ SOURCES += \
     InPut/fileimportdialog.cpp \
     ../ChronoReaderWidget/chronoreaderwidget.cpp \
     ../ChronoReaderWidget/TimeCalcs/timecalcs.cpp \
-    ../ChronoReaderWidget/eventbox.cpp
+    ../ChronoReaderWidget/eventbox.cpp \
+    UI/graphicview.cpp
 
 HEADERS  += \
     tablemgr.h \
@@ -36,7 +36,6 @@ HEADERS  += \
     dialog.h \
     defines.h \
     UI/mapsview.h \
-    UI/graphicview.h \
     UI/boardingtable.h \
     InPut/serial.h \
     InPut/sensorvalue.h \
@@ -45,7 +44,8 @@ HEADERS  += \
     InPut/fileimportdialog.h \
     ../ChronoReaderWidget/chronoreaderwidget.h \
     ../ChronoReaderWidget/TimeCalcs/timecalcs.h \
-    ../ChronoReaderWidget/eventbox.h
+    ../ChronoReaderWidget/eventbox.h \
+    UI/graphicview.h
 
 FORMS += \
     FenPrincipale.ui \
@@ -54,8 +54,7 @@ FORMS += \
     ../ChronoReaderWidget/chronoreaderwidget.ui \
     ../ChronoReaderWidget/eventbox.ui
 
-RESOURCES += \
-    ressources.qrc
+RESOURCES +=
 
 CONFIG += linusque
 

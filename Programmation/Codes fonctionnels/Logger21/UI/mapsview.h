@@ -14,10 +14,15 @@ class MapsView : public QWebView
 public:
     explicit MapsView(QVBoxLayout *parent = 0);
 
-    void addPoint(double x, double y);
+    void addPoint();
+
+    void updateX(double x);
+    void updateY(double y);
+
 
 private:
     QVector<QPair<double,double> > points;
+    double mX,mY;
 };
 
 #endif // MAPSVIEW_H
