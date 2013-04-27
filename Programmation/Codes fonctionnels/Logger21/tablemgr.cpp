@@ -6,6 +6,7 @@ TableMgr::TableMgr(QVector<QTableView*> *tab_historique)
 }
 
 void TableMgr::addData(SensorValue *valeur) {
+    SensorManager* sensormgr = valeur->getCapteur()->getParent();
     int idcapteur = valeur->getCapteur()->getId();
     int idvaleur = valeur->getID();
 
@@ -29,12 +30,16 @@ void TableMgr::addData(SensorValue *valeur) {
     if(lineFull(idcapteur)) {
         update(idcapteur);
         qDebug() << "LINE FULL = UPDATE"<<idcapteur;
+
+
+
     }
 }
 
 void TableMgr::actualisay(QTime start,QTime end,SensorManager* sensormgr) {
     // C'est parti, mon kiki.
     for(int i_capteur=0;i_capteur<sensormgr->getSensors().size();i_capteur++) {
+
         for(int i_valeur=0;i_valeur<sensormgr->getSensor(i_capteur)->getValues().size();i_valeur++) {
             QVector<Data*> d = sensormgr->getSensor(i_capteur)->getValues()[i_valeur]->getData();
             for(int i_data=0;i_data<d.size();i_data++) {
@@ -50,8 +55,34 @@ void TableMgr::actualisay(QTime start,QTime end,SensorManager* sensormgr) {
                        ((QStandardItemModel*)m_tab_historique->at(i_capteur)->model())->appendRow(items);
 
                    }
-                   ((QStandardItemModel*)m_tab_historique->at(i_capteur)->model())->item(i_data,i_valeur)->setText(QString::number(d[i_data]->value));
+
+                   QString dataValue = QString::number(d[i_data]->value);
+                   QStandardItemModel* curModel = ((QStandardItemModel*)m_tab_historique->at(i_capteur)->model());
+                   QStandardItem* item = curModel->item(i_data,i_valeur);
+
+                   if(item != NULL)
+                        item->setText(dataValue);
                }
+            }
+        }
+        bool beat = true;
+        while(beat) {
+            beat = false;
+            for(int i_capteur=0;i_capteur<sensormgr->getSensors().size();i_capteur++) {
+                QStandardItemModel* curModel = ((QStandardItemModel*)m_tab_historique->at(i_capteur)->model());
+                for(int i=0;i<curModel->rowCount();i++) {
+                    bool noProblem = false;
+
+                    for(int v=0;v<sensormgr->getSensor(i_capteur )->getValues().size();v++) {
+                        if(curModel->item(i,v)->text() != "nul")
+                            noProblem = true;
+                    }
+
+                    if(!noProblem) {
+                        beat = true;
+                        curModel->removeRow(i);
+                    }
+                }
             }
         }
     }
