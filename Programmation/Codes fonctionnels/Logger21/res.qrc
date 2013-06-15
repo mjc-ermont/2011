@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/html">
+        <file alias="chart.html">html/chart.html</file>
+    </qresource>
+    <qresource prefix="/js">
+        <file alias="exporting.js">js/exporting.js</file>
+        <file alias="highstock.js">js/highstock.js</file>
+        <file alias="jquery.js">js/jquery.js</file>
+    </qresource>
+</RCC>
