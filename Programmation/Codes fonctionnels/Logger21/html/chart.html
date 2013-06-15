@@ -1,37 +1,84 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="../js/jquery.js"></script>
-        <script src="../js/highstock.js"></script>
-        <script src="../js/exporting.js"></script>
+        <script type="text/javascript" src="qrc:///js/jquery.js"></script>
+        <script type="text/javascript" src="qrc:///js/highstock.js"></script>
+        <script type="text/javascript" src="qrc:///js/exporting.js"></script>
+        <!--<script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="highstock.js"></script>
+        <script type="text/javascript" src="exporting.js"></script>-->
     </head>
     <body>
-        <div id="content"></div>
-        <button id="button">Add points</button>
-
-
+        <div id="container" style="height: 500px; min-width: 500px"></div>
         <script type="text/javascript">
 
-            var chart = new Highcharts.Chart({
-                chart: {
-                    renderTo: 'content'
-                },
-                rangeSelector: {
-                    selected: 1
-                },
+        function height(bloc){
+            var hauteur;
 
+            if( typeof( window.innerWidth ) == 'number' )
+                hauteur = window.innerHeight;
+            else if( document.documentElement && document.documentElement.clientHeight )
+                hauteur = document.documentElement.clientHeight;
 
-                series: [{
-                data: []
-                }]
-            });
+            document.getElementById(bloc).style.height = hauteur+"px";
+        }
 
-            function addPoint(var x, var y) {
-                chart.series[0].addPoint([x,y], false);
+        window.onresize = function(){ height("container") };
+        height("container")
+
+        Highcharts.setOptions({
+            global : {
+                useUTC : false
             }
+        });
+
+        // Create the chart
+
+        var chart = Highcharts.StockChart({
+            chart: {
+                renderTo: "container"
+            },
+            rangeSelector: {
+                buttons: [{
+                    count: 1,
+                    type: 'minute',
+                    text: '1M'
+                }, {
+                    count: 5,
+                    type: 'minute',
+                    text: '5M'
+                }, {
+                    type: 'all',
+                    text: 'All'
+                }],
+                inputEnabled: false,
+                selected: 1
+            },
 
 
+            exporting: {
+                enabled: false
+            },
 
+            series : [{
+                name : 'Random data',
+                type: 'spline',
+                data : []
+            }],
+
+            title:  {
+                text: "Random Chart"
+            }
+        });
+
+        function addPoint(x, y) {
+            chart.series[0].addPoint([x,y],false);
+        }
+
+        function setTitle(title) {
+        //    chart.title.textStr=title;
+         //   chart.title.add("");
+        }
         </script>
     </body>
 </html>

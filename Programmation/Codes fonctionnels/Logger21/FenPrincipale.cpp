@@ -1,6 +1,5 @@
 #include "FenPrincipale.h"
 #include "InPut/fileimportdialog.h"
-#include "../ChronoReaderWidget/chronoreaderwidget.h"
 
 FenPrincipale::FenPrincipale(Serial* _com) {
 
@@ -40,7 +39,6 @@ FenPrincipale::FenPrincipale(Serial* _com) {
         }
 
         t->setModel(modele);
-
     }
 
     tableManager = new TableMgr(&tableauxHist);
@@ -78,8 +76,7 @@ FenPrincipale::FenPrincipale(Serial* _com) {
     #endif
 
     h_depart = QTime::currentTime();
-    ChronoReaderWidget *chronoWidget = new ChronoReaderWidget;
-    chronoWidget->laucherCounter(QTime::currentTime());
+    chronoWidget = new ChronoReaderWidget;
     chronolayout->addWidget(chronoWidget);
 
 
@@ -88,6 +85,18 @@ FenPrincipale::FenPrincipale(Serial* _com) {
     QString url = QString(file.readAll());
     file.close();
     dataServerLineEdit->setText(url);
+
+    QFile df("conf/datedepart.ini");
+    df.open(QIODevice::ReadOnly);
+    QString date = QString(df.readAll());
+    df.close();
+
+    int h=date.split(":").at(0).toInt();
+    int m=date.split(":").at(1).toInt();
+    int s=date.split(":").at(2).toInt() ;
+
+    heureLancement->setTime(QTime(h,m,s));
+    chronoWidget->laucherCounter(QTime(h,m,s));
 }
 
 FenPrincipale::~FenPrincipale(){
@@ -304,6 +313,16 @@ void FenPrincipale::on_dataServerLineEdit_editingFinished()
     file.resize(0);
     file.write(dataServerLineEdit->text().toStdString().c_str());
     file.close();
+}
+
+void FenPrincipale::on_heureLancement_timeChanged(const QTime &time)
+{
+    QFile file("conf/datedepart.ini");
+    file.open(QIODevice::ReadWrite);
+    file.resize(0);
+    file.write((QString::number(heureLancement->time().hour())+":"+QString::number(heureLancement->time().minute())+":"+QString::number(heureLancement->time().second())).toStdString().c_str());
+    file.close();
+
 }
 
 void FenPrincipale::on_horizontalSlider_sliderMoved(int position)

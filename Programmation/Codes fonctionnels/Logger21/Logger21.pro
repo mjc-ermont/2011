@@ -56,7 +56,8 @@ FORMS += \
     ../ChronoReaderWidget/chronoreaderwidget.ui \
     ../ChronoReaderWidget/eventbox.ui
 
-RESOURCES +=
+RESOURCES += \
+    res.qrc
 
 CONFIG += linusque
 

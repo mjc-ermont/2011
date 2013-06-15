@@ -25,6 +25,8 @@ class GraphicView : public QWebView
         void majData(QTime n_duration);
         void majData();
 
+    public slots:
+        void updateTitle();
     protected:
         void calculateCurve(QTime maxTime = QTime(0,1));
         void majCurve();

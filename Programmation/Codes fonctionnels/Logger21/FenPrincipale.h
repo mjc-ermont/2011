@@ -3,6 +3,7 @@
 
 #include <QtGui>
 #include "ui_FenPrincipale.h"
+#include "../ChronoReaderWidget/chronoreaderwidget.h"
 #include "InPut/sensormanager.h"
 #include "InPut/serial.h"
 #include "UI/boardingtable.h"
@@ -46,6 +47,7 @@ class FenPrincipale : public QMainWindow, public Ui::FenPrincipale
         TableMgr* tableManager;
 
         SensorManager *sensormgr;
+        ChronoReaderWidget* chronoWidget;
 
         QVector<QTableView*> tableauxHist;
         QVector<QPair<GraphicView*,QMdiSubWindow*> > graphiques;
@@ -82,6 +84,7 @@ private slots:
         void on_horizontalSlider_sliderMoved(int position);
         void on_horizontalSlider_sliderReleased();
         void on_dataServerLineEdit_editingFinished();
+        void on_heureLancement_timeChanged(const QTime &time);
 };
 
 #endif // FENPRINCIPALE_H
