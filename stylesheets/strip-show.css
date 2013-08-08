@@ -1,0 +1,7 @@
+.dynamic-show .img {
+	max-width : 250px;
+}
+
+.dynamic-show div {
+	display: inline-block;
+}
