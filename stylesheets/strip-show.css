@@ -4,4 +4,9 @@
 
 .dynamic-show div {
 	display: inline-block;
+    vertical-align: middle;
+}
+
+.dynamic-show>.description {
+    width: 300px;
 }

@@ -1,5 +1,6 @@
 <!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
 <!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<!-- Tout le baratin là-haut c'est du fake, c'est Rémi Dupré quie a tout tripoté                  -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -41,18 +42,35 @@
 
 
 					<article class="markdown-body">
-						<h1> DAN ! </h1>
+						<h1>Description des shields</h1>
 						<div class="dynamic-show" >
 							<div class="img" >
-								<img src="images/shields/5.jpg" />
-								<a></a>
+								<img src="images/shields/1.JPG" class="1" />
+                                <img src="images/shields/2.JPG" class="2" style="display:none;" />
+                            	<img src="images/shields/3.JPG" class="3" style="display:none;" />
+                            	<img src="images/shields/4.JPG" class="4" style="display:none;" />
 							</div>
-							<div class="description" >
-								dazuhd<br/>auzged
+							<div class="description 1" >
+								Le micro-contrôleur que l'on utilise est un Arduino.
+                                Ce micro-contrôleur à les avantages d'avoir une programmation plus simplifié que la plupart car sa programmation est d'assez au niveau.
+                                Il est aussi moins coûteux pour le développement.
+							</div>
+    						<div class="description 2" style="display:none;" >
+								Le shild SD est arrivé en renfort lors des tests et de l'évolution des besoins des cartes électroniques.
+                                Ainsi il permet de brancher directement une carte micro-sd pour avoir une boîte noir contenant les trams envoyé.
+                                Il a permis l'intégration de connectiques omises lors de la réalisation des circuits imprimer.
+							</div>
+    						<div class="description 3" style="display:none;" >
+								Le shield FSK à deux utilités. Il comporte la partie qui permet la modulation FSK des trames série.
+                                Ainsi que l'alimentation. En effet, le modulateur XR2206 nécessitant une tension de 10v a ses bornes nous avons placer un régulateur linéaire pour lui en fournir.
+                                Cette tension régulée de 10v va ainsi dans le modulateur et dans un second régulateur, celui de la carte Arduino, qui régule le transforme en 5v.
+							</div>
+    						<div class="description 4" style="display:none;" >
+								La carte capteur permet éponyment de brancher tous les capteurs nécessaire pour le fonctionnement de notre expérience.
 							</div>
 						</div>
 					</article>
-
+                </div>
 			</div>
 		</header>
 	</div>
@@ -71,6 +89,8 @@
 
         <p class="name"></p>
     </div>
+    
+    <script src="js/strip-show.js"></script>
 </body>
 </html>
 
