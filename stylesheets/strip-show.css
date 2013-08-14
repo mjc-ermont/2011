@@ -47,3 +47,14 @@
     
     -webkit-transform: rotate(18deg);
 }
+
+/****************/
+
+#info-interact {
+    color: grey;
+    position: absolute;
+}
+
+.img:hover #info-interact {
+    display: none;
+}
