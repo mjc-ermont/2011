@@ -9,12 +9,10 @@
 .dynamic-show .description {
     vertical-align: top;
     padding-top: 30px;
-}
-
-.dynamic-show>.description {
     width: 300px;
 }
 
+/****************/
 
 .dynamic-show .link {
     position: absolute;
